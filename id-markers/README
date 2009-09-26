@@ -1,0 +1,44 @@
+README for id-markers
+
+This folder contains markers for both of ARToolKitPlus' id-based marker
+systems (called 'simple' and 'BCH'). One can always create new marker
+images (e.g. bch with standard border width) using the tool IdPatGen.
+
+Subfolders are arranged as following:
+
+id-markers/bch - Contains all 4096 markers for the BCH marker system. All
+                 these markers have a thin border (border width of 0.125).
+                 AllBchThinMarkers.png shows all 4096 markers in one
+                 large image.
+
+id-markers/simple/std-border - All 512 simple id-based markers with
+                               standard border width (value 0.250).
+                               AllSimpleStdMarkers.png shows all 512
+                               markers in one image.
+
+id-markers/simple/thin-border - All 512 simple id-based markers with thin
+                                border width (value 0.125).
+
+All these markers image files are ready to use. The marker images are very
+small (6x6 and 8x8 pixels) since they only contain the minimum required
+number of pixels (as there is no point in saving them at a specific size).
+
+All one has to do, is to print them at the prefered size. It is important
+to turn off any kind of filtering (nearest neighbour filtering is ok of
+course...) as otherwise the marker image would become blurred. Under
+Windows IrfanView is a good and free tool to print images at any size.
+
+In contrast to template based markers, it is not required or possible to
+train these markers to ARToolKitPlus. Just put a printed marker in front
+of the camera an it should be detected (considering the marker size,
+border width and system has been setup correctly).
+
+To use the markers with a thin border one needs to call
+tracker->setBorderWidth(0.125f);
+
+To use the markers with standard border width, no change of the default
+setup is required. Yet calling tracker->setBorderWidth(0.250f); would reset
+ARToolKitPlus to the correct border width for these markers.
+
+Final note: Be sure to set marker size to 6x6 in ARToolKitPlus for any kind
+of id-based markers!
