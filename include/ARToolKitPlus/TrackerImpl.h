@@ -140,10 +140,10 @@ public:
 	virtual void setLogger(ARToolKitPlus::Logger* nLogger)  {  logger = nLogger;  }
 
 	/// marker detection using tracking history
-	virtual int arDetectMarker(ARUint8 *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
+	virtual int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
 
 	/// marker detection without using tracking history
-	virtual int arDetectMarkerLite(ARUint8 *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
+	virtual int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
 
 	/// calculates the transformation matrix between camera and the given multi-marker config
 	virtual ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config);
@@ -331,31 +331,31 @@ protected:
 	static bool convertProjectionMatrixToOpenGLStyle2(ARFloat cparam[3][4], int width, int height, ARFloat gnear, ARFloat gfar, ARFloat m[16]);
 
 
-	ARMarkerInfo2* arDetectMarker2(ARInt16 *limage, int label_num, int *label_ref,
+	ARMarkerInfo2* arDetectMarker2(int16_t *limage, int label_num, int *label_ref,
 								   int *warea, ARFloat *wpos, int *wclip,
 								   int area_max, int area_min, ARFloat factor, int *marker_num);
 
-	int arGetContour(ARInt16 *limage, int *label_ref, int label, int clip[4], ARMarkerInfo2 *marker_infoTWO);
+	int arGetContour(int16_t *limage, int *label_ref, int label, int clip[4], ARMarkerInfo2 *marker_infoTWO);
 
 	int check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor);
 
-	int arGetCode(ARUint8 *image, int *x_coord, int *y_coord, int *vertex,
+	int arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex,
 				  int *code, int *dir, ARFloat *cf, int thresh);
 
-	int arGetPatt(ARUint8 *image, int *x_coord, int *y_coord, int *vertex,
-				  ARUint8 ext_pat[PATTERN_HEIGHT][PATTERN_WIDTH][3]);
+	int arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex,
+				  uint8_t ext_pat[PATTERN_HEIGHT][PATTERN_WIDTH][3]);
 
-	int pattern_match( ARUint8 *data, int *code, int *dir, ARFloat *cf);
+	int pattern_match( uint8_t *data, int *code, int *dir, ARFloat *cf);
 
-	int downsamplePattern(ARUint8* data, unsigned char* imgPtr);
+	int downsamplePattern(uint8_t* data, unsigned char* imgPtr);
 
-	int bitfield_check_simple(ARUint8 *data, int *code, int *dir, ARFloat *cf, int thresh);
+	int bitfield_check_simple(uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh);
 
-	int bitfield_check_BCH(ARUint8 *data, int *code, int *dir, ARFloat *cf, int thresh);
+	int bitfield_check_BCH(uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh);
 
 	void gen_evec(void);
 
-	ARMarkerInfo* arGetMarkerInfo(ARUint8 *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh);
+	ARMarkerInfo* arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh);
 
 	ARFloat arGetTransMat2(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][2], int num, ARFloat conv[3][4]);
 
@@ -395,20 +395,20 @@ protected:
 
 
 
-	ARInt16* arLabeling(ARUint8 *image, int thresh,int *label_num, int **area,
+	int16_t* arLabeling(uint8_t *image, int thresh,int *label_num, int **area,
 						ARFloat **pos, int **clip, int **label_ref );
 
 
-	ARInt16* arLabeling_ABGR(ARUint8 *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
-	ARInt16* arLabeling_BGR(ARUint8 *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
-	ARInt16* arLabeling_RGB(ARUint8 *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
-	ARInt16* arLabeling_RGB565(ARUint8 *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
-	ARInt16* arLabeling_LUM(ARUint8 *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
+	int16_t* arLabeling_ABGR(uint8_t *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
+	int16_t* arLabeling_BGR(uint8_t *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
+	int16_t* arLabeling_RGB(uint8_t *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
+	int16_t* arLabeling_RGB565(uint8_t *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
+	int16_t* arLabeling_LUM(uint8_t *image, int thresh,int *label_num, int **area, ARFloat **pos, int **clip, int **label_ref);
 
-	//ARInt16* labeling2(ARUint8 *image, int thresh,int *label_num, int **area,
+	//int16_t* labeling2(uint8_t *image, int thresh,int *label_num, int **area,
 	//				   ARFloat **pos, int **clip, int **label_ref, int LorR );
 
-	//ARInt16* labeling3(ARUint8 *image, int thresh, int *label_num, int **area,
+	//int16_t* labeling3(uint8_t *image, int thresh, int *label_num, int **area,
 	//				   ARFloat **pos, int **clip, int **label_ref, int LorR );
 
 
@@ -580,8 +580,8 @@ protected:
 
 	// arLabeling.cpp
 	//
-	ARInt16      *l_imageL; //[HARDCODED_BUFFER_WIDTH*HARDCODED_BUFFER_HEIGHT];		// dyna
-	ARInt16      *l_imageR;
+	int16_t      *l_imageL; //[HARDCODED_BUFFER_WIDTH*HARDCODED_BUFFER_HEIGHT];		// dyna
+	int16_t      *l_imageR;
 	int			 l_imageL_size;
 
 	int          *workL;  //[WORK_SIZE];											// dyna
@@ -607,7 +607,7 @@ protected:
 	int        arTemplateMatchingMode;
 	int        arMatchingPCAMode;
 
-	ARUint8*   arImageL;
+	uint8_t*   arImageL;
 
 	MARKER_MODE		markerMode;
 

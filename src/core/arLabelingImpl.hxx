@@ -38,19 +38,19 @@
  * ======================================================================== */
 
 
-AR_TEMPL_FUNC ARInt16*
-AR_TEMPL_TRACKER::LABEL_FUNC_NAME(ARUint8 *image, int thresh, int *label_num, int **area,
+AR_TEMPL_FUNC int16_t*
+AR_TEMPL_TRACKER::LABEL_FUNC_NAME(uint8_t *image, int thresh, int *label_num, int **area,
 								  ARFloat **pos, int **clip, int **label_ref)
 {
-    ARUint8   *pnt;                     /*  image pointer       */
-    ARInt16   *pnt1, *pnt2;             /*  image pointer       */
+    uint8_t   *pnt;                     /*  image pointer       */
+    int16_t   *pnt1, *pnt2;             /*  image pointer       */
     int       *wk;                      /*  pointer for work    */
     int       wk_max;                   /*  work                */
     int       m,n;                      /*  work                */
     int       i,j,k;                    /*  for loop            */
     int       lxsize, lysize;
     int       poff;
-    ARInt16   *l_image;
+    int16_t   *l_image;
     int       *work, *work2;
     int       *wlabel_num;
     int       *warea;
@@ -388,8 +388,8 @@ AR_TEMPL_TRACKER::LABEL_FUNC_NAME(ARUint8 *image, int thresh, int *label_num, in
         return( l_image );
     }
 
-    put_zero( (ARUint8 *)warea, *label_num *     sizeof(int) );
-    put_zero( (ARUint8 *)wpos,  *label_num * 2 * sizeof(ARFloat) );
+    put_zero( (uint8_t *)warea, *label_num *     sizeof(int) );
+    put_zero( (uint8_t *)wpos,  *label_num * 2 * sizeof(ARFloat) );
 
 #ifdef _DISABLE_TP_OPTIMIZATIONS_
     for(i = 0; i < *label_num; i++) {

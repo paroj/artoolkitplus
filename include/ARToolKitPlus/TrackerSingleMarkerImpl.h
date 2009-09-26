@@ -123,8 +123,8 @@ public:
 	bool loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)  {  return AR_TEMPL_TRACKER::loadCameraFile(nCamParamFile, nNearClip, nFarClip);  }
 	void setLoadUndistLUT(bool nSet)  {  AR_TEMPL_TRACKER::setLoadUndistLUT(nSet);  }
 	void setLogger(ARToolKitPlus::Logger* nLogger)  {  AR_TEMPL_TRACKER::setLogger(nLogger);  }
-	int arDetectMarker(ARUint8 *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarker(dataPtr, thresh, marker_info, marker_num);  }
-	int arDetectMarkerLite(ARUint8 *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarkerLite(dataPtr, thresh, marker_info, marker_num);  }
+	int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarker(dataPtr, thresh, marker_info, marker_num);  }
+	int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarkerLite(dataPtr, thresh, marker_info, marker_num);  }
 	ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::arMultiGetTransMat(marker_info, marker_num, config);  }
 	ARFloat arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])  {  return AR_TEMPL_TRACKER::arGetTransMat(marker_info, center, width, conv);  }
 	ARFloat arGetTransMatCont(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width, ARFloat conv[3][4])  {  return AR_TEMPL_TRACKER::arGetTransMatCont(marker_info, prev_conv, center, width, conv);  }

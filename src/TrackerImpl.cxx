@@ -261,8 +261,8 @@ AR_TEMPL_TRACKER::checkImageBuffer()
 
 	l_imageL_size = newSize;
 
-	//l_imageL = new ARInt16[newSize];
-	l_imageL = artkp_Alloc<ARInt16>(newSize);
+	//l_imageL = new int16_t[newSize];
+	l_imageL = artkp_Alloc<int16_t>(newSize);
 }
 
 
@@ -783,7 +783,7 @@ AR_TEMPL_TRACKER::getDynamicMemoryRequirements()
 
 	// requirements for the image buffer (arImageL)
 	//
-	size += sizeof(ARUint8)*MAX_BUFFER_WIDTH*MAX_BUFFER_HEIGHT;
+	size += sizeof(uint8_t)*MAX_BUFFER_WIDTH*MAX_BUFFER_HEIGHT;
 
 
 	// requirements for allocation of marker_infoTWO
@@ -793,7 +793,7 @@ AR_TEMPL_TRACKER::getDynamicMemoryRequirements()
 
 	// requirements for allocation of l_imageL
 	//
-	size += sizeof(ARInt16)*MAX_BUFFER_WIDTH*MAX_BUFFER_HEIGHT;
+	size += sizeof(int16_t)*MAX_BUFFER_WIDTH*MAX_BUFFER_HEIGHT;
 
 
 	// requirements for the lens undistortion table (undistO2ITable)

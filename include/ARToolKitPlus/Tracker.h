@@ -110,11 +110,11 @@ public:
 
 
 	/// marker detection using tracking history
-	virtual int arDetectMarker(ARUint8 *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) = 0;
+	virtual int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) = 0;
 
 
 	/// marker detection without using tracking history
-	virtual int arDetectMarkerLite(ARUint8 *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) = 0;
+	virtual int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) = 0;
 
 
 	/// calculates the transformation matrix between camera and the given multi-marker config
