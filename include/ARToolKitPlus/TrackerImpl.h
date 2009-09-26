@@ -52,14 +52,6 @@
 #include <ARToolKitPlus/extra/BCH.h>
 
 
-#if defined(_MSC_VER)
-#  if _MSC_VER<1300
-#    define _OLD_MSCOMPILER_
-#    pragma message (">>> Compiling for old MS Compiler")
-#  endif
-#endif
-
-
 #define AR_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
 #define AR_TEMPL_TRACKER TrackerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_LOAD_PATTERNS, __MAX_IMAGE_PATTERNS>
 
