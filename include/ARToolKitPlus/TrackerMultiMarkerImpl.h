@@ -183,7 +183,7 @@ protected:
 };	// namespace ARToolKitPlus
 
 
-#include "../src/TrackerMultiMarkerImpl.cxx"
+#include "../src/TrackerMultiMarkerImpl.cpp"
 
 
 #endif //__ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__

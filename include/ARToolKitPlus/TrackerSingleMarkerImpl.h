@@ -178,7 +178,7 @@ protected:
 
 }	// namespace ARToolKitPlus
 
-#include "../src/TrackerSingleMarkerImpl.cxx"
+#include "../src/TrackerSingleMarkerImpl.cpp"
 
 
 #endif //__ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__
