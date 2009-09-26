@@ -5,8 +5,8 @@ env["LIBS"] = ["ARToolkitPlus"]
 env["CPPFLAGS"] = "-O3 -Wall -fno-strict-aliasing" # disable strict aliasing because of swapbytes
 
 # examples
-env.Program("simple", ["../sample/simple/src/main.cpp"])
-env.Program("multi", ["../sample/multi/src/main.cpp"])
+env.Program("simple", ["../sample/simple/main.cpp"])
+env.Program("multi", ["../sample/multi/main.cpp"])
 
 # tools
-env.Program("idpatgen", ["../tools/IdPatGen/src/main.cpp"]+Glob("../tools/IdPatGen/src/PN/*.cpp"))
+env.Program("idpatgen", ["../tools/IdPatGen/main.cpp"]+Glob("../tools/IdPatGen/PN/*.cpp"))
