@@ -1,0 +1,12 @@
+env = Environment()
+env["CPPPATH"] = "../include/"
+env["LIBPATH"] = "../lib/"
+env["LIBS"] = ["ARToolkitPlus"]
+env["CPPFLAGS"] = "-O3 -Wall -fno-strict-aliasing" # disable strict aliasing because of swapbytes
+
+# examples
+env.Program("simple", ["../sample/simple/src/main.cpp"])
+env.Program("multi", ["../sample/multi/src/main.cpp"])
+
+# tools
+env.Program("idpatgen", ["../tools/IdPatGen/src/main.cpp"]+Glob("../tools/IdPatGen/src/PN/*.cpp"))

@@ -4,20 +4,16 @@ Install instructions for Linux:
 Remarks:
 --------
 
-The make environment for Linux is based on Qt's qmake system.
-Please install qmake before compiling ARToolKitPlus!
+The make environment for Linux is based on the scons system.
+Please install scons before compiling ARToolKitPlus!
 
 Compile Steps:
 --------------
 
-- Modify build/linux/options.pro to your needs
-- Set ARTKP environment variable to source tree
-
-  qmake -set ARTKP '<path_to_artoolkitplus_source_tree>'
+- Modify bin/SConscript, lib/SConscript to your needs
 
 - Start compilation with
-  qmake
-  make
+  scons
 
 - You should end up with
 
