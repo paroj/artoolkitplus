@@ -51,7 +51,7 @@ class MyLogger : public ARToolKitPlus::Logger
 {
     void artLog(const char* nStr)
     {
-        printf(nStr);
+        printf("%s", nStr);
     }
 };
 

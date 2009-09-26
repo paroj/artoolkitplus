@@ -67,8 +67,6 @@ byteSwapInt( int *from, int *to )
     for( i = 0; i < 4; i++ ) {
         w2->y[i] = w1->y[3-i];
     }
-
-    return;
 }
 
 static void
@@ -82,8 +80,6 @@ byteSwapDouble( double *from, double *to )
     for( i = 0; i < 8; i++ ) {
         w2->y[i] = w1->y[7-i];
     }
-
-    return;
 }
 
 static void

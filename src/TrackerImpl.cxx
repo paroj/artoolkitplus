@@ -38,7 +38,8 @@
  * ======================================================================== */
 
 
-//#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 
 
 //#if AR_PATT_SIZE_X!=16 || AR_PATT_SIZE_Y!=16

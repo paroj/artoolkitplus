@@ -68,7 +68,6 @@ headers.files = $$HEADERS
 headers_extra.path = ""/$$PREFIX/include/ARToolKitPlus/extra
 headers_extra.files = $$HEADERS_EXTRA
 doc.path = ""/$$PREFIX/share/doc/packages/ARToolKitPlus
-doc.files = ../doc/ART02-Tutorial.pdf
 data_simple.path = ""/$$PREFIX/share/ARToolKitPlus/simple/data
 data_simple.files = ../sample/simple/data/*.dat ../sample/simple/data/*.cal ../sample/simple/data/*.raw ../sample/simple/data/*.jpg
 data_multi.path = ""/$$PREFIX/share/ARToolKitPlus/multi/data
