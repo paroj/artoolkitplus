@@ -666,7 +666,7 @@ AR_TEMPL_TRACKER::cleanup()
 AR_TEMPL_FUNC const char*
 AR_TEMPL_TRACKER::getDescription()
 {
-	char* pixelformats[] = { "NONE", "ABGR", "BGRA", "BGR", "RGBA", "RGB", "RGB565", "LUM"  };
+	const char* pixelformats[] = { "NONE", "ABGR", "BGRA", "BGR", "RGBA", "RGB", "RGB565", "LUM"  };
 	int f = getPixelFormat();
 
 	char *compilerstr = new char[256];

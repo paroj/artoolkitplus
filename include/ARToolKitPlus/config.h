@@ -48,11 +48,6 @@
 #ifndef AR_CONFIG_H
 #define AR_CONFIG_H
 
-// autoconf generated file with configuration information
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
 // may be changed to double, float is particularly useful for PDA's
 #ifdef _USE_DOUBLE_
 	typedef double ARFloat;
@@ -65,31 +60,21 @@
  * Endianness:
  * ususally evaluated by autoconf script, otherwise set by hand
  */
-#ifdef HAVE_CONFIG_H
-	#ifdef WORDS_BIGENDIAN
-		#define AR_BIG_ENDIAN
-		#undef AR_LITTLE_ENDIAN
-	#else
-		#define AR_LITTLE_ENDIAN
-		#undef AR_BIG_ENDIAN
-	#endif
-#else
-	#ifdef __linux
-		#undef   AR_BIG_ENDIAN
-		#define  AR_LITTLE_ENDIAN
-	#endif
-	#ifdef _WIN32
-		#undef   AR_BIG_ENDIAN
-		#define  AR_LITTLE_ENDIAN
-	#endif
-	#ifdef __sgi
-		#undef   AR_LITTLE_ENDIAN
-		#define  AR_BIG_ENDIAN
-	#endif
-	#ifdef __APPLE_CC__
-		#undef   AR_LITTLE_ENDIAN
-		#define  AR_BIG_ENDIAN
-	#endif
+#ifdef __linux
+	#undef   AR_BIG_ENDIAN
+	#define  AR_LITTLE_ENDIAN
+#endif
+#ifdef _WIN32
+	#undef   AR_BIG_ENDIAN
+	#define  AR_LITTLE_ENDIAN
+#endif
+#ifdef __sgi
+	#undef   AR_LITTLE_ENDIAN
+	#define  AR_BIG_ENDIAN
+#endif
+#ifdef __APPLE_CC__
+	#undef   AR_LITTLE_ENDIAN
+	#define  AR_BIG_ENDIAN
 #endif
 
 /**
