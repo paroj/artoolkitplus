@@ -51,6 +51,8 @@
 
 namespace ARToolKitPlus {
 
+AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenWidth;
+AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenHeight;
 
 AR_TEMPL_FUNC 
 AR_TEMPL_TRACKER::TrackerImpl()
