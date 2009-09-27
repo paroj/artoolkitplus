@@ -2,7 +2,7 @@ env = Environment()
 env["CPPPATH"] = "../include/"
 env["LIBPATH"] = "../lib/"
 env["LIBS"] = ["ARToolkitPlus"]
-env["CPPFLAGS"] = "-O3 -Wall -fno-strict-aliasing" # disable strict aliasing because of swapbytes
+env["CPPFLAGS"] = "-O3 -Wall"
 
 # examples
 env.Program("simple", ["../sample/simple/main.cpp"])

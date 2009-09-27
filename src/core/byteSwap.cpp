@@ -42,43 +42,33 @@
 
 namespace ARToolKitPlus {
 
-
 #ifdef AR_LITTLE_ENDIAN
-
-typedef union {
-	int  x;
-	unsigned char y[4];
-} SwapIntT;
-
-typedef union {
-	ARFloat  x;
-	unsigned char y[8];
-} SwapDoubleT;
-
 
 static void
 byteSwapInt( int *from, int *to )
 {
-    SwapIntT   *w1, *w2;
-    int        i;
+    uint8_t   *w1, *w2;
 
-    w1 = (SwapIntT *)from;
-    w2 = (SwapIntT *)to;
-    for( i = 0; i < 4; i++ ) {
-        w2->y[i] = w1->y[3-i];
+    w1 = (uint8_t *)from;
+    w2 = (uint8_t *)to;
+    
+    for(int i = 0; i < 4; i++ ) {
+        w2[i] = w1[3-i];
     }
 }
 
+// FIXME: This function is inheretly broken
+// one must be breindead to try byte shuffling floating point numbers
 static void
 byteSwapDouble( double *from, double *to )
 {
-    SwapDoubleT   *w1, *w2;
-    int           i;
+    uint8_t   *w1, *w2;
 
-    w1 = (SwapDoubleT *)from;
-    w2 = (SwapDoubleT *)to;
-    for( i = 0; i < 8; i++ ) {
-        w2->y[i] = w1->y[7-i];
+    w1 = (uint8_t *)from;
+    w2 = (uint8_t *)to;
+    
+    for(int i = 0; i < 8; i++ ) {
+        w2[i] = w1[7-i];
     }
 }
 
