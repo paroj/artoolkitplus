@@ -45,7 +45,7 @@
 #include <ARToolKitPlus/Logger.h>
 
 
-#ifdef ARTOOLKITPLUS_DLL
+#if defined ARTOOLKITPLUS_DLL && defined _WIN32
 #  ifdef ARTOOLKITPLUS_EXPORTS
 #    define ARTOOLKITPLUS_API __declspec(dllexport)
 #  else
