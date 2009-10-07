@@ -2,6 +2,7 @@ env = Environment()
 env["CPPPATH"] = "../include/"
 env["LIBPATH"] = "../lib/"
 env["LIBS"] = ["ARToolkitPlus"]
+env["CPPDEFINES"] = ["_ARTKP_NO_MEMORYMANAGER_"]
 env["CPPFLAGS"] = "-Wall"
 
 # examples

@@ -49,6 +49,9 @@
 namespace ARToolKitPlus
 {
 
+#ifdef ARTOOLKITPLUS_DLL
+template class ARToolKitPlus::TrackerSingleMarkerImpl<6,6,6, 3, 10>;
+#endif
 
 ARSM_TEMPL_FUNC
 ARSM_TEMPL_TRACKER::TrackerSingleMarkerImpl(int nWidth, int nHeight)
