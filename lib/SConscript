@@ -1,9 +1,11 @@
+Import("cflags", "defines")
+
 base = ["../src/MemoryManager.cpp", "../src/extra/Profiler.cpp", "../src/extra/FixedPoint.cpp"]
 rpp = Glob("../src/librpp/*.cpp")
 #dll = Glob("../src/core/*.cpp")+Glob("../src/*.cpp")
 
 env = Environment()
 env["CPPPATH"] = "../include/"
-env["CPPFLAGS"] = "-Wall"
-env["CPPDEFINES"] = ["_ARTKP_NO_MEMORYMANAGER_", "ARTOOLKITPLUS_DLL"]
+env["CPPFLAGS"] = cflags
+env["CPPDEFINES"] = defines
 env.SharedLibrary("ARToolkitPlus", base+rpp)

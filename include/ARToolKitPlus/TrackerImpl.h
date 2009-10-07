@@ -670,7 +670,6 @@ protected:
 #include "../../src/core/arUtil.cpp"
 #include "../../src/core/matrix.cpp"
 #include "../../src/core/mPCA.cpp"
-//#include "../../src/core/paramChangeSize.cpp"
 #include "../../src/core/paramDecomp.cpp"
 #include "../../src/core/paramDistortion.cpp"
 #include "../../src/core/byteSwap.cpp"
@@ -683,8 +682,5 @@ protected:
 #include "../../src/extra/BCH.cpp"
 
 #include "../../src/TrackerImpl.cpp"
-//#include "../../src/extra/harrisCornerDetector.cpp"
-//#include "../../src/extra/cornerRefinement.cpp"
-
 
 #endif //__ARTOOLKIT_TRACKERIMPL_HEADERFILE__
