@@ -1,4 +1,4 @@
 env = Environment()
 env["CPPPATH"] = "../include/"
-env["CPPFLAGS"] = "-O3 -Wall"
+env["CPPFLAGS"] = "-Wall"
 env.SharedLibrary("ARToolkitPlus", ["../src/MemoryManager.cpp", "../src/DLL.cpp", "../src/extra/Profiler.cpp", "../src/extra/FixedPoint.cpp"]+Glob("../src/librpp/*.cpp"))
