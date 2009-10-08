@@ -1,4 +1,4 @@
-ARToolKitPlus 2.1.1
+ARToolKitPlus 2.1.2
 
 ARToolKit is a software library that can be used to calculate
 camera position and orientation relative to physical markers
@@ -16,5 +16,5 @@ http://studierstube.org/handheld_ar/artoolkitplus.php
 Please read the F.A.Q. before sending questions:
 http://studierstube.icg.tu-graz.ac.at/handheld_ar/faq.php
 
-For any open issues please contact:
-daniel@icg.tu-graz.ac.at
+For any open issues please visit:
+http://launchpad.net/artoolkitplus
