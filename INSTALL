@@ -10,7 +10,7 @@ Please install scons before compiling ARToolKitPlus!
 Compile Steps:
 --------------
 
-- Modify bin/SConscript, lib/SConscript to your needs
+- Modify ./SConstruct to your needs
 
 - Start compilation with
   scons
@@ -20,6 +20,7 @@ Compile Steps:
   ./lib ... ARToolKitPlus shared libraries
   ./bin ... 
 	    simple   ... Sample program
+	    multi    ... Sample program
 	    idpatgen ... For generating ID markers
 
 - For executing, do not forget to update your LD_LIBRARY_PATH

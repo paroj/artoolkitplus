@@ -9,7 +9,7 @@ env["CPPFLAGS"] = cflags
 
 # examples
 env.Program("simple", ["../sample/simple/main.cpp"])
-# env.Program("multi", ["../sample/multi/main.cpp"])
+env.Program("multi", ["../sample/multi/main.cpp"])
 
 # tools
 env.Program("idpatgen", ["../tools/IdPatGen/main.cpp"]+Glob("../tools/IdPatGen/PN/*.cpp"))

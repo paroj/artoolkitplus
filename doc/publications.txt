@@ -1,0 +1,4 @@
+This publication gives a good overview over the structure and Workflow of ARToolkitPlus:
+http://www.icg.tu-graz.ac.at/Members/daniel/Publications/ARToolKitPlus
+
+unfortunately it is not allowed to directly include the pdf due to redistribution issues.

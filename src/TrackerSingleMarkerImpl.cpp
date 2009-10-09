@@ -50,6 +50,7 @@ namespace ARToolKitPlus
 {
 
 #ifdef ARTOOLKITPLUS_DLL
+// explictley create an instance
 template class ARToolKitPlus::TrackerSingleMarkerImpl<6,6,6, 3, 10>;
 #endif
 
