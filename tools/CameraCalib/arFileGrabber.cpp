@@ -1,9 +1,11 @@
 
 
 #include "arFileGrabber.h"
+#include <ARToolKitPlus/config.h>
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 
 
 ARFileGrabber::ARFileGrabber(const char* nFileName, int nWidth, int nHeight, int nByterPerComp)

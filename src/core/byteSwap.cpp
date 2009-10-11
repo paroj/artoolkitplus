@@ -39,6 +39,7 @@
 
 
 #include <ARToolKitPlus/param.h>
+#include <stdint.h>
 
 namespace ARToolKitPlus {
 
@@ -72,7 +73,7 @@ byteSwapDouble( double *from, double *to )
     }
 }
 
-static void
+void
 byteswap( ARParamDouble *param )
 {
     ARParamDouble  wparam;

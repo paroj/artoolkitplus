@@ -63,7 +63,10 @@ readPPM( const char *fileName, unsigned char **data, int *width, int *height )
 
     // read width and height
     sscanf( word, "%d", width );
-    fscanf( fp, "%d", height );
+    n = fscanf( fp, "%d", height );
+    
+    if(n == 0)
+        printf("something is wrong with the file\n");
 
     // skip comments
     skipComments( fp, word );

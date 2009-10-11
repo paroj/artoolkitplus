@@ -138,7 +138,7 @@ int main(int argc, char** argv)
     tracker->setUndistortionMode(ARToolKitPlus::UNDIST_LUT);
 
     // RPP is more robust than ARToolKit's standard pose estimator
-    //tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_RPP);
+    tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_RPP);
 
     // switch to simple ID based markers
     // use the tool in tools/IdPatGen to generate markers

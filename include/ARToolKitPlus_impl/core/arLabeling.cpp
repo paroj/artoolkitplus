@@ -59,27 +59,27 @@ put_zero( uint8_t *p, int size )
 //
 #define _DEF_PIXEL_FORMAT_ABGR
 #define LABEL_FUNC_NAME arLabeling_ABGR
-#include "arLabelingImpl.hxx"
+#include "arLabelingImpl.h"
 #undef _DEF_PIXEL_FORMAT_ABGR
 
 #define _DEF_PIXEL_FORMAT_BGR
 #define LABEL_FUNC_NAME arLabeling_BGR
-#include "arLabelingImpl.hxx"
+#include "arLabelingImpl.h"
 #undef _DEF_PIXEL_FORMAT_BGR
 
 #define _DEF_PIXEL_FORMAT_RGB
 #define LABEL_FUNC_NAME arLabeling_RGB
-#include "arLabelingImpl.hxx"
+#include "arLabelingImpl.h"
 #undef _DEF_PIXEL_FORMAT_RGB
 
 #define _DEF_PIXEL_FORMAT_RGB565
 #define LABEL_FUNC_NAME arLabeling_RGB565
-#include "arLabelingImpl.hxx"
+#include "arLabelingImpl.h"
 #undef _DEF_PIXEL_FORMAT_RGB565
 
 #define _DEF_PIXEL_FORMAT_LUM
 #define LABEL_FUNC_NAME arLabeling_LUM
-#include "arLabelingImpl.hxx"
+#include "arLabelingImpl.h"
 #undef _DEF_PIXEL_FORMAT_LUM
 
 

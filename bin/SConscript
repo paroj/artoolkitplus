@@ -13,3 +13,8 @@ env.Program("multi", ["../sample/multi/main.cpp"])
 
 # tools
 env.Program("idpatgen", ["../tools/IdPatGen/main.cpp"]+Glob("../tools/IdPatGen/PN/*.cpp"))
+env.Program("patt2ppm", "../tools/patt2ppm/main.cpp")
+env.Program("ppm2patt", "../tools/ppm2patt/main.cpp")
+
+# these tools use outdated API and need porting
+# env.Program("camera_calib", Glob("../tools/CameraCalib/*.cpp")) # uses outdated API

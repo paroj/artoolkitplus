@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 //#include <ARToolKitPlus/param.h>
-//#include <ARToolKitPlus/matrix.h>
+#include <ARToolKitPlus/matrix.h>
 
 #include <ARToolKitPlus/Tracker.h>
 

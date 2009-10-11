@@ -651,36 +651,29 @@ protected:
 
 // this is templated code, so we need to include all this here...
 //
-#include "../../src/extra/FixedPoint.h"
-#include "../../src/core/arBitFieldPattern.cpp"
-#include "../../src/core/arDetectMarker.cpp"
-#include "../../src/core/arDetectMarker2.cpp"
-#include "../../src/core/arGetCode.cpp"
-#include "../../src/core/arGetMarkerInfo.cpp"
-#include "../../src/core/arGetTransMat.cpp"
-#include "../../src/core/arGetTransMat2.cpp"
-#include "../../src/core/arGetTransMat3.cpp"
-#include "../../src/core/rppGetTransMat.cpp" // RPP integration -- [t.pintaric]
-#include "../../src/core/arGetTransMatCont.cpp"
-#include "../../src/core/arLabeling.cpp"
-#include "../../src/core/arMultiActivate.cpp"
-#include "../../src/core/arMultiGetTransMat.cpp"
-#include "../../src/core/rppMultiGetTransMat.cpp" 	// RPP integration -- [t.pintaric]
-#include "../../src/core/arMultiReadConfigFile.cpp"
-#include "../../src/core/arUtil.cpp"
-#include "../../src/core/matrix.cpp"
-#include "../../src/core/mPCA.cpp"
-#include "../../src/core/paramDecomp.cpp"
-#include "../../src/core/paramDistortion.cpp"
-#include "../../src/core/byteSwap.cpp"
-#include "../../src/core/paramFile.cpp"
-#include "../../src/core/vector.cpp"
+#include <ARToolKitPlus_impl/core/arBitFieldPattern.cpp>
+#include <ARToolKitPlus_impl/core/arDetectMarker.cpp>
+#include <ARToolKitPlus_impl/core/arDetectMarker2.cpp>
+#include <ARToolKitPlus_impl/core/arGetCode.cpp>
+#include <ARToolKitPlus_impl/core/arGetMarkerInfo.cpp>
+#include <ARToolKitPlus_impl/core/arGetTransMat.cpp>
+#include <ARToolKitPlus_impl/core/arGetTransMat2.cpp>
+#include <ARToolKitPlus_impl/core/arGetTransMat3.cpp>
+#include <ARToolKitPlus_impl/core/rppGetTransMat.cpp> // RPP integration -- [t.pintaric]
+#include <ARToolKitPlus_impl/core/arGetTransMatCont.cpp>
+#include <ARToolKitPlus_impl/core/arLabeling.cpp>
+#include <ARToolKitPlus_impl/core/arMultiActivate.cpp>
+#include <ARToolKitPlus_impl/core/arMultiGetTransMat.cpp>
+#include <ARToolKitPlus_impl/core/rppMultiGetTransMat.cpp> 	// RPP integration -- [t.pintaric]
+#include <ARToolKitPlus_impl/core/arMultiReadConfigFile.cpp>
+#include <ARToolKitPlus_impl/core/arUtil.cpp>
+#include <ARToolKitPlus_impl/core/matrix.cpp>
+#include <ARToolKitPlus_impl/core/mPCA.cpp>
+#include <ARToolKitPlus_impl/core/paramDecomp.cpp>
+#include <ARToolKitPlus_impl/core/paramDistortion.cpp>
+#include <ARToolKitPlus_impl/core/paramFile.cpp>
+#include <ARToolKitPlus_impl/core/vector.cpp>
 
-#include "../../src/CameraImpl.cpp"
-#include "../../src/CameraAdvImpl.cpp"
-#include "../../src/CameraFactory.cpp"
-#include "../../src/extra/BCH.cpp"
-
-#include "../../src/TrackerImpl.cpp"
+#include <ARToolKitPlus_impl/TrackerImpl.cpp>
 
 #endif //__ARTOOLKIT_TRACKERIMPL_HEADERFILE__
