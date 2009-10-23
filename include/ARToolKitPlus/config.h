@@ -55,6 +55,8 @@
 	typedef float ARFloat;
 #endif
 
+// disable the custom memory manager
+#define _ARTKP_NO_MEMORYMANAGER_
 
 /**
  * Endianness:
