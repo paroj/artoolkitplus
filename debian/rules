@@ -1,0 +1,16 @@
+#!/usr/bin/make -f
+
+override_dh_auto_build:
+	scons
+
+override_dh_auto_clean:
+	scons -c
+
+override_dh_auto_install:
+	mkdir -p debian/tmp/usr/include
+	mkdir debian/tmp/usr/lib
+	cp -R include debian/tmp/usr/
+	cp lib/*.so debian/tmp/usr/lib/
+
+%:
+	dh $@

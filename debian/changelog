@@ -1,0 +1,5 @@
+artoolkitplus (2.1.3-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Pavel Rojtberg <pavel@unknown>  Fri, 23 Oct 2009 01:37:54 +0200
