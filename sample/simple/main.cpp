@@ -124,8 +124,8 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
-    // define size of the marker
-    tracker->setPatternWidth(80);
+    // define size of the marker in OpenGL units
+    tracker->setPatternWidth(2.0);
 
 	// the marker in the BCH test image has a thin border...
     tracker->setBorderWidth(useBCH ? 0.125f : 0.250f);
