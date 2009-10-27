@@ -1,8 +1,8 @@
 Import("cflags", "defines")
 
 env = Environment()
-env["CPPPATH"] = "../include/"
-env["LIBPATH"] = "../lib/"
+#env["CPPPATH"] = "../include/"
+#env["LIBPATH"] = "../lib/"
 env["LIBS"] = ["ARToolkitPlus"]
 env["CPPDEFINES"] = defines
 env["CPPFLAGS"] = cflags

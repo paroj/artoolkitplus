@@ -1,6 +1,19 @@
-cflags = "-Wall"# -std=c++0x"
-defines = ["_ARTKP_NO_MEMORYMANAGER_"]#, "ARTOOLKITPLUS_DLL"]
+vrs = Variables()
+vrs.Add("prefix", "installation directory", "/usr")
 
-Export("cflags", "defines")
+env = Environment(variables=vrs)
+env["CPPFLAGS"] = "-Wall -O3"
+env["CPPPATH"] = "include/"
 
-SConscript(["lib/SConscript", "bin/SConscript"])
+sources = ["src/core/byteSwap.cpp"] \
+          +Glob("src/*.cpp") \
+          +Glob("src/extra/*.cpp") \
+          +Glob("src/librpp/*.cpp")
+
+#env["CPPDEFINES"] = ["ARTOOLKITPLUS_DLL"]
+arlib = env.SharedLibrary("ARToolkitPlus", sources)
+
+env.Install(env.get("prefix")+"/lib", arlib)
+env.Install(env.get("prefix")+"/include", Glob("include/*"))
+
+env.Alias("install", env.get("prefix"))
