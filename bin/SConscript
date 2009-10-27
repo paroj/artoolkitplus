@@ -1,11 +1,8 @@
-Import("cflags", "defines")
-
 env = Environment()
-#env["CPPPATH"] = "../include/"
-#env["LIBPATH"] = "../lib/"
+env["CPPPATH"] = "../include/"
+env["LIBPATH"] = "../"
 env["LIBS"] = ["ARToolkitPlus"]
-env["CPPDEFINES"] = defines
-env["CPPFLAGS"] = cflags
+env["CPPFLAGS"] = "-Wall"
 
 # examples
 env.Program("simple", ["../sample/simple/main.cpp"])
@@ -17,4 +14,4 @@ env.Program("patt2ppm", "../tools/patt2ppm/main.cpp")
 env.Program("ppm2patt", "../tools/ppm2patt/main.cpp")
 
 # these tools use outdated API and need porting
-# env.Program("camera_calib", Glob("../tools/CameraCalib/*.cpp")) # uses outdated API
+# env.Program("camera_calib", Glob("../tools/CameraCalib/*.cpp"))
