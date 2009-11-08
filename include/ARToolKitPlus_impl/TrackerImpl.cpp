@@ -155,8 +155,8 @@ AR_TEMPL_TRACKER::TrackerImpl()
 
 	// RPP integration -- [t.pintaric]
 	poseEstimator = POSE_ESTIMATOR_ORIGINAL;
-	//poseEstimator_func = &AR_TEMPL_TRACKER::arGetTransMat;
-	//multiPoseEstimator_func = &AR_TEMPL_TRACKER::arMultiGetTransMat;
+	
+	hullTrackingMode = HULL_OFF;
 
 	descriptionString = new char[512];
 
@@ -569,6 +569,9 @@ AR_TEMPL_TRACKER::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, AR
 AR_TEMPL_FUNC ARFloat
 AR_TEMPL_TRACKER::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
+	if(hullTrackingMode!=HULL_OFF)
+		return arMultiGetTransMatHull(marker_info, marker_num, config);
+
 	switch(poseEstimator)
 	{
 	case POSE_ESTIMATOR_ORIGINAL:

@@ -58,7 +58,8 @@ AR_TEMPL_TRACKER::arDetectMarker(uint8_t *dataPtr, int _thresh, ARMarkerInfo **m
     ARFloat                 diff, diffmin;
     int                    cid, cdir;
     int                    i, j, k;
-
+    
+    trackedCorners.clear();
 	autoThreshold.reset();
 	checkImageBuffer();
 
@@ -209,6 +210,8 @@ AR_TEMPL_TRACKER::arDetectMarkerLite(uint8_t *dataPtr, int _thresh, ARMarkerInfo
     ARFloat                 *pos;
     int                    i;
 
+    trackedCorners.clear();
+
 	autoThreshold.reset();
 	checkImageBuffer();
 
@@ -243,7 +246,6 @@ AR_TEMPL_TRACKER::arDetectMarkerLite(uint8_t *dataPtr, int _thresh, ARMarkerInfo
 		return -1;
 
 
-/*
     limage = arLabeling(dataPtr, _thresh, &label_num, &area, &pos, &clip, &label_ref);
     if( limage == 0 )    return -1;
 
@@ -252,7 +254,6 @@ AR_TEMPL_TRACKER::arDetectMarkerLite(uint8_t *dataPtr, int _thresh, ARMarkerInfo
 
     wmarker_info = arGetMarkerInfo(dataPtr, marker_info2, &wmarker_num, _thresh);
     if( wmarker_info == 0 ) return -1;
-*/
 
     for( i = 0; i < wmarker_num; i++ )
         if( wmarker_info[i].cf < 0.5 )

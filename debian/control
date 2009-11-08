@@ -1,7 +1,7 @@
 Source: artoolkitplus
 Priority: optional
 Maintainer: Pavel Rojtberg <pavel@rojtberg.net>
-Build-Depends: debhelper (>= 7)
+Build-Depends: debhelper (>= 7), scons
 Standards-Version: 3.8.1
 Section: libs
 Homepage: http://launchpad.net/artoolkitplus
@@ -10,7 +10,7 @@ Package: artoolkitplus-dev
 Section: libdevel
 Architecture: all
 Depends: artoolkitplus (= ${binary:Version})
-Description: Augmented Reality Toolkit Headers
+Description: Augmented Reality Toolkit (development files)
  ARToolKitPlus is a software library that can be used to calculate camera position and orientation relative to physical markers in real time.
  This enables the easy development of a wide range of Augmented Reality applications.
 
@@ -18,6 +18,6 @@ Package: artoolkitplus
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Augmented Reality Toolkit Library
+Description: Augmented Reality Toolkit (runtime library)
  ARToolKitPlus is a software library that can be used to calculate camera position and orientation relative to physical markers in real time.
  This enables the easy development of a wide range of Augmented Reality applications.

@@ -50,6 +50,7 @@
 #include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/CameraFactory.h>
 #include <ARToolKitPlus/extra/BCH.h>
+#include <ARToolKitPlus/extra/Hull.h>
 
 
 #define AR_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
@@ -140,6 +141,8 @@ public:
 	/// calculates the transformation matrix between camera and the given multi-marker config
 	virtual ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config);
 
+    virtual ARFloat arMultiGetTransMatHull(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config);
+
 	/// calculates the transformation matrix between camera and the given marker
 	virtual ARFloat arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]);
 
@@ -208,9 +211,24 @@ public:
 	/// Changes the Pose Estimation Algorithm
 	/**
 	* POSE_ESTIMATOR_ORIGINAL (default): arGetTransMat()
+	* POSE_ESTIMATOR_CONT: original pose estimator with "Cont"
 	* POSE_ESTIMATOR_RPP: "Robust Pose Estimation from a Planar Target"
 	*/
 	virtual bool setPoseEstimator(POSE_ESTIMATOR nMethod);
+
+
+	/// If true the alternative hull-algorithm will be used for multi-marker tracking
+	/**
+	 *  Starting with version 2.2 ARToolKitPlus has a new mode for tracking multi-markers:
+	 *  Instead of using all points (as done by RPP multi-marker tracking)
+	 *  or tracking all markers independently and combine lateron
+	 *  (as done in ARToolKit's standard multi-marker pose estimator), ARToolKitPlus can now
+	 *  use only 4 'good' points of the convex hull to do the pose estimation.
+	 *  If the pose estimator is set to RPP then RPP will be used to track those 4 points.
+	 *  Otherwise, ARToolKit's standard single-marker pose estimator will be used to
+	 *  track the pose of these 4 points.
+	 */
+	virtual void setHullMode(HULL_TRACKING_MODE nMode)  {  hullTrackingMode = nMode;  }
 
 	/// Sets a new relative border width. ARToolKit's default value is 0.25
 	/**
@@ -302,8 +320,8 @@ public:
 
 
 	virtual ARFloat executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config);
-
-
+	
+	virtual const CornerPoints& getTrackedCorners() const  {  return trackedCorners;  }
 
 protected:
 	bool checkPixelFormat();
@@ -380,6 +398,7 @@ protected:
 
 	int arGetInitRot(ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3]);
 
+    int arGetInitRot2(ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3], ARFloat center[2], ARFloat width);
 
 	ARFloat arGetTransMatCont2(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]);
 
@@ -610,8 +629,12 @@ protected:
 	//
 	UNDIST_MODE		undistMode;
 	unsigned int	*undistO2ITable;
-	//unsigned int	*undistI2OTable;
 
+	// used for Hull Tracking
+	MarkerPoint	hullInPoints[MAX_HULL_POINTS];
+	MarkerPoint	hullOutPoints[MAX_HULL_POINTS];
+
+	CornerPoints	trackedCorners;
 
 	ARFloat			relBorderWidth;
 
@@ -620,8 +643,8 @@ protected:
 
 	// RPP integration -- [t.pintaric]
 	POSE_ESTIMATOR  poseEstimator;
-	//POSE_ESTIMATOR_FUNC poseEstimator_func;
-	//MULTI_POSE_ESTIMATOR_FUNC multiPoseEstimator_func;
+
+    HULL_TRACKING_MODE hullTrackingMode;
 
 	ARToolKitPlus::Logger	*logger;
 
@@ -639,6 +662,20 @@ protected:
 		bool enabled;
 		int corners, leftright, bottomtop;
 	} vignetting;
+
+#ifdef DEBUG_DIV_RANGE
+	struct DBG_INFO {
+		DBG_INFO() : hMin(30000<<16), hMax(-30000<<16), hxMin(30000<<16), hxMax(-30000<<16), hyMin(30000<<16), hyMax(-30000<<16), dxMax(0), dyMax(0)
+		{}
+
+		int hMin,hMax;
+		int hxMin,hxMax;
+		int hyMin,hyMax;
+		int dxMax, dyMax;
+	} dbgInfo;
+#endif
+
+	unsigned short			*DIV_TABLE;
 
 	BCH						*bchProcessor;
 	Profiler				profiler;
@@ -673,7 +710,9 @@ protected:
 #include <ARToolKitPlus_impl/core/paramDistortion.cpp>
 #include <ARToolKitPlus_impl/core/paramFile.cpp>
 #include <ARToolKitPlus_impl/core/vector.cpp>
+#include <ARToolKitPlus_impl/core/arMultiGetTransMatHull.cpp>
 
+#include <ARToolKitPlus_impl/arGetInitRot2.cpp>
 #include <ARToolKitPlus_impl/TrackerImpl.cpp>
 
 #endif //__ARTOOLKIT_TRACKERIMPL_HEADERFILE__

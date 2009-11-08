@@ -2,7 +2,7 @@ vrs = Variables()
 vrs.Add("prefix", "installation directory", "/usr")
 
 env = Environment(variables=vrs)
-env["CPPFLAGS"] = "-Wall -O3"
+env["CPPFLAGS"] = "-Wall"
 env["CPPPATH"] = "include/"
 
 sources = ["src/core/byteSwap.cpp"] \
@@ -19,4 +19,4 @@ env.Install(env.get("prefix")+"/include", Glob("include/*"))
 env.Alias("install", env.get("prefix"))
 
 # uncomment to enable building of tools/ examples
-#SConscript("bin/SConscript")
+# SConscript("bin/SConscript")

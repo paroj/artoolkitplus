@@ -132,6 +132,9 @@ int main(int argc, char** argv)
     // switch to simple ID based markers
     // use the tool in tools/IdPatGen to generate markers
     tracker->setMarkerMode(ARToolKitPlus::MARKER_ID_SIMPLE);
+    
+    // switch one the hull only tracking
+    tracker->setHullMode(ARToolKitPlus::HULL_FOUR);
 
     // do the OpenGL camera setup
     //glMatrixMode(GL_PROJECTION)
