@@ -111,8 +111,8 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
     ARMarkerInfo    *marker_info;
     int             marker_num;
 
-	if(nImage==0)
-		return 0;
+	if(nImage == NULL)
+		return -1;
 
 	PROFILE_BEGINSEC(profiler, SINGLEMARKER_OVERALL)
 
@@ -127,15 +127,15 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 	}
 
     // find best visible marker
-    int j, k = -1;
-    for(j = 0; j < marker_num; j++)
-        if(marker_info[j].id!=-1 && (nPattern==-1 || nPattern==marker_info[j].id))
+    int best = -1;
+    for(int j = 0; j < marker_num; j++)
+        if(marker_info[j].id != -1 && (nPattern==-1 || nPattern==marker_info[j].id))
 		{
-            if(k == -1)
-				k = j;
+            if(best == -1)
+				best = j;
 			else
-			if(marker_info[k].cf < marker_info[j].cf)
-				k = j;
+			if(marker_info[best].cf < marker_info[j].cf)
+				best = j;
         }
 
 	if(nMarker_info)
@@ -188,12 +188,12 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 	//
 	if(nUpdateMatrix)
 	{
-		executeSingleMarkerPoseEstimator(&marker_info[k], patt_center, patt_width, patt_trans);
+		executeSingleMarkerPoseEstimator(&marker_info[best], patt_center, patt_width, patt_trans);
 		convertTransformationMatrixToOpenGLStyle(patt_trans, this->gl_para);
 	}
 
 	PROFILE_ENDSEC(profiler, SINGLEMARKER_OVERALL)
-	return marker_info[k].id;
+	return marker_info[best].id;
 }
 
 
