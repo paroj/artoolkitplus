@@ -145,13 +145,13 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 
 	// nothing found ?
 	//
-    if(k == -1)
+    if(best == -1)
 	{
 		PROFILE_ENDSEC(profiler, SINGLEMARKER_OVERALL)
         return -1;
 	}
 
-	confidence = marker_info[k].cf;
+	confidence = marker_info[best].cf;
 
 
 	/////////////////////////////////////////////////////////////////////////
