@@ -38,11 +38,6 @@
  * ======================================================================== */
 
 
-#ifndef __ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
-#error ARToolKitPlus/TrackerMultiMarkerImpl.cxx should not be compiled directly, but only if included from ARToolKitPlus/TrackerMultiMarkerImpl.h
-#endif
-
-
 namespace ARToolKitPlus
 {
 
