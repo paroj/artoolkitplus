@@ -37,7 +37,6 @@
  * @file
  * ======================================================================== */
 
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -45,155 +44,140 @@
 #include <ARToolKitPlus/CameraImpl.h>
 #include <ARToolKitPlus/byteSwap.h>
 
-
 namespace ARToolKitPlus {
 
 #define PD_LOOP 3
 
-CameraImpl::CameraImpl()
-{}
+CameraImpl::CameraImpl() {
+}
 
-CameraImpl::~CameraImpl()
-{}
+CameraImpl::~CameraImpl() {
+}
 
-bool CameraImpl::
-loadFromFile(const char* filename)
-{
-	FILE           *fp;
-	ARParamDouble  param;
+bool CameraImpl::loadFromFile(const char* filename) {
+	FILE *fp;
+	ARParamDouble param;
 
-	fp = fopen( filename, "rb" );
-	if( fp == NULL ) return(false);
+	fp = fopen(filename, "rb");
+	if (fp == NULL)
+		return (false);
 
 	setFileName(filename);
 
-	if(fread(&param, sizeof(ARParamDouble), 1, fp ) != 1 ) 
-	{
+	if (fread(&param, sizeof(ARParamDouble), 1, fp) != 1) {
 		fclose(fp);
-		return(false);
+		return (false);
 	}
 
 #ifdef AR_LITTLE_ENDIAN
-	byteswap( &param );
+	byteswap(&param);
 #endif
 
 	fclose(fp);
 
-	unsigned int i,j;
-	for(i=0; i<4; i++) this->dist_factor[i] = (ARFloat) param.dist_factor[i];
+	unsigned int i, j;
+	for (i = 0; i < 4; i++)
+		this->dist_factor[i] = (ARFloat) param.dist_factor[i];
 	this->xsize = (int) param.xsize;
 	this->ysize = (int) param.ysize;
-	for(i=0; i<3; i++)
-		for(j=0; j<4; j++)
+	for (i = 0; i < 3; i++)
+		for (j = 0; j < 4; j++)
 			this->mat[i][j] = (ARFloat) param.mat[i][j];
 
-	if( (mat[0][1] != 0.0) ||
-		(mat[0][3] != 0.0) ||
-		(mat[1][0] != 0.0) ||
-		(mat[1][3] != 0.0) ||
-		(mat[2][0] != 0.0) ||
-		(mat[2][1] != 0.0) ||
-		(mat[2][2] != 1.0) ||
-		(mat[2][3] != 0.0)) return(false);
+	if ((mat[0][1] != 0.0) || (mat[0][3] != 0.0) || (mat[1][0] != 0.0)
+			|| (mat[1][3] != 0.0) || (mat[2][0] != 0.0) || (mat[2][1] != 0.0)
+			|| (mat[2][2] != 1.0) || (mat[2][3] != 0.0))
+		return (false);
 
-	return(true);
+	return (true);
 }
 
-
-
-void CameraImpl::
-observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
-{
-	ARFloat  z02, z0, p, q, z, px, py;
-	int     i;
+void CameraImpl::observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+	ARFloat z02, z0, p, q, z, px, py;
+	int i;
 
 	px = ox - this->dist_factor[0];
 	py = oy - this->dist_factor[1];
-	p = this->dist_factor[2]/(ARFloat)100000000.0;
-	z02 = px*px+ py*py;
-	q = z0 = (ARFloat)sqrt(px*px+ py*py);
+	p = this->dist_factor[2] / (ARFloat) 100000000.0;
+	z02 = px * px + py * py;
+	q = z0 = (ARFloat) sqrt(px * px + py * py);
 
-	for( i = 1; ; i++ ) {
-		if( z0 != 0.0 ) {
-			z = z0 - (((ARFloat)1.0 - p*z02)*z0 - q) / ((ARFloat)1.0 - (ARFloat)3.0*p*z02);
+	for (i = 1;; i++) {
+		if (z0 != 0.0) {
+			z = z0 - (((ARFloat) 1.0 - p * z02) * z0 - q) / ((ARFloat) 1.0
+					- (ARFloat) 3.0 * p * z02);
 			px = px * z / z0;
 			py = py * z / z0;
-		}
-		else {
+		} else {
 			px = 0.0;
 			py = 0.0;
 			break;
 		}
-		if( i == PD_LOOP ) break;
+		if (i == PD_LOOP)
+			break;
 
-		z02 = px*px+ py*py;
-		z0 = (ARFloat)sqrt(px*px+ py*py);
+		z02 = px * px + py * py;
+		z0 = (ARFloat) sqrt(px * px + py * py);
 	}
 
 	*ix = px / this->dist_factor[3] + this->dist_factor[0];
 	*iy = py / this->dist_factor[3] + this->dist_factor[1];
 }
 
-void CameraImpl::
-ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy)
-{
-	ARFloat    x, y, d;
+void CameraImpl::ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) {
+	ARFloat x, y, d;
 
 	x = (ix - this->dist_factor[0]) * this->dist_factor[3];
 	y = (iy - this->dist_factor[1]) * this->dist_factor[3];
-	if( x == 0.0 && y == 0.0 ) {
+	if (x == 0.0 && y == 0.0) {
 		*ox = this->dist_factor[0];
 		*oy = this->dist_factor[1];
-	}
-	else {
-		d = (ARFloat)1.0 - this->dist_factor[2]/(ARFloat)100000000.0 * (x*x+y*y);
+	} else {
+		d = (ARFloat) 1.0 - this->dist_factor[2] / (ARFloat) 100000000.0 * (x
+				* x + y * y);
 		*ox = x * d + this->dist_factor[0];
 		*oy = y * d + this->dist_factor[1];
 	}
 }
 
-Camera* CameraImpl::clone()
-{
+Camera* CameraImpl::clone() {
 	CameraImpl* pCam = new CameraImpl();
 	pCam->xsize = xsize;
 	pCam->ysize = ysize;
-	unsigned int i,j;
-	for(i=0; i<3; i++) for(j=0; j<4; j++) pCam->mat[i][j] = mat[i][j];
-	for(i=0; i<4; i++) pCam->dist_factor[i] = dist_factor[i];
-	return((Camera*)pCam);
+	unsigned int i, j;
+	for (i = 0; i < 3; i++)
+		for (j = 0; j < 4; j++)
+			pCam->mat[i][j] = mat[i][j];
+	for (i = 0; i < 4; i++)
+		pCam->dist_factor[i] = dist_factor[i];
+	return ((Camera*) pCam);
 }
 
-bool CameraImpl::
-changeFrameSize(const int frameWidth, const int frameHeight)
-{
-	if(frameWidth <=0 || frameHeight <=0) return(false);
-	const ARFloat scale = (ARFloat)frameWidth / (ARFloat)xsize;
+bool CameraImpl::changeFrameSize(const int frameWidth, const int frameHeight) {
+	if (frameWidth <= 0 || frameHeight <= 0)
+		return (false);
+	const ARFloat scale = (ARFloat) frameWidth / (ARFloat) xsize;
 	xsize = frameWidth;
 	ysize = frameHeight;
 
-	for(int i = 0; i < 4; i++ )
-	{
+	for (int i = 0; i < 4; i++) {
 		mat[0][i] *= scale;
 		mat[1][i] *= scale;
 	}
 
 	dist_factor[0] *= scale;
 	dist_factor[1] *= scale;
-	dist_factor[2] /= (scale*scale);
+	dist_factor[2] /= (scale * scale);
 
-	return(true);
+	return (true);
 }
 
-void CameraImpl::
-logSettings(Logger* logger)
-{
-	if(logger != NULL)
-	{
+void CameraImpl::logSettings(Logger* logger) {
+	if (logger != NULL) {
 		logger->artLogEx("ARToolKitPlus: CamSize %d , %d\n", xsize, ysize);
-		logger->artLogEx("ARToolKitPlus: Dist.Factor %.2f %.2f %.2f %.2f\n", dist_factor[0],
-			dist_factor[1], dist_factor[2], dist_factor[3] );
+		logger->artLogEx("ARToolKitPlus: Dist.Factor %.2f %.2f %.2f %.2f\n",
+				dist_factor[0], dist_factor[1], dist_factor[2], dist_factor[3]);
 	}
 }
 
-
-}  // namespace ARToolKitPlus
+} // namespace ARToolKitPlus

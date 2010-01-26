@@ -40,6 +40,10 @@
 
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
+#include <iostream>
+
+using std::cerr;
+using std::endl;
 
 namespace ARToolKitPlus {
 
@@ -130,7 +134,6 @@ AR_TEMPL_TRACKER::TrackerImpl()
 	undistO2ITable = NULL;
 	//undistI2OTable = NULL;
 	arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_std;
-	//arParamIdeal2Observ_func = arParamIdeal2Observ_std;
 
 	vignetting.enabled = false;
 	vignetting.corners = 
@@ -284,8 +287,7 @@ AR_TEMPL_TRACKER::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, A
 	Camera* c_ptr = cf.createCamera(nCamParamFile);
 	if(c_ptr == NULL)
 	{
-		if(logger)
-			logger->artLog("ARToolKitPlus: Camera parameter load error!\n");
+		cerr << "ARToolKitPlus: Camera parameter load error!" << endl;
 		return false;
 	}
 
@@ -472,17 +474,14 @@ AR_TEMPL_TRACKER::setUndistortionMode(UNDIST_MODE nMode)
 	{
 	case UNDIST_NONE:
 		arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_none;
-		//arParamIdeal2Observ_func = arParamIdeal2Observ_none;
 		break;
 
 	case UNDIST_STD:
 		arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_std;
-		//arParamIdeal2Observ_func = arParamIdeal2Observ_std;
 		break;
 
 	case UNDIST_LUT:
 		arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_LUT;
-		//arParamIdeal2Observ_func = arParamIdeal2Observ_LUT;
 		break;
 	}
 }
@@ -509,13 +508,7 @@ AR_TEMPL_TRACKER::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, AR
 		return arGetTransMatCont2(marker_info, center, width, conv);
 
 	case POSE_ESTIMATOR_RPP:
-		if(rppSupportAvailabe())
-		{
-			return rppGetTransMat(marker_info, center, width, conv);
-		}
-		if(logger)
-			logger->artLog("ARToolKitPlus: Failed to set RPP pose estimator - RPP disabled during build\n");
-		return -1.0f;
+		return rppGetTransMat(marker_info, center, width, conv);
 	}
 
 	return -1.0f;
@@ -537,13 +530,7 @@ AR_TEMPL_TRACKER::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int
 		return arMultiGetTransMat(marker_info, marker_num, config);
 
 	case POSE_ESTIMATOR_RPP:
-		if(rppSupportAvailabe())
-		{
-			return rppMultiGetTransMat(marker_info, marker_num, config);
-		}
-		if(logger)
-			logger->artLog("ARToolKitPlus: Failed to set RPP pose estimator - RPP disabled during build\n");
-		return -1.0f;
+		return rppMultiGetTransMat(marker_info, marker_num, config);
 	}
 
 	return -1.0f;
@@ -630,25 +617,10 @@ AR_TEMPL_TRACKER::getDescription()
 	const char* pixelformats[] = { "NONE", "ABGR", "BGRA", "BGR", "RGBA", "RGB", "RGB565", "LUM"  };
 	int f = getPixelFormat();
 
-	char *compilerstr = new char[256];
-
-#ifdef __INTEL_COMPILER
-	sprintf(compilerstr, "Intel C++ v%d.%d", __INTEL_COMPILER/100, __INTEL_COMPILER%100);
-#elif _MSC_VER
-	sprintf(compilerstr, "MS C++ v%d.%d", _MSC_VER/100, _MSC_VER%100);
-#elif __GNUC__
-	sprintf(compilerstr, "GCC %d.%d.%d", __GNUC__, __GNUC_MINOR__,  __GNUC_PATCHLEVEL__);
-#else
-	sprintf(compilerstr, "Unknown Compiler");
-#endif
-
-	assert(strlen(compilerstr)<256);
-
 	sprintf(descriptionString,
-			"ARToolKitPlus v%d.%d: built %s %s (%s); %s; %s precision; %dx%d marker; %s pixelformat; RPP support %savailable.",
+			"ARToolKitPlus v%d.%d: built %s %s; %s; %s precision; %dx%d marker; %s pixelformat.",
 			VERSION_MAJOR, VERSION_MINOR,
 			__DATE__, __TIME__,
-			compilerstr,
 #if defined(_USEFIXED_) || defined(_USEGPP_)
 			"fixed-point",
 #else
@@ -656,13 +628,11 @@ AR_TEMPL_TRACKER::getDescription()
 #endif
 			usesSinglePrecision() ? "single" : "double",
 			PATTERN_WIDTH,PATTERN_HEIGHT,
-			f<=PIXEL_FORMAT_LUM ? pixelformats[f] : pixelformats[0],
-			rppSupportAvailabe() ? "" : "not "
+			f<=PIXEL_FORMAT_LUM ? pixelformats[f] : pixelformats[0]
 			);
 
-	delete [] compilerstr;
-
 	assert(strlen(descriptionString)<512);
+
 	return descriptionString;
 }
 

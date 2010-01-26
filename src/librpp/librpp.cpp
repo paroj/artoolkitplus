@@ -44,29 +44,8 @@
 #include "librpp.h"
 #include "rpp.h"
 #include "rpp_vecmat.h"
+
 using namespace rpp;
-
-#ifdef LIBRPP_DLL
-BOOL APIENTRY DllMain( HANDLE hModule, 
-					DWORD  ul_reason_for_call, 
-					LPVOID lpReserved
-					)
-{
-	switch (ul_reason_for_call)
-	{
-	case DLL_PROCESS_ATTACH:
-	case DLL_THREAD_ATTACH:
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
-	}
-	return TRUE;
-}
-#endif //LIBRPP_DLL
-
-
-#ifndef _NO_LIBRPP_
-
 
 LIBRPP_API void robustPlanarPose(rpp_float &err,
 								 rpp_mat &R,
@@ -135,37 +114,3 @@ LIBRPP_API void robustPlanarPose(rpp_float &err,
 	}
 	err = (rpp_float)_err;
 }
-
-
-bool rppSupportAvailabe()
-{
-	return true;
-}
-
-
-#else //_NO_LIBRPP_
-
-
-LIBRPP_API void robustPlanarPose(rpp_float &err,
-								 rpp_mat &R,
-								 rpp_vec &t,
-								 const rpp_float cc[2],
-								 const rpp_float fc[2],
-								 const rpp_vec *model,
-								 const rpp_vec *iprts,
-								 const unsigned int model_iprts_size,
-								 const rpp_mat R_init,
-								 const bool estimate_R_init,
-								 const rpp_float epsilon,
-								 const rpp_float tolerance,
-								 const unsigned int max_iterations)
-{
-}
-
-
-bool rppSupportAvailabe()
-{
-	return false;
-}
-
-#endif //_NO_LIBRPP_

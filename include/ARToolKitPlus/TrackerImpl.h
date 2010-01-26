@@ -615,7 +615,6 @@ protected:
 	ARFloat			relBorderWidth;
 
 	ARPARAM_UNDIST_FUNC arParamObserv2Ideal_func;
-	//ARPARAM_UNDIST_FUNC arParamIdeal2Observ_func;
 
 	// RPP integration -- [t.pintaric]
 	POSE_ESTIMATOR  poseEstimator;
