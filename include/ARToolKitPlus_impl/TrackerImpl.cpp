@@ -97,17 +97,11 @@ AR_TEMPL_TRACKER::TrackerImpl()
 	l_imageL = NULL;
 	l_imageL_size = 0;
 
-	workL = artkp_Alloc<int>(WORK_SIZE);
-	work2L = artkp_Alloc<int>(WORK_SIZE*7);
-	wareaL = artkp_Alloc<int>(WORK_SIZE);
-	wclipL = artkp_Alloc<int>(WORK_SIZE*4);
-	wposL = artkp_Alloc<ARFloat>(WORK_SIZE*2);
-
-	//workL = new int[WORK_SIZE];
-	//work2L = new int[WORK_SIZE*7];
-	//wareaL = new int[WORK_SIZE];
-	//wclipL = new int[WORK_SIZE*4];
-	//wposL = new ARFloat[WORK_SIZE*2];
+	workL = new int[WORK_SIZE];
+	work2L = new int[WORK_SIZE*7];
+	wareaL = new int[WORK_SIZE];
+	wclipL = new int[WORK_SIZE*4];
+	wposL = new ARFloat[WORK_SIZE*2];
 
 
 	// set all right side structures to NULL
@@ -176,35 +170,35 @@ AR_TEMPL_TRACKER::~TrackerImpl()
 	bchProcessor = NULL;
 
 	if(l_imageL)
-		artkp_Free(l_imageL);
+		delete l_imageL;
 	l_imageL = NULL;
 
 	if(workL)
-		artkp_Free(workL);
+		delete workL;
 	workL = NULL;
 
 	if(work2L)
-		artkp_Free(work2L);
+		delete work2L;
 	work2L = NULL;
 
 	if(wareaL)
-		artkp_Free(wareaL);
+		delete wareaL;
 	wareaL = NULL;
 
 	if(wclipL)
-		artkp_Free(wclipL);
+		delete wclipL;
 	wclipL = NULL;
 
 	if(wposL)
-		artkp_Free(wposL);
+		delete wposL;
 	wposL = NULL;
 
 	if(RGB565_to_LUM8_LUT)
-		artkp_Free(RGB565_to_LUM8_LUT);
+		delete RGB565_to_LUM8_LUT;
 	RGB565_to_LUM8_LUT = NULL;
 
 	if(undistO2ITable)
-		artkp_Free(undistO2ITable);
+		delete undistO2ITable;
 	undistO2ITable = NULL;
 
 	if(descriptionString)
@@ -259,13 +253,11 @@ AR_TEMPL_TRACKER::checkImageBuffer()
 		return;
 
 	if(l_imageL)
-		//delete l_imageL;
-		artkp_Free(l_imageL);
+		delete[] l_imageL;
 
 	l_imageL_size = newSize;
 
-	//l_imageL = new int16_t[newSize];
-	l_imageL = artkp_Alloc<int16_t>(newSize);
+	l_imageL = new int16_t[newSize];
 }
 
 
@@ -510,32 +502,6 @@ AR_TEMPL_FUNC bool
 AR_TEMPL_TRACKER::setPoseEstimator(POSE_ESTIMATOR nMode)
 {
 	poseEstimator = nMode;
-/*	switch(poseEstimator)
-	{
-	case POSE_ESTIMATOR_ORIGINAL:
-		poseEstimator_func = &AR_TEMPL_TRACKER::arGetTransMat;
-		multiPoseEstimator_func = &AR_TEMPL_TRACKER::arMultiGetTransMat;		// will use arGetTransMat internally
-		return true;
-
-	case POSE_ESTIMATOR_ORIGINAL_CONT:
-		poseEstimator_func = &AR_TEMPL_TRACKER::arGetTransMatCont2;
-		multiPoseEstimator_func = &AR_TEMPL_TRACKER::arMultiGetTransMat;		// will use arGetTransMatCont2 internally
-		return true;
-
-	case POSE_ESTIMATOR_RPP:
-		if(rppSupportAvailabe())
-		{
-			poseEstimator_func = &AR_TEMPL_TRACKER::rppGetTransMat;
-			multiPoseEstimator_func = &AR_TEMPL_TRACKER::rppMultiGetTransMat;
-			return true;
-		}
-
-		if(logger)
-			logger->artLog("ARToolKitPlus: Failed to set RPP pose estimator - RPP disabled during build\n");
-		return false;
-	}
-
-	return false;*/
 
 	return true;
 }
@@ -633,8 +599,7 @@ AR_TEMPL_TRACKER::checkRGB565LUT()
 	if(RGB565_to_LUM8_LUT)
 		return;
 
-	//RGB565_to_LUM8_LUT = new unsigned char[LUM_TABLE_SIZE];
-	RGB565_to_LUM8_LUT = artkp_Alloc<unsigned char>(LUM_TABLE_SIZE);
+	RGB565_to_LUM8_LUT = new unsigned char[LUM_TABLE_SIZE];
 
 
 #ifdef SMALL_LUM8_TABLE
@@ -663,8 +628,8 @@ AR_TEMPL_FUNC void
 AR_TEMPL_TRACKER::cleanup()
 {
 	if(marker_infoTWO)
-		//delete [] marker_infoTWO;
-		artkp_Free(marker_infoTWO);
+		delete [] marker_infoTWO;
+
 	marker_infoTWO = NULL;
 }
 
@@ -682,7 +647,6 @@ AR_TEMPL_TRACKER::getDescription()
 #   pragma message ( ">> ARToolKitPlus: compiling with Intel Compiler" )
 #elif _MSC_VER
 	sprintf(compilerstr, "MS C++ v%d.%d", _MSC_VER/100, _MSC_VER%100);
-//#   pragma message ( ">> ARToolKitPlus: compiling with Microsoft Compiler" )
 #elif __GNUC__
 	sprintf(compilerstr, "GCC %d.%d.%d", __GNUC__, __GNUC_MINOR__,  __GNUC_PATCHLEVEL__);
 #else
@@ -705,18 +669,10 @@ AR_TEMPL_TRACKER::getDescription()
 #    pragma message("  ")
 #  endif
 
-//#  ifndef _USEGPP_
-//#    pragma message("  ")
-//#    pragma message("  >>>    PERFORMANCE WARNING: Release builds of ARToolKitPlus should be done with the Intel GPP !!!")
-//#    pragma message("  ")
-//#  else
-//#   pragma message ( ">> ARToolKitPlus: compiling with Intel GPP" )
-//#  endif
-
 #endif //defined(_WIN32_WCE) && defined(NDEBUG)
 
 	sprintf(descriptionString,
-			"ARToolKitPlus v%d.%d: built %s %s (%s); %s; %s precision; %dx%d marker; %s pixelformat; %scustom memory manager; RPP support %savailable.",
+			"ARToolKitPlus v%d.%d: built %s %s (%s); %s; %s precision; %dx%d marker; %s pixelformat; RPP support %savailable.",
 			VERSION_MAJOR, VERSION_MINOR,
 			__DATE__, __TIME__,
 			compilerstr,
@@ -728,11 +684,6 @@ AR_TEMPL_TRACKER::getDescription()
 			usesSinglePrecision() ? "single" : "double",
 			PATTERN_WIDTH,PATTERN_HEIGHT,
 			f<=PIXEL_FORMAT_LUM ? pixelformats[f] : pixelformats[0],
-#ifdef _ARTKP_NO_MEMORYMANAGER_
-			"no ",
-#else
-			"",
-#endif
 			rppSupportAvailabe() ? "" : "not "
 			);
 
@@ -746,33 +697,6 @@ AR_TEMPL_TRACKER::getDescription()
 static bool usesSinglePrecision()
 {
 	return sizeof(ARFloat)==4;
-}
-
-
-AR_TEMPL_FUNC void*
-AR_TEMPL_TRACKER::operator new(size_t size)
-{
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-	if(memManager)
-		return memManager->getMemory(size);
-	else
-#endif //_ARTKP_NO_MEMORYMANAGER_
-		return malloc(size);
-}
-
-
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::operator delete(void *rawMemory)
-{
-	if(!rawMemory)
-		return;
-
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-	if(memManager)
-		memManager->releaseMemory(rawMemory);
-	else
-#endif //_ARTKP_NO_MEMORYMANAGER_
-		free(rawMemory);
 }
 
 

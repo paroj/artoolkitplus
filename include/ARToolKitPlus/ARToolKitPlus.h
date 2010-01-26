@@ -58,7 +58,7 @@
 
 
 #define ARTOOLKITPLUS_VERSION_MAJOR 2
-#define ARTOOLKITPLUS_VERSION_MINOR 1
+#define ARTOOLKITPLUS_VERSION_MINOR 2
 
 
 namespace ARToolKitPlus
@@ -144,12 +144,6 @@ struct CornerPoint
 };
 
 typedef std::vector<CornerPoint> CornerPoints;
-
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-ARTOOLKITPLUS_API void setMemoryManager(MemoryManager* nManager);
-
-ARTOOLKITPLUS_API MemoryManager* getMemoryManager();
-#endif
 
 }  // namespace ARToolKitPlus
 

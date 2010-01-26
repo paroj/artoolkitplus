@@ -55,9 +55,6 @@
 	typedef float ARFloat;
 #endif
 
-// disable the custom memory manager
-#define _ARTKP_NO_MEMORYMANAGER_
-
 /**
  * Endianness:
  * ususally evaluated by autoconf script, otherwise set by hand

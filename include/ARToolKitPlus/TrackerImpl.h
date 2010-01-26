@@ -65,22 +65,6 @@ namespace ARToolKitPlus {
 static bool usesSinglePrecision();				/// Returns whether single or double precision is used
 //const char* getDescriptionString();		/// Returns a short description string about compile time settings
 
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-extern MemoryManager* memManager;
-#endif //_ARTKP_NO_MEMORYMANAGER_
-
-void artkp_Free(void* nRawMemory);
-
-template<class T> T* artkp_Alloc(size_t size)
-{
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-	if(memManager)
-		return (T*)memManager->getMemory(size*sizeof(T));
-	else
-#endif //_ARTKP_NO_MEMORYMANAGER_
-		return (T*)::malloc(size*sizeof(T));
-}
-
 
 /// TrackerImpl implements the Tracker interface
 template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
@@ -478,11 +462,6 @@ protected:
 
 
 public:
-	static void* operator new(size_t size);
-
-	static void operator delete(void *rawMemory);
-
-
 	// required for calib camera, should otherwise not be used directly
 	//
 	void setFittingMode(int nWhich)  {  arFittingMode = nWhich;  }

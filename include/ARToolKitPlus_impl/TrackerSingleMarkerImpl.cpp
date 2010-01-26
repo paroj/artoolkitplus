@@ -94,7 +94,7 @@ ARSM_TEMPL_TRACKER::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat n
 	// so we allocate this manually)
 	//
 	if(this->marker_infoTWO==NULL)
-		this->marker_infoTWO = artkp_Alloc<ARMarkerInfo2>(__MAX_IMAGE_PATTERNS);
+		this->marker_infoTWO = new ARMarkerInfo2[__MAX_IMAGE_PATTERNS];
 
 	//initialize applications
 	if(nCamParamFile)
@@ -219,34 +219,6 @@ ARSM_TEMPL_TRACKER::getARMatrix(ARFloat nMatrix[3][4]) const
 		for(int j=0; j<4; j++)
 			nMatrix[i][j] = patt_trans[i][j];
 }
-
-
-ARSM_TEMPL_FUNC void*
-ARSM_TEMPL_TRACKER::operator new(size_t size)
-{
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-	if(memManager)
-		return memManager->getMemory(size);
-	else
-#endif //_ARTKP_NO_MEMORYMANAGER_
-		return malloc(size);
-}
-
-
-ARSM_TEMPL_FUNC void
-ARSM_TEMPL_TRACKER::operator delete(void *rawMemory)
-{
-	if(!rawMemory)
-		return;
-
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-	if(memManager)
-		memManager->releaseMemory(rawMemory);
-	else
-#endif //_ARTKP_NO_MEMORYMANAGER_
-		free(rawMemory);
-}
-
 
 ARSM_TEMPL_FUNC size_t
 ARSM_TEMPL_TRACKER::getMemoryRequirements()

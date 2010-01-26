@@ -137,11 +137,9 @@ AR_TEMPL_TRACKER::buildUndistO2ITable(Camera* pCam)
 	// (usually this lookup table should only be built once - unless we change camera resolution)
 	//
 	if(undistO2ITable)
-		//delete undistO2ITable;
-		artkp_Free(undistO2ITable);
+		delete[] undistO2ITable;
 
-	//undistO2ITable = new unsigned int [arImXsize*arImYsize];
-	undistO2ITable = artkp_Alloc<unsigned int>(arImXsize*arImYsize);
+	undistO2ITable = new unsigned int[arImXsize*arImYsize];
 
 	if(loadCachedUndist)
 	{

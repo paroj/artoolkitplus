@@ -163,10 +163,6 @@ public:
 	ARFloat executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::executeMultiMarkerPoseEstimator(marker_info, marker_num, config);  }
     const CornerPoints& getTrackedCorners() const  {  return AR_TEMPL_TRACKER::getTrackedCorners();  }
 
-	static void* operator new(size_t size);
-
-	static void operator delete(void *rawMemory);
-
 	static size_t getMemoryRequirements();
 
 protected:

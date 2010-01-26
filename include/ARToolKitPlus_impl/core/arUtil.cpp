@@ -68,7 +68,7 @@ AR_TEMPL_TRACKER::arInitCparam(Camera *pCam)
 	//
 	if(undistO2ITable && (arImXsize!=pCam->xsize || arImYsize!=pCam->ysize))
 	{
-		artkp_Free(undistO2ITable);
+		delete[] undistO2ITable;
 		undistO2ITable = NULL;
 	}
 

@@ -80,7 +80,7 @@ ARMM_TEMPL_TRACKER::init(const char* nCamParamFile, const char* nMultiFile, ARFl
 	// init some "static" from TrackerMultiMarker
 	//
 	if(this->marker_infoTWO==NULL)
-		this->marker_infoTWO = artkp_Alloc<ARMarkerInfo2>(AR_TEMPL_TRACKER::MAX_IMAGE_PATTERNS);
+		this->marker_infoTWO = new ARMarkerInfo2[AR_TEMPL_TRACKER::MAX_IMAGE_PATTERNS];
 
 	this->logger = nLogger;
 
@@ -149,35 +149,6 @@ ARMM_TEMPL_TRACKER::getARMatrix(ARFloat nMatrix[3][4]) const
 		for(int j=0; j<4; j++)
 			nMatrix[i][j] = config->trans[i][j];
 }
-
-
-
-ARMM_TEMPL_FUNC void*
-ARMM_TEMPL_TRACKER::operator new(size_t size)
-{
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-	if(memManager)
-		return memManager->getMemory(size);
-	else
-#endif //_ARTKP_NO_MEMORYMANAGER_
-		return malloc(size);
-}
-
-
-ARMM_TEMPL_FUNC void
-ARMM_TEMPL_TRACKER::operator delete(void *rawMemory)
-{
-	if(!rawMemory)
-		return;
-
-#ifndef _ARTKP_NO_MEMORYMANAGER_
-	if(memManager)
-		memManager->releaseMemory(rawMemory);
-	else
-#endif //_ARTKP_NO_MEMORYMANAGER_
-		free(rawMemory);
-}
-
 
 ARMM_TEMPL_FUNC size_t
 ARMM_TEMPL_TRACKER::getMemoryRequirements()
