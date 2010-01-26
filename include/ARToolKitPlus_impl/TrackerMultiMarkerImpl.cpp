@@ -50,8 +50,6 @@ namespace ARToolKitPlus
 ARMM_TEMPL_FUNC
 ARMM_TEMPL_TRACKER::TrackerMultiMarkerImpl(int nWidth, int nHeight)
 {
-	this->logger = NULL;
-
 	this->screenWidth = nWidth;
 	this->screenHeight = nHeight;
 
@@ -74,15 +72,12 @@ ARMM_TEMPL_TRACKER::~TrackerMultiMarkerImpl()
 
 
 ARMM_TEMPL_FUNC bool
-ARMM_TEMPL_TRACKER::init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip,
-						 ARToolKitPlus::Logger* nLogger)
+ARMM_TEMPL_TRACKER::init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip)
 {
 	// init some "static" from TrackerMultiMarker
 	//
 	if(this->marker_infoTWO==NULL)
 		this->marker_infoTWO = new ARMarkerInfo2[AR_TEMPL_TRACKER::MAX_IMAGE_PATTERNS];
-
-	this->logger = nLogger;
 
 	if(!loadCameraFile(nCamParamFile, nNearClip, nFarClip))
 		return false;
@@ -93,8 +88,7 @@ ARMM_TEMPL_TRACKER::init(const char* nCamParamFile, const char* nMultiFile, ARFl
     if((config = arMultiReadConfigFile(nMultiFile)) == NULL )
         return false;
 
-	if(this->logger)
-		this->logger->artLogEx("INFO: %d markers loaded from config file", config->marker_num);
+	//printf("INFO: %d markers loaded from config file\n", config->marker_num);
 
     return true;
 }

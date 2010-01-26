@@ -43,8 +43,6 @@
 
 #include <ARToolKitPlus/TrackerSingleMarker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
-#include <ARToolKitPlus/Logger.h>
-
 
 #define ARSM_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
 #define ARSM_TEMPL_TRACKER TrackerSingleMarkerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_LOAD_PATTERNS, __MAX_IMAGE_PATTERNS>
@@ -76,7 +74,7 @@ public:
 	 *  nCamParamFile is the name of the camera parameter file
 	 *  nLogger is an instance which implements the ARToolKit::Logger interface
 	 */
-	virtual bool init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip, ARToolKitPlus::Logger* nLogger=NULL);
+	virtual bool init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip);
 
 
 	/// adds a pattern to ARToolKit
@@ -119,7 +117,6 @@ public:
 	bool setPixelFormat(PIXEL_FORMAT nFormat)  {  return AR_TEMPL_TRACKER::setPixelFormat(nFormat);  }
 	bool loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)  {  return AR_TEMPL_TRACKER::loadCameraFile(nCamParamFile, nNearClip, nFarClip);  }
 	void setLoadUndistLUT(bool nSet)  {  AR_TEMPL_TRACKER::setLoadUndistLUT(nSet);  }
-	void setLogger(ARToolKitPlus::Logger* nLogger)  {  AR_TEMPL_TRACKER::setLogger(nLogger);  }
 	int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarker(dataPtr, thresh, marker_info, marker_num);  }
 	int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarkerLite(dataPtr, thresh, marker_info, marker_num);  }
 	ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::arMultiGetTransMat(marker_info, marker_num, config);  }

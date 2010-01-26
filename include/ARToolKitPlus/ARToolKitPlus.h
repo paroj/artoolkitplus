@@ -41,8 +41,6 @@
 #ifndef __ARTOOLKITPLUS_HEADERFILE__
 #define __ARTOOLKITPLUS_HEADERFILE__
 
-
-#include <ARToolKitPlus/Logger.h>
 #include <vector>
 
 

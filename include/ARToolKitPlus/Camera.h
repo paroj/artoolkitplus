@@ -41,9 +41,10 @@
 #ifndef __ARTOOLKIT_CAMERA_HEADERFILE__
 #define __ARTOOLKIT_CAMERA_HEADERFILE__
 
+#include <cstring>
+
 #include <ARToolKitPlus/config.h>
 #include <ARToolKitPlus/param.h>
-#include <ARToolKitPlus/Logger.h>
 
 namespace ARToolKitPlus {
 
@@ -61,7 +62,7 @@ public:
 	virtual bool loadFromFile(const char* filename) = 0;
 	virtual Camera* clone() = 0;
 	virtual bool changeFrameSize(const int frameWidth, const int frameHeight) = 0;
-	virtual void logSettings(Logger* p_log) = 0;
+	virtual void printSettings() = 0;
 
 	char* getFileName() const  {  return fileName;  }
 

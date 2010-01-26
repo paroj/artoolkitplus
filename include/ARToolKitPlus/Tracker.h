@@ -45,7 +45,6 @@
 #include <ARToolKitPlus/ARToolKitPlus.h>
 #include <ARToolKitPlus/ar.h>
 #include <ARToolKitPlus/arMulti.h>
-#include <ARToolKitPlus/Logger.h>
 #include <ARToolKitPlus/Camera.h>
 
 
@@ -102,11 +101,6 @@ public:
 	 *  The cache file will get the same name as the camera file with the added extension '.LUT'
 	 */
 	virtual void setLoadUndistLUT(bool nSet) = 0;
-
-
-	/// sets an instance which implements the ARToolKit::Logger interface
-	virtual void setLogger(ARToolKitPlus::Logger* nLogger) = 0;
-
 
 	/// marker detection using tracking history
 	virtual int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) = 0;

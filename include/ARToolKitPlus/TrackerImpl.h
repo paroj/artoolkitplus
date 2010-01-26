@@ -113,9 +113,6 @@ public:
 
 	virtual void setLoadUndistLUT(bool nSet)  {  loadCachedUndist = nSet;  }
 
-	/// sets an instance which implements the ARToolKit::Logger interface
-	virtual void setLogger(ARToolKitPlus::Logger* nLogger)  {  logger = nLogger;  }
-
 	/// marker detection using tracking history
 	virtual int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
 
@@ -620,8 +617,6 @@ protected:
 	POSE_ESTIMATOR  poseEstimator;
 
     HULL_TRACKING_MODE hullTrackingMode;
-
-	ARToolKitPlus::Logger	*logger;
 
 	static int						screenWidth, screenHeight;
 	int						thresh;

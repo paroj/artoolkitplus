@@ -43,7 +43,6 @@
 
 
 #include <ARToolKitPlus/Tracker.h>
-#include <ARToolKitPlus/Logger.h>
 
 
 namespace ARToolKitPlus
@@ -68,8 +67,7 @@ public:
 	 *  nNearClip & nFarClip are near and far clipping values for the OpenGL projection matrix
 	 *  nLogger is an instance which implements the ARToolKit::Logger interface
 	 */
-	virtual bool init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip,
-					  ARToolKitPlus::Logger* nLogger=NULL) = 0;
+	virtual bool init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip) = 0;
 
 	/// calculates the transformation matrix
 	/**

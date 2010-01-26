@@ -43,8 +43,6 @@
 
 
 #include <ARToolKitPlus/Tracker.h>
-#include <ARToolKitPlus/Logger.h>
-
 
 namespace ARToolKitPlus
 {
@@ -70,7 +68,7 @@ public:
 	 *  nCamParamFile is the name of the camera parameter file
 	 *  nLogger is an instance which implements the ARToolKit::Logger interface
 	 */
-	virtual bool init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip, ARToolKitPlus::Logger* nLogger=NULL) = 0;
+	virtual bool init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) = 0;
 
 
 	/// adds a pattern to ARToolKit

@@ -56,7 +56,7 @@ public:
 	virtual bool loadFromFile(const char* filename);
 	virtual Camera* clone();
 	virtual bool changeFrameSize(const int frameWidth, const int frameHeight);
-	virtual void logSettings(Logger* p_log);
+	virtual void printSettings();
 
 };
 

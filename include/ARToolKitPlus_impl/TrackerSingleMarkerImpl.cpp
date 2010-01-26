@@ -37,24 +37,22 @@
  * @file
  * ======================================================================== */
 
-#ifndef __ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__
-#error ARToolKitPlus/TrackerSingleMarkerImpl.cxx should not be compiled directly, but only if included from ARToolKitPlus/TrackerSingleMarkerImpl.h
-#endif
+#include <iostream>
 
+using std::cerr;
+using std::endl;
 
 namespace ARToolKitPlus
 {
 
 #ifdef ARTOOLKITPLUS_DLL
 // explictley create an instance
-template class ARToolKitPlus::TrackerSingleMarkerImpl<6,6,6, 3, 10>;
+template class ARToolKitPlus::TrackerSingleMarkerImpl<6,6,6, 1, 10>;
 #endif
 
 ARSM_TEMPL_FUNC
 ARSM_TEMPL_TRACKER::TrackerSingleMarkerImpl(int nWidth, int nHeight)
 {
-	this->logger = NULL;
-
 	this->screenWidth = nWidth;
 	this->screenHeight = nHeight;
 
@@ -73,15 +71,12 @@ ARSM_TEMPL_TRACKER::~TrackerSingleMarkerImpl()
 
 
 ARSM_TEMPL_FUNC bool
-ARSM_TEMPL_TRACKER::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip, ARToolKitPlus::Logger* nLogger)
+ARSM_TEMPL_TRACKER::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)
 {
-	if(nLogger)
-		this->logger = nLogger;
 
 	if(!this->checkPixelFormat())
 	{	
-		if(this->logger)
-			this->logger->artLog("ARToolKitPlus: Invalid Pixel Format!");
+		cerr << "ARToolKitPlus: Invalid Pixel Format!" << endl;
 		return false;
 	}
 
@@ -194,8 +189,7 @@ ARSM_TEMPL_TRACKER::addPattern(const char* nFileName)
 
     if(patt_id<0)
 	{
-		if(this->logger)
-			this->logger->artLogEx("ARToolKitPlus: error loading pattern '%s'", nFileName);
+    	cerr << "ARToolKitPlus: error loading pattern" << nFileName << endl;
 	}
 
 	return patt_id;

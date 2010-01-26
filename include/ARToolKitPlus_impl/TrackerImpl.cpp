@@ -293,6 +293,7 @@ AR_TEMPL_TRACKER::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, A
 
 	if(arCamera)
 		delete arCamera;
+
 	arCamera = NULL;
 
 	setCamera(c_ptr, nNearClip,nFarClip);
@@ -305,20 +306,16 @@ AR_TEMPL_TRACKER::setCamera(Camera* nCamera)
 {
 	arCamera = nCamera;
 
-	if(arCamera)
-	{
-		arCamera->changeFrameSize(screenWidth,screenHeight);
-		arInitCparam(arCamera);
-		arCamera->logSettings(logger);
+	arCamera->changeFrameSize(screenWidth,screenHeight);
+	arInitCparam(arCamera);
 
-		// Comment out if you want to get the matrix for camera calibration
-		// printf("MAT=\n");
-		// printf("[ %f %f %f;\n",arCamera->mat[0][0],arCamera->mat[0][1],arCamera->mat[0][2]);
-		// printf("%f %f %f;\n",arCamera->mat[1][0],arCamera->mat[1][1],arCamera->mat[1][2]);
-		// printf("%f %f %f ]\n",arCamera->mat[2][0],arCamera->mat[2][1],arCamera->mat[2][2]);
+	// Comment out if you want to get the matrix for camera calibration
+	// printf("MAT=\n");
+	// printf("[ %f %f %f;\n",arCamera->mat[0][0],arCamera->mat[0][1],arCamera->mat[0][2]);
+	// printf("%f %f %f;\n",arCamera->mat[1][0],arCamera->mat[1][1],arCamera->mat[1][2]);
+	// printf("%f %f %f ]\n",arCamera->mat[2][0],arCamera->mat[2][1],arCamera->mat[2][2]);
 
-		buildUndistO2ITable(arCamera);
-	}
+	buildUndistO2ITable(arCamera);
 }
 
 
@@ -331,6 +328,7 @@ AR_TEMPL_TRACKER::setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip
 
 	for(int i = 0; i < 4; i++)
 		gCparam.mat[1][i] = (gCparam.ysize-1)*(gCparam.mat[2][i]) - gCparam.mat[1][i];
+
 	convertProjectionMatrixToOpenGLStyle(&gCparam, nNearClip,nFarClip, gl_cpara);
 }
 
@@ -460,9 +458,6 @@ AR_TEMPL_TRACKER::changeCameraSize(int nWidth, int nHeight)
 
 	arCamera->changeFrameSize(nWidth,nHeight);
 	arInitCparam(arCamera);
-
-	if(logger)
-		logger->artLogEx("ARToolKitPlus: Changed CamSize %d, %d", arCamera->xsize, arCamera->ysize);
 }
 
 

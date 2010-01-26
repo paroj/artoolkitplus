@@ -47,15 +47,6 @@
 #include "ARToolKitPlus/TrackerMultiMarkerImpl.h"
 
 
-class MyLogger : public ARToolKitPlus::Logger
-{
-    void artLog(const char* nStr)
-    {
-        printf("%s", nStr);
-    }
-};
-
-
 int main(int argc, char** argv)
 {
     const int     width = 320, height = 240, bpp = 1;
@@ -63,7 +54,6 @@ int main(int argc, char** argv)
     size_t        numBytesRead;
     const char    *fName = "data/markerboard_480-499.raw";
     unsigned char *cameraBuffer = new unsigned char[numPixels];
-    MyLogger      logger;
 
     // try to load a test camera image.
     // these images files are expected to be simple 8-bit raw pixel
@@ -95,14 +85,11 @@ int main(int argc, char** argv)
     //  - works with luminance (gray) images
     //  - can load a maximum of 1 pattern
     //  - can detect a maximum of 8 patterns in one image
-    ARToolKitPlus::TrackerMultiMarker *tracker = new ARToolKitPlus::TrackerMultiMarkerImpl<6,6,6, 1, 16>(width,height);
+    ARToolKitPlus::TrackerMultiMarker *tracker = new ARToolKitPlus::TrackerMultiMarkerImpl<6,6,6, 1, 10>(width,height);
 
 	const char* description = tracker->getDescription();
 	printf("ARToolKitPlus compile-time information:\n%s\n\n", description);
 
-    // set a logger so we can output error messages
-    //
-    tracker->setLogger(&logger);
 	tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
 
     // load a camera file. two types of camera files are supported:
@@ -115,6 +102,8 @@ int main(int argc, char** argv)
 		delete tracker;
 		return -1;
 	}
+
+	tracker->getCamera()->printSettings();
 
 	// the marker in the BCH test image has a thiner border...
     tracker->setBorderWidth(0.125f);

@@ -47,15 +47,6 @@
 #include "ARToolKitPlus/TrackerSingleMarkerImpl.h"
 
 
-class MyLogger : public ARToolKitPlus::Logger
-{
-    void artLog(const char* nStr)
-    {
-        printf("%s", nStr);
-    }
-};
-
-
 int main(int argc, char** argv)
 {
     // switch this between true and false to test
@@ -69,7 +60,6 @@ int main(int argc, char** argv)
     const char    *fName = useBCH ? "data/image_320_240_8_marker_id_bch_nr0100.raw" :
                                       "data/image_320_240_8_marker_id_simple_nr031.raw";
     unsigned char *cameraBuffer = new unsigned char[numPixels];
-    MyLogger      logger;
 
     // try to load a test camera image.
     // these images files are expected to be simple 8-bit raw pixel
@@ -106,23 +96,23 @@ int main(int argc, char** argv)
 	const char* description = tracker->getDescription();
 	printf("ARToolKitPlus compile-time information:\n%s\n\n", description);
 
-    // set a logger so we can output error messages
-    //
-    tracker->setLogger(&logger);
+
 	tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
 	//tracker->setLoadUndistLUT(true);
 
     // load a camera file. two types of camera files are supported:
     //  - Std. ARToolKit
     //  - MATLAB Camera Calibration Toolbox
-    if(!tracker->init("data/LogitechPro4000.dat", 1.0f, 1000.0f))            // load std. ARToolKit camera file
-    //if(!tracker->init("data/PGR_M12x0.5_2.5mm.cal", 1.0f, 1000.0f))        // load MATLAB file
+    //if(!tracker->init("data/LogitechPro4000.dat", 1.0f, 1000.0f))            // load std. ARToolKit camera file
+    if(!tracker->init("data/PGR_M12x0.5_2.5mm.cal", 1.0f, 1000.0f))        // load MATLAB file
 	{
 		printf("ERROR: init() failed\n");
 		delete cameraBuffer;
 		delete tracker;
 		return -1;
 	}
+
+    tracker->getCamera()->printSettings();
 
     // define size of the marker in OpenGL units
     tracker->setPatternWidth(2.0);

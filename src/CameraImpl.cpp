@@ -172,12 +172,10 @@ bool CameraImpl::changeFrameSize(const int frameWidth, const int frameHeight) {
 	return (true);
 }
 
-void CameraImpl::logSettings(Logger* logger) {
-	if (logger != NULL) {
-		logger->artLogEx("ARToolKitPlus: CamSize %d , %d\n", xsize, ysize);
-		logger->artLogEx("ARToolKitPlus: Dist.Factor %.2f %.2f %.2f %.2f\n",
-				dist_factor[0], dist_factor[1], dist_factor[2], dist_factor[3]);
-	}
+void CameraImpl::printSettings() {
+	printf("ARToolKitPlus: CamSize %d , %d\n", xsize, ysize);
+	printf("ARToolKitPlus: Dist.Factor %.2f %.2f %.2f %.2f\n", dist_factor[0],
+			dist_factor[1], dist_factor[2], dist_factor[3]);
 }
 
 } // namespace ARToolKitPlus
