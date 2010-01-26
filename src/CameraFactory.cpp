@@ -37,25 +37,27 @@
  * @file
  * ======================================================================== */
 
-
 #include <ARToolKitPlus/CameraFactory.h>
 #include <ARToolKitPlus/CameraImpl.h>
 #include <ARToolKitPlus/CameraAdvImpl.h>
 
 namespace ARToolKitPlus {
 
-Camera* CameraFactory::
-createCamera(const char* filename)
-{
+Camera* CameraFactory::createCamera(const char* filename) {
 	CameraAdvImpl *c_ptr = new CameraAdvImpl();
-	if(c_ptr->loadFromFile(filename)) return((Camera*)c_ptr);
-	else delete c_ptr;
+
+	if (c_ptr->loadFromFile(filename))
+		return ((Camera*) c_ptr);
+	else
+		delete c_ptr;
 
 	CameraImpl *c2_ptr = new CameraImpl();
-	if(c2_ptr->loadFromFile(filename)) return((Camera*)c2_ptr);
-	else delete c2_ptr;
+	if (c2_ptr->loadFromFile(filename))
+		return ((Camera*) c2_ptr);
+	else
+		delete c2_ptr;
 
-	return(NULL);
+	return NULL;
 }
 
-}  // namespace ARToolKitPlus
+} // namespace ARToolKitPlus
