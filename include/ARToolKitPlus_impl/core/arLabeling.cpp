@@ -145,8 +145,6 @@ AR_TEMPL_TRACKER::labeling2(uint8_t *image, int thresh, int *label_num, int **ar
     ARFloat    *wpos;
 #ifndef _DISABLE_TP_OPTIMIZATIONS_
 	int		  pnt2_index, wmax_idx;   // [t.pintaric]
-#else
-	#pragma message(">> Performance Warning: arlabeling() optimizations disabled.")
 #endif //_!DISABLE_TP_OPTIMIZATIONS_
 
 //#ifdef AR_PIX_FORMAT_RGB565

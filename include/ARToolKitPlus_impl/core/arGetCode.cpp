@@ -179,8 +179,6 @@ AR_TEMPL_TRACKER::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *ver
 				autoThreshold.addValue(ext_pat[y][x][0], ext_pat[y][x][1], ext_pat[y][x][2], pixelFormat);
 	}
 
-
-//#pragma message (">>> WARNING: compiling with marker content dumping. performance will be very low !!!")
 //	FILE* fp = fopen("dump.raw", "wb");
 //	fwrite(ext_pat, PATTERN_HEIGHT*PATTERN_WIDTH*3, 1, fp);
 //	fclose(fp);

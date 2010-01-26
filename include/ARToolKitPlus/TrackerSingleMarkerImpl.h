@@ -41,9 +41,6 @@
 #ifndef __ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__
 #define __ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__
 
-//#pragma message ( "Compiling TrackerSingleMarkerImpl.h" )
-
-
 #include <ARToolKitPlus/TrackerSingleMarker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/Logger.h>

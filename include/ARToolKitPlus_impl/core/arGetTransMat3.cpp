@@ -370,7 +370,6 @@ AR_TEMPL_TRACKER::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], 
 //       by storing products
 //
 
-#pragma message(">>> Using arGetRot_28()")
 int arGetRot_28(I32 _a, I32 _b, I32 _c, FIXED_VEC3D _rot[3])
 {
 	I32 _sina, _sinb, _sinc, _cosa, _cosb, _cosc;
@@ -629,7 +628,6 @@ AR_TEMPL_TRACKER::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 #define BITS 12
 
 
-#pragma message(">>> Using arGetNewMatrix12()")
 
 // optimized arGetNewMatrix() version which completely
 // works with fixed point

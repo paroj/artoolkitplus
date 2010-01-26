@@ -420,7 +420,6 @@ AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
 
 
 #ifdef DEBUG_DIV_RANGE
-#  pragma message("!!! COMPILING WITH RANGE CHECKING !!!")
 						if(_h<dbgInfo.hMin)		dbgInfo.hMin  = _h;
 						if(_h>dbgInfo.hMax)		dbgInfo.hMax  = _h;
 						if(_hx<dbgInfo.hxMin)	dbgInfo.hxMin  = _hx;

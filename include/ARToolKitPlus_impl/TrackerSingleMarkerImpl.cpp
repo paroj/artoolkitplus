@@ -37,10 +37,6 @@
  * @file
  * ======================================================================== */
 
-
-//#pragma message ( "Compiling TrackerSingleMarkerImpl.cxx" )
-
-
 #ifndef __ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__
 #error ARToolKitPlus/TrackerSingleMarkerImpl.cxx should not be compiled directly, but only if included from ARToolKitPlus/TrackerSingleMarkerImpl.h
 #endif

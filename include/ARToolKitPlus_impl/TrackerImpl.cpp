@@ -41,14 +41,6 @@
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
 
-
-//#if AR_PATT_SIZE_X!=16 || AR_PATT_SIZE_Y!=16
-//#pragma message("CAUTION: AR_PATT_SIZE_X or AR_PATT_SIZE_Y are not standard size")
-//#endif
-
-//#pragma message ( "Compiling TrackerImpl.cxx" )
-
-
 namespace ARToolKitPlus {
 
 AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenWidth;
@@ -644,7 +636,6 @@ AR_TEMPL_TRACKER::getDescription()
 
 #ifdef __INTEL_COMPILER
 	sprintf(compilerstr, "Intel C++ v%d.%d", __INTEL_COMPILER/100, __INTEL_COMPILER%100);
-#   pragma message ( ">> ARToolKitPlus: compiling with Intel Compiler" )
 #elif _MSC_VER
 	sprintf(compilerstr, "MS C++ v%d.%d", _MSC_VER/100, _MSC_VER%100);
 #elif __GNUC__
@@ -654,22 +645,6 @@ AR_TEMPL_TRACKER::getDescription()
 #endif
 
 	assert(strlen(compilerstr)<256);
-
-//
-// Under WinCE it is very important to use the Intel XScale compiler.
-// This will double the speed of ARToolKit
-//
-#if defined(_WIN32_WCE) && defined(NDEBUG)
-
-#  ifdef __INTEL_COMPILER
-#    pragma message ( ">>>    WinCE Targeted with Intel Compiler" )
-#  else
-#    pragma message("  ")
-#    pragma message("  >>>    WinCE PERFORMANCE WARNING: Release builds of ARToolKitPlus should be done with the Intel XScale Compiler !!!")
-#    pragma message("  ")
-#  endif
-
-#endif //defined(_WIN32_WCE) && defined(NDEBUG)
 
 	sprintf(descriptionString,
 			"ARToolKitPlus v%d.%d: built %s %s (%s); %s; %s precision; %dx%d marker; %s pixelformat; RPP support %savailable.",
