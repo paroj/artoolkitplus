@@ -145,8 +145,6 @@ AR_TEMPL_TRACKER::TrackerImpl()
 	hullTrackingMode = HULL_OFF;
 
 	descriptionString = new char[512];
-
-	profiler.reset();
 }
 
 

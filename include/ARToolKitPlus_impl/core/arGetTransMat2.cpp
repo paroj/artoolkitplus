@@ -71,8 +71,6 @@ AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
     int       s1 = 0, s2 = 0, s3 = 0;
     int       i, j;
 
-	PROFILE_BEGINSEC(profiler, MODIFYMATRIX)
-
     arGetAngle( rot, &a, &b, &c );
 
     a2 = a;
@@ -130,8 +128,6 @@ AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
     }
 
     arGetRot( ma, mb, mc, rot );
-
-	PROFILE_ENDSEC(profiler, MODIFYMATRIX)
 
     return minerr/num;
 }

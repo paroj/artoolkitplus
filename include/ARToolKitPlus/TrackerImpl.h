@@ -458,9 +458,6 @@ protected:
 	// calculates amount of data that will be allocated via artkp_Alloc()
 	static size_t getDynamicMemoryRequirements();
 
-	Profiler& getProfiler()  {  return profiler;  }
-
-
 public:
 	// required for calib camera, should otherwise not be used directly
 	//
@@ -657,7 +654,6 @@ protected:
 	unsigned short			*DIV_TABLE;
 
 	BCH						*bchProcessor;
-	Profiler				profiler;
 };
 
 

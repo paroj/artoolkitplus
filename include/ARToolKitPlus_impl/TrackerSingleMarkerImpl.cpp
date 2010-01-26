@@ -110,15 +110,12 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 	if(nImage == NULL)
 		return -1;
 
-	PROFILE_BEGINSEC(profiler, SINGLEMARKER_OVERALL)
-
 	confidence = 0.0f;
 
     // detect the markers in the video frame
 	//
     if(arDetectMarker(const_cast<unsigned char*>(nImage), this->thresh, &marker_info, &marker_num) < 0)
 	{
-		PROFILE_ENDSEC(profiler, SINGLEMARKER_OVERALL)
         return -1;
 	}
 
@@ -141,9 +138,7 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 
 	// nothing found ?
 	//
-    if(best == -1)
-	{
-		PROFILE_ENDSEC(profiler, SINGLEMARKER_OVERALL)
+    if(best == -1) {
         return -1;
 	}
 
@@ -188,7 +183,6 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 		convertTransformationMatrixToOpenGLStyle(patt_trans, this->gl_para);
 	}
 
-	PROFILE_ENDSEC(profiler, SINGLEMARKER_OVERALL)
 	return marker_info[best].id;
 }
 

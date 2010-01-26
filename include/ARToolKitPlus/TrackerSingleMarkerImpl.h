@@ -151,7 +151,6 @@ public:
 	int getBitsPerPixel() const  {  return static_cast<PIXEL_FORMAT>(AR_TEMPL_TRACKER::getBitsPerPixel());  }
 	int getNumLoadablePatterns() const  {  return AR_TEMPL_TRACKER::getNumLoadablePatterns();  }
 	void setImageProcessingMode(IMAGE_PROC_MODE nMode)  {  AR_TEMPL_TRACKER::setImageProcessingMode(nMode);  }
-	Profiler& getProfiler()  {  return AR_TEMPL_TRACKER::getProfiler();  }
 	Camera* getCamera()  {  return AR_TEMPL_TRACKER::getCamera();  }
 	void setCamera(Camera* nCamera)  {  AR_TEMPL_TRACKER::setCamera(nCamera);  }
 	void setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip)  {  AR_TEMPL_TRACKER::setCamera(nCamera, nNearClip, nFarClip);  }

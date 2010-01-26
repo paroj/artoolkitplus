@@ -57,8 +57,6 @@ static int  check_dir( ARFloat dir[3], ARFloat st[2], ARFloat ed[2],
 AR_TEMPL_FUNC int
 AR_TEMPL_TRACKER::arGetAngle( ARFloat rot[3][3], ARFloat *wa, ARFloat *wb, ARFloat *wc )
 {
-	PROFILE_BEGINSEC(profiler, GETANGLE)
-	
 	ARFloat      a, b, c;
     ARFloat      sina, cosa, sinb, cosb, sinc, cosc;
 #if CHECK_CALC
@@ -168,7 +166,6 @@ for(i=0;i<3;i++) rot[i][2] = w[i];
     *wb = b;
     *wc = c;
 
-	PROFILE_ENDSEC(profiler, GETANGLE)
     return 0;
 }
 
@@ -181,8 +178,6 @@ for(i=0;i<3;i++) rot[i][2] = w[i];
 AR_TEMPL_FUNC int
 AR_TEMPL_TRACKER::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 {
-	PROFILE_BEGINSEC(profiler, GETROT)
-
     ARFloat   sina, sinb, sinc;
     ARFloat   cosa, cosb, cosc;
 #if CHECK_CALC
@@ -210,7 +205,6 @@ AR_TEMPL_TRACKER::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
     for(i=0;i<3;i++) rot[i][0] = w[i];
 #endif
 
-	PROFILE_ENDSEC(profiler, GETROT)
     return 0;
 }
 
@@ -225,8 +219,6 @@ AR_TEMPL_TRACKER::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
     ARFloat   cpara2[3][4];
     ARFloat   rot[3][3];
     int      i, j;
-
-	PROFILE_BEGINSEC(profiler, GETNEWMATRIX)
 
     arGetRot( a, b, c, rot );
 
@@ -259,7 +251,6 @@ AR_TEMPL_TRACKER::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
                   + cpara2[j][3];
     }
 
-	PROFILE_ENDSEC(profiler, GETNEWMATRIX)
     return(0);
 }
 
@@ -270,8 +261,6 @@ AR_TEMPL_TRACKER::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], 
     ARFloat  w, w1, w2, w3;
     int     dir;
     int     j;
-
-	PROFILE_BEGINSEC(profiler, GETINITROT)
 
     dir = marker_info->dir;
 
@@ -300,20 +289,17 @@ AR_TEMPL_TRACKER::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], 
     if( check_dir(wdir[0], marker_info->vertex[(4-dir)%4],
                   marker_info->vertex[(5-dir)%4], cpara) < 0 )
 	{
-		PROFILE_ENDSEC(profiler, GETINITROT)
 		return -1;
 	}
 
 	if( check_dir(wdir[1], marker_info->vertex[(7-dir)%4],
                   marker_info->vertex[(4-dir)%4], cpara) < 0 )
 	{
-		PROFILE_ENDSEC(profiler, GETINITROT)
 		return -1;
 	}
 
     if( check_rotation(wdir) < 0 )
 	{
-		PROFILE_ENDSEC(profiler, GETINITROT)
 		return -1;
 	}
 
@@ -349,7 +335,6 @@ AR_TEMPL_TRACKER::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], 
     rot[1][2] = wdir[2][1];
     rot[2][2] = wdir[2][2];
 
-	PROFILE_ENDSEC(profiler, GETINITROT)
     return 0;
 }
 

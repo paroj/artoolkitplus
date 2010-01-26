@@ -89,7 +89,6 @@ AR_TEMPL_TRACKER::arLabeling(uint8_t *image, int thresh, int *label_num, int **a
 {
 	int16_t* ret = NULL;
 
-	PROFILE_BEGINSEC(profiler, LABELING)
 	//ret = labeling2(image, thresh, label_num, area, pos, clip, label_ref, 1);
 
 	switch(pixelFormat)
@@ -116,8 +115,6 @@ AR_TEMPL_TRACKER::arLabeling(uint8_t *image, int thresh, int *label_num, int **a
 		ret = arLabeling_LUM(image, thresh, label_num, area, pos, clip, label_ref);
 		break;
 	}
-
-    PROFILE_ENDSEC(profiler, LABELING)
 
 	return ret;
 }

@@ -58,11 +58,7 @@ AR_TEMPL_TRACKER::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], AR
     ARFloat  err;
     int     i;
 
-	PROFILE_BEGINSEC(profiler, GETTRANSMAT)
-
-	if( arGetInitRot( marker_info, arCamera->mat, rot ) < 0 )
-	{
-		PROFILE_ENDSEC(profiler, GETTRANSMAT)
+	if( arGetInitRot( marker_info, arCamera->mat, rot ) < 0 ) {
 		return -1;
 	}
 
@@ -89,7 +85,6 @@ AR_TEMPL_TRACKER::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], AR
         if( err < AR_GET_TRANS_MAT_MAX_FIT_ERROR ) break;
     }
 
-	PROFILE_ENDSEC(profiler, GETTRANSMAT)
     return err;
 }
 
@@ -109,8 +104,6 @@ AR_TEMPL_TRACKER::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
     ARFloat  off[3], pmax[3], pmin[3];
     ARFloat  ret;
     int     i;
-
-	PROFILE_BEGINSEC(profiler, GETTRANSMAT3)
 
     pmax[0]=pmax[1]=pmax[2] = -10000000000.0;
     pmin[0]=pmin[1]=pmin[2] =  10000000000.0;
@@ -143,7 +136,6 @@ AR_TEMPL_TRACKER::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
     conv[1][3] = conv[1][0]*off[0] + conv[1][1]*off[1] + conv[1][2]*off[2] + conv[1][3];
     conv[2][3] = conv[2][0]*off[0] + conv[2][1]*off[1] + conv[2][2]*off[2] + conv[2][3];
 
-	PROFILE_ENDSEC(profiler, GETTRANSMAT3)
     return ret;
 }
 
@@ -205,8 +197,6 @@ AR_TEMPL_TRACKER::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2],
     ARFloat  wx, wy, wz;
     ARFloat  ret;
     int     i, j;
-
-	PROFILE_BEGINSEC(profiler, GETTRANSMATSUB)
 
     mat_a = Matrix::alloc( num*2, 3 );
     mat_b = Matrix::alloc( 3, num*2 );
@@ -322,7 +312,6 @@ AR_TEMPL_TRACKER::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2],
         conv[j][3] = trans[j];
     }
 
-	PROFILE_ENDSEC(profiler, GETTRANSMATSUB)
     return ret;
 }
 

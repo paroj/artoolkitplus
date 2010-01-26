@@ -51,8 +51,6 @@ AR_TEMPL_TRACKER::arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, i
     ARFloat         cf;
     int            i, j;
 
-	PROFILE_BEGINSEC(profiler, GETMARKERINFO)
-
     for( i = j = 0; i < *marker_num; i++ ) {
         marker_infoL[j].area   = marker_info2[i].area;
         marker_infoL[j].pos[0] = marker_info2[i].pos[0];
@@ -73,8 +71,6 @@ AR_TEMPL_TRACKER::arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, i
         j++;
     }
     *marker_num = j;
-
-	PROFILE_ENDSEC(profiler, GETMARKERINFO)
 
     return( marker_infoL );
 }

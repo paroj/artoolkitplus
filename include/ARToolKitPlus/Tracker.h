@@ -46,7 +46,6 @@
 #include <ARToolKitPlus/ar.h>
 #include <ARToolKitPlus/arMulti.h>
 #include <ARToolKitPlus/Logger.h>
-#include <ARToolKitPlus/extra/Profiler.h>
 #include <ARToolKitPlus/Camera.h>
 
 
@@ -297,11 +296,6 @@ public:
 
 	/// Calculates the OpenGL transformation matrix for a specific marker info
 	virtual ARFloat calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix) = 0;
-
-
-	/// Returns the internal profiler object
-	virtual Profiler& getProfiler() = 0;
-
 
 	/// Calls the pose estimator set with setPoseEstimator() for single marker tracking
 	virtual ARFloat executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]) = 0;

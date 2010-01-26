@@ -58,8 +58,6 @@ AR_TEMPL_TRACKER::arDetectMarker2(int16_t *limage, int label_num, int *label_ref
     int               i, j, ret;
     ARFloat            d;
 
-	PROFILE_BEGINSEC(profiler, DETECTMARKER2)
-
     if( arImageProcMode == AR_IMAGE_PROC_IN_HALF ) {
         area_min /= 4;
         area_max /= 4;
@@ -131,8 +129,6 @@ AR_TEMPL_TRACKER::arDetectMarker2(int16_t *limage, int label_num, int *label_ref
             pm++;
         }
     }
-
-	PROFILE_ENDSEC(profiler, DETECTMARKER2)
 
     *marker_num = marker_num2;
     return( &(marker_infoTWO[0]) );
