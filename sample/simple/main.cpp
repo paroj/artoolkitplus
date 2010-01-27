@@ -103,8 +103,8 @@ int main(int argc, char** argv)
     // load a camera file. two types of camera files are supported:
     //  - Std. ARToolKit
     //  - MATLAB Camera Calibration Toolbox
-    if(!tracker->init("data/LogitechPro4000.dat", 1.0f, 1000.0f))            // load std. ARToolKit camera file
-    //if(!tracker->init("data/PGR_M12x0.5_2.5mm.cal", 1.0f, 1000.0f))        // load MATLAB file
+    //if(!tracker->init("data/LogitechPro4000.dat", 1.0f, 1000.0f))            // load std. ARToolKit camera file
+    if(!tracker->init("data/PGR_M12x0.5_2.5mm.cal", 1.0f, 1000.0f))        // load MATLAB file
 	{
 		printf("ERROR: init() failed\n");
 		delete cameraBuffer;

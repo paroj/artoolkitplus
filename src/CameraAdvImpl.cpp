@@ -37,9 +37,10 @@
  * @file
  * ======================================================================== */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
+#include <cstdlib>
+#include <clocale>
+#include <cstdio>
+#include <cmath>
 
 #include <ARToolKitPlus/CameraAdvImpl.h>
 
@@ -52,7 +53,9 @@ CameraAdvImpl::~CameraAdvImpl() {
 }
 
 bool CameraAdvImpl::loadFromFile(const char* filename) {
+	setlocale(LC_NUMERIC, "C");
 	FILE *fp = fopen(filename, "r");
+
 	if (fp == NULL)
 		return (false);
 
@@ -74,6 +77,7 @@ bool CameraAdvImpl::loadFromFile(const char* filename) {
 	n = fscanf(fp, "%d%d%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%d\n", &this->xsize,
 			&this->ysize, &_cc[0], &_cc[1], &_fc[0], &_fc[1], &_kc[0], &_kc[1],
 			&_kc[2], &_kc[3], &_kc[4], &_kc[5], &undist_iterations);
+
 	if ((n != 13) || ferror(fp)) {
 		return (false);
 	}
@@ -100,6 +104,7 @@ bool CameraAdvImpl::loadFromFile(const char* filename) {
 		undist_iterations = CAMERA_ADV_MAX_UNDIST_ITERATIONS;
 
 	fclose(fp);
+	setlocale(LC_NUMERIC, "");
 	return (true);
 }
 
