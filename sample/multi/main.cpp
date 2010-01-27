@@ -92,10 +92,8 @@ int main(int argc, char** argv)
 
 	tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
 
-    // load a camera file. two types of camera files are supported:
-    //  - Std. ARToolKit
-    //  - MATLAB Camera Calibration Toolbox
-	if(!tracker->init("data/LogitechPro4000.dat", "data/markerboard_480-499.cfg", 1.0f, 1000.0f))
+    // load a camera file.
+	if(!tracker->init("data/PGR_M12x0.5_2.5mm.cal", "data/markerboard_480-499.cfg", 1.0f, 1000.0f))
 	{
 		printf("ERROR: init() failed\n");
 		delete cameraBuffer;

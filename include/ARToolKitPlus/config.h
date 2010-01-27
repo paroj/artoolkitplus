@@ -56,27 +56,6 @@
 #endif
 
 /**
- * Endianness:
- * ususally evaluated by autoconf script, otherwise set by hand
- */
-#ifdef __linux
-	#undef   AR_BIG_ENDIAN
-	#define  AR_LITTLE_ENDIAN
-#endif
-#ifdef _WIN32
-	#undef   AR_BIG_ENDIAN
-	#define  AR_LITTLE_ENDIAN
-#endif
-#ifdef __sgi
-	#undef   AR_LITTLE_ENDIAN
-	#define  AR_BIG_ENDIAN
-#endif
-#ifdef __APPLE_CC__
-	#undef   AR_LITTLE_ENDIAN
-	#define  AR_BIG_ENDIAN
-#endif
-
-/**
  * Pixel format:
  * depends on platform
  *
@@ -181,13 +160,8 @@
 // this defines the maximum screen width that
 // can be processed by artoolkit...
 // memory consumption (if static) is: 2*width*height bytes
-#ifdef _WIN32_WCE
-  #define MAX_BUFFER_WIDTH  320
-  #define MAX_BUFFER_HEIGHT 240
-#else
-  #define MAX_BUFFER_WIDTH  720
-  #define MAX_BUFFER_HEIGHT 576
-#endif //_WIN32_WCE
+#define MAX_BUFFER_WIDTH  720
+#define MAX_BUFFER_HEIGHT 576
 
 //#define WORK_SIZE   1024*32
 

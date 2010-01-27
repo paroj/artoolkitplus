@@ -283,10 +283,9 @@ AR_TEMPL_TRACKER::checkPixelFormat()
 AR_TEMPL_FUNC bool
 AR_TEMPL_TRACKER::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)
 {
-	CameraFactory cf;
-	Camera* c_ptr = cf.createCamera(nCamParamFile);
-	if(c_ptr == NULL)
-	{
+	CameraAdvImpl* cam = new CameraAdvImpl();
+
+	if(!cam->loadFromFile(nCamParamFile)) {
 		cerr << "ARToolKitPlus: Camera parameter load error!" << endl;
 		return false;
 	}
@@ -296,7 +295,7 @@ AR_TEMPL_TRACKER::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, A
 
 	arCamera = NULL;
 
-	setCamera(c_ptr, nNearClip,nFarClip);
+	setCamera(cam, nNearClip,nFarClip);
 	return true;
 }
 
@@ -424,11 +423,11 @@ AR_TEMPL_TRACKER::convertProjectionMatrixToOpenGLStyle2( ARFloat cparam[3][4], i
 AR_TEMPL_FUNC bool
 AR_TEMPL_TRACKER::calcCameraMatrix(const char* nCamParamFile, int nWidth, int nHeight, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix)
 {
-	CameraFactory cf;
-	Camera* pCam = cf.createCamera(nCamParamFile);
-	if(pCam == NULL)
-	{
-		return(false);
+	CameraAdvImpl* pCam = new CameraAdvImpl();
+
+	if(!pCam->loadFromFile(nCamParamFile)) {
+		cerr << "ARToolKitPlus: Camera parameter load error!" << endl;
+		return false;
 	}
 
 	pCam->changeFrameSize(AR_TEMPL_TRACKER::screenWidth,AR_TEMPL_TRACKER::screenHeight);

@@ -38,10 +38,11 @@
  * ======================================================================== */
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <clocale>
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 
@@ -87,6 +88,8 @@ AR_TEMPL_TRACKER::arMultiReadConfigFile(const char *filename)
     char                   buf[256], buf1[256];
     int                    num;
     int                    i, j;
+
+    setlocale(LC_NUMERIC, "C");
 
     if( (fp=fopen(filename,"r")) == NULL ) return NULL;
 
@@ -165,6 +168,7 @@ AR_TEMPL_TRACKER::arMultiReadConfigFile(const char *filename)
     }
 
     fclose(fp);
+    setlocale(LC_NUMERIC, "C");
 
     marker_info = (ARMultiMarkerInfoT *)malloc( sizeof(ARMultiMarkerInfoT) );
     if( marker_info == NULL ) {free(marker); return NULL;}
