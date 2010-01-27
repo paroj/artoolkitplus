@@ -1,41 +1,22 @@
-/* ========================================================================
-* PROJECT: ARToolKitPlus
-* ========================================================================
-* This work is based on the original ARToolKit developed by
-*   Hirokazu Kato
-*   Mark Billinghurst
-*   HITLab, University of Washington, Seattle
-* http://www.hitl.washington.edu/artoolkit/
-*
-* Copyright of the derived and new portions of this work
-*     (C) 2006 Graz University of Technology
-*
-* This framework is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This framework is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this framework; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-*
-* For further information please contact 
-*   Dieter Schmalstieg
-*   <schmalstieg@icg.tu-graz.ac.at>
-*   Graz University of Technology, 
-*   Institut for Computer Graphics and Vision,
-*   Inffeldgasse 16a, 8010 Graz, Austria.
-* ========================================================================
-** @author   Daniel Wagner
-*
-* $Id: TrackerImpl.h 172 2006-07-25 14:05:47Z daniel $
-* @file
-* ======================================================================== */
+/*
+    Copyright (C) 2010  ARToolkitPlus Authors
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    Authors:
+      Daniel Wagner
+ */
 
 
 #ifndef __ARTOOLKIT_TRACKERIMPL_HEADERFILE__
@@ -426,10 +407,6 @@ protected:
 
 	static int arMatrixPCA2(ARMat *input, ARMat *evec, ARVec *ev);
 
-	static int arParamSaveDouble(char *filename, int num, ARParamDouble *param, ...);
-
-	static int arParamLoadDouble(char *filename, int num, ARParamDouble *param, ...);
-
 	static int arParamDecomp(ARParam *source, ARParam *icpara, ARFloat trans[3][4]);
 
 	static int arParamDecompMat(ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4]);
@@ -675,7 +652,6 @@ protected:
 #include <ARToolKitPlus_impl/core/mPCA.cpp>
 #include <ARToolKitPlus_impl/core/paramDecomp.cpp>
 #include <ARToolKitPlus_impl/core/paramDistortion.cpp>
-#include <ARToolKitPlus_impl/core/paramFile.cpp>
 #include <ARToolKitPlus_impl/core/vector.cpp>
 #include <ARToolKitPlus_impl/core/arMultiGetTransMatHull.cpp>
 

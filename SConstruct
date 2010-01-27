@@ -5,8 +5,7 @@ env = Environment(variables=vrs)
 env["CPPFLAGS"] = "-Wall"
 env["CPPPATH"] = "include/"
 
-sources = ["src/core/byteSwap.cpp"] \
-          +Glob("src/*.cpp") \
+sources = Glob("src/*.cpp") \
           +Glob("src/extra/*.cpp") \
           +Glob("src/librpp/*.cpp")
 
