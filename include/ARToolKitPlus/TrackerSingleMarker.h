@@ -24,6 +24,9 @@
 
 
 #include <ARToolKitPlus/Tracker.h>
+#include <vector>
+
+using std::vector;
 
 namespace ARToolKitPlus
 {
@@ -64,8 +67,12 @@ public:
 	 *  if nPattern is not -1 then only this pattern is accepted
 	 *  otherwise any found pattern will be used.
 	 */
-	virtual int calc(const unsigned char* nImage, int nPattern=-1, bool nUpdateMatrix=true,
+	virtual vector<int> calc(const unsigned char* nImage, int nPattern=-1, bool nUpdateMatrix=true,
 			 ARMarkerInfo** nMarker_info=NULL, int* nNumMarkers=NULL) = 0;
+
+	// manually select one of the detected markers
+	// instead of using the best one
+	virtual void selectDetectedMarker(const int id) = 0;
 
 	/// Sets the width and height of the patterns.
 	virtual void setPatternWidth(ARFloat nWidth) = 0;

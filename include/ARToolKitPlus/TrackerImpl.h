@@ -42,7 +42,6 @@ namespace ARToolKitPlus {
 // Compile time information...
 //
 static bool usesSinglePrecision();				/// Returns whether single or double precision is used
-//const char* getDescriptionString();		/// Returns a short description string about compile time settings
 
 
 /// TrackerImpl implements the Tracker interface

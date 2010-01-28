@@ -70,7 +70,7 @@ public:
 	 *  if nPattern is not -1 then only this pattern is accepted
 	 *  otherwise any found pattern will be used.
 	 */
-	virtual int calc(const unsigned char* nImage, int nPattern=-1, bool nUpdateMatrix=true,
+	virtual vector<int> calc(const unsigned char* nImage, int nPattern=-1, bool nUpdateMatrix=true,
 			 ARMarkerInfo** nMarker_info=NULL, int* nNumMarkers=NULL);
 
 	/// Sets the width and height of the patterns.
@@ -88,6 +88,7 @@ public:
 	/// Returns the confidence value of the currently best detected marker.
 	virtual ARFloat getConfidence() const  {  return confidence;  }
 
+	virtual void selectDetectedMarker(const int id);
 
 	//
 	// reimplement TrackerImpl into TrackerSingleMarker interface
@@ -144,6 +145,9 @@ protected:
 	ARFloat     patt_width;
 	ARFloat		patt_center[2];
 	ARFloat		patt_trans[3][4];
+	// save the results of last calc call
+    ARMarkerInfo    *marker_info;
+    int             marker_num;
 };
 
 

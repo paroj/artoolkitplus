@@ -119,7 +119,8 @@ int main(int argc, char** argv)
     //glLoadMatrixf(tracker->getProjectionMatrix());
 
     // here we go, just one call to find the camera pose
-    int markerId = tracker->calc(cameraBuffer);
+    vector<int> markerId = tracker->calc(cameraBuffer);
+    tracker->selectDetectedMarker(markerId[0]);
     float conf = (float)tracker->getConfidence();
 
     // use the result of calc() to setup the OpenGL transformation
@@ -127,7 +128,7 @@ int main(int argc, char** argv)
     //glLoadMatrixf(tracker->getModelViewMatrix());
 
 
-    printf("\n\nFound marker %d  (confidence %d%%)\n\nPose-Matrix:\n  ", markerId, (int(conf*100.0f)));
+    printf("\n\nFound marker %d  (confidence %d%%)\n\nPose-Matrix:\n  ", markerId[0], (int(conf*100.0f)));
 	for(int i=0; i<16; i++)
 		printf("%.2f  %s", tracker->getModelViewMatrix()[i], (i%4==3)?"\n  " : "");
 

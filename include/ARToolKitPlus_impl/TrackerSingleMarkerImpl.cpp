@@ -78,36 +78,35 @@ ARSM_TEMPL_TRACKER::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat n
 }
 
 
-ARSM_TEMPL_FUNC int
+ARSM_TEMPL_FUNC vector<int>
 ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdateMatrix,
 						  ARMarkerInfo** nMarker_info, int* nNumMarkers)
 {
-    ARMarkerInfo    *marker_info;
-    int             marker_num;
+	vector<int> detected;
 
 	if(nImage == NULL)
-		return -1;
+		return detected;
 
 	confidence = 0.0f;
 
     // detect the markers in the video frame
 	//
-    if(arDetectMarker(const_cast<unsigned char*>(nImage), this->thresh, &marker_info, &marker_num) < 0)
-	{
-        return -1;
+    if(arDetectMarker(const_cast<unsigned char*>(nImage), this->thresh, &marker_info, &marker_num) < 0) {
+        return detected;
 	}
 
     // find best visible marker
     int best = -1;
-    for(int j = 0; j < marker_num; j++)
-        if(marker_info[j].id != -1 && (nPattern==-1 || nPattern==marker_info[j].id))
-		{
+    for(int j = 0; j < marker_num; j++) {
+        if(marker_info[j].id != -1 && (nPattern==-1 || nPattern==marker_info[j].id)) {
+        	detected.push_back(marker_info[j].id);
             if(best == -1)
 				best = j;
 			else
 			if(marker_info[best].cf < marker_info[j].cf)
 				best = j;
         }
+    }
 
 	if(nMarker_info)
 		*nMarker_info = marker_info;
@@ -117,41 +116,10 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 	// nothing found ?
 	//
     if(best == -1) {
-        return -1;
+        return detected;
 	}
 
 	confidence = marker_info[best].cf;
-
-
-	/////////////////////////////////////////////////////////////////////////
-	//
-	//       corner refinement begin
-	//
-/*	if(false)
-	{
-		const unsigned int roi_radius = 4;
-		for(unsigned int i=0; i<4; i++)
-		{
-			ARFloat edge_x, edge_y;
-			int c_ret = refineCorner(edge_x, edge_y,
-				marker_info[k].vertex[i][0],
-				marker_info[k].vertex[i][1],
-				roi_radius, (void*) nImage,
-				arCamera->xsize, arCamera->ysize);
-
-			if(c_ret == 1)
-			{
-				marker_info[k].vertex[i][0] = edge_x;
-				marker_info[k].vertex[i][1] = edge_y;
-			}
-		}
-	}*/
-	//
-	//       corner refinement end
-	//
-	/////////////////////////////////////////////////////////////////////////
-
-
 
     // get the transformation between the marker and the real camera
 	//
@@ -161,9 +129,19 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
 		convertTransformationMatrixToOpenGLStyle(patt_trans, this->gl_para);
 	}
 
-	return marker_info[best].id;
+	return detected;
 }
 
+ARSM_TEMPL_FUNC void
+ARSM_TEMPL_TRACKER::selectDetectedMarker(const int id) {
+    for(int i = 0; i < marker_num; i++) {
+        if(marker_info[i].id == id) {
+    		executeSingleMarkerPoseEstimator(&marker_info[i], patt_center, patt_width, patt_trans);
+    		convertTransformationMatrixToOpenGLStyle(patt_trans, this->gl_para);
+    		confidence = marker_info[i].cf;
+        }
+    }
+}
 
 ARSM_TEMPL_FUNC int
 ARSM_TEMPL_TRACKER::addPattern(const char* nFileName)
