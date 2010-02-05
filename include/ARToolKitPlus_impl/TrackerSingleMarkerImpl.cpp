@@ -79,8 +79,7 @@ ARSM_TEMPL_TRACKER::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat n
 
 
 ARSM_TEMPL_FUNC vector<int>
-ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdateMatrix,
-						  ARMarkerInfo** nMarker_info, int* nNumMarkers)
+ARSM_TEMPL_TRACKER::calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info, int* nNumMarkers)
 {
 	vector<int> detected;
 
@@ -95,11 +94,29 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
         return detected;
 	}
 
+    // copy all valid ids
+    for(int j = 0; j < marker_num; j++) {
+        if(marker_info[j].id != -1) {
+        	detected.push_back(marker_info[j].id);
+        }
+    }
+
+	if(nMarker_info)
+		*nMarker_info = marker_info;
+
+	if(nNumMarkers)
+		*nNumMarkers = marker_num;
+
+	return detected;
+}
+
+ARSM_TEMPL_FUNC int
+ARSM_TEMPL_TRACKER::selectBestMarkerByCf() {
     // find best visible marker
     int best = -1;
+
     for(int j = 0; j < marker_num; j++) {
-        if(marker_info[j].id != -1 && (nPattern==-1 || nPattern==marker_info[j].id)) {
-        	detected.push_back(marker_info[j].id);
+        if(marker_info[j].id != -1) {
             if(best == -1)
 				best = j;
 			else
@@ -108,28 +125,12 @@ ARSM_TEMPL_TRACKER::calc(const unsigned char* nImage, int nPattern, bool nUpdate
         }
     }
 
-	if(nMarker_info)
-		*nMarker_info = marker_info;
-	if(nNumMarkers)
-		*nNumMarkers = marker_num;
+    if(best != -1) {
+    	// there was something detected
+    	selectDetectedMarker(best);
+    }
 
-	// nothing found ?
-	//
-    if(best == -1) {
-        return detected;
-	}
-
-	confidence = marker_info[best].cf;
-
-    // get the transformation between the marker and the real camera
-	//
-	if(nUpdateMatrix)
-	{
-		executeSingleMarkerPoseEstimator(&marker_info[best], patt_center, patt_width, patt_trans);
-		convertTransformationMatrixToOpenGLStyle(patt_trans, this->gl_para);
-	}
-
-	return detected;
+    return best;
 }
 
 ARSM_TEMPL_FUNC void
@@ -148,8 +149,7 @@ ARSM_TEMPL_TRACKER::addPattern(const char* nFileName)
 {
 	int patt_id = arLoadPatt(const_cast<char*>(nFileName));
 
-    if(patt_id<0)
-	{
+    if(patt_id < 0){
     	cerr << "ARToolKitPlus: error loading pattern" << nFileName << endl;
 	}
 

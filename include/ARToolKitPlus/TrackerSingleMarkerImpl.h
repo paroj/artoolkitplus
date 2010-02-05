@@ -16,6 +16,7 @@
 
     Authors:
       Daniel Wagner
+      Pavel Rojtberg
  */
 
 
@@ -66,12 +67,9 @@ public:
 
 	/// calculates the transformation matrix
 	/**
-	 *	pass the image as RGBX (32-bits) in 320x240 pixels.
-	 *  if nPattern is not -1 then only this pattern is accepted
-	 *  otherwise any found pattern will be used.
+	 *	pass the image as RGBX (32-bits)
 	 */
-	virtual vector<int> calc(const unsigned char* nImage, int nPattern=-1, bool nUpdateMatrix=true,
-			 ARMarkerInfo** nMarker_info=NULL, int* nNumMarkers=NULL);
+	virtual vector<int> calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info=NULL, int* nNumMarkers=NULL);
 
 	/// Sets the width and height of the patterns.
 	virtual void setPatternWidth(ARFloat nWidth)  {  patt_width = nWidth;  }
@@ -89,6 +87,8 @@ public:
 	virtual ARFloat getConfidence() const  {  return confidence;  }
 
 	virtual void selectDetectedMarker(const int id);
+
+	virtual int selectBestMarkerByCf();
 
 	//
 	// reimplement TrackerImpl into TrackerSingleMarker interface
