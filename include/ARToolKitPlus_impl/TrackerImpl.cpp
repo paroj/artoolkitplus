@@ -35,7 +35,8 @@ AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenHeight;
 
 AR_TEMPL_FUNC 
 AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
-		MAX_LOAD_PATTERNS(maxLoadPatterns)
+		MAX_LOAD_PATTERNS(maxLoadPatterns),
+		WORK_SIZE(1024*MAX_IMAGE_PATTERNS)
 {
 	this->screenWidth = imWidth;
 	this->screenHeight = imHeight;

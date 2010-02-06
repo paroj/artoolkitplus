@@ -149,7 +149,6 @@ protected:
 	bool			useDetectLite;
 
 	ARMultiMarkerInfoT  *config;
-
 	int				*detectedMarkerIDs;
 	ARMarkerInfo	*detectedMarkers;
 };

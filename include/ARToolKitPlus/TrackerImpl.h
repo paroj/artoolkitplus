@@ -50,21 +50,18 @@ template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, 
 class TrackerImpl : public Tracker
 {
 public:
-	enum {
-		PATTERN_WIDTH = __PATTERN_SIZE_X,
-		PATTERN_HEIGHT = __PATTERN_SIZE_Y,
-		PATTERN_SAMPLE_NUM = __PATTERN_SAMPLE_NUM,
-		MAX_IMAGE_PATTERNS = __MAX_IMAGE_PATTERNS,
-		WORK_SIZE = 1024*MAX_IMAGE_PATTERNS,
-
+	static const int PATTERN_WIDTH = __PATTERN_SIZE_X;
+	static const int PATTERN_HEIGHT = __PATTERN_SIZE_Y;
+	static const int PATTERN_SAMPLE_NUM = __PATTERN_SAMPLE_NUM;
+	static const int MAX_IMAGE_PATTERNS = __MAX_IMAGE_PATTERNS;
 #ifdef SMALL_LUM8_TABLE
-		LUM_TABLE_SIZE = (0xffff >> 6) + 1,
+	static const int LUM_TABLE_SIZE = (0xffff >> 6) + 1;
 #else
-		LUM_TABLE_SIZE = 0xffff + 1,
+	static const int LUM_TABLE_SIZE = 0xffff + 1;
 #endif
-	};
 
 	const int MAX_LOAD_PATTERNS;
+	const int WORK_SIZE;
 
 	TrackerImpl(const int imWidth, const int imHeight, const int maxLoadPatterns = 0);
 	virtual ~TrackerImpl();
@@ -427,7 +424,7 @@ protected:
 	void checkRGB565LUT();
 
 	// calculates amount of data that will be allocated via artkp_Alloc()
-	static size_t getDynamicMemoryRequirements();
+	size_t getDynamicMemoryRequirements();
 
 public:
 	// required for calib camera, should otherwise not be used directly
