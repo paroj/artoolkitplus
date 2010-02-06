@@ -44,6 +44,8 @@ ARMM_TEMPL_FUNC
 ARMM_TEMPL_TRACKER::~TrackerMultiMarkerImpl()
 {
 	cleanup();
+	delete[] detectedMarkerIDs;
+	delete[] detectedMarkers;
 	if(config)
 		arMultiFreeConfig(config);
 }
