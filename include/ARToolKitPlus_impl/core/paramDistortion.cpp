@@ -30,23 +30,23 @@
 namespace ARToolKitPlus {
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
+ int
+TrackerImpl::arParamObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
 {
 	pCam->observ2Ideal(ox,oy,ix,iy);
 	return(0);
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy)
+ int
+TrackerImpl::arParamIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy)
 {
 	pCam->ideal2Observ(ix,iy,ox,oy);
 	return(0);
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
+ int
+TrackerImpl::arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
 {
 	*ix = ox;
 	*iy = oy;
@@ -85,8 +85,8 @@ void fixedToFloat(unsigned int nFixed, ARFloat& nX, ARFloat& nY)
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
+ int
+TrackerImpl::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
 {
 	if(!undistO2ITable)
 		buildUndistO2ITable(pCam);
@@ -98,8 +98,8 @@ AR_TEMPL_TRACKER::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, 
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::buildUndistO2ITable(Camera* pCam)
+ void
+TrackerImpl::buildUndistO2ITable(Camera* pCam)
 {
 	int x,y;
 	ARFloat cx,cy, ox,oy;
@@ -160,15 +160,15 @@ AR_TEMPL_TRACKER::buildUndistO2ITable(Camera* pCam)
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
+ int
+TrackerImpl::arParamObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
 {
 	pCam->observ2Ideal(ox,oy,ix,iy);
 	return(0);
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy)
+ int
+TrackerImpl::arParamIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy)
 {
 	pCam->ideal2Observ(ix,iy,ox,oy);
 	return(0);

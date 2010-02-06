@@ -1,39 +1,30 @@
-/*
-    Copyright (C) 2010  ARToolkitPlus Authors
+/**
+ Copyright (C) 2010  ARToolkitPlus Authors
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    Authors:
-      Daniel Wagner
+ Authors:
+ Daniel Wagner
  */
-
 
 #ifndef __ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
 #define __ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
 
-
 #include <ARToolKitPlus/TrackerMultiMarker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
 
-
-#define ARMM_TEMPL_FUNC
-#define ARMM_TEMPL_TRACKER TrackerMultiMarkerImpl
-
-
-namespace ARToolKitPlus
-{
-
+namespace ARToolKitPlus {
 
 /// TrackerMultiMarkerImpl implements the TrackerMultiMarker interface
 /**
@@ -45,10 +36,9 @@ namespace ARToolKitPlus
  *  __MAX_IMAGE_PATTERNS describes the maximum number of patterns that can be analyzed in a camera image.
  *  Reduce __MAX_LOAD_PATTERNS and __MAX_IMAGE_PATTERNS to reduce memory footprint.
  */
-class TrackerMultiMarkerImpl : public TrackerMultiMarker, protected TrackerImpl
-{
+class TrackerMultiMarkerImpl: public TrackerMultiMarker, protected TrackerImpl {
 public:
-	TrackerMultiMarkerImpl(int nWidth, int nHeight, int maxLoadPatterns=0);
+	TrackerMultiMarkerImpl(int nWidth, int nHeight, int maxLoadPatterns = 0);
 	~TrackerMultiMarkerImpl();
 
 	/// initializes ARToolKit
@@ -67,7 +57,9 @@ public:
 	virtual int calc(const unsigned char* nImage);
 
 	/// Returns the number of detected markers used for multi-marker tracking
-	virtual int getNumDetectedMarkers() const  {  return numDetected;  }
+	virtual int getNumDetectedMarkers() const {
+		return numDetected;
+	}
 
 	/// Enables usage of arDetectMarkerLite. Otherwise arDetectMarker is used
 	/**
@@ -75,87 +67,178 @@ public:
 	 * In some cases such as very low camera refresh rates it is advantegous to change this.
 	 * Using the non-lite version treats each image independent.
 	 */
-	virtual void setUseDetectLite(bool nEnable)  {  useDetectLite = nEnable;  }
+	virtual void setUseDetectLite(bool nEnable) {
+		useDetectLite = nEnable;
+	}
 
 	virtual void getDetectedMarkers(int*& nMarkerIDs);
 
-	virtual const ARMarkerInfo& getDetectedMarker(int nWhich) const  {  return detectedMarkers[nWhich];  }
+	virtual const ARMarkerInfo& getDetectedMarker(int nWhich) const {
+		return detectedMarkers[nWhich];
+	}
 
-	virtual const ARMultiMarkerInfoT* getMultiMarkerConfig() const  {  return config;  }
+	virtual const ARMultiMarkerInfoT* getMultiMarkerConfig() const {
+		return config;
+	}
 
 	/// Provides access to ARToolKit' internal version of the transformation matrix
 	/**
-	*  This method is primarily for compatibility issues with code previously using
-	*  ARToolKit rather than ARToolKitPlus. This is the original transformation
-	*  matrix ARToolKit calculates rather than the OpenGL style version of this matrix
-	*  that can be retrieved via getModelViewMatrix().
-	*/
+	 *  This method is primarily for compatibility issues with code previously using
+	 *  ARToolKit rather than ARToolKitPlus. This is the original transformation
+	 *  matrix ARToolKit calculates rather than the OpenGL style version of this matrix
+	 *  that can be retrieved via getModelViewMatrix().
+	 */
 	virtual void getARMatrix(ARFloat nMatrix[3][4]) const;
-
 
 	//
 	// reimplement TrackerImpl into TrackerSingleMarker interface
 	//
 	// TODO: something like 'using cleanup;' would be nicer but does seem to work...
 	//
-	void cleanup()  {  AR_TEMPL_TRACKER::cleanup();  }
-	bool setPixelFormat(PIXEL_FORMAT nFormat)  {  return AR_TEMPL_TRACKER::setPixelFormat(nFormat);  }
-	bool loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)  {  return AR_TEMPL_TRACKER::loadCameraFile(nCamParamFile, nNearClip, nFarClip);  }
-	void setLoadUndistLUT(bool nSet)  {  AR_TEMPL_TRACKER::setLoadUndistLUT(nSet);  }
-	int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarker(dataPtr, thresh, marker_info, marker_num);  }
-	int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)  {  return AR_TEMPL_TRACKER::arDetectMarkerLite(dataPtr, thresh, marker_info, marker_num);  }
-	ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::arMultiGetTransMat(marker_info, marker_num, config);  }
-	ARFloat arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])  {  return AR_TEMPL_TRACKER::arGetTransMat(marker_info, center, width, conv);  }
-	ARFloat arGetTransMatCont(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width, ARFloat conv[3][4])  {  return AR_TEMPL_TRACKER::arGetTransMatCont(marker_info, prev_conv, center, width, conv);  }
-	ARFloat rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::rppMultiGetTransMat(marker_info, marker_num, config);  }
-	ARFloat rppGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])  {  return AR_TEMPL_TRACKER::rppGetTransMat(marker_info, center, width, conv);  }
-	int arLoadPatt(char *filename)  {  return AR_TEMPL_TRACKER::arLoadPatt(filename);  }
-	int arFreePatt(int patno)  {  return AR_TEMPL_TRACKER::arFreePatt(patno);  }
-	int arMultiFreeConfig(ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::arMultiFreeConfig(config);  }
-	ARMultiMarkerInfoT *arMultiReadConfigFile(const char *filename)  {  return AR_TEMPL_TRACKER::arMultiReadConfigFile(filename);  }
-	void activateBinaryMarker(int nThreshold)  {  AR_TEMPL_TRACKER::activateBinaryMarker(nThreshold);  }
-	void setMarkerMode(MARKER_MODE nMarkerMode)  {  AR_TEMPL_TRACKER::setMarkerMode(nMarkerMode);  }
-	void activateVignettingCompensation(bool nEnable, int nCorners=0, int nLeftRight=0, int nTopBottom=0)  {  AR_TEMPL_TRACKER::activateVignettingCompensation(nEnable, nCorners, nLeftRight, nTopBottom);  }
-	void changeCameraSize(int nWidth, int nHeight)  {  AR_TEMPL_TRACKER::changeCameraSize(nWidth, nHeight);  }
-	void setUndistortionMode(UNDIST_MODE nMode)  {  AR_TEMPL_TRACKER::setUndistortionMode(nMode);  }
-	bool setPoseEstimator(POSE_ESTIMATOR nMethod) {  return AR_TEMPL_TRACKER::setPoseEstimator(nMethod);  }
-	void setHullMode(HULL_TRACKING_MODE nMode)  {  AR_TEMPL_TRACKER::setHullMode(nMode);  }
-	void setBorderWidth(ARFloat nFraction)  {  AR_TEMPL_TRACKER::setBorderWidth(nFraction);  }
-	void setThreshold(int nValue)  {  AR_TEMPL_TRACKER::setThreshold(nValue);  }
-	int getThreshold() const  {  return AR_TEMPL_TRACKER::getThreshold();  }
-	void activateAutoThreshold(bool nEnable)  {  AR_TEMPL_TRACKER::activateAutoThreshold(nEnable);  }
-	bool isAutoThresholdActivated() const  {  return AR_TEMPL_TRACKER::isAutoThresholdActivated();  }
-	void setNumAutoThresholdRetries(int nNumRetries)  {  AR_TEMPL_TRACKER::setNumAutoThresholdRetries(nNumRetries);  }
-	const ARFloat* getModelViewMatrix() const  {  return AR_TEMPL_TRACKER::getModelViewMatrix();  }
-	const ARFloat* getProjectionMatrix() const  {  return AR_TEMPL_TRACKER::getProjectionMatrix();  }
-	const char* getDescription()  {  return AR_TEMPL_TRACKER::getDescription();  }
-	PIXEL_FORMAT getPixelFormat() const  {  return static_cast<PIXEL_FORMAT>(AR_TEMPL_TRACKER::getPixelFormat());  }
-	int getBitsPerPixel() const  {  return static_cast<PIXEL_FORMAT>(AR_TEMPL_TRACKER::getBitsPerPixel());  }
-	int getNumLoadablePatterns() const  {  return AR_TEMPL_TRACKER::getNumLoadablePatterns();  }
-	void setImageProcessingMode(IMAGE_PROC_MODE nMode)  {  AR_TEMPL_TRACKER::setImageProcessingMode(nMode);  }
-	Camera* getCamera()  {  return AR_TEMPL_TRACKER::getCamera();  }
-	void setCamera(Camera* nCamera)  {  AR_TEMPL_TRACKER::setCamera(nCamera);  }
-	void setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip)  {  AR_TEMPL_TRACKER::setCamera(nCamera, nNearClip, nFarClip);  }
-	ARFloat calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix)  {  return AR_TEMPL_TRACKER::calcOpenGLMatrixFromMarker(nMarkerInfo, nPatternCenter, nPatternSize, nOpenGLMatrix);  }
-	ARFloat executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])  {  return AR_TEMPL_TRACKER::executeSingleMarkerPoseEstimator(marker_info, center, width, conv);  }
-	ARFloat executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::executeMultiMarkerPoseEstimator(marker_info, marker_num, config);  }
-	const CornerPoints& getTrackedCorners() const  {  return AR_TEMPL_TRACKER::getTrackedCorners();  }
+	void cleanup() {
+		TrackerImpl::cleanup();
+	}
+	bool setPixelFormat(PIXEL_FORMAT nFormat) {
+		return TrackerImpl::setPixelFormat(nFormat);
+	}
+	bool loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) {
+		return TrackerImpl::loadCameraFile(nCamParamFile, nNearClip, nFarClip);
+	}
+	void setLoadUndistLUT(bool nSet) {
+		TrackerImpl::setLoadUndistLUT(nSet);
+	}
+	int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) {
+		return TrackerImpl::arDetectMarker(dataPtr, thresh, marker_info, marker_num);
+	}
+	int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) {
+		return TrackerImpl::arDetectMarkerLite(dataPtr, thresh, marker_info, marker_num);
+	}
+	ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
+		return TrackerImpl::arMultiGetTransMat(marker_info, marker_num, config);
+	}
+	ARFloat arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]) {
+		return TrackerImpl::arGetTransMat(marker_info, center, width, conv);
+	}
+	ARFloat arGetTransMatCont(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width,
+			ARFloat conv[3][4]) {
+		return TrackerImpl::arGetTransMatCont(marker_info, prev_conv, center, width, conv);
+	}
+	ARFloat rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
+		return TrackerImpl::rppMultiGetTransMat(marker_info, marker_num, config);
+	}
+	ARFloat rppGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]) {
+		return TrackerImpl::rppGetTransMat(marker_info, center, width, conv);
+	}
+	int arLoadPatt(char *filename) {
+		return TrackerImpl::arLoadPatt(filename);
+	}
+	int arFreePatt(int patno) {
+		return TrackerImpl::arFreePatt(patno);
+	}
+	int arMultiFreeConfig(ARMultiMarkerInfoT *config) {
+		return TrackerImpl::arMultiFreeConfig(config);
+	}
+	ARMultiMarkerInfoT *arMultiReadConfigFile(const char *filename) {
+		return TrackerImpl::arMultiReadConfigFile(filename);
+	}
+	void activateBinaryMarker(int nThreshold) {
+		TrackerImpl::activateBinaryMarker(nThreshold);
+	}
+	void setMarkerMode(MARKER_MODE nMarkerMode) {
+		TrackerImpl::setMarkerMode(nMarkerMode);
+	}
+	void activateVignettingCompensation(bool nEnable, int nCorners = 0, int nLeftRight = 0, int nTopBottom = 0) {
+		TrackerImpl::activateVignettingCompensation(nEnable, nCorners, nLeftRight, nTopBottom);
+	}
+	void changeCameraSize(int nWidth, int nHeight) {
+		TrackerImpl::changeCameraSize(nWidth, nHeight);
+	}
+	void setUndistortionMode(UNDIST_MODE nMode) {
+		TrackerImpl::setUndistortionMode(nMode);
+	}
+	bool setPoseEstimator(POSE_ESTIMATOR nMethod) {
+		return TrackerImpl::setPoseEstimator(nMethod);
+	}
+	void setHullMode(HULL_TRACKING_MODE nMode) {
+		TrackerImpl::setHullMode(nMode);
+	}
+	void setBorderWidth(ARFloat nFraction) {
+		TrackerImpl::setBorderWidth(nFraction);
+	}
+	void setThreshold(int nValue) {
+		TrackerImpl::setThreshold(nValue);
+	}
+	int getThreshold() const {
+		return TrackerImpl::getThreshold();
+	}
+	void activateAutoThreshold(bool nEnable) {
+		TrackerImpl::activateAutoThreshold(nEnable);
+	}
+	bool isAutoThresholdActivated() const {
+		return TrackerImpl::isAutoThresholdActivated();
+	}
+	void setNumAutoThresholdRetries(int nNumRetries) {
+		TrackerImpl::setNumAutoThresholdRetries(nNumRetries);
+	}
+	const ARFloat* getModelViewMatrix() const {
+		return TrackerImpl::getModelViewMatrix();
+	}
+	const ARFloat* getProjectionMatrix() const {
+		return TrackerImpl::getProjectionMatrix();
+	}
+	const char* getDescription() {
+		return TrackerImpl::getDescription();
+	}
+	PIXEL_FORMAT getPixelFormat() const {
+		return static_cast<PIXEL_FORMAT> (TrackerImpl::getPixelFormat());
+	}
+	int getBitsPerPixel() const {
+		return static_cast<PIXEL_FORMAT> (TrackerImpl::getBitsPerPixel());
+	}
+	int getNumLoadablePatterns() const {
+		return TrackerImpl::getNumLoadablePatterns();
+	}
+	void setImageProcessingMode(IMAGE_PROC_MODE nMode) {
+		TrackerImpl::setImageProcessingMode(nMode);
+	}
+	Camera* getCamera() {
+		return TrackerImpl::getCamera();
+	}
+	void setCamera(Camera* nCamera) {
+		TrackerImpl::setCamera(nCamera);
+	}
+	void setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip) {
+		TrackerImpl::setCamera(nCamera, nNearClip, nFarClip);
+	}
+	ARFloat calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize,
+			ARFloat *nOpenGLMatrix) {
+		return TrackerImpl::calcOpenGLMatrixFromMarker(nMarkerInfo, nPatternCenter, nPatternSize, nOpenGLMatrix);
+	}
+	ARFloat executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width,
+			ARFloat conv[3][4]) {
+		return TrackerImpl::executeSingleMarkerPoseEstimator(marker_info, center, width, conv);
+	}
+	ARFloat executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
+		return TrackerImpl::executeMultiMarkerPoseEstimator(marker_info, marker_num, config);
+	}
+	const CornerPoints& getTrackedCorners() const {
+		return TrackerImpl::getTrackedCorners();
+	}
 
 	size_t getMemoryRequirements();
 
 protected:
-	int				numDetected;
-	bool			useDetectLite;
+	int numDetected;
+	bool useDetectLite;
 
-	ARMultiMarkerInfoT  *config;
-	int				*detectedMarkerIDs;
-	ARMarkerInfo	*detectedMarkers;
+	ARMultiMarkerInfoT *config;
+	int *detectedMarkerIDs;
+	ARMarkerInfo *detectedMarkers;
 };
 
-
-};	// namespace ARToolKitPlus
+}
+; // namespace ARToolKitPlus
 
 #include <ARToolKitPlus_impl/TrackerMultiMarkerImpl.cpp>
-
 
 #endif //__ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__

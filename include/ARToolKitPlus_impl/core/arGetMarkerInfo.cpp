@@ -26,8 +26,8 @@
 namespace ARToolKitPlus {
 
 
-AR_TEMPL_FUNC ARMarkerInfo*
-AR_TEMPL_TRACKER::arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh)
+ ARMarkerInfo*
+TrackerImpl::arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh)
 {
     int            id, dir;
     ARFloat         cf;

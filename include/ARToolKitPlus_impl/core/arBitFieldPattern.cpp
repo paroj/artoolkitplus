@@ -203,8 +203,8 @@ checkPatternBCH(IDPATTERN nPattern, int& nID, float& nProp, BCH* nProcessor)
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::downsamplePattern(uint8_t* data, unsigned char* imgPtr)
+ int
+TrackerImpl::downsamplePattern(uint8_t* data, unsigned char* imgPtr)
 {
 	int x,y;
 
@@ -331,8 +331,8 @@ AR_TEMPL_TRACKER::downsamplePattern(uint8_t* data, unsigned char* imgPtr)
 
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::bitfield_check_simple( uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh)
+ int
+TrackerImpl::bitfield_check_simple( uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh)
 {
 	assert(sizeof(IDPATTERN)>=8 && "IDPATTERN must be at least 64-bit integer");
 
@@ -421,8 +421,8 @@ AR_TEMPL_TRACKER::bitfield_check_simple( uint8_t *data, int *code, int *dir, ARF
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::bitfield_check_BCH( uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh)
+ int
+TrackerImpl::bitfield_check_BCH( uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh)
 {
 	assert(sizeof(IDPATTERN)>=8 && "IDPATTERN must be at least 64-bit integer");
 

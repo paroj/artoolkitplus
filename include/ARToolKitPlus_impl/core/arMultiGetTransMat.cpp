@@ -47,8 +47,8 @@ typedef struct {
 } arMultiEachMarkerInternalInfoT;
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+ ARFloat
+TrackerImpl::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
     ARFloat                *pos2d, *pos3d;
     ARFloat                rot[3][3], trans1[3][4], trans2[3][4];
@@ -195,8 +195,8 @@ AR_TEMPL_TRACKER::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, 
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::verify_markers(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+ int
+TrackerImpl::verify_markers(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
     arMultiEachMarkerInternalInfoT *winfo;
     ARFloat                         wtrans[3][4];

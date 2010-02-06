@@ -36,8 +36,8 @@ static int  check_rotation( ARFloat rot[2][3] );
 static int  check_dir( ARFloat dir[3], ARFloat st[2], ARFloat ed[2],
                        ARFloat cpara[3][4] );
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetAngle( ARFloat rot[3][3], ARFloat *wa, ARFloat *wb, ARFloat *wc )
+ int
+TrackerImpl::arGetAngle( ARFloat rot[3][3], ARFloat *wa, ARFloat *wb, ARFloat *wc )
 {
 	ARFloat      a, b, c;
     ARFloat      sina, cosa, sinb, cosb, sinc, cosc;
@@ -157,8 +157,8 @@ for(i=0;i<3;i++) rot[i][2] = w[i];
 
 // Non-FixedPoint version of arGetRot
 //
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
+ int
+TrackerImpl::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 {
     ARFloat   sina, sinb, sinc;
     ARFloat   cosa, cosb, cosc;
@@ -193,8 +193,8 @@ AR_TEMPL_TRACKER::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 #endif //_FIXEDPOINT_MATH_ACTIVATED_
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
+ int
+TrackerImpl::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
 						ARFloat trans[3], ARFloat trans2[3][4],
 						ARFloat cpara[3][4], ARFloat ret[3][4])
 {
@@ -236,8 +236,8 @@ AR_TEMPL_TRACKER::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
     return(0);
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3] )
+ int
+TrackerImpl::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3] )
 {
     ARFloat  wdir[3][3];
     ARFloat  w, w1, w2, w3;
@@ -499,8 +499,8 @@ int arGetRot_28_old(I32 _a, I32 _b, I32 _c, FIXED_VEC3D _rot[3])
 
 // FixedPoint version of arGetRot with std interface
 //
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
+ int
+TrackerImpl::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 {
 #if CHECK_CALC
     ARFloat   w[3];

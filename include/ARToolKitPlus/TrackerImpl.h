@@ -36,11 +36,6 @@
 
 using std::vector;
 
-
-#define AR_TEMPL_FUNC
-#define AR_TEMPL_TRACKER TrackerImpl
-
-
 namespace ARToolKitPlus {
 
 
@@ -603,18 +598,6 @@ protected:
 		bool enabled;
 		int corners, leftright, bottomtop;
 	} vignetting;
-
-#ifdef DEBUG_DIV_RANGE
-	struct DBG_INFO {
-		DBG_INFO() : hMin(30000<<16), hMax(-30000<<16), hxMin(30000<<16), hxMax(-30000<<16), hyMin(30000<<16), hyMax(-30000<<16), dxMax(0), dyMax(0)
-		{}
-
-		int hMin,hMax;
-		int hxMin,hxMax;
-		int hyMin,hyMax;
-		int dxMax, dyMax;
-	} dbgInfo;
-#endif
 
 	unsigned short			*DIV_TABLE;
 

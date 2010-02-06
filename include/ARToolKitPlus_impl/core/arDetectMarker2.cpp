@@ -29,8 +29,8 @@ static int get_vertex( int x_coord[], int y_coord[], int st,  int ed,
                        ARFloat thresh, int vertex[], int *vnum);
 
 
-AR_TEMPL_FUNC ARMarkerInfo2*
-AR_TEMPL_TRACKER::arDetectMarker2(int16_t *limage, int label_num, int *label_ref,
+ ARMarkerInfo2*
+TrackerImpl::arDetectMarker2(int16_t *limage, int label_num, int *label_ref,
                     int *warea, ARFloat *wpos, int *wclip,
                     int area_max, int area_min, ARFloat factor, int *marker_num)
 {
@@ -117,8 +117,8 @@ AR_TEMPL_TRACKER::arDetectMarker2(int16_t *limage, int label_num, int *label_ref
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetContour(int16_t *limage, int *label_ref, int label, int clip[4], ARMarkerInfo2 *marker_infoTWO)
+ int
+TrackerImpl::arGetContour(int16_t *limage, int *label_ref, int label, int clip[4], ARMarkerInfo2 *marker_infoTWO)
 {
     static const int      xdir[8] = { 0, 1, 1, 1, 0,-1,-1,-1};
     static const int      ydir[8] = {-1,-1, 0, 1, 1, 1, 0,-1};
@@ -206,8 +206,8 @@ AR_TEMPL_TRACKER::arGetContour(int16_t *limage, int *label_ref, int label, int c
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor)
+ int
+TrackerImpl::check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor)
 {
     int             sx, sy;
     int             dmax, d, v1;

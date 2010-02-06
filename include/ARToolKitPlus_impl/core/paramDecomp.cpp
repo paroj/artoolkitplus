@@ -33,8 +33,8 @@ static ARFloat norm( ARFloat a, ARFloat b, ARFloat c );
 static ARFloat dot( ARFloat a1, ARFloat a2, ARFloat a3,
                    ARFloat b1, ARFloat b2, ARFloat b3 );
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans[3][4] )
+ int
+TrackerImpl::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans[3][4] )
 {
     icpara->xsize          = source->xsize;
     icpara->ysize          = source->ysize;
@@ -47,8 +47,8 @@ AR_TEMPL_TRACKER::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arParamDecompMat( ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4] )
+ int
+TrackerImpl::arParamDecompMat( ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4] )
 {
     int       r, c;
     ARFloat    Cpara[3][4];

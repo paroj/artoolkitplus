@@ -30,11 +30,11 @@ using std::endl;
 
 namespace ARToolKitPlus {
 
-AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenWidth;
-AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenHeight;
+ int TrackerImpl::screenWidth;
+ int TrackerImpl::screenHeight;
 
-AR_TEMPL_FUNC 
-AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
+ 
+TrackerImpl::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
 		PATTERN_WIDTH(pattWidth),
 		PATTERN_HEIGHT(pattHeight),
 		PATTERN_SAMPLE_NUM(pattSamples),
@@ -142,7 +142,7 @@ AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int pattWidth, int patt
 	undistMode = UNDIST_STD;
 	undistO2ITable = NULL;
 	//undistI2OTable = NULL;
-	arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_std;
+	arParamObserv2Ideal_func = &TrackerImpl::arParamObserv2Ideal_std;
 
 	vignetting.enabled = false;
 	vignetting.corners = 
@@ -160,8 +160,8 @@ AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int pattWidth, int patt
 }
 
 
-AR_TEMPL_FUNC 
-AR_TEMPL_TRACKER::~TrackerImpl()
+ 
+TrackerImpl::~TrackerImpl()
 {
 	delete[] patf;
 	delete[] patpow;
@@ -217,8 +217,8 @@ AR_TEMPL_TRACKER::~TrackerImpl()
 }
 
 
-AR_TEMPL_FUNC bool
-AR_TEMPL_TRACKER::setPixelFormat(PIXEL_FORMAT nFormat)
+ bool
+TrackerImpl::setPixelFormat(PIXEL_FORMAT nFormat)
 {
 	PIXEL_FORMAT oldFormat = pixelFormat;
 
@@ -250,8 +250,8 @@ AR_TEMPL_TRACKER::setPixelFormat(PIXEL_FORMAT nFormat)
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::checkImageBuffer()
+ void
+TrackerImpl::checkImageBuffer()
 {
 	// we have to take care here when using a memory manager that can not free memory
 	// (usually this image buffer should only be built once - unless we change camera resolution)
@@ -271,8 +271,8 @@ AR_TEMPL_TRACKER::checkImageBuffer()
 }
 
 
-AR_TEMPL_FUNC bool
-AR_TEMPL_TRACKER::checkPixelFormat()
+ bool
+TrackerImpl::checkPixelFormat()
 {
 	switch(pixelFormat)
 	{
@@ -297,8 +297,8 @@ AR_TEMPL_TRACKER::checkPixelFormat()
 }
 
 
-AR_TEMPL_FUNC bool
-AR_TEMPL_TRACKER::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)
+ bool
+TrackerImpl::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)
 {
 	CameraAdvImpl* cam = new CameraAdvImpl();
 
@@ -317,8 +317,8 @@ AR_TEMPL_TRACKER::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, A
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::setCamera(Camera* nCamera)
+ void
+TrackerImpl::setCamera(Camera* nCamera)
 {
 	arCamera = nCamera;
 
@@ -335,8 +335,8 @@ AR_TEMPL_TRACKER::setCamera(Camera* nCamera)
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip)
+ void
+TrackerImpl::setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip)
 {
 	setCamera(nCamera);
 
@@ -349,8 +349,8 @@ AR_TEMPL_TRACKER::setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip
 }
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix)
+ ARFloat
+TrackerImpl::calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix)
 {
 	ARFloat tmpTrans[3][4];
 
@@ -361,8 +361,8 @@ AR_TEMPL_TRACKER::calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat 
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::convertTransformationMatrixToOpenGLStyle(ARFloat para[3][4], ARFloat gl_para[16])
+ void
+TrackerImpl::convertTransformationMatrixToOpenGLStyle(ARFloat para[3][4], ARFloat gl_para[16])
 {
     int     i, j;
 
@@ -376,15 +376,15 @@ AR_TEMPL_TRACKER::convertTransformationMatrixToOpenGLStyle(ARFloat para[3][4], A
 }
 
 
-AR_TEMPL_FUNC bool
-AR_TEMPL_TRACKER::convertProjectionMatrixToOpenGLStyle( ARParam *param, ARFloat gnear, ARFloat gfar, ARFloat m[16] )
+ bool
+TrackerImpl::convertProjectionMatrixToOpenGLStyle( ARParam *param, ARFloat gnear, ARFloat gfar, ARFloat m[16] )
 {
 	return convertProjectionMatrixToOpenGLStyle2( param->mat, param->xsize, param->ysize, gnear, gfar, m );
 }
 
 
-AR_TEMPL_FUNC bool
-AR_TEMPL_TRACKER::convertProjectionMatrixToOpenGLStyle2( ARFloat cparam[3][4], int width, int height, ARFloat gnear, ARFloat gfar, ARFloat m[16] )
+ bool
+TrackerImpl::convertProjectionMatrixToOpenGLStyle2( ARFloat cparam[3][4], int width, int height, ARFloat gnear, ARFloat gfar, ARFloat m[16] )
 {
     ARFloat   icpara[3][4];
     ARFloat   trans[3][4];
@@ -437,8 +437,8 @@ AR_TEMPL_TRACKER::convertProjectionMatrixToOpenGLStyle2( ARFloat cparam[3][4], i
 }
 
 
-AR_TEMPL_FUNC bool
-AR_TEMPL_TRACKER::calcCameraMatrix(const char* nCamParamFile, int nWidth, int nHeight, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix)
+ bool
+TrackerImpl::calcCameraMatrix(const char* nCamParamFile, int nWidth, int nHeight, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix)
 {
 	CameraAdvImpl* pCam = new CameraAdvImpl();
 
@@ -447,7 +447,7 @@ AR_TEMPL_TRACKER::calcCameraMatrix(const char* nCamParamFile, int nWidth, int nH
 		return false;
 	}
 
-	pCam->changeFrameSize(AR_TEMPL_TRACKER::screenWidth,AR_TEMPL_TRACKER::screenHeight);
+	pCam->changeFrameSize(TrackerImpl::screenWidth,TrackerImpl::screenHeight);
 
 	int i;
     for(i = 0; i < 4; i++ )
@@ -466,8 +466,8 @@ AR_TEMPL_TRACKER::calcCameraMatrix(const char* nCamParamFile, int nWidth, int nH
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::changeCameraSize(int nWidth, int nHeight)
+ void
+TrackerImpl::changeCameraSize(int nWidth, int nHeight)
 {
 	screenWidth = nWidth;
 	screenHeight = nHeight;
@@ -477,29 +477,29 @@ AR_TEMPL_TRACKER::changeCameraSize(int nWidth, int nHeight)
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::setUndistortionMode(UNDIST_MODE nMode)
+ void
+TrackerImpl::setUndistortionMode(UNDIST_MODE nMode)
 {
 	undistMode = nMode;
 	switch(undistMode)
 	{
 	case UNDIST_NONE:
-		arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_none;
+		arParamObserv2Ideal_func = &TrackerImpl::arParamObserv2Ideal_none;
 		break;
 
 	case UNDIST_STD:
-		arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_std;
+		arParamObserv2Ideal_func = &TrackerImpl::arParamObserv2Ideal_std;
 		break;
 
 	case UNDIST_LUT:
-		arParamObserv2Ideal_func = &AR_TEMPL_TRACKER::arParamObserv2Ideal_LUT;
+		arParamObserv2Ideal_func = &TrackerImpl::arParamObserv2Ideal_LUT;
 		break;
 	}
 }
 
 
-AR_TEMPL_FUNC bool
-AR_TEMPL_TRACKER::setPoseEstimator(POSE_ESTIMATOR nMode)
+ bool
+TrackerImpl::setPoseEstimator(POSE_ESTIMATOR nMode)
 {
 	poseEstimator = nMode;
 
@@ -507,8 +507,8 @@ AR_TEMPL_TRACKER::setPoseEstimator(POSE_ESTIMATOR nMode)
 }
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+ ARFloat
+TrackerImpl::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
 	switch(poseEstimator)
 	{
@@ -526,8 +526,8 @@ AR_TEMPL_TRACKER::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, AR
 }
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+ ARFloat
+TrackerImpl::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
 	if(hullTrackingMode!=HULL_OFF)
 		return arMultiGetTransMatHull(marker_info, marker_num, config);
@@ -549,8 +549,8 @@ AR_TEMPL_TRACKER::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int
 
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::activateVignettingCompensation(bool nEnable, int nCorners, int nLeftRight, int nTopBottom)
+ void
+TrackerImpl::activateVignettingCompensation(bool nEnable, int nCorners, int nLeftRight, int nTopBottom)
 {
 	vignetting.enabled = nEnable;
 	vignetting.corners = nCorners;
@@ -559,8 +559,8 @@ AR_TEMPL_TRACKER::activateVignettingCompensation(bool nEnable, int nCorners, int
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::setMarkerMode(MARKER_MODE nMarkerMode)
+ void
+TrackerImpl::setMarkerMode(MARKER_MODE nMarkerMode)
 {
 	markerMode = nMarkerMode;
 }
@@ -579,8 +579,8 @@ convertPixel16To24(unsigned short nPixel, unsigned char& nRed, unsigned char& nG
 }
 
 
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::checkRGB565LUT()
+ void
+TrackerImpl::checkRGB565LUT()
 {
 	int i;
 
@@ -612,8 +612,8 @@ AR_TEMPL_TRACKER::checkRGB565LUT()
 
 // cleanup function called when program exits
 //
-AR_TEMPL_FUNC void
-AR_TEMPL_TRACKER::cleanup()
+ void
+TrackerImpl::cleanup()
 {
 	if(marker_infoTWO)
 		delete [] marker_infoTWO;
@@ -622,8 +622,8 @@ AR_TEMPL_TRACKER::cleanup()
 }
 
 
-AR_TEMPL_FUNC const char*
-AR_TEMPL_TRACKER::getDescription()
+ const char*
+TrackerImpl::getDescription()
 {
 	const char* pixelformats[] = { "NONE", "ABGR", "BGRA", "BGR", "RGBA", "RGB", "RGB565", "LUM"  };
 	int f = getPixelFormat();
@@ -654,8 +654,8 @@ static bool usesSinglePrecision()
 }
 
 
-AR_TEMPL_FUNC size_t
-AR_TEMPL_TRACKER::getDynamicMemoryRequirements()
+ size_t
+TrackerImpl::getDynamicMemoryRequirements()
 {
 	// requirements for allocations in the constructor
 	//

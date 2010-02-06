@@ -72,8 +72,8 @@ Mean:
 =========================== */
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arMatrixPCA(ARMat *input, ARMat *evec, ARVec *ev, ARVec *mean)
+ int
+TrackerImpl::arMatrixPCA(ARMat *input, ARMat *evec, ARVec *ev, ARVec *mean)
 {
     ARMat     *work;
     ARFloat  srow, sum;
@@ -113,8 +113,8 @@ AR_TEMPL_TRACKER::arMatrixPCA(ARMat *input, ARMat *evec, ARVec *ev, ARVec *mean)
     return( rval );
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arMatrixPCA2( ARMat *input, ARMat *evec, ARVec *ev )
+ int
+TrackerImpl::arMatrixPCA2( ARMat *input, ARMat *evec, ARVec *ev )
 {
     ARMat   *work;
     // ARFloat  srow; // unreferenced

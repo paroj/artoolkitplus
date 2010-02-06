@@ -61,8 +61,8 @@ isNumber(const char* nString)
 }
 
 
-AR_TEMPL_FUNC ARMultiMarkerInfoT*
-AR_TEMPL_TRACKER::arMultiReadConfigFile(const char *filename)
+ ARMultiMarkerInfoT*
+TrackerImpl::arMultiReadConfigFile(const char *filename)
 {
     FILE                   *fp;
     ARMultiEachMarkerInfoT *marker;

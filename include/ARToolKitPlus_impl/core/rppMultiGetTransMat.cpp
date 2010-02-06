@@ -31,8 +31,8 @@
 
 namespace ARToolKitPlus {
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+ ARFloat
+TrackerImpl::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
 	rpp_float err = 1e+20;
 	rpp_mat R, R_init;

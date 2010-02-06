@@ -31,8 +31,8 @@
 namespace ARToolKitPlus {
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arMultiActivate( ARMultiMarkerInfoT *config )
+ int
+TrackerImpl::arMultiActivate( ARMultiMarkerInfoT *config )
 {
     int    i;
 
@@ -45,8 +45,8 @@ AR_TEMPL_TRACKER::arMultiActivate( ARMultiMarkerInfoT *config )
     return 0;
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arMultiDeactivate( ARMultiMarkerInfoT *config )
+ int
+TrackerImpl::arMultiDeactivate( ARMultiMarkerInfoT *config )
 {
     int    i;
 
@@ -59,8 +59,8 @@ AR_TEMPL_TRACKER::arMultiDeactivate( ARMultiMarkerInfoT *config )
     return 0;
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arMultiFreeConfig( ARMultiMarkerInfoT *config )
+ int
+TrackerImpl::arMultiFreeConfig( ARMultiMarkerInfoT *config )
 {
     int    i;
 

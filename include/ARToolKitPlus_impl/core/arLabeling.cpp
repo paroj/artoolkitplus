@@ -65,8 +65,8 @@ put_zero( uint8_t *p, int size )
 #undef _DEF_PIXEL_FORMAT_LUM
 
 
-AR_TEMPL_FUNC int16_t*
-AR_TEMPL_TRACKER::arLabeling(uint8_t *image, int thresh, int *label_num, int **area,
+ int16_t*
+TrackerImpl::arLabeling(uint8_t *image, int thresh, int *label_num, int **area,
 					ARFloat **pos, int **clip, int **label_ref )
 {
 	int16_t* ret = NULL;
@@ -104,8 +104,8 @@ AR_TEMPL_TRACKER::arLabeling(uint8_t *image, int thresh, int *label_num, int **a
 
 
 #if 0
-AR_TEMPL_FUNC int16_t*
-AR_TEMPL_TRACKER::labeling2(uint8_t *image, int thresh, int *label_num, int **area,
+ int16_t*
+TrackerImpl::labeling2(uint8_t *image, int thresh, int *label_num, int **area,
 				   ARFloat **pos, int **clip, int **label_ref, int LorR)
 {
     uint8_t   *pnt;                     /*  image pointer       */

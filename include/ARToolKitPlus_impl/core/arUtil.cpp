@@ -42,8 +42,8 @@
 namespace ARToolKitPlus {
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arInitCparam(Camera *pCam)
+ int
+TrackerImpl::arInitCparam(Camera *pCam)
 {
 	// if the camera parameters change, the undistortion LUT has to be rebuilt.
 	// (this is done automatically in arParamObserv2Ideal_LUT or arParamIdeal2Observ_LUT)
@@ -61,16 +61,16 @@ AR_TEMPL_TRACKER::arInitCparam(Camera *pCam)
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetLine(int x_coord[], int y_coord[], int coord_num, int vertex[], ARFloat line[4][3], ARFloat v[4][2])
+ int
+TrackerImpl::arGetLine(int x_coord[], int y_coord[], int coord_num, int vertex[], ARFloat line[4][3], ARFloat v[4][2])
 {
     //return arGetLine2( x_coord, y_coord, coord_num, vertex, line, v, arParam.dist_factor );
 	return arGetLine2( x_coord, y_coord, coord_num, vertex, line, v, arCamera );
 }
 
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arGetLine2(int x_coord[], int y_coord[], int coord_num,
+ int
+TrackerImpl::arGetLine2(int x_coord[], int y_coord[], int coord_num,
                     int vertex[], ARFloat line[4][3], ARFloat v[4][2], Camera *pCam) 
 {
     ARMat    *input, *evec;
@@ -122,8 +122,8 @@ AR_TEMPL_TRACKER::arGetLine2(int x_coord[], int y_coord[], int coord_num,
     return(0);
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arUtilMatMul( ARFloat s1[3][4], ARFloat s2[3][4], ARFloat d[3][4] )
+ int
+TrackerImpl::arUtilMatMul( ARFloat s1[3][4], ARFloat s2[3][4], ARFloat d[3][4] )
 {
     int     i, j;
 
@@ -139,8 +139,8 @@ AR_TEMPL_TRACKER::arUtilMatMul( ARFloat s1[3][4], ARFloat s2[3][4], ARFloat d[3]
     return 0;
 }
 
-AR_TEMPL_FUNC int
-AR_TEMPL_TRACKER::arUtilMatInv(ARFloat s[3][4], ARFloat d[3][4])
+ int
+TrackerImpl::arUtilMatInv(ARFloat s[3][4], ARFloat d[3][4])
 {
     ARMat       *mat;
     int         i, j;

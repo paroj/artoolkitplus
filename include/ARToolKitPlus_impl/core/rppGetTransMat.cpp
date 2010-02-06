@@ -29,8 +29,8 @@
 
 namespace ARToolKitPlus {
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::rppGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+ ARFloat
+TrackerImpl::rppGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
 	const bool initial_estimate_with_arGetInitRot = false; // only for testing
 	

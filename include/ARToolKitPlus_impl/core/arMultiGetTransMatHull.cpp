@@ -27,8 +27,8 @@
 namespace ARToolKitPlus {
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arMultiGetTransMatHull(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+ ARFloat
+TrackerImpl::arMultiGetTransMatHull(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
 	//return arMultiGetTransMat(marker_info, marker_num, config);
 

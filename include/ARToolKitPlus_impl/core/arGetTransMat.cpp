@@ -30,8 +30,8 @@
 namespace ARToolKitPlus {
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+ ARFloat
+TrackerImpl::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
     ARFloat  rot[3][3];
     ARFloat  ppos2d[4][2];
@@ -70,15 +70,15 @@ AR_TEMPL_TRACKER::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], AR
     return err;
 }
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arGetTransMat2(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][2], int num, ARFloat conv[3][4])
+ ARFloat
+TrackerImpl::arGetTransMat2(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][2], int num, ARFloat conv[3][4])
 {
 	return arGetTransMat3( rot, ppos2d, ppos3d, num, conv, arCamera);
 }
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
+ ARFloat
+TrackerImpl::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
                    ARFloat ppos3d[][2], int num, ARFloat conv[3][4],
 				   Camera *pCam )
                    //ARFloat *dist_factor, ARFloat cpara[3][4] )
@@ -121,16 +121,16 @@ AR_TEMPL_TRACKER::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
     return ret;
 }
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arGetTransMat4(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4])
+ ARFloat
+TrackerImpl::arGetTransMat4(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4])
 {
     return arGetTransMat5( rot, ppos2d, ppos3d, num, conv, arCamera);
 //                           arParam.dist_factor, arParam.mat );
 }
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2],
+ ARFloat
+TrackerImpl::arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2],
 				   ARFloat ppos3d[][3], int num, ARFloat conv[3][4],
 				   Camera *pCam)
 				   //ARFloat *dist_factor, ARFloat cpara[3][4])
@@ -168,8 +168,8 @@ AR_TEMPL_TRACKER::arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2],
     return ret;
 }
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2],
+ ARFloat
+TrackerImpl::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2],
                      ARFloat pos3d[][3], int num, ARFloat conv[3][4],
 					 Camera *pCam )
                      //ARFloat *dist_factor, ARFloat cpara[3][4] )

@@ -27,8 +27,8 @@ namespace ARToolKitPlus {
 #ifndef _FIXEDPOINT_MATH_ACTIVATED_
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
+ ARFloat
+TrackerImpl::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
 				   ARFloat vertex[][3], ARFloat pos2d[][2], int num)
 {
     ARFloat    factor;
@@ -105,8 +105,8 @@ AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
 }
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
+ ARFloat
+TrackerImpl::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
 					ARFloat vertex[][3], ARFloat pos2d[][2], int num)
 {
     ARFloat    factor;
@@ -219,8 +219,8 @@ int arGetNewMatrix12(I32 _a, I32 _b, I32 _c, FIXED_VEC3D _trans, ARFloat trans2[
 
 
 
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
+ ARFloat
+TrackerImpl::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
                    ARFloat vertex[][3], ARFloat pos2d[][2], int num)
 {
     ARFloat		a, b, c;
@@ -440,8 +440,8 @@ AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
 }
 
 /*
-AR_TEMPL_FUNC ARFloat
-AR_TEMPL_TRACKER::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
+ ARFloat
+TrackerImpl::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
 								 ARFloat vertex[][3], ARFloat pos2d[][2], int num)
 {
 	ARFloat		factor;
