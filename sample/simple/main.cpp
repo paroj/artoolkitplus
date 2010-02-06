@@ -97,7 +97,7 @@ int main(int argc, char** argv)
     tracker->setPatternWidth(2.0);
 
 	// the marker in the BCH test image has a thin border...
-    tracker->setBorderWidth(useBCH ? 0.125f : 0.250f);
+    tracker->setBorderWidth(useBCH ? 0.125 : 0.25);
 
     // set a threshold. alternatively we could also activate automatic thresholding
     tracker->setThreshold(150);
@@ -118,9 +118,9 @@ int main(int argc, char** argv)
     //glMatrixMode(GL_PROJECTION)
     //glLoadMatrixf(tracker->getProjectionMatrix());
 
-    // here we go, just one call to find the camera pose
+    // here we go, just two calls to find the camera pose
     vector<int> markerId = tracker->calc(cameraBuffer);
-    tracker->selectDetectedMarker(markerId[0]);
+    tracker->selectBestMarkerByCf();
     float conf = (float)tracker->getConfidence();
 
     // use the result of calc() to setup the OpenGL transformation

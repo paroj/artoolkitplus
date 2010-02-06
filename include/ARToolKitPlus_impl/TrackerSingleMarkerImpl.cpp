@@ -127,6 +127,7 @@ ARSM_TEMPL_TRACKER::selectBestMarkerByCf() {
 
     if(best != -1) {
     	// there was something detected
+        best = marker_info[best].id; // we want the id and not the offset
     	selectDetectedMarker(best);
     }
 
