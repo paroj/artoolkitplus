@@ -67,7 +67,7 @@ int main(int argc, char** argv)
     //  - works with luminance (gray) images
     //  - can load a maximum of 1 pattern
     //  - can detect a maximum of 8 patterns in one image
-    ARToolKitPlus::TrackerMultiMarker *tracker = new ARToolKitPlus::TrackerMultiMarkerImpl<6,6,6, 1, 10>(width,height);
+    ARToolKitPlus::TrackerMultiMarker *tracker = new ARToolKitPlus::TrackerMultiMarkerImpl<6,6,6, 10>(width,height);
 
 	const char* description = tracker->getDescription();
 	printf("ARToolKitPlus compile-time information:\n%s\n\n", description);

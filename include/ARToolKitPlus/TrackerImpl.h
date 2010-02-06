@@ -16,6 +16,7 @@
 
     Authors:
       Daniel Wagner
+      Pavel Rojtberg
  */
 
 
@@ -32,8 +33,8 @@
 #include <ARToolKitPlus/extra/Hull.h>
 
 
-#define AR_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
-#define AR_TEMPL_TRACKER TrackerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_LOAD_PATTERNS, __MAX_IMAGE_PATTERNS>
+#define AR_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS>
+#define AR_TEMPL_TRACKER TrackerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
 
 
 namespace ARToolKitPlus {
@@ -45,7 +46,7 @@ static bool usesSinglePrecision();				/// Returns whether single or double preci
 
 
 /// TrackerImpl implements the Tracker interface
-template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
+template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS>
 class TrackerImpl : public Tracker
 {
 public:
@@ -53,8 +54,6 @@ public:
 		PATTERN_WIDTH = __PATTERN_SIZE_X,
 		PATTERN_HEIGHT = __PATTERN_SIZE_Y,
 		PATTERN_SAMPLE_NUM = __PATTERN_SAMPLE_NUM,
-
-		MAX_LOAD_PATTERNS = __MAX_LOAD_PATTERNS,
 		MAX_IMAGE_PATTERNS = __MAX_IMAGE_PATTERNS,
 		WORK_SIZE = 1024*MAX_IMAGE_PATTERNS,
 
@@ -65,8 +64,9 @@ public:
 #endif
 	};
 
+	const int MAX_LOAD_PATTERNS;
 
-	TrackerImpl();
+	TrackerImpl(const int imWidth, const int imHeight, const int maxLoadPatterns = 0);
 	virtual ~TrackerImpl();
 
 	/// does final clean up (memory deallocation)
@@ -512,18 +512,18 @@ protected:
 
 	// arGetCode.cpp
 	int    pattern_num;
-	int    patf[MAX_LOAD_PATTERNS];
-	int    pat[MAX_LOAD_PATTERNS][4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
-	ARFloat patpow[MAX_LOAD_PATTERNS][4];
-	int    patBW[MAX_LOAD_PATTERNS][4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
-	ARFloat patpowBW[MAX_LOAD_PATTERNS][4];
+	int    *patf;
+	int    (*pat)[4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	ARFloat (*patpow)[4];
+	int    (*patBW)[4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	ARFloat (*patpowBW)[4];
 
 	ARFloat evec[EVEC_MAX][PATTERN_HEIGHT*PATTERN_WIDTH*3];
-	ARFloat epat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
+	ARFloat (*epat)[4][EVEC_MAX];
 	int    evec_dim;
 	int    evecf;
 	ARFloat evecBW[EVEC_MAX][PATTERN_HEIGHT*PATTERN_WIDTH*3];
-	ARFloat epatBW[MAX_LOAD_PATTERNS][4][EVEC_MAX];
+	ARFloat (*epatBW)[4][EVEC_MAX];
 	int    evec_dimBW;
 	int    evecBWf;
 
@@ -592,7 +592,7 @@ protected:
 
     HULL_TRACKING_MODE hullTrackingMode;
 
-	static int						screenWidth, screenHeight;
+	static int				screenWidth, screenHeight;
 	int						thresh;
 
 	ARParam					cparam;

@@ -26,11 +26,9 @@ namespace ARToolKitPlus
 
 
 ARMM_TEMPL_FUNC
-ARMM_TEMPL_TRACKER::TrackerMultiMarkerImpl(int nWidth, int nHeight)
+ARMM_TEMPL_TRACKER::TrackerMultiMarkerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
+AR_TEMPL_TRACKER::TrackerImpl(imWidth, imHeight, maxLoadPatterns)
 {
-	this->screenWidth = nWidth;
-	this->screenHeight = nHeight;
-
 	useDetectLite = true;
 	numDetected = 0;
 

@@ -34,8 +34,11 @@ AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenWidth;
 AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenHeight;
 
 AR_TEMPL_FUNC 
-AR_TEMPL_TRACKER::TrackerImpl()
+AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
+		MAX_LOAD_PATTERNS(maxLoadPatterns)
 {
+	this->screenWidth = imWidth;
+	this->screenHeight = imHeight;
 	int i;
 
 #ifdef _USE_GENERIC_TRIGONOMETRIC_
@@ -49,8 +52,17 @@ AR_TEMPL_TRACKER::TrackerImpl()
 #  endif
 #endif
 
+	// dynamically allocate template arguments
+	patf = new int[MAX_LOAD_PATTERNS];
+	pat = new int[MAX_LOAD_PATTERNS][4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	patpow = new ARFloat[MAX_LOAD_PATTERNS][4];
+	patBW = new int[MAX_LOAD_PATTERNS][4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	patpowBW = new ARFloat[MAX_LOAD_PATTERNS][4];
+	epat = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
+	epatBW = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
+
+
 	// set default value to RGB888
-	//
 	pixelFormat = PIXEL_FORMAT_RGB;
 	pixelSize = 3;
 
@@ -66,8 +78,10 @@ AR_TEMPL_TRACKER::TrackerImpl()
 	marker_infoTWO = NULL;
 
 	pattern_num = -1;
+
 	for(i=0; i<MAX_LOAD_PATTERNS; i++)
 		patf[i] = 0;
+
 	evecf = 0;
 	evecBWf = 0;
 
@@ -137,6 +151,14 @@ AR_TEMPL_TRACKER::TrackerImpl()
 AR_TEMPL_FUNC 
 AR_TEMPL_TRACKER::~TrackerImpl()
 {
+	delete[] patf;
+	delete[] pat;
+	delete[] patpow;
+	delete[] patBW;
+	delete[] patpowBW;
+	delete[] epat;
+	delete[] epatBW;
+
 	if(arCamera)
 		delete arCamera;
 	arCamera = NULL;

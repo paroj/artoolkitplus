@@ -54,7 +54,7 @@ public:
 	/**
 	 *	pass the image as RGBX (32-bits) in 320x240 pixels.
 	 */
-	virtual int calc(const unsigned char* nImage) = 0;
+	virtual int calc(const uint8_t* nImage) = 0;
 
 	/// Returns the number of detected markers used for multi-marker tracking
 	virtual int getNumDetectedMarkers() const = 0;

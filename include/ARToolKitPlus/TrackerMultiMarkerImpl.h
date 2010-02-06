@@ -27,8 +27,8 @@
 #include <ARToolKitPlus/TrackerImpl.h>
 
 
-#define ARMM_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
-#define ARMM_TEMPL_TRACKER TrackerMultiMarkerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_LOAD_PATTERNS, __MAX_IMAGE_PATTERNS>
+#define ARMM_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS>
+#define ARMM_TEMPL_TRACKER TrackerMultiMarkerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
 
 
 namespace ARToolKitPlus
@@ -45,11 +45,11 @@ namespace ARToolKitPlus
  *  __MAX_IMAGE_PATTERNS describes the maximum number of patterns that can be analyzed in a camera image.
  *  Reduce __MAX_LOAD_PATTERNS and __MAX_IMAGE_PATTERNS to reduce memory footprint.
  */
-template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS=32, int __MAX_IMAGE_PATTERNS=32>
-class TrackerMultiMarkerImpl : public TrackerMultiMarker, protected TrackerImpl<__PATTERN_SIZE_X,__PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_LOAD_PATTERNS, __MAX_IMAGE_PATTERNS>
+template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS=32>
+class TrackerMultiMarkerImpl : public TrackerMultiMarker, protected TrackerImpl<__PATTERN_SIZE_X,__PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
 {
 public:
-	TrackerMultiMarkerImpl(int nWidth=320, int nHeight=240);
+	TrackerMultiMarkerImpl(int nWidth, int nHeight, int maxLoadPatterns=0);
 	~TrackerMultiMarkerImpl();
 
 	/// initializes ARToolKit

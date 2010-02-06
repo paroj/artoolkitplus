@@ -43,13 +43,6 @@
 namespace ARToolKitPlus
 {
 
-
-enum {
-	DEF_CAMWIDTH = 320,
-	DEF_CAMHEIGHT = 240
-};
-
-
 enum PIXEL_FORMAT {
 	PIXEL_FORMAT_ABGR = 1,
 	PIXEL_FORMAT_BGRA = 2,

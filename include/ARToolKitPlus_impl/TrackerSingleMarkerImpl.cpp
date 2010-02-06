@@ -28,17 +28,10 @@ using std::endl;
 namespace ARToolKitPlus
 {
 
-#ifdef ARTOOLKITPLUS_DLL
-// explictley create an instance
-template class ARToolKitPlus::TrackerSingleMarkerImpl<6,6,6, 1, 10>;
-#endif
-
 ARSM_TEMPL_FUNC
-ARSM_TEMPL_TRACKER::TrackerSingleMarkerImpl(int nWidth, int nHeight)
+ARSM_TEMPL_TRACKER::TrackerSingleMarkerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
+AR_TEMPL_TRACKER::TrackerImpl(imWidth, imHeight, maxLoadPatterns)
 {
-	this->screenWidth = nWidth;
-	this->screenHeight = nHeight;
-
 	this->thresh = 100;
 
 	patt_width     = 80;
@@ -66,8 +59,7 @@ ARSM_TEMPL_TRACKER::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat n
 	// init some "static" members from artoolkit
 	// (some systems don't like such large global members
 	// so we allocate this manually)
-	//
-	if(this->marker_infoTWO==NULL)
+	if(this->marker_infoTWO == NULL)
 		this->marker_infoTWO = new ARMarkerInfo2[__MAX_IMAGE_PATTERNS];
 
 	//initialize applications

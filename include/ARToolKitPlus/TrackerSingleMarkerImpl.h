@@ -26,8 +26,8 @@
 #include <ARToolKitPlus/TrackerSingleMarker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
 
-#define ARSM_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS, int __MAX_IMAGE_PATTERNS>
-#define ARSM_TEMPL_TRACKER TrackerSingleMarkerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_LOAD_PATTERNS, __MAX_IMAGE_PATTERNS>
+#define ARSM_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS>
+#define ARSM_TEMPL_TRACKER TrackerSingleMarkerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
 
 
 namespace ARToolKitPlus
@@ -40,15 +40,15 @@ namespace ARToolKitPlus
  *  __PATTERN_SIZE_Y describes the pattern image height (16 by default).
  *  __PATTERN_SAMPLE_NUM describes the maximum resolution at which a pattern is sampled from the camera image
  *  (64 by default, must a a multiple of __PATTERN_SIZE_X and __PATTERN_SIZE_Y).
- *  __MAX_LOAD_PATTERNS describes the maximum number of pattern files that can be loaded.
+ *  maxLoadPatterns describes the maximum number of pattern files that can be loaded.
  *  __MAX_IMAGE_PATTERNS describes the maximum number of patterns that can be analyzed in a camera image.
- *  Reduce __MAX_LOAD_PATTERNS and __MAX_IMAGE_PATTERNS to reduce memory footprint.
+ *  Reduce maxLoadPatterns and __MAX_IMAGE_PATTERNS to reduce memory footprint.
  */
-template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_LOAD_PATTERNS=32, int __MAX_IMAGE_PATTERNS=32>
-class TrackerSingleMarkerImpl : public TrackerSingleMarker, protected TrackerImpl<__PATTERN_SIZE_X,__PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_LOAD_PATTERNS, __MAX_IMAGE_PATTERNS>
+template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS=32>
+class TrackerSingleMarkerImpl : public TrackerSingleMarker, protected TrackerImpl<__PATTERN_SIZE_X,__PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
 {
 public:
-	TrackerSingleMarkerImpl(int nWidth=DEF_CAMWIDTH, int nHeight=DEF_CAMHEIGHT);
+	TrackerSingleMarkerImpl(int nWidth, int nHeight, int maxLoadPatterns=0);
 	~TrackerSingleMarkerImpl();
 
 	/// initializes TrackerSingleMarker
