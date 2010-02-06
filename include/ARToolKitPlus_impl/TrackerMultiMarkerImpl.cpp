@@ -35,6 +35,8 @@ AR_TEMPL_TRACKER::TrackerImpl(imWidth, imHeight, maxLoadPatterns)
 	config = 0;
 
 	this->thresh = 150;
+	detectedMarkerIDs = new int[this->MAX_IMAGE_PATTERNS];
+	detectedMarkers = new ARMarkerInfo[this->MAX_IMAGE_PATTERNS];
 }
 
 
@@ -93,7 +95,7 @@ ARMM_TEMPL_TRACKER::calc(const unsigned char* nImage)
 		{
 			detectedMarkers[numDetected] = tmp_markers[i];
 			detectedMarkerIDs[numDetected++] = tmp_markers[i].id;
-			if(numDetected>=__MAX_IMAGE_PATTERNS)							// increase this value if more markers should be possible to be detected in one image...
+			if(numDetected >= this->MAX_IMAGE_PATTERNS)							// increase this value if more markers should be possible to be detected in one image...
 				break;
 		}
 

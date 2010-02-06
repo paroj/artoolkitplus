@@ -150,8 +150,8 @@ protected:
 
 	ARMultiMarkerInfoT  *config;
 
-	int				detectedMarkerIDs[AR_TEMPL_TRACKER::MAX_IMAGE_PATTERNS];
-	ARMarkerInfo	detectedMarkers[AR_TEMPL_TRACKER::MAX_IMAGE_PATTERNS];
+	int				*detectedMarkerIDs;
+	ARMarkerInfo	*detectedMarkers;
 };
 
 

@@ -60,7 +60,7 @@ ARSM_TEMPL_TRACKER::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat n
 	// (some systems don't like such large global members
 	// so we allocate this manually)
 	if(this->marker_infoTWO == NULL)
-		this->marker_infoTWO = new ARMarkerInfo2[__MAX_IMAGE_PATTERNS];
+		this->marker_infoTWO = new ARMarkerInfo2[this->MAX_IMAGE_PATTERNS];
 
 	//initialize applications
 	if(nCamParamFile)
