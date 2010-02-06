@@ -53,7 +53,6 @@ public:
 	static const int PATTERN_WIDTH = __PATTERN_SIZE_X;
 	static const int PATTERN_HEIGHT = __PATTERN_SIZE_Y;
 	static const int PATTERN_SAMPLE_NUM = __PATTERN_SAMPLE_NUM;
-	static const int MAX_IMAGE_PATTERNS = __MAX_IMAGE_PATTERNS;
 #ifdef SMALL_LUM8_TABLE
 	static const int LUM_TABLE_SIZE = (0xffff >> 6) + 1;
 #else
@@ -61,6 +60,7 @@ public:
 #endif
 
 	const int MAX_LOAD_PATTERNS;
+	const int MAX_IMAGE_PATTERNS;
 	const int WORK_SIZE;
 
 	TrackerImpl(const int imWidth, const int imHeight, const int maxLoadPatterns = 0);
@@ -487,19 +487,17 @@ protected:
 	int						binaryMarkerThreshold;
 
 	// arDetectMarker.cpp
-	//
 	ARMarkerInfo2			*marker_info2;
 	ARMarkerInfo			*wmarker_info;
 	int						wmarker_num;
 
-	arPrevInfo				prev_info[MAX_IMAGE_PATTERNS];
+	arPrevInfo				*prev_info;
 	int						prev_num;
 
-	arPrevInfo				sprev_info[2][MAX_IMAGE_PATTERNS];
+	arPrevInfo				*sprev_info[2];
 	int						sprev_num[2];
 
 	// arDetectMarker2.cpp
-	//
 	ARMarkerInfo2			*marker_infoTWO;		// CAUTION: this member has to be manually allocated!
 													//          see TrackerSingleMarker for more info on this.
 
@@ -526,7 +524,7 @@ protected:
 
 	// arGetMarkerInfo.cpp
 	//
-	ARMarkerInfo    marker_infoL[MAX_IMAGE_PATTERNS];
+	ARMarkerInfo    *marker_infoL;
 
 	// arGetTransMat.cpp
 	//

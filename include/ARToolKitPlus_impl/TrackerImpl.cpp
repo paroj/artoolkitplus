@@ -36,6 +36,7 @@ AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenHeight;
 AR_TEMPL_FUNC 
 AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
 		MAX_LOAD_PATTERNS(maxLoadPatterns),
+		MAX_IMAGE_PATTERNS(__MAX_IMAGE_PATTERNS),
 		WORK_SIZE(1024*MAX_IMAGE_PATTERNS)
 {
 	this->screenWidth = imWidth;
@@ -61,6 +62,10 @@ AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
 	patpowBW = new ARFloat[MAX_LOAD_PATTERNS][4];
 	epat = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
 	epatBW = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
+	prev_info = new arPrevInfo[MAX_IMAGE_PATTERNS];
+	sprev_info[0] = new arPrevInfo[MAX_IMAGE_PATTERNS];
+	sprev_info[1] = new arPrevInfo[MAX_IMAGE_PATTERNS];
+	marker_infoL = new ARMarkerInfo[MAX_IMAGE_PATTERNS];
 
 
 	// set default value to RGB888
