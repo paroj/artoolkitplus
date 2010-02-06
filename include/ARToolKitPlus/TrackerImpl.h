@@ -32,9 +32,13 @@
 #include <ARToolKitPlus/extra/BCH.h>
 #include <ARToolKitPlus/extra/Hull.h>
 
+#include <vector>
 
-#define AR_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS>
-#define AR_TEMPL_TRACKER TrackerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
+using std::vector;
+
+
+#define AR_TEMPL_FUNC
+#define AR_TEMPL_TRACKER TrackerImpl
 
 
 namespace ARToolKitPlus {
@@ -46,24 +50,22 @@ static bool usesSinglePrecision();				/// Returns whether single or double preci
 
 
 /// TrackerImpl implements the Tracker interface
-template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS>
 class TrackerImpl : public Tracker
 {
 public:
-	static const int PATTERN_WIDTH = __PATTERN_SIZE_X;
-	static const int PATTERN_HEIGHT = __PATTERN_SIZE_Y;
-	static const int PATTERN_SAMPLE_NUM = __PATTERN_SAMPLE_NUM;
 #ifdef SMALL_LUM8_TABLE
 	static const int LUM_TABLE_SIZE = (0xffff >> 6) + 1;
 #else
 	static const int LUM_TABLE_SIZE = 0xffff + 1;
 #endif
-
+	const int PATTERN_WIDTH;
+	const int PATTERN_HEIGHT;
+	const int PATTERN_SAMPLE_NUM;
 	const int MAX_LOAD_PATTERNS;
 	const int MAX_IMAGE_PATTERNS;
 	const int WORK_SIZE;
 
-	TrackerImpl(const int imWidth, const int imHeight, const int maxLoadPatterns = 0);
+	TrackerImpl(int imWidth, int imHeight, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6, int maxLoadPatterns = 0, int maxImagePatterns = 8);
 	virtual ~TrackerImpl();
 
 	/// does final clean up (memory deallocation)
@@ -309,7 +311,7 @@ protected:
 				  int *code, int *dir, ARFloat *cf, int thresh);
 
 	int arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex,
-				  uint8_t ext_pat[PATTERN_HEIGHT][PATTERN_WIDTH][3]);
+				  uint8_t **ext_pat[3]);
 
 	int pattern_match( uint8_t *data, int *code, int *dir, ARFloat *cf);
 
@@ -494,7 +496,7 @@ protected:
 	arPrevInfo				*prev_info;
 	int						prev_num;
 
-	arPrevInfo				*sprev_info[2];
+	vector<vector<arPrevInfo> > sprev_info;
 	int						sprev_num[2];
 
 	// arDetectMarker2.cpp
@@ -508,16 +510,16 @@ protected:
 	// arGetCode.cpp
 	int    pattern_num;
 	int    *patf;
-	int    (*pat)[4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	vector<vector<vector<int> > > pat;
 	ARFloat (*patpow)[4];
-	int    (*patBW)[4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	vector<vector<vector<int> > > patBW;
 	ARFloat (*patpowBW)[4];
 
-	ARFloat evec[EVEC_MAX][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	vector<vector<ARFloat> > evec;
 	ARFloat (*epat)[4][EVEC_MAX];
 	int    evec_dim;
 	int    evecf;
-	ARFloat evecBW[EVEC_MAX][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+	vector<vector<ARFloat> > evecBW;
 	ARFloat (*epatBW)[4][EVEC_MAX];
 	int    evec_dimBW;
 	int    evecBWf;

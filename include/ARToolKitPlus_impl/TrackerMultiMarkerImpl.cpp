@@ -27,7 +27,7 @@ namespace ARToolKitPlus
 
 ARMM_TEMPL_FUNC
 ARMM_TEMPL_TRACKER::TrackerMultiMarkerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
-AR_TEMPL_TRACKER::TrackerImpl(imWidth, imHeight, maxLoadPatterns)
+AR_TEMPL_TRACKER::TrackerImpl(imWidth, imHeight, 6,6,6, maxLoadPatterns, 8)
 {
 	useDetectLite = true;
 	numDetected = 0;

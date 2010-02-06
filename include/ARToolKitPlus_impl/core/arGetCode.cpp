@@ -149,7 +149,7 @@ AR_TEMPL_TRACKER::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *ver
 {
     uint8_t ext_pat[PATTERN_HEIGHT][PATTERN_WIDTH][3];
 
-    arGetPatt(image, x_coord, y_coord, vertex, ext_pat);
+    arGetPatt(image, x_coord, y_coord, vertex, (uint8_t***)ext_pat);
 
 	if(autoThreshold.enable)
 	{
@@ -157,7 +157,6 @@ AR_TEMPL_TRACKER::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *ver
 
 		for(y=0; y<PATTERN_HEIGHT; y++)
 			for(x=0; x<PATTERN_WIDTH; x++)
-				//autoThreshold.addValue(ext_pat[y][x][0], ext_pat[y][x][1], ext_pat[y][x][2]);
 				autoThreshold.addValue(ext_pat[y][x][0], ext_pat[y][x][1], ext_pat[y][x][2], pixelFormat);
 	}
 
@@ -196,8 +195,11 @@ AR_TEMPL_TRACKER::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *ver
 //#if 1
 AR_TEMPL_FUNC int
 AR_TEMPL_TRACKER::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex,
-						    uint8_t ext_pat[PATTERN_HEIGHT][PATTERN_WIDTH][3])
+						    uint8_t **pext_pat[3])
 {
+	uint8_t (*ext_pat)[PATTERN_WIDTH][3];
+	ext_pat = (uint8_t(*)[PATTERN_WIDTH][3])pext_pat;
+
     uint32_t  ext_pat2[PATTERN_HEIGHT][PATTERN_WIDTH][3];
     ARFloat    world[4][2];
     ARFloat    local[4][2];

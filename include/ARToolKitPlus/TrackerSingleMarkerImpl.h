@@ -26,8 +26,8 @@
 #include <ARToolKitPlus/TrackerSingleMarker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
 
-#define ARSM_TEMPL_FUNC template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS>
-#define ARSM_TEMPL_TRACKER TrackerSingleMarkerImpl<__PATTERN_SIZE_X, __PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
+#define ARSM_TEMPL_FUNC
+#define ARSM_TEMPL_TRACKER TrackerSingleMarkerImpl
 
 
 namespace ARToolKitPlus
@@ -44,8 +44,7 @@ namespace ARToolKitPlus
  *  __MAX_IMAGE_PATTERNS describes the maximum number of patterns that can be analyzed in a camera image.
  *  Reduce maxLoadPatterns and __MAX_IMAGE_PATTERNS to reduce memory footprint.
  */
-template <int __PATTERN_SIZE_X, int __PATTERN_SIZE_Y, int __PATTERN_SAMPLE_NUM, int __MAX_IMAGE_PATTERNS=32>
-class TrackerSingleMarkerImpl : public TrackerSingleMarker, protected TrackerImpl<__PATTERN_SIZE_X,__PATTERN_SIZE_Y, __PATTERN_SAMPLE_NUM, __MAX_IMAGE_PATTERNS>
+class TrackerSingleMarkerImpl : public TrackerSingleMarker, protected TrackerImpl
 {
 public:
 	TrackerSingleMarkerImpl(int nWidth, int nHeight, int maxLoadPatterns=0);
@@ -138,7 +137,7 @@ public:
 	ARFloat executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)  {  return AR_TEMPL_TRACKER::executeMultiMarkerPoseEstimator(marker_info, marker_num, config);  }
     const CornerPoints& getTrackedCorners() const  {  return AR_TEMPL_TRACKER::getTrackedCorners();  }
 
-	static size_t getMemoryRequirements();
+	size_t getMemoryRequirements();
 
 protected:
 	ARFloat		confidence;

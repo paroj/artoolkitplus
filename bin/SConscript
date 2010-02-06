@@ -2,7 +2,7 @@ env = Environment()
 env["CPPPATH"] = "../include/"
 env["LIBPATH"] = "../"
 env["LIBS"] = ["ARToolkitPlus"]
-env["CPPFLAGS"] = "-Wall"
+env["CPPFLAGS"] = "-Wall -g"
 
 # examples
 env.Program("simple", ["../sample/simple/main.cpp"])

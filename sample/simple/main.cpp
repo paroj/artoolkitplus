@@ -73,7 +73,7 @@ int main(int argc, char** argv)
     //  - works with luminance (gray) images
     //  - can load a maximum of 1 pattern
     //  - can detect a maximum of 8 patterns in one image
-    ARToolKitPlus::TrackerSingleMarker *tracker = new ARToolKitPlus::TrackerSingleMarkerImpl<6,6,6, 8>(width,height,1);
+    ARToolKitPlus::TrackerSingleMarker *tracker = new ARToolKitPlus::TrackerSingleMarkerImpl(width,height);
 
 	const char* description = tracker->getDescription();
 	printf("ARToolKitPlus compile-time information:\n%s\n\n", description);
@@ -121,7 +121,6 @@ int main(int argc, char** argv)
     // here we go, just two calls to find the camera pose
     vector<int> markerId = tracker->calc(cameraBuffer);
     tracker->selectBestMarkerByCf();
-    printf("%d\n", tracker->getNumLoadablePatterns());
     float conf = (float)tracker->getConfidence();
 
     // use the result of calc() to setup the OpenGL transformation

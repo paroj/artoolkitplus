@@ -34,13 +34,22 @@ AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenWidth;
 AR_TEMPL_FUNC int AR_TEMPL_TRACKER::screenHeight;
 
 AR_TEMPL_FUNC 
-AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
+AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
+		PATTERN_WIDTH(pattWidth),
+		PATTERN_HEIGHT(pattHeight),
+		PATTERN_SAMPLE_NUM(pattSamples),
 		MAX_LOAD_PATTERNS(maxLoadPatterns),
-		MAX_IMAGE_PATTERNS(__MAX_IMAGE_PATTERNS),
-		WORK_SIZE(1024*MAX_IMAGE_PATTERNS)
+		MAX_IMAGE_PATTERNS(maxImagePatterns),
+		WORK_SIZE(1024*MAX_IMAGE_PATTERNS),
+		sprev_info(2, vector<arPrevInfo>(MAX_IMAGE_PATTERNS)),
+		pat(MAX_LOAD_PATTERNS, vector<vector<int> >(4, vector<int>(PATTERN_HEIGHT*PATTERN_WIDTH*3))),
+		patBW(MAX_LOAD_PATTERNS, vector<vector<int> >(4, vector<int>(PATTERN_HEIGHT*PATTERN_WIDTH*3))),
+		evec(EVEC_MAX, vector<ARFloat>(PATTERN_HEIGHT*PATTERN_WIDTH*3)),
+		evecBW(EVEC_MAX, vector<ARFloat>(PATTERN_HEIGHT*PATTERN_WIDTH*3))
 {
 	this->screenWidth = imWidth;
 	this->screenHeight = imHeight;
+
 	int i;
 
 #ifdef _USE_GENERIC_TRIGONOMETRIC_
@@ -56,15 +65,12 @@ AR_TEMPL_TRACKER::TrackerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
 
 	// dynamically allocate template arguments
 	patf = new int[MAX_LOAD_PATTERNS];
-	pat = new int[MAX_LOAD_PATTERNS][4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
+
 	patpow = new ARFloat[MAX_LOAD_PATTERNS][4];
-	patBW = new int[MAX_LOAD_PATTERNS][4][PATTERN_HEIGHT*PATTERN_WIDTH*3];
 	patpowBW = new ARFloat[MAX_LOAD_PATTERNS][4];
 	epat = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
 	epatBW = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
 	prev_info = new arPrevInfo[MAX_IMAGE_PATTERNS];
-	sprev_info[0] = new arPrevInfo[MAX_IMAGE_PATTERNS];
-	sprev_info[1] = new arPrevInfo[MAX_IMAGE_PATTERNS];
 	marker_infoL = new ARMarkerInfo[MAX_IMAGE_PATTERNS];
 
 
@@ -158,12 +164,12 @@ AR_TEMPL_FUNC
 AR_TEMPL_TRACKER::~TrackerImpl()
 {
 	delete[] patf;
-	delete[] pat;
 	delete[] patpow;
-	delete[] patBW;
 	delete[] patpowBW;
 	delete[] epat;
 	delete[] epatBW;
+	delete[] prev_info;
+	delete[] marker_infoL;
 
 	if(arCamera)
 		delete arCamera;

@@ -30,7 +30,7 @@ namespace ARToolKitPlus
 
 ARSM_TEMPL_FUNC
 ARSM_TEMPL_TRACKER::TrackerSingleMarkerImpl(int imWidth, int imHeight, int maxLoadPatterns) :
-AR_TEMPL_TRACKER::TrackerImpl(imWidth, imHeight, maxLoadPatterns)
+AR_TEMPL_TRACKER::TrackerImpl(imWidth, imHeight, 6,6,6, maxLoadPatterns, 8)
 {
 	this->thresh = 100;
 
