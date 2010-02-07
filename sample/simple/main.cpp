@@ -22,7 +22,7 @@
 //
 // Simple example to demonstrate usage of ARToolKitPlus
 // This sample does not open any graphics window. It just
-// loads test images and shows use to use the ARToolKitPlus API.
+// loads test images and shows how to use the ARToolKitPlus API.
 //
 
 #include "ARToolKitPlus/TrackerSingleMarkerImpl.h"

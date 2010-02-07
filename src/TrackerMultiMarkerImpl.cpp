@@ -103,12 +103,4 @@ void TrackerMultiMarkerImpl::getARMatrix(ARFloat nMatrix[3][4]) const {
 			nMatrix[i][j] = config->trans[i][j];
 }
 
-size_t TrackerMultiMarkerImpl::getMemoryRequirements() {
-	size_t size = sizeof(TrackerMultiMarkerImpl);
-
-	size += TrackerImpl::getDynamicMemoryRequirements();
-
-	return size;
-}
-
 } // namespace ARToolKitPlus

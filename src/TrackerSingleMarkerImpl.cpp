@@ -138,12 +138,4 @@ void TrackerSingleMarkerImpl::getARMatrix(ARFloat nMatrix[3][4]) const {
             nMatrix[i][j] = patt_trans[i][j];
 }
 
-size_t TrackerSingleMarkerImpl::getMemoryRequirements() {
-    size_t size = sizeof(TrackerSingleMarkerImpl);
-
-    size += TrackerImpl::getDynamicMemoryRequirements();
-
-    return size;
-}
-
 } // namespace ARToolKitPlus

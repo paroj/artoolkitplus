@@ -419,10 +419,6 @@ protected:
     void buildUndistO2ITable(Camera* pCam);
 
     void checkRGB565LUT();
-
-    // calculates amount of data that will be allocated via artkp_Alloc()
-    size_t getDynamicMemoryRequirements();
-
 public:
     // required for calib camera, should otherwise not be used directly
     //

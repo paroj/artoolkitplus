@@ -94,9 +94,6 @@ public:
      *  that can be retrieved via getModelViewMatrix().
      */
     virtual void getARMatrix(ARFloat nMatrix[3][4]) const;
-
-    size_t getMemoryRequirements();
-
 protected:
     int numDetected;
     bool useDetectLite;

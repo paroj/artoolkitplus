@@ -567,36 +567,4 @@ static bool usesSinglePrecision() {
     return sizeof(ARFloat) == 4;
 }
 
-size_t TrackerImpl::getDynamicMemoryRequirements() {
-    // requirements for allocations in the constructor
-    //
-    size_t size = sizeof(unsigned int) * (WORK_SIZE + // workL = new int[WORK_SIZE];
-            WORK_SIZE * 7 + // work2L = new int[WORK_SIZE*7];
-            WORK_SIZE + // wareaL = new int[WORK_SIZE];
-            WORK_SIZE * 4 + // wclipL = new int[WORK_SIZE*4];
-            WORK_SIZE * 2); // wposL = new ARFloat[WORK_SIZE*2];
-
-    // requirements for the image buffer (arImageL)
-    //
-    size += sizeof(uint8_t) * MAX_BUFFER_WIDTH * MAX_BUFFER_HEIGHT;
-
-    // requirements for allocation of marker_infoTWO
-    //
-    size += sizeof(ARMarkerInfo2) * MAX_IMAGE_PATTERNS;
-
-    // requirements for allocation of l_imageL
-    //
-    size += sizeof(int16_t) * MAX_BUFFER_WIDTH * MAX_BUFFER_HEIGHT;
-
-    // requirements for the lens undistortion table (undistO2ITable)
-    //
-    size += sizeof(unsigned int) * MAX_BUFFER_WIDTH * MAX_BUFFER_HEIGHT;
-
-    // requirements for the RGB565 to gray table RGB565_to_LUM8_LUT
-    //
-    size += sizeof(unsigned char) * LUM_TABLE_SIZE;
-
-    return size;
-}
-
 } // namespace ARToolKitPlus

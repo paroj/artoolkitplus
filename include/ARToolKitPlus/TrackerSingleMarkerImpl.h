@@ -90,9 +90,6 @@ public:
     virtual void selectDetectedMarker(const int id);
 
     virtual int selectBestMarkerByCf();
-
-    size_t getMemoryRequirements();
-
 protected:
     ARFloat confidence;
     ARFloat patt_width;
