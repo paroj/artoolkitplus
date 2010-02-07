@@ -69,9 +69,6 @@ int main(int argc, char** argv) {
 	ARToolKitPlus::TrackerSingleMarker *tracker = new ARToolKitPlus::TrackerSingleMarkerImpl(width, height, 6, 6, 6, 1,
 			8);
 
-	const char* description = tracker->getDescription();
-	printf("ARToolKitPlus compile-time information:\n%s\n\n", description);
-
 	tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
 	//tracker->setLoadUndistLUT(true);
 

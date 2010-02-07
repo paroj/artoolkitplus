@@ -215,9 +215,6 @@ public:
     /// Returns an opengl-style projection transformation matrix
     virtual const ARFloat* getProjectionMatrix() const = 0;
 
-    /// Returns a short description with compiled-in settings
-    virtual const char* getDescription() = 0;
-
     /// Returns the compiled-in pixel format
     virtual PIXEL_FORMAT getPixelFormat() const = 0;
 

@@ -242,9 +242,6 @@ public:
         return gl_cpara;
     }
 
-    /// Returns a short description with compiled-in settings
-    virtual const char* getDescription();
-
     /// Returns the compiled-in pixel format
     virtual PIXEL_FORMAT getPixelFormat() const {
         return static_cast<PIXEL_FORMAT> (pixelFormat);

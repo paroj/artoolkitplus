@@ -32,8 +32,6 @@ namespace ARToolKitPlus {
 int TrackerImpl::screenWidth;
 int TrackerImpl::screenHeight;
 
-static bool usesSinglePrecision();
-
 TrackerImpl::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
 		PATTERN_WIDTH(pattWidth),
 		PATTERN_HEIGHT(pattHeight),
@@ -344,7 +342,7 @@ bool TrackerImpl::convertProjectionMatrixToOpenGLStyle2(ARFloat cparam[3][4], in
     int i, j;
 
     if (arParamDecompMat(cparam, icpara, trans) < 0) {
-        printf("gConvGLcpara: Parameter error!!\n");
+        cerr << "gConvGLcpara: Parameter error!" << endl;
         return false;
     }
 
@@ -531,29 +529,4 @@ void TrackerImpl::cleanup() {
 
     marker_infoTWO = NULL;
 }
-
-const char*
-TrackerImpl::getDescription() {
-    const char* pixelformats[] = { "NONE", "ABGR", "BGRA", "BGR", "RGBA", "RGB", "RGB565", "LUM" };
-    int f = getPixelFormat();
-
-    sprintf(descriptionString, "ARToolKitPlus v%d.%d: built %s %s; %s; %s precision; %dx%d marker; %s pixelformat.",
-            VERSION_MAJOR, VERSION_MINOR, __DATE__, __TIME__,
-#if defined(_USEFIXED_)
-            "fixed-point",
-#else
-            "floating-point",
-#endif
-            usesSinglePrecision() ? "single" : "double", PATTERN_WIDTH, PATTERN_HEIGHT,
-            f <= PIXEL_FORMAT_LUM ? pixelformats[f] : pixelformats[0]);
-
-    assert(strlen(descriptionString)<512);
-
-    return descriptionString;
-}
-
-static bool usesSinglePrecision() {
-    return sizeof(ARFloat) == 4;
-}
-
 } // namespace ARToolKitPlus

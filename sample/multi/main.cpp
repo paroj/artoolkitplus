@@ -69,9 +69,6 @@ int main(int argc, char** argv)
     //  - can detect a maximum of 8 patterns in one image
     ARToolKitPlus::TrackerMultiMarker *tracker = new ARToolKitPlus::TrackerMultiMarkerImpl(width,height);
 
-	const char* description = tracker->getDescription();
-	printf("ARToolKitPlus compile-time information:\n%s\n\n", description);
-
 	tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
 
     // load a camera file.
