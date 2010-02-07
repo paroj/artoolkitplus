@@ -32,8 +32,8 @@ TrackerMultiMarkerImpl::TrackerMultiMarkerImpl(int imWidth, int imHeight, int pa
 	config = 0;
 
 	this->thresh = 150;
-	detectedMarkerIDs = new int[this->MAX_IMAGE_PATTERNS];
-	detectedMarkers = new ARMarkerInfo[this->MAX_IMAGE_PATTERNS];
+	detectedMarkerIDs = new int[MAX_IMAGE_PATTERNS];
+	detectedMarkers = new ARMarkerInfo[MAX_IMAGE_PATTERNS];
 }
 
 TrackerMultiMarkerImpl::~TrackerMultiMarkerImpl() {
@@ -49,7 +49,7 @@ bool TrackerMultiMarkerImpl::init(const char* nCamParamFile, const char* nMultiF
 	// init some "static" from TrackerMultiMarker
 	//
 	if (this->marker_infoTWO == NULL)
-		this->marker_infoTWO = new ARMarkerInfo2[TrackerImpl::MAX_IMAGE_PATTERNS];
+		this->marker_infoTWO = new ARMarkerInfo2[MAX_IMAGE_PATTERNS];
 
 	if (!loadCameraFile(nCamParamFile, nNearClip, nFarClip))
 		return false;
@@ -82,7 +82,7 @@ int TrackerMultiMarkerImpl::calc(const unsigned char* nImage) {
 		if (tmp_markers[i].id != -1) {
 			detectedMarkers[numDetected] = tmp_markers[i];
 			detectedMarkerIDs[numDetected++] = tmp_markers[i].id;
-			if (numDetected >= this->MAX_IMAGE_PATTERNS) // increase this value if more markers should be possible to be detected in one image...
+			if (numDetected >= MAX_IMAGE_PATTERNS) // increase this value if more markers should be possible to be detected in one image...
 				break;
 		}
 

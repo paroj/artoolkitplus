@@ -36,7 +36,7 @@ namespace ARToolKitPlus {
  *
  *  If you need multi-marker tracking use TrackerMultiMarker.
  */
-class TrackerSingleMarker: public Tracker {
+class TrackerSingleMarker: virtual public Tracker {
 public:
     virtual ~TrackerSingleMarker() {
     }

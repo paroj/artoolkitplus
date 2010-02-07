@@ -38,7 +38,7 @@ using std::vector;
 namespace ARToolKitPlus {
 
 /// TrackerImpl implements the Tracker interface
-class TrackerImpl: public Tracker {
+class TrackerImpl: virtual public Tracker {
 public:
 #ifdef SMALL_LUM8_TABLE
     static const int LUM_TABLE_SIZE = (0xffff >> 6) + 1;
@@ -332,11 +332,9 @@ protected:
 
     ARFloat arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4],
             Camera *pCam);
-    //ARFloat *dist_factor, ARFloat cpara[3][4]);
 
     ARFloat arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat pos3d[][3], int num, ARFloat conv[3][4],
             Camera *pCam);
-    //ARFloat *dist_factor, ARFloat cpara[3][4] );
 
     ARFloat arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4], ARFloat vertex[][3],
             ARFloat pos2d[][2], int num);

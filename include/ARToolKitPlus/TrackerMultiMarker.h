@@ -30,7 +30,7 @@ namespace ARToolKitPlus {
  *  ARToolKit::TrackerMultiMarker provides all methods to access ARToolKit for
  *  multi marker tracking without needing to mess around with it directly.
  */
-class TrackerMultiMarker: public Tracker {
+class TrackerMultiMarker: virtual public Tracker {
 public:
     virtual ~TrackerMultiMarker() {
     }

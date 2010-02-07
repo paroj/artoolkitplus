@@ -91,141 +91,6 @@ public:
 
     virtual int selectBestMarkerByCf();
 
-    //
-    // reimplement TrackerImpl into TrackerSingleMarker interface
-    //
-    // TODO: something like 'using cleanup;' would be nicer but does seem to work...
-    //
-    void cleanup() {
-        TrackerImpl::cleanup();
-    }
-    bool setPixelFormat(PIXEL_FORMAT nFormat) {
-        return TrackerImpl::setPixelFormat(nFormat);
-    }
-    bool loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) {
-        return TrackerImpl::loadCameraFile(nCamParamFile, nNearClip, nFarClip);
-    }
-    void setLoadUndistLUT(bool nSet) {
-        TrackerImpl::setLoadUndistLUT(nSet);
-    }
-    int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) {
-        return TrackerImpl::arDetectMarker(dataPtr, thresh, marker_info, marker_num);
-    }
-    int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num) {
-        return TrackerImpl::arDetectMarkerLite(dataPtr, thresh, marker_info, marker_num);
-    }
-    ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
-        return TrackerImpl::arMultiGetTransMat(marker_info, marker_num, config);
-    }
-    ARFloat arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]) {
-        return TrackerImpl::arGetTransMat(marker_info, center, width, conv);
-    }
-    ARFloat arGetTransMatCont(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width,
-            ARFloat conv[3][4]) {
-        return TrackerImpl::arGetTransMatCont(marker_info, prev_conv, center, width, conv);
-    }
-    ARFloat rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
-        return TrackerImpl::rppMultiGetTransMat(marker_info, marker_num, config);
-    }
-    ARFloat rppGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]) {
-        return TrackerImpl::rppGetTransMat(marker_info, center, width, conv);
-    }
-    int arLoadPatt(char *filename) {
-        return TrackerImpl::arLoadPatt(filename);
-    }
-    int arFreePatt(int patno) {
-        return TrackerImpl::arFreePatt(patno);
-    }
-    int arMultiFreeConfig(ARMultiMarkerInfoT *config) {
-        return TrackerImpl::arMultiFreeConfig(config);
-    }
-    ARMultiMarkerInfoT *arMultiReadConfigFile(const char *filename) {
-        return TrackerImpl::arMultiReadConfigFile(filename);
-    }
-    void activateBinaryMarker(int nThreshold) {
-        TrackerImpl::activateBinaryMarker(nThreshold);
-    }
-    void setMarkerMode(MARKER_MODE nMarkerMode) {
-        TrackerImpl::setMarkerMode(nMarkerMode);
-    }
-    void activateVignettingCompensation(bool nEnable, int nCorners = 0, int nLeftRight = 0, int nTopBottom = 0) {
-        TrackerImpl::activateVignettingCompensation(nEnable, nCorners, nLeftRight, nTopBottom);
-    }
-    void changeCameraSize(int nWidth, int nHeight) {
-        TrackerImpl::changeCameraSize(nWidth, nHeight);
-    }
-    void setUndistortionMode(UNDIST_MODE nMode) {
-        TrackerImpl::setUndistortionMode(nMode);
-    }
-    bool setPoseEstimator(POSE_ESTIMATOR nMethod) {
-        return TrackerImpl::setPoseEstimator(nMethod);
-    }
-    void setHullMode(HULL_TRACKING_MODE nMode) {
-        TrackerImpl::setHullMode(nMode);
-    }
-    void setBorderWidth(ARFloat nFraction) {
-        TrackerImpl::setBorderWidth(nFraction);
-    }
-    void setThreshold(int nValue) {
-        TrackerImpl::setThreshold(nValue);
-    }
-    int getThreshold() const {
-        return TrackerImpl::getThreshold();
-    }
-    void activateAutoThreshold(bool nEnable) {
-        TrackerImpl::activateAutoThreshold(nEnable);
-    }
-    bool isAutoThresholdActivated() const {
-        return TrackerImpl::isAutoThresholdActivated();
-    }
-    void setNumAutoThresholdRetries(int nNumRetries) {
-        TrackerImpl::setNumAutoThresholdRetries(nNumRetries);
-    }
-    const ARFloat* getModelViewMatrix() const {
-        return TrackerImpl::getModelViewMatrix();
-    }
-    const ARFloat* getProjectionMatrix() const {
-        return TrackerImpl::getProjectionMatrix();
-    }
-    const char* getDescription() {
-        return TrackerImpl::getDescription();
-    }
-    PIXEL_FORMAT getPixelFormat() const {
-        return static_cast<PIXEL_FORMAT> (TrackerImpl::getPixelFormat());
-    }
-    int getBitsPerPixel() const {
-        return static_cast<PIXEL_FORMAT> (TrackerImpl::getBitsPerPixel());
-    }
-    int getNumLoadablePatterns() const {
-        return TrackerImpl::getNumLoadablePatterns();
-    }
-    void setImageProcessingMode(IMAGE_PROC_MODE nMode) {
-        TrackerImpl::setImageProcessingMode(nMode);
-    }
-    Camera* getCamera() {
-        return TrackerImpl::getCamera();
-    }
-    void setCamera(Camera* nCamera) {
-        TrackerImpl::setCamera(nCamera);
-    }
-    void setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip) {
-        TrackerImpl::setCamera(nCamera, nNearClip, nFarClip);
-    }
-    ARFloat calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize,
-            ARFloat *nOpenGLMatrix) {
-        return TrackerImpl::calcOpenGLMatrixFromMarker(nMarkerInfo, nPatternCenter, nPatternSize, nOpenGLMatrix);
-    }
-    ARFloat executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width,
-            ARFloat conv[3][4]) {
-        return TrackerImpl::executeSingleMarkerPoseEstimator(marker_info, center, width, conv);
-    }
-    ARFloat executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
-        return TrackerImpl::executeMultiMarkerPoseEstimator(marker_info, marker_num, config);
-    }
-    const CornerPoints& getTrackedCorners() const {
-        return TrackerImpl::getTrackedCorners();
-    }
-
     size_t getMemoryRequirements();
 
 protected:
@@ -233,6 +98,7 @@ protected:
     ARFloat patt_width;
     ARFloat patt_center[2];
     ARFloat patt_trans[3][4];
+
     // save the results of last calc call
     ARMarkerInfo *marker_info;
     int marker_num;
