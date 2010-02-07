@@ -1,23 +1,22 @@
-/*
-    Copyright (C) 2010  ARToolkitPlus Authors
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    Authors:
-      Thomas Pintaric
+/**
+ * Copyright (C) 2010  ARToolkitPlus Authors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authors:
+ *  Thomas Pintaric
  */
-
 
 #ifndef __RPP_CONST_H__
 #define __RPP_CONST_H__
@@ -27,20 +26,8 @@
 #define CONST_PI              3.1415926535897932f
 #define CONST_2_PI            6.2331853071795865f
 
-
-// experimental and not working yet, do not define !
-//#define _USE_CUSTOMFLOAT_
-
-
-#ifdef _USE_CUSTOMFLOAT_
-#  define MAX_FLOAT        1E10
-#  define DEFAULT_TOL      1E-3
-#  define DEFAULT_EPSILON  1E-4
-#else
-#  define MAX_FLOAT        1E10
-#  define DEFAULT_TOL      1E-5
-#  define DEFAULT_EPSILON  1E-8
-#endif
-
+#define MAX_FLOAT        1E10
+#define DEFAULT_TOL      1E-5
+#define DEFAULT_EPSILON  1E-8
 
 #endif

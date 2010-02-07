@@ -53,14 +53,7 @@ TrackerImpl::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeigh
     int i;
 
 #ifdef _USE_GENERIC_TRIGONOMETRIC_
-#  ifdef WIN32
-#    pragma message(">>> using SinCos LUT")
-#  endif
     Fixed28_Init();
-#  else
-#    ifdef WIN32
-#      pragma message(">>> not using SinCos LUT")
-#  endif
 #endif
 
     // dynamically allocate template arguments
@@ -550,7 +543,7 @@ TrackerImpl::getDescription() {
 
     sprintf(descriptionString, "ARToolKitPlus v%d.%d: built %s %s; %s; %s precision; %dx%d marker; %s pixelformat.",
             VERSION_MAJOR, VERSION_MINOR, __DATE__, __TIME__,
-#if defined(_USEFIXED_) || defined(_USEGPP_)
+#if defined(_USEFIXED_)
             "fixed-point",
 #else
             "floating-point",
