@@ -601,34 +601,4 @@ protected:
 
 }	// namespace ARToolKitPlus
 
-
-
-// this is templated code, so we need to include all this here...
-//
-/*#include <ARToolKitPlus_impl/core/arBitFieldPattern.cpp>
-#include <ARToolKitPlus_impl/core/arDetectMarker.cpp>
-#include <ARToolKitPlus_impl/core/arDetectMarker2.cpp>
-#include <ARToolKitPlus_impl/core/arGetCode.cpp>
-#include <ARToolKitPlus_impl/core/arGetMarkerInfo.cpp>
-#include <ARToolKitPlus_impl/core/arGetTransMat.cpp>
-#include <ARToolKitPlus_impl/core/arGetTransMat2.cpp>
-#include <ARToolKitPlus_impl/core/arGetTransMat3.cpp>
-#include <ARToolKitPlus_impl/core/rppGetTransMat.cpp> // RPP integration -- [t.pintaric]
-#include <ARToolKitPlus_impl/core/arGetTransMatCont.cpp>
-#include <ARToolKitPlus_impl/core/arLabeling.cpp>
-#include <ARToolKitPlus_impl/core/arMultiActivate.cpp>
-#include <ARToolKitPlus_impl/core/arMultiGetTransMat.cpp>
-#include <ARToolKitPlus_impl/core/rppMultiGetTransMat.cpp> 	// RPP integration -- [t.pintaric]
-#include <ARToolKitPlus_impl/core/arMultiReadConfigFile.cpp>
-#include <ARToolKitPlus_impl/core/arUtil.cpp>
-#include <ARToolKitPlus_impl/core/matrix.cpp>
-#include <ARToolKitPlus_impl/core/mPCA.cpp>
-#include <ARToolKitPlus_impl/core/paramDecomp.cpp>
-#include <ARToolKitPlus_impl/core/paramDistortion.cpp>
-#include <ARToolKitPlus_impl/core/vector.cpp>
-#include <ARToolKitPlus_impl/core/arMultiGetTransMatHull.cpp>
-
-#include <ARToolKitPlus_impl/arGetInitRot2.cpp>
-#include <ARToolKitPlus_impl/TrackerImpl.cpp>*/
-
 #endif //__ARTOOLKIT_TRACKERIMPL_HEADERFILE__

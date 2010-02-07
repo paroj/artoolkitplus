@@ -41,7 +41,7 @@ namespace ARToolKitPlus {
  */
 class TrackerSingleMarkerImpl: public TrackerSingleMarker, protected TrackerImpl {
 public:
-	TrackerSingleMarkerImpl(int nWidth, int nHeight, int maxLoadPatterns = 0);
+	TrackerSingleMarkerImpl(int imWidth, int imHeight, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6, int maxLoadPatterns = 0, int maxImagePatterns = 8);
 	~TrackerSingleMarkerImpl();
 
 	/// initializes TrackerSingleMarker
