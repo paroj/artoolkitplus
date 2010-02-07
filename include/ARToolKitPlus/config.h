@@ -1,21 +1,22 @@
-/*
-    Copyright (C) 2010  ARToolkitPlus Authors
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    Authors:
-      Daniel Wagner
+/**
+ * Copyright (C) 2010  ARToolkitPlus Authors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authors:
+ *  Daniel Wagner
+ *  Pavel Rojtberg
  */
 
 
@@ -35,38 +36,6 @@
 #else
 	typedef float ARFloat;
 #endif
-
-/**
- * Pixel format:
- * depends on platform
- *
- * One day we have to provide a version that
- * just takes an 8-Bit b&w image.
- */
-
-//#ifdef _USE_8BITIMAGE_
-//  #define AR_PIX_SIZE 1
-//  #define AR_PIX_FORMAT_LUM
-//#else 
-//  #ifdef _USE_16BITIMAGE_
-//    #define AR_PIX_SIZE 2
-//    #define AR_PIX_FORMAT_RGB565
-//  #else
-//    #define AR_PIX_SIZE 4
-//    #ifdef __linux
-//      #define AR_PIX_FORMAT_RGBA
-//    #endif
-//    #ifdef _WIN32
-//      #define AR_PIX_FORMAT_BGRA
-//    #endif
-//    #ifdef __sgi
-//      #define AR_PIX_FORMAT_ABGR
-//    #endif
-//    #ifdef __APPLE_CC__
-//      #define AR_PIX_FORMAT_RGBA
-//    #endif
-//  #endif //_USE_16BITIMAGE_
-//#endif //_USE_8BITIMAGE_
 
 
 /*------------------------------------------------------------
@@ -115,37 +84,9 @@
 //#define   AR_SQUARE_MAX        50
 // plays some role in arDetectMarker2 I don't understand yet
 #define   AR_CHAIN_MAX      10000
-// maximum number of markers that can be simultaneously loaded
-//#define   AR_PATT_NUM_MAX      50 
-
-// These parameters control the way the toolkit warps a found
-// marker to a perfect square. The square has size 
-// AR_PATT_SIZE_X * AR_SIZE_PATT_Y, the projected
-// square in the image is subsampled at a min of
-// AR_PATT_SIZE_X/Y and a max of AR_PATT_SAMPLE_NUM
-// steps in both x and y direction
-//#define   AR_PATT_SIZE_X       16
-//#define   AR_PATT_SIZE_Y       16
-//#define   AR_PATT_SAMPLE_NUM   64
-
-// Constants controlling the behavior of
-// atParamGet (for calibrating HMDs and cameras)
-// max/min number of feature points to match 2D<->3D
-#define   AR_PARAM_NMIN         6
-#define   AR_PARAM_NMAX      1000
-#define   AR_PARAM_C34        100.0
 
 #define   EVEC_MAX     10
 #define	  P_MAX       500
-
-// this defines the maximum screen width that
-// can be processed by artoolkit...
-// memory consumption (if static) is: 2*width*height bytes
-#define MAX_BUFFER_WIDTH  720
-#define MAX_BUFFER_HEIGHT 576
-
-//#define WORK_SIZE   1024*32
-
 
 //#define SMALL_LUM8_TABLE
 
@@ -156,7 +97,7 @@
 #endif //SMALL_LUM8_TABLE
 
 
-#if defined(_MSC_VER) || defined(_WIN32_WCE)
+#if defined(_MSC_VER)
 #  include <windows.h>
 #else
 // for linux no MAX_PATH variable is set

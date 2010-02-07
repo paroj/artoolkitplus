@@ -49,12 +49,6 @@ typedef struct {
     ARFloat   dist_factorR[4];
 } ARSParam;
 
-
-namespace Param {
-	// static int display( ARParam *param );
-};
-
-
 }  // namespace ARToolKitPlus
 
 

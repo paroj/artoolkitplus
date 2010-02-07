@@ -35,11 +35,17 @@ namespace ARToolKitPlus {
 class TrackerSingleMarkerImpl: public TrackerSingleMarker, protected TrackerImpl {
 public:
     /**
+     * These parameters control the way the toolkit warps a found
+     * marker to a perfect square. The square has size
+     * pattWidth * pattHeight, the projected
+     * square in the image is subsampled at a min of
+     * pattWidth/pattHeight and a max of pattSamples
+     * steps in both x and y direction
      *  @param imWidth width of the source image in px
      *  @param imHeight height of the source image in px
      *  @param pattWidth describes the pattern image width (6 by default).
      *  @param pattHeight describes the pattern image height (6 by default).
-     *  @param pattNum describes the maximum resolution at which a pattern is sampled from the camera image
+     *  @param pattSamples describes the maximum resolution at which a pattern is sampled from the camera image
      *  (6 by default, must a a multiple of pattWidth and pattHeight).
      *  @param maxLoadPatterns describes the maximum number of pattern files that can be loaded.
      *  @param maxImagePatterns describes the maximum number of patterns that can be analyzed in a camera image.
