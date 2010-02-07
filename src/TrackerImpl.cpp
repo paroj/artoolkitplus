@@ -52,10 +52,6 @@ TrackerImpl::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeigh
 
     int i;
 
-#ifdef _USE_GENERIC_TRIGONOMETRIC_
-    Fixed28_Init();
-#endif
-
     // dynamically allocate template arguments
     patf = new int[MAX_LOAD_PATTERNS];
 
