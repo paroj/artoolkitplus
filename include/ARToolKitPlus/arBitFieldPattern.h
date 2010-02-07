@@ -78,14 +78,13 @@ namespace ARToolKitPlus {
 
 	// some internal methods. primarily needed for
 	// marker printing, etc.
-	//
-	static void generatePatternSimple(int nID, IDPATTERN& nPattern);
+	void generatePatternSimple(int nID, IDPATTERN& nPattern);
 
-	static void generatePatternBCH(int nID, IDPATTERN& nPattern);
+	void generatePatternBCH(int nID, IDPATTERN& nPattern);
 
 	// static void setBit(IDPATTERN& pat, int which);
 
-	static bool isBitSet(IDPATTERN pat, int which);
+	bool isBitSet(IDPATTERN pat, int which);
 
 
 }  // namespace ARToolKitPlus

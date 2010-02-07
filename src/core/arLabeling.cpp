@@ -22,13 +22,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 
 
 namespace ARToolKitPlus {
 
 
-static void
+void
 put_zero( uint8_t *p, int size )
 {
     while( (size--) > 0 ) *(p++) = 0;

@@ -16,9 +16,10 @@
 
     Authors:
       Daniel Wagner
+      Pavel Rojtberg
  */
 
-
+#include <ARToolKitPlus/TrackerImpl.h>
 
 namespace ARToolKitPlus {
 

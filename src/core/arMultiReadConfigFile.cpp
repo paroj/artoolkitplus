@@ -26,7 +26,7 @@
 #include <cstring>
 #include <cmath>
 #include <clocale>
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/matrix.h>
 
 

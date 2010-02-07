@@ -24,7 +24,7 @@
 #include <math.h>
 #include <map>
 #include <deque>
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/extra/rpp.h>
 

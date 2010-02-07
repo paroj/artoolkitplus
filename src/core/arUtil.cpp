@@ -34,7 +34,7 @@
 #include <sys/time.h>
 #endif
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/param.h>
 #include <ARToolKitPlus/matrix.h>
 

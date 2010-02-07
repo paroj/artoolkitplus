@@ -23,7 +23,7 @@
 #define __TRACKERMULTIMARKER_HEADERFILE__
 
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 
 
 namespace ARToolKitPlus

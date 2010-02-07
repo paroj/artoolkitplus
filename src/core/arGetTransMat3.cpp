@@ -16,15 +16,12 @@
 
     Authors:
       Daniel Wagner
+      Pavel Rojtberg
  */
 
+#include <ARToolKitPlus/TrackerImpl.h>
 
 #define CHECK_CALC 0
-
-//#include <stdlib.h>
-//#include <math.h>
-//#include <ARToolKitPlus/Tracker.h>
-//#include <ARToolKitPlus/matrix.h>
 
 
 namespace ARToolKitPlus {

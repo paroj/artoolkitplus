@@ -16,9 +16,11 @@
 
     Authors:
       Daniel Wagner
+      Pavel Rojtberg
  */
 
-
+#include <ARToolKitPlus/TrackerImpl.h>
+#include <cassert>
 
  int16_t*
 TrackerImpl::LABEL_FUNC_NAME(uint8_t *image, int thresh, int *label_num, int **area,

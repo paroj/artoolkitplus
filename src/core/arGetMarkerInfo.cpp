@@ -20,7 +20,7 @@
 
 
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 
 
 namespace ARToolKitPlus {

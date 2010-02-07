@@ -18,6 +18,8 @@
       Daniel Wagner
  */
 
+#include <ARToolKitPlus/TrackerImpl.h>
+
 namespace ARToolKitPlus {
 
 

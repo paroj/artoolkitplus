@@ -19,6 +19,8 @@
  Pavel Rojtberg
  */
 
+#include <ARToolKitPlus/TrackerMultiMarkerImpl.h>
+
 namespace ARToolKitPlus {
 
 TrackerMultiMarkerImpl::TrackerMultiMarkerImpl(int imWidth, int imHeight, int maxLoadPatterns) :

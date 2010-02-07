@@ -21,7 +21,7 @@
 #ifndef __ARTOOLKITVECTOR_HEADERFILE__
 #define __ARTOOLKITVECTOR_HEADERFILE__
 
-#include <math.h>
+#include <cmath>
 #include <ARToolKitPlus/config.h>
 
 namespace ARToolKitPlus {
@@ -34,12 +34,11 @@ struct ARVec {
 };
 
 namespace Vector {
-static ARVec *alloc(int clm);
-static int free(ARVec *v);
-// static int    disp( ARVec *v );
-static ARFloat household(ARVec *x);
-static ARFloat innerproduct(ARVec *x, ARVec *y);
-static int tridiagonalize(ARMat *a, ARVec *d, ARVec *e);
+ARVec *alloc(int clm);
+int free(ARVec *v);
+ARFloat household(ARVec *x);
+ARFloat innerproduct(ARVec *x, ARVec *y);
+int tridiagonalize(ARMat *a, ARVec *d, ARVec *e);
 }
 
 } // namespace ARToolKitPlus

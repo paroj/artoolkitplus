@@ -23,7 +23,7 @@
 #ifndef __ARTOOLKIT_TRACKERIMPL_HEADERFILE__
 #define __ARTOOLKIT_TRACKERIMPL_HEADERFILE__
 
-
+#include <ARToolKitPlus/ARToolKitPlus.h>
 #include <ARToolKitPlus/ar.h>
 #include <ARToolKitPlus/arMulti.h>
 #include <ARToolKitPlus/matrix.h>
@@ -37,12 +37,6 @@
 using std::vector;
 
 namespace ARToolKitPlus {
-
-
-// Compile time information...
-//
-static bool usesSinglePrecision();				/// Returns whether single or double precision is used
-
 
 /// TrackerImpl implements the Tracker interface
 class TrackerImpl : public Tracker
@@ -611,7 +605,7 @@ protected:
 
 // this is templated code, so we need to include all this here...
 //
-#include <ARToolKitPlus_impl/core/arBitFieldPattern.cpp>
+/*#include <ARToolKitPlus_impl/core/arBitFieldPattern.cpp>
 #include <ARToolKitPlus_impl/core/arDetectMarker.cpp>
 #include <ARToolKitPlus_impl/core/arDetectMarker2.cpp>
 #include <ARToolKitPlus_impl/core/arGetCode.cpp>
@@ -635,6 +629,6 @@ protected:
 #include <ARToolKitPlus_impl/core/arMultiGetTransMatHull.cpp>
 
 #include <ARToolKitPlus_impl/arGetInitRot2.cpp>
-#include <ARToolKitPlus_impl/TrackerImpl.cpp>
+#include <ARToolKitPlus_impl/TrackerImpl.cpp>*/
 
 #endif //__ARTOOLKIT_TRACKERIMPL_HEADERFILE__

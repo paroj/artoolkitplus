@@ -19,17 +19,17 @@
  Pavel Rojtberg
  */
 
-#include <stdio.h>
-#include <math.h>
+#include <cstdio>
+#include <cmath>
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/ar.h>
 #include <ARToolKitPlus/matrix.h>
 
 namespace ARToolKitPlus {
 
 static void get_cpara(ARFloat world[4][2], ARFloat vertex[4][2], ARFloat para[3][3]);
-static void put_zero(uint8_t *p, int size);
+void put_zero(uint8_t *p, int size);
 
 int TrackerImpl::arLoadPatt(char *filename) {
 	FILE *fp;
@@ -264,7 +264,7 @@ int TrackerImpl::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vert
 		ARFloat steps[PATTERN_WIDTH];
 
 		for (i = 0; i < xdiv2; i++)
-			steps[i] = xyFrom + xyStep * (ARFloat)(i + 0.5f) / (ARFloat) xdiv2;
+			steps[i] = xyFrom + xyStep * (ARFloat) (i + 0.5f) / (ARFloat) xdiv2;
 
 		for (j = 0; j < ydiv2; j++) {
 			yw = steps[j];
@@ -343,10 +343,10 @@ int TrackerImpl::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vert
 
 		for (j = 0; j < ydiv2; j++) {
 			//yw = (ARFloat)(102.5) + (ARFloat)(5.0) * (ARFloat)(j+0.5) / (ARFloat)ydiv2;
-			yw = xyFrom + xyStep * (ARFloat)(j + 0.5f) / (ARFloat) ydiv2;
+			yw = xyFrom + xyStep * (ARFloat) (j + 0.5f) / (ARFloat) ydiv2;
 			for (i = 0; i < xdiv2; i++) {
 				//xw = (ARFloat)(102.5) + (ARFloat)(5.0) * (ARFloat)(i+0.5) / (ARFloat)xdiv2;
-				xw = xyFrom + xyStep * (ARFloat)(i + 0.5f) / (ARFloat) xdiv2;
+				xw = xyFrom + xyStep * (ARFloat) (i + 0.5f) / (ARFloat) xdiv2;
 				d = para[2][0] * xw + para[2][1] * yw + para[2][2];
 				if (d == 0)
 					return (-1);
@@ -358,47 +358,6 @@ int TrackerImpl::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vert
 				 yc = ((yc+1)/2)*2;
 				 }*/
 				if (xc >= 0 && xc < arImXsize && yc >= 0 && yc < arImYsize) {
-					/*if(PIX_FORMAT==PIXEL_FORMAT_ABGR) {
-					 ext_pat2[j/ydiv][i/xdiv][0] += image[(yc*arImXsize+xc)*PIX_SIZE+1];
-					 ext_pat2[j/ydiv][i/xdiv][1] += image[(yc*arImXsize+xc)*PIX_SIZE+2];
-					 ext_pat2[j/ydiv][i/xdiv][2] += image[(yc*arImXsize+xc)*PIX_SIZE+3];
-					 }
-					 if(PIX_FORMAT==PIXEL_FORMAT_BGRA) {
-					 ext_pat2[j/ydiv][i/xdiv][0] += image[(yc*arImXsize+xc)*PIX_SIZE+0];
-					 ext_pat2[j/ydiv][i/xdiv][1] += image[(yc*arImXsize+xc)*PIX_SIZE+1];
-					 ext_pat2[j/ydiv][i/xdiv][2] += image[(yc*arImXsize+xc)*PIX_SIZE+2];
-					 }
-					 if(PIX_FORMAT==PIXEL_FORMAT_BGR) {
-					 ext_pat2[j/ydiv][i/xdiv][0] += image[(yc*arImXsize+xc)*PIX_SIZE+0];
-					 ext_pat2[j/ydiv][i/xdiv][1] += image[(yc*arImXsize+xc)*PIX_SIZE+1];
-					 ext_pat2[j/ydiv][i/xdiv][2] += image[(yc*arImXsize+xc)*PIX_SIZE+2];
-					 }
-					 if(PIX_FORMAT==PIXEL_FORMAT_RGBA) {
-					 ext_pat2[j/ydiv][i/xdiv][0] += image[(yc*arImXsize+xc)*PIX_SIZE+2];
-					 ext_pat2[j/ydiv][i/xdiv][1] += image[(yc*arImXsize+xc)*PIX_SIZE+1];
-					 ext_pat2[j/ydiv][i/xdiv][2] += image[(yc*arImXsize+xc)*PIX_SIZE+0];
-					 }
-					 if(PIX_FORMAT==PIXEL_FORMAT_RGB) {
-					 ext_pat2[j/ydiv][i/xdiv][0] += image[(yc*arImXsize+xc)*PIX_SIZE+2];
-					 ext_pat2[j/ydiv][i/xdiv][1] += image[(yc*arImXsize+xc)*PIX_SIZE+1];
-					 ext_pat2[j/ydiv][i/xdiv][2] += image[(yc*arImXsize+xc)*PIX_SIZE+0];
-					 }
-					 if(PIX_FORMAT==PIXEL_FORMAT_RGB565) {
-					 int jy=j/ydiv, ix=i/xdiv;
-					 //uint8_t col = RGB565_to_LUM8_LUT[image16[yc*arImXsize+xc]];
-					 uint8_t col = getLUM8_from_RGB565(image16+yc*arImXsize+xc);
-					 ext_pat2[jy][ix][0] += col;
-					 ext_pat2[jy][ix][1] += col;
-					 ext_pat2[jy][ix][2] += col;
-					 }
-					 if(PIX_FORMAT==PIXEL_FORMAT_LUM) {
-					 int jy=j/ydiv, ix=i/xdiv;
-					 uint8_t col = image[(yc*arImXsize+xc)*PIX_SIZE];
-					 ext_pat2[jy][ix][0] += col;
-					 ext_pat2[jy][ix][1] += col;
-					 ext_pat2[jy][ix][2] += col;
-					 }*/
-
 					switch (pixelFormat) {
 					case PIXEL_FORMAT_ABGR:
 						ext_pat2[j / ydiv][i / xdiv][0] += image[(yc * arImXsize + xc) * 4 + 1];

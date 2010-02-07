@@ -20,9 +20,10 @@
 
 
 
-#include <stdio.h>
-#include <math.h>
-#include <ARToolKitPlus/Tracker.h>
+#include <cstdio>
+#include <cmath>
+#include <cassert>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/param.h>
 

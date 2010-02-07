@@ -24,7 +24,7 @@
 #define __TRACKERSINGLEMARKER_HEADERFILE__
 
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <vector>
 
 using std::vector;

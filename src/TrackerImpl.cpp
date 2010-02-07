@@ -21,9 +21,10 @@
 
 
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/TrackerImpl.h>
 #include <iostream>
+#include <cassert>
 
 using std::cerr;
 using std::endl;
@@ -33,7 +34,8 @@ namespace ARToolKitPlus {
  int TrackerImpl::screenWidth;
  int TrackerImpl::screenHeight;
 
- 
+ static bool usesSinglePrecision();
+
 TrackerImpl::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
 		PATTERN_WIDTH(pattWidth),
 		PATTERN_HEIGHT(pattHeight),
@@ -121,7 +123,7 @@ TrackerImpl::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeigh
 	//arImage                 = NULL;
 	arFittingMode           = DEFAULT_FITTING_MODE;
 	arImageProcMode         = DEFAULT_IMAGE_PROC_MODE;
-	
+
 	arCamera                = NULL;
 	loadCachedUndist        = false;
 	//arParam;
@@ -145,22 +147,22 @@ TrackerImpl::TrackerImpl(int imWidth, int imHeight, int pattWidth, int pattHeigh
 	arParamObserv2Ideal_func = &TrackerImpl::arParamObserv2Ideal_std;
 
 	vignetting.enabled = false;
-	vignetting.corners = 
-	vignetting.leftright = 
+	vignetting.corners =
+	vignetting.leftright =
 	vignetting.bottomtop = 0;
 
 	bchProcessor = NULL;
 
 	// RPP integration -- [t.pintaric]
 	poseEstimator = POSE_ESTIMATOR_ORIGINAL;
-	
+
 	hullTrackingMode = HULL_OFF;
 
 	descriptionString = new char[512];
 }
 
 
- 
+
 TrackerImpl::~TrackerImpl()
 {
 	delete[] patf;

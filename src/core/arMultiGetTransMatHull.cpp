@@ -19,8 +19,9 @@
  */
 
 
-
+#include <cassert>
 #include <ARToolKitPlus/extra/Hull.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/arGetInitRot2Sub.h>
 
 

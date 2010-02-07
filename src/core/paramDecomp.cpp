@@ -22,7 +22,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/matrix.h>
 
 

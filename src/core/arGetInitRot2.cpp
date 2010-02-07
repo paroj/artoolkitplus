@@ -16,12 +16,14 @@
 
     Authors:
       Daniel Wagner
+      Pavel Rojtberg
  */
 
 
 
 
 #include <ARToolKitPlus/arGetInitRot2Sub.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 
 
 namespace ARToolKitPlus {

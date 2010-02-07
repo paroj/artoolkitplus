@@ -6,10 +6,10 @@ env["CPPFLAGS"] = "-Wall"
 env["CPPPATH"] = "include/"
 
 sources = Glob("src/*.cpp") \
+		  +Glob("src/core/*.cpp") \
           +Glob("src/extra/*.cpp") \
           +Glob("src/librpp/*.cpp")
 
-#env["CPPDEFINES"] = ["ARTOOLKITPLUS_DLL"]
 arlib = env.SharedLibrary("ARToolkitPlus", sources)
 
 env.Install(env.get("prefix")+"/lib", arlib)

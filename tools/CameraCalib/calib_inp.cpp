@@ -4,7 +4,7 @@
 //#include <AR/ar.h>
 //#include <AR/param.h>
 //#include <AR/matrix.h>
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include "calib_camera.h"
 
 extern ARToolKitPlus::Tracker *theTracker;

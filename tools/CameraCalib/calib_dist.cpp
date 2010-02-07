@@ -5,7 +5,7 @@
 //#include <ARToolKitPlus/param.h>
 #include <ARToolKitPlus/matrix.h>
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 
 #include "calib_camera.h"
 

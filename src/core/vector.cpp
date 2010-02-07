@@ -29,7 +29,7 @@
 #endif
 #include <math.h>
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/vector.h>
 
@@ -41,7 +41,7 @@ namespace Vector {
 
 
 // from vAlloc.c
-static ARVec*
+ARVec*
 alloc( int clm )
 {
     ARVec     *v;
@@ -60,30 +60,8 @@ alloc( int clm )
     return v;
 }
 
-
-// from vDisp.c
-/*
-static int
-disp( ARVec *v )
-{
-    int    c;
-    
-    if( v == NULL ) return -1;
-
-    printf(" === vector (%d) ===\n", v->clm);
-    printf(" |");
-    for( c = 0; c < v->clm; c++ ){
-	printf( " %10g", v->v[c] );
-    }
-    printf(" |\n");
-    printf(" ===================\n");
-
-    return 0;
-}
-*/
-
 // from vFree.c
-static int
+int
 free( ARVec *v )
 {
     ::free( v->v );
@@ -94,7 +72,7 @@ free( ARVec *v )
 
 
 // from vHouse.c
-static ARFloat
+ARFloat
 household( ARVec *x )
 {
     ARFloat s, t;
@@ -116,7 +94,7 @@ household( ARVec *x )
 
 
 // from vInnerP.c
-static ARFloat
+ARFloat
 innerproduct( ARVec *x, ARVec *y )
 {
     ARFloat   result = 0.0;
@@ -133,7 +111,7 @@ innerproduct( ARVec *x, ARVec *y )
 
 
 // from vTridiag.c
-static int
+int
 tridiagonalize( ARMat *a, ARVec *d, ARVec *e )
 {
     ARVec     wv1, wv2;

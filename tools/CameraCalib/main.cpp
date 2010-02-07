@@ -11,7 +11,7 @@
 //#include <ARToolKitPlus/matrix.h>
 //#include <AR/ARFrameGrabber.h>
 
-#include <ARToolKitPlus/Tracker.h>
+#include <ARToolKitPlus/TrackerImpl.h>
 
 #include "ARFileGrabber.h"
 #include "calib_camera.h"

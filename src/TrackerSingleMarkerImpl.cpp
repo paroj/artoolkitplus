@@ -20,6 +20,7 @@
  */
 
 #include <iostream>
+#include <ARToolKitPlus/TrackerSingleMarkerImpl.h>
 
 using std::cerr;
 using std::endl;

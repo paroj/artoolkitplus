@@ -20,8 +20,9 @@
 
 
 
-#include <ARToolKitPlus/Tracker.h>
-#include <stdio.h>
+#include <ARToolKitPlus/TrackerImpl.h>
+#include <cstdio>
+#include <cassert>
 
 
 namespace ARToolKitPlus {
