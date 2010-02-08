@@ -53,7 +53,7 @@ public:
 
     TrackerImpl(int imWidth, int imHeight, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
             int maxLoadPatterns = 0, int maxImagePatterns = 8);
-    virtual ~TrackerImpl();
+    ~TrackerImpl();
 
     /// does final clean up (memory deallocation)
     virtual void cleanup();

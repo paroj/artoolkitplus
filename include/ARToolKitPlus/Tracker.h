@@ -45,9 +45,6 @@ namespace ARToolKitPlus {
  */
 class Tracker {
 public:
-    virtual ~Tracker() {
-    }
-
     /// does final clean up (memory deallocation)
     virtual void cleanup() = 0;
 
@@ -136,7 +133,7 @@ public:
      *  be interpolated.
      */
     virtual void
-            activateVignettingCompensation(bool nEnable, int nCorners = 0, int nLeftRight = 0, int nTopBottom = 0) = 0;
+    activateVignettingCompensation(bool nEnable, int nCorners = 0, int nLeftRight = 0, int nTopBottom = 0) = 0;
 
     /// changes the resolution of the camera after the camerafile was already loaded
     virtual void changeCameraSize(int nWidth, int nHeight) = 0;

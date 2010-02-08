@@ -32,9 +32,6 @@ namespace ARToolKitPlus {
  */
 class TrackerMultiMarker: virtual public Tracker {
 public:
-    virtual ~TrackerMultiMarker() {
-    }
-
     /**
      * initializes ARToolKit
      *  nCamParamFile is the name of the camera parameter file
