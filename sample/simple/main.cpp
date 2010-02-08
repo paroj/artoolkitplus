@@ -38,7 +38,8 @@ int main(int argc, char** argv) {
     size_t numBytesRead;
     const char *fName = useBCH ? "data/image_320_240_8_marker_id_bch_nr0100.raw"
             : "data/image_320_240_8_marker_id_simple_nr031.raw";
-    unsigned char *cameraBuffer = new unsigned char[numPixels];
+
+    unsigned char cameraBuffer[numPixels];
 
     // try to load a test camera image.
     // these images files are expected to be simple 8-bit raw pixel
@@ -49,13 +50,11 @@ int main(int argc, char** argv) {
         fclose(fp);
     } else {
         printf("Failed to open %s\n", fName);
-        delete cameraBuffer;
         return -1;
     }
 
     if (numBytesRead != numPixels) {
         printf("Failed to read %s\n", fName);
-        delete cameraBuffer;
         return -1;
     }
 
@@ -74,7 +73,6 @@ int main(int argc, char** argv) {
     if (!tracker->init("data/PGR_M12x0.5_2.5mm.cal", 1.0f, 1000.0f)) // load MATLAB file
     {
         printf("ERROR: init() failed\n");
-        delete cameraBuffer;
         delete tracker;
         return -1;
     }
@@ -118,7 +116,6 @@ int main(int argc, char** argv) {
     for (int i = 0; i < 16; i++)
         printf("%.2f  %s", tracker->getModelViewMatrix()[i], (i % 4 == 3) ? "\n  " : "");
 
-    delete[] cameraBuffer;
     delete tracker;
 
     return 0;
