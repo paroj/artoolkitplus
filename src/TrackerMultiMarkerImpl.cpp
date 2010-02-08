@@ -24,16 +24,16 @@
 namespace ARToolKitPlus {
 
 TrackerMultiMarkerImpl::TrackerMultiMarkerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight,
-		int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
-	TrackerImpl::TrackerImpl(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
-	useDetectLite = true;
-	numDetected = 0;
+        int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
+    TrackerImpl(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
+    useDetectLite = true;
+    numDetected = 0;
 
-	config = 0;
+    config = 0;
+    thresh = 150;
 
-	this->thresh = 150;
-	detectedMarkerIDs = new int[MAX_IMAGE_PATTERNS];
-	detectedMarkers = new ARMarkerInfo[MAX_IMAGE_PATTERNS];
+    detectedMarkerIDs = new int[MAX_IMAGE_PATTERNS];
+    detectedMarkers = new ARMarkerInfo[MAX_IMAGE_PATTERNS];
 }
 
 TrackerMultiMarkerImpl::~TrackerMultiMarkerImpl() {

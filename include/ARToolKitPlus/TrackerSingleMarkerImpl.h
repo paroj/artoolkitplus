@@ -25,14 +25,12 @@
 #include <ARToolKitPlus/TrackerSingleMarker.h>
 #include <ARToolKitPlus/TrackerImpl.h>
 
-#define TrackerSingleMarkerImpl TrackerSingleMarkerImpl
-
 namespace ARToolKitPlus {
 
 /**
  * TrackerSingleMarkerImpl implements the TrackerSingleMarker interface
  */
-class TrackerSingleMarkerImpl: public TrackerSingleMarker, protected TrackerImpl {
+class TrackerSingleMarkerImpl: public TrackerSingleMarker, public TrackerImpl {
 public:
     /**
      * These parameters control the way the toolkit warps a found

@@ -30,7 +30,7 @@ namespace ARToolKitPlus {
 /**
  * TrackerMultiMarkerImpl implements the TrackerMultiMarker interface
  */
-class TrackerMultiMarkerImpl: public TrackerMultiMarker, protected TrackerImpl {
+class TrackerMultiMarkerImpl: public TrackerMultiMarker, public TrackerImpl {
 public:
     /**
      * These parameters control the way the toolkit warps a found

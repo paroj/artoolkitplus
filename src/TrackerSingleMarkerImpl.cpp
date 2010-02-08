@@ -29,8 +29,8 @@ namespace ARToolKitPlus {
 
 TrackerSingleMarkerImpl::TrackerSingleMarkerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight,
         int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
-    TrackerImpl::TrackerImpl(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
-    this->thresh = 100;
+    TrackerImpl(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
+    thresh = 100;
 
     patt_width = 80;
     patt_center[0] = patt_center[1] = 0.0;
@@ -51,7 +51,7 @@ bool TrackerSingleMarkerImpl::init(const char* nCamParamFile, ARFloat nNearClip,
     // (some systems don't like such large global members
     // so we allocate this manually)
     if (this->marker_infoTWO == NULL)
-        this->marker_infoTWO = new ARMarkerInfo2[this->MAX_IMAGE_PATTERNS];
+        this->marker_infoTWO = new ARMarkerInfo2[MAX_IMAGE_PATTERNS];
 
     //initialize applications
     if (nCamParamFile)
