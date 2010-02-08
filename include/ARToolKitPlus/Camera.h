@@ -19,38 +19,39 @@
  *  Pavel Rojtberg
  */
 
-#ifndef __ARTOOLKIT_CAMERA_HEADERFILE__
-#define __ARTOOLKIT_CAMERA_HEADERFILE__
+#ifndef __ARTOOLKIT_CAMERAADVIMPL_HEADERFILE__
+#define __ARTOOLKIT_CAMERAADVIMPL_HEADERFILE__
 
-#include <ARToolKitPlus/config.h>
-#include <ARToolKitPlus/param.h>
 #include <string>
+#include <ARToolKitPlus/param.h>
 
 using std::string;
 
 namespace ARToolKitPlus {
 
+#define CAMERA_ADV_HEADER "ARToolKitPlus_CamCal_Rev02"
+#define CAMERA_ADV_MAX_UNDIST_ITERATIONS 20
+
 class Camera: public ARParam {
 public:
-    virtual void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) = 0;
-    virtual void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) = 0;
-    virtual bool loadFromFile(const char* filename) = 0;
-    virtual Camera* clone() = 0;
-    virtual bool changeFrameSize(const int frameWidth, const int frameHeight) = 0;
-    virtual void printSettings() = 0;
-
-    string getFileName() const {
-        return fileName;
-    }
+    virtual void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
+    virtual void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
+    virtual bool loadFromFile(const char* filename);
+    virtual Camera* clone();
+    virtual bool changeFrameSize(const int frameWidth, const int frameHeight);
+    virtual void printSettings();
+    string getFileName() const;
 
 protected:
-    void setFileName(const char* filename) {
-        fileName = filename;
-    }
-
     string fileName;
+
+    // http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
+    ARFloat cc[2];
+    ARFloat fc[2];
+    ARFloat kc[6];
+    int undist_iterations;
 };
 
 } // namespace ARToolKitPlus
 
-#endif // __ARTOOLKIT_CAMERA_HEADERFILE__
+#endif // __ARTOOLKIT_CAMERAADVIMPL_HEADERFILE__

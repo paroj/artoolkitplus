@@ -27,7 +27,6 @@
 #include <ARToolKitPlus/arMulti.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/Tracker.h>
-#include <ARToolKitPlus/CameraAdvImpl.h>
 #include <ARToolKitPlus/extra/BCH.h>
 #include <ARToolKitPlus/extra/Hull.h>
 

@@ -266,7 +266,7 @@ bool TrackerImpl::checkPixelFormat() {
 }
 
 bool TrackerImpl::loadCameraFile(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) {
-    CameraAdvImpl* cam = new CameraAdvImpl();
+    Camera* cam = new Camera();
 
     if (!cam->loadFromFile(nCamParamFile)) {
         cerr << "ARToolKitPlus: Camera parameter load error!" << endl;
@@ -382,7 +382,7 @@ bool TrackerImpl::convertProjectionMatrixToOpenGLStyle2(ARFloat cparam[3][4], in
 }
 
 bool TrackerImpl::calcCameraMatrix(const char* nCamParamFile, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix) {
-    CameraAdvImpl* pCam = new CameraAdvImpl();
+    Camera* pCam = new Camera();
 
     if (!pCam->loadFromFile(nCamParamFile)) {
         cerr << "ARToolKitPlus: Camera parameter load error!" << endl;
