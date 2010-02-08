@@ -21,6 +21,7 @@
 
 #include <cstdio>
 #include <cmath>
+#include <clocale>
 
 #include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/ar.h>
@@ -51,6 +52,7 @@ int TrackerImpl::arLoadPatt(char *filename) {
 		return -1;
 	patno = i;
 
+    setlocale(LC_NUMERIC, "C");
 	if ((fp = fopen(filename, "r")) == NULL) {
 		printf("\"%s\" not found!!\n", filename);
 		return (-1);
@@ -100,6 +102,7 @@ int TrackerImpl::arLoadPatt(char *filename) {
 			patpowBW[patno][h] = (ARFloat) 0.0000001;
 	}
 	fclose(fp);
+	setlocale(LC_NUMERIC, "");
 
 	patf[patno] = 1;
 	pattern_num++;

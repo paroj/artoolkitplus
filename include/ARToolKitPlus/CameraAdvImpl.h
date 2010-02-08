@@ -30,10 +30,6 @@ namespace ARToolKitPlus {
 
 class CameraAdvImpl: public Camera {
 public:
-
-    CameraAdvImpl();
-    virtual ~CameraAdvImpl();
-
     virtual void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
     virtual void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
     virtual bool loadFromFile(const char* filename);
@@ -42,12 +38,10 @@ public:
     virtual void printSettings();
 
 protected:
-
+    //  http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
     ARFloat cc[2];
     ARFloat fc[2];
     ARFloat kc[6];
-    //  http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
-
     int undist_iterations;
 };
 

@@ -28,12 +28,6 @@
 
 namespace ARToolKitPlus {
 
-CameraAdvImpl::CameraAdvImpl() {
-}
-
-CameraAdvImpl::~CameraAdvImpl() {
-}
-
 bool CameraAdvImpl::loadFromFile(const char* filename) {
 	setlocale(LC_NUMERIC, "C");
 	FILE *fp = fopen(filename, "r");
