@@ -110,9 +110,9 @@ TrackerImpl::buildUndistO2ITable(Camera* pCam)
 
 	if(loadCachedUndist)
 	{
-		assert(pCam->getFileName());
-		cachename = new char[strlen(pCam->getFileName())+5];
-		strcpy(cachename, pCam->getFileName());
+		assert(pCam->getFileName() != "");
+		cachename = new char[strlen(pCam->getFileName().c_str())+5];
+		strcpy(cachename, pCam->getFileName().c_str());
 		strcat(cachename, ".LUT");
 	}
 
