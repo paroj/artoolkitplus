@@ -160,27 +160,27 @@ TrackerImpl::~TrackerImpl() {
     bchProcessor = NULL;
 
     if (l_imageL)
-        delete l_imageL;
+        delete[] l_imageL;
     l_imageL = NULL;
 
     if (workL)
-        delete workL;
+        delete[] workL;
     workL = NULL;
 
     if (work2L)
-        delete work2L;
+        delete[] work2L;
     work2L = NULL;
 
     if (wareaL)
-        delete wareaL;
+        delete[] wareaL;
     wareaL = NULL;
 
     if (wclipL)
-        delete wclipL;
+        delete[] wclipL;
     wclipL = NULL;
 
     if (wposL)
-        delete wposL;
+        delete[] wposL;
     wposL = NULL;
 
     if (RGB565_to_LUM8_LUT)
@@ -188,7 +188,7 @@ TrackerImpl::~TrackerImpl() {
     RGB565_to_LUM8_LUT = NULL;
 
     if (undistO2ITable)
-        delete undistO2ITable;
+        delete[] undistO2ITable;
     undistO2ITable = NULL;
 
     if (descriptionString)
