@@ -20,6 +20,7 @@
  */
 
 #include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/matrix.h>
 
 #define CHECK_CALC 0
 

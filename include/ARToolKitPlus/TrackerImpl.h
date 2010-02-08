@@ -25,7 +25,7 @@
 #include <ARToolKitPlus/ARToolKitPlus.h>
 #include <ARToolKitPlus/ar.h>
 #include <ARToolKitPlus/arMulti.h>
-#include <ARToolKitPlus/matrix.h>
+#include <ARToolKitPlus/vector.h>
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/extra/BCH.h>
 #include <ARToolKitPlus/extra/Hull.h>

@@ -16,6 +16,7 @@
  *
  * Authors:
  *  Daniel Wagner
+ *  Pavel Rojtberg
  */
 
 #ifndef __ARTOOLKIT_TRACKER_HEADERFILE__
