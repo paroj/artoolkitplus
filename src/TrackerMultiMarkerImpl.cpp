@@ -37,9 +37,9 @@ TrackerMultiMarkerImpl::TrackerMultiMarkerImpl(int imWidth, int imHeight, int pa
 }
 
 TrackerMultiMarkerImpl::~TrackerMultiMarkerImpl() {
-	cleanup();
 	delete[] detectedMarkerIDs;
 	delete[] detectedMarkers;
+
 	if (config)
 		arMultiFreeConfig(config);
 }

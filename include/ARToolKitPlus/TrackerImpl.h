@@ -55,9 +55,6 @@ public:
             int maxLoadPatterns = 0, int maxImagePatterns = 8);
     ~TrackerImpl();
 
-    /// does final clean up (memory deallocation)
-    virtual void cleanup();
-
     /**
      * Sets the pixel format of the camera image
      *  Default format is RGB888 (PIXEL_FORMAT_RGB)

@@ -36,10 +36,6 @@ TrackerSingleMarkerImpl::TrackerSingleMarkerImpl(int imWidth, int imHeight, int 
     patt_center[0] = patt_center[1] = 0.0;
 }
 
-TrackerSingleMarkerImpl::~TrackerSingleMarkerImpl() {
-    cleanup();
-}
-
 bool TrackerSingleMarkerImpl::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) {
 
     if (!this->checkPixelFormat()) {

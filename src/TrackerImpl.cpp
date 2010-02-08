@@ -194,6 +194,11 @@ TrackerImpl::~TrackerImpl() {
     if (descriptionString)
         delete[] descriptionString;
     descriptionString = NULL;
+
+    if (marker_infoTWO)
+        delete[] marker_infoTWO;
+
+    marker_infoTWO = NULL;
 }
 
 bool TrackerImpl::setPixelFormat(PIXEL_FORMAT nFormat) {
@@ -518,14 +523,5 @@ void TrackerImpl::checkRGB565LUT() {
         RGB565_to_LUM8_LUT[i] = (unsigned char) (((red << 1) + (green << 2) + green + blue) >> 3);
     }
 #endif //SMALL_LUM8_TABLE
-}
-
-// cleanup function called when program exits
-//
-void TrackerImpl::cleanup() {
-    if (marker_infoTWO)
-        delete[] marker_infoTWO;
-
-    marker_infoTWO = NULL;
 }
 } // namespace ARToolKitPlus

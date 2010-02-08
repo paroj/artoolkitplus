@@ -45,9 +45,6 @@ namespace ARToolKitPlus {
  */
 class Tracker {
 public:
-    /// does final clean up (memory deallocation)
-    virtual void cleanup() = 0;
-
     /**
      * Sets the pixel format of the camera image
      *  Default format is RGB888 (PIXEL_FORMAT_RGB)
