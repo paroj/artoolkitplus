@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
     //  - works with luminance (gray) images
     //  - can load a maximum of 1 pattern
     //  - can detect a maximum of 8 patterns in one image
-    TrackerSingleMarkerImpl* tracker = new TrackerSingleMarkerImpl(width, height, 6, 6, 6, 1, 8);
+    TrackerSingleMarker* tracker = new TrackerSingleMarkerImpl(width, height, 6, 6, 6, 1, 8);
 
     tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
     //tracker->setLoadUndistLUT(true);

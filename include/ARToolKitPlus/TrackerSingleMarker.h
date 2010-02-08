@@ -45,6 +45,8 @@ public:
      */
     virtual bool init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) = 0;
 
+    virtual ~TrackerSingleMarker() {}; // needed so the top-level destructor gets called
+
     /**
      * adds a pattern to ARToolKit
      * pass the patterns filename

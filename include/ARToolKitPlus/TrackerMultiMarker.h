@@ -40,6 +40,8 @@ public:
      */
     virtual bool init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip) = 0;
 
+    virtual ~TrackerMultiMarker(){}; // needed so the top-level destructor gets called
+
     /**
      * calculates the transformation matrix
      *	pass the image as RGBX (32-bits)

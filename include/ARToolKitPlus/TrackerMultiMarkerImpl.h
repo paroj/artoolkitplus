@@ -52,7 +52,7 @@ public:
     TrackerMultiMarkerImpl(int imWidth, int imHeight, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
             int maxLoadPatterns = 0, int maxImagePatterns = 8);
 
-    ~TrackerMultiMarkerImpl();
+    virtual ~TrackerMultiMarkerImpl();
 
     /**
      * initializes ARToolKit

@@ -79,7 +79,7 @@ bool Camera::loadFromFile(const char* filename) {
         undist_iterations = CAMERA_ADV_MAX_UNDIST_ITERATIONS;
 
     fclose(fp);
-    setlocale(LC_NUMERIC, "");
+    setlocale(LC_NUMERIC, ""); // valgrind does not like this one..
     return (true);
 }
 
