@@ -26,19 +26,14 @@
 
 #include <ARToolKitPlus/config.h>
 #include <ARToolKitPlus/param.h>
+#include <string>
+
+using std::string;
 
 namespace ARToolKitPlus {
 
 class Camera: public ARParam {
 public:
-    Camera() {
-        fileName = NULL;
-    }
-
-    virtual ~Camera() {
-        delete fileName;
-    }
-
     virtual void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) = 0;
     virtual void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) = 0;
     virtual bool loadFromFile(const char* filename) = 0;
@@ -46,19 +41,16 @@ public:
     virtual bool changeFrameSize(const int frameWidth, const int frameHeight) = 0;
     virtual void printSettings() = 0;
 
-    char* getFileName() const {
+    string getFileName() const {
         return fileName;
     }
 
 protected:
     void setFileName(const char* filename) {
-        if (fileName)
-            delete fileName;
-        fileName = new char[strlen(filename) + 1];
-        strcpy(fileName, filename);
+        fileName = filename;
     }
 
-    char* fileName;
+    string fileName;
 };
 
 } // namespace ARToolKitPlus
