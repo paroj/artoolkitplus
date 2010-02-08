@@ -30,7 +30,7 @@ namespace ARToolKitPlus {
 
 
  int
-TrackerImpl::arGetInitRot2(ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3], ARFloat center[2], ARFloat width)
+TrackerImpl::arGetInitRot2(ARMarkerInfo *marker_info, ARFloat rot[3][3], ARFloat center[2], ARFloat width)
 {
 	rpp_float err = 1e+20;
 	rpp_mat R, R_init;

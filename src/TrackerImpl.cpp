@@ -381,8 +381,7 @@ bool TrackerImpl::convertProjectionMatrixToOpenGLStyle2(ARFloat cparam[3][4], in
     return true;
 }
 
-bool TrackerImpl::calcCameraMatrix(const char* nCamParamFile, int nWidth, int nHeight, ARFloat nNear, ARFloat nFar,
-        ARFloat *nMatrix) {
+bool TrackerImpl::calcCameraMatrix(const char* nCamParamFile, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix) {
     CameraAdvImpl* pCam = new CameraAdvImpl();
 
     if (!pCam->loadFromFile(nCamParamFile)) {

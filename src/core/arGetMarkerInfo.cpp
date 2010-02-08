@@ -38,9 +38,9 @@ TrackerImpl::arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *m
         marker_infoL[j].pos[0] = marker_info2[i].pos[0];
         marker_infoL[j].pos[1] = marker_info2[i].pos[1];
 
-        if( arGetLine(marker_info2[i].x_coord, marker_info2[i].y_coord,
-                      marker_info2[i].coord_num, marker_info2[i].vertex,
-                      marker_infoL[j].line, marker_infoL[j].vertex) < 0 ) continue;
+        if (arGetLine(marker_info2[i].x_coord, marker_info2[i].y_coord, marker_info2[i].vertex, marker_infoL[j].line,
+                marker_infoL[j].vertex) < 0)
+            continue;
 
         arGetCode( image,
                    marker_info2[i].x_coord, marker_info2[i].y_coord,

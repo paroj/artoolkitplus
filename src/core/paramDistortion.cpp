@@ -1,24 +1,22 @@
-/*
-    Copyright (C) 2010  ARToolkitPlus Authors
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    Authors:
-      Daniel Wagner
+/**
+ * Copyright (C) 2010  ARToolkitPlus Authors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authors:
+ *  Daniel Wagner
  */
-
-
 
 #include <cstdio>
 #include <cmath>
@@ -28,31 +26,22 @@
 #include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/param.h>
 
-
 namespace ARToolKitPlus {
 
-
- int
-TrackerImpl::arParamObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
-{
-	pCam->observ2Ideal(ox,oy,ix,iy);
-	return(0);
+int TrackerImpl::arParamObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+    pCam->observ2Ideal(ox, oy, ix, iy);
+    return (0);
 }
 
- int
-TrackerImpl::arParamIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy)
-{
-	pCam->ideal2Observ(ix,iy,ox,oy);
-	return(0);
+int TrackerImpl::arParamIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) {
+    pCam->ideal2Observ(ix, iy, ox, oy);
+    return (0);
 }
 
-
- int
-TrackerImpl::arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
-{
-	*ix = ox;
-	*iy = oy;
-	return(0);
+int TrackerImpl::arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+    *ix = ox;
+    *iy = oy;
+    return (0);
 }
 
 //
@@ -61,122 +50,100 @@ TrackerImpl::arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFl
 //
 
 inline
-void floatToFixed(ARFloat nX, ARFloat nY, unsigned int &nFixed)
-{
-	short sx = (short)(nX * 32);
-	short sy = (short)(nY * 32);
+void floatToFixed(ARFloat nX, ARFloat nY, unsigned int &nFixed) {
+    short sx = (short) (nX * 32);
+    short sy = (short) (nY * 32);
 
-	unsigned short *ux = (unsigned short*)&sx;
-	unsigned short *uy = (unsigned short*)&sy;
+    unsigned short *ux = (unsigned short*) &sx;
+    unsigned short *uy = (unsigned short*) &sy;
 
-	nFixed = (*ux << 16) | *uy;
+    nFixed = (*ux << 16) | *uy;
 }
-
 
 inline
-void fixedToFloat(unsigned int nFixed, ARFloat& nX, ARFloat& nY)
-{
-	unsigned short ux = (nFixed >> 16);
-	unsigned short uy = (nFixed & 0xffff);
+void fixedToFloat(unsigned int nFixed, ARFloat& nX, ARFloat& nY) {
+    unsigned short ux = (nFixed >> 16);
+    unsigned short uy = (nFixed & 0xffff);
 
-	short *sx = (short*)&ux;
-	short *sy = (short*)&uy;
+    short *sx = (short*) &ux;
+    short *sy = (short*) &uy;
 
-	nX = (*sx)/32.0f;
-	nY = (*sy)/32.0f;
+    nX = (*sx) / 32.0f;
+    nY = (*sy) / 32.0f;
 }
 
+int TrackerImpl::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+    if (!undistO2ITable)
+        buildUndistO2ITable(pCam);
 
- int
-TrackerImpl::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
-{
-	if(!undistO2ITable)
-		buildUndistO2ITable(pCam);
+    int x = (int) ox, y = (int) oy;
 
-	int x=(int)ox, y=(int)oy;
-
-	fixedToFloat(undistO2ITable[x+y*arImXsize], *ix,*iy);
-	return 0;
+    fixedToFloat(undistO2ITable[x + y * arImXsize], *ix, *iy);
+    return 0;
 }
 
+void TrackerImpl::buildUndistO2ITable(Camera* pCam) {
+    int x, y;
+    ARFloat cx, cy, ox, oy;
+    unsigned int fixed;
+    char* cachename = NULL;
+    bool loaded = false;
 
- void
-TrackerImpl::buildUndistO2ITable(Camera* pCam)
-{
-	int x,y;
-	ARFloat cx,cy, ox,oy;
-	unsigned int fixed;
-	char* cachename = NULL;
-	bool loaded = false;
+    if (loadCachedUndist) {
+        assert(pCam->getFileName() != "");
+        cachename = new char[strlen(pCam->getFileName().c_str()) + 5];
+        strcpy(cachename, pCam->getFileName().c_str());
+        strcat(cachename, ".LUT");
+    }
 
-	if(loadCachedUndist)
-	{
-		assert(pCam->getFileName() != "");
-		cachename = new char[strlen(pCam->getFileName().c_str())+5];
-		strcpy(cachename, pCam->getFileName().c_str());
-		strcat(cachename, ".LUT");
-	}
+    // we have to take care here when using a memory manager that can not free memory
+    // (usually this lookup table should only be built once - unless we change camera resolution)
+    //
+    if (undistO2ITable)
+        delete[] undistO2ITable;
 
-	// we have to take care here when using a memory manager that can not free memory
-	// (usually this lookup table should only be built once - unless we change camera resolution)
-	//
-	if(undistO2ITable)
-		delete[] undistO2ITable;
+    undistO2ITable = new unsigned int[arImXsize * arImYsize];
 
-	undistO2ITable = new unsigned int[arImXsize*arImYsize];
+    if (loadCachedUndist) {
+        if (FILE* fp = fopen(cachename, "rb")) {
+            size_t numBytes = fread(undistO2ITable, 1, arImXsize * arImYsize * sizeof(unsigned int), fp);
+            fclose(fp);
 
-	if(loadCachedUndist)
-	{
-		if(FILE* fp = fopen(cachename, "rb"))
-		{
-			size_t numBytes = fread(undistO2ITable, 1, arImXsize*arImYsize*sizeof(unsigned int), fp);
-			fclose(fp);
+            if (numBytes == arImXsize * arImYsize * sizeof(unsigned int))
+                loaded = true;
+        }
+    }
 
-			if(numBytes == arImXsize*arImYsize*sizeof(unsigned int))
-				loaded = true;
-		}
-	}
+    if (!loaded) {
+        for (x = 0; x < arImXsize; x++) {
+            for (y = 0; y < arImYsize; y++) {
+                arParamObserv2Ideal_std(pCam, (ARFloat) x, (ARFloat) y, &cx, &cy);
+                floatToFixed(cx, cy, fixed);
+                fixedToFloat(fixed, ox, oy);
+                undistO2ITable[x + y * arImXsize] = fixed;
+            }
+        }
 
-	if(!loaded)
-	{
-		for(x=0; x<arImXsize; x++)
-		{
-			for(y=0; y<arImYsize; y++)
-			{
-				arParamObserv2Ideal_std(pCam, (ARFloat)x, (ARFloat)y, &cx, &cy);
-				floatToFixed(cx,cy, fixed);
-				fixedToFloat(fixed, ox,oy);
-				undistO2ITable[x+y*arImXsize] = fixed;
-			}
-		}
+        if (loadCachedUndist)
+            if (FILE* fp = fopen(cachename, "wb")) {
+                fwrite(undistO2ITable, 1, arImXsize * arImYsize * sizeof(unsigned int), fp);
+                fclose(fp);
+            }
+    }
 
-		if(loadCachedUndist)
-			if(FILE* fp = fopen(cachename, "wb"))
-			{
-				fwrite(undistO2ITable, 1, arImXsize*arImYsize*sizeof(unsigned int), fp);
-				fclose(fp);
-			}
-	}
-
-	delete cachename;
+    delete cachename;
 }
 
-
- int
-TrackerImpl::arParamObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy)
-{
-	pCam->observ2Ideal(ox,oy,ix,iy);
-	return(0);
+int TrackerImpl::arParamObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+    pCam->observ2Ideal(ox, oy, ix, iy);
+    return (0);
 }
 
- int
-TrackerImpl::arParamIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy)
-{
-	pCam->ideal2Observ(ix,iy,ox,oy);
-	return(0);
+int TrackerImpl::arParamIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) {
+    pCam->ideal2Observ(ix, iy, ox, oy);
+    return (0);
 }
 
-
-}  // namespace ARToolKitPlus
+} // namespace ARToolKitPlus
 
 

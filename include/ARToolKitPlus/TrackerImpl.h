@@ -141,8 +141,7 @@ public:
      * in an ARToolKit camera calibration file.
      * Returns true if loading of the camera file succeeded.
      */
-    static bool calcCameraMatrix(const char* nCamParamFile, int nWidth, int nHeight, ARFloat nNear, ARFloat nFar,
-            ARFloat *nMatrix);
+    static bool calcCameraMatrix(const char* nCamParamFile, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix);
 
     /// Changes the resolution of the camera after the camerafile was already loaded
     virtual void changeCameraSize(int nWidth, int nHeight);
@@ -348,8 +347,7 @@ protected:
 
     int arGetInitRot(ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3]);
 
-    int arGetInitRot2(ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3], ARFloat center[2],
-            ARFloat width);
+    int arGetInitRot2(ARMarkerInfo *marker_info, ARFloat rot[3][3], ARFloat center[2], ARFloat width);
 
     ARFloat arGetTransMatCont2(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]);
 
@@ -382,10 +380,7 @@ protected:
 
     int arInitCparam(Camera *pCam);
 
-    int arGetLine(int x_coord[], int y_coord[], int coord_num, int vertex[], ARFloat line[4][3], ARFloat v[4][2]);
-
-    int arGetLine2(int x_coord[], int y_coord[], int coord_num, int vertex[], ARFloat line[4][3], ARFloat v[4][2],
-            Camera *pCam);
+    int arGetLine(int x_coord[], int y_coord[], int vertex[], ARFloat line[4][3], ARFloat v[4][2]);
 
     static int arUtilMatMul(ARFloat s1[3][4], ARFloat s2[3][4], ARFloat d[3][4]);
 

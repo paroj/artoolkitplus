@@ -2,7 +2,7 @@ vrs = Variables()
 vrs.Add("prefix", "installation directory", "/usr")
 
 env = Environment(variables=vrs)
-env["CPPFLAGS"] = "-Wall -Wextra"
+env["CPPFLAGS"] = "-Wall"
 env["CPPPATH"] = "include/"
 
 sources = Glob("src/*.cpp") \
