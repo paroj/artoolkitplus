@@ -22,8 +22,6 @@
 #ifndef __ARTOOLKIT_CAMERA_HEADERFILE__
 #define __ARTOOLKIT_CAMERA_HEADERFILE__
 
-#include <cstring>
-
 #include <ARToolKitPlus/config.h>
 #include <ARToolKitPlus/param.h>
 #include <string>

@@ -23,6 +23,7 @@
 #include <cstdio>
 #include <cmath>
 #include <cassert>
+#include <cstring>
 #include <ARToolKitPlus/TrackerImpl.h>
 #include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/param.h>

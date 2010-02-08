@@ -23,6 +23,7 @@
 #include <clocale>
 #include <cstdio>
 #include <cmath>
+#include <cstring>
 
 #include <ARToolKitPlus/CameraAdvImpl.h>
 
