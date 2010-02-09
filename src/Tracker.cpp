@@ -108,7 +108,7 @@ Tracker::Tracker(int imWidth, int imHeight, int pattWidth, int pattHeight, int p
 
     arCamera = NULL;
     loadCachedUndist = false;
-    //arParam;
+    //arCamera;
     arImXsize = arImYsize = 0;
     arTemplateMatchingMode = DEFAULT_TEMPLATE_MATCHING_MODE;
     arMatchingPCAMode = DEFAULT_MATCHING_PCA_MODE;
@@ -126,7 +126,7 @@ Tracker::Tracker(int imWidth, int imHeight, int pattWidth, int pattHeight, int p
     undistMode = UNDIST_STD;
     undistO2ITable = NULL;
     //undistI2OTable = NULL;
-    arParamObserv2Ideal_func = &Tracker::arParamObserv2Ideal_std;
+    arCameraObserv2Ideal_func = &Tracker::arCameraObserv2Ideal_std;
 
     vignetting.enabled = false;
     vignetting.corners = vignetting.leftright = vignetting.bottomtop = 0;
@@ -304,7 +304,7 @@ void Tracker::setCamera(Camera* nCamera) {
 void Tracker::setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip) {
     setCamera(nCamera);
 
-    ARParam gCparam = *((ARParam*) arCamera);
+    Camera gCparam = *arCamera;
 
     for (int i = 0; i < 4; i++)
         gCparam.mat[1][i] = (gCparam.ysize - 1) * (gCparam.mat[2][i]) - gCparam.mat[1][i];
@@ -334,7 +334,7 @@ void Tracker::convertTransformationMatrixToOpenGLStyle(ARFloat para[3][4], ARFlo
     gl_para[3 * 4 + 3] = 1.0;
 }
 
-bool Tracker::convertProjectionMatrixToOpenGLStyle(ARParam *param, ARFloat gnear, ARFloat gfar, ARFloat m[16]) {
+bool Tracker::convertProjectionMatrixToOpenGLStyle(Camera *param, ARFloat gnear, ARFloat gfar, ARFloat m[16]) {
     return convertProjectionMatrixToOpenGLStyle2(param->mat, param->xsize, param->ysize, gnear, gfar, m);
 }
 
@@ -345,7 +345,7 @@ bool Tracker::convertProjectionMatrixToOpenGLStyle2(ARFloat cparam[3][4], int wi
     ARFloat p[3][3], q[4][4];
     int i, j;
 
-    if (arParamDecompMat(cparam, icpara, trans) < 0) {
+    if (arCameraDecompMat(cparam, icpara, trans) < 0) {
         cerr << "gConvGLcpara: Parameter error!" << endl;
         return false;
     }
@@ -401,7 +401,7 @@ bool Tracker::calcCameraMatrix(const char* nCamParamFile, ARFloat nNear, ARFloat
 
     ARFloat glcpara[16];
 
-    if (!convertProjectionMatrixToOpenGLStyle((ARParam*) pCam, nNear, nFar, glcpara))
+    if (!convertProjectionMatrixToOpenGLStyle(pCam, nNear, nFar, glcpara))
         return false;
 
     // convert to float (in case of ARFloat is def'ed to doubled
@@ -423,15 +423,15 @@ void Tracker::setUndistortionMode(UNDIST_MODE nMode) {
     undistMode = nMode;
     switch (undistMode) {
     case UNDIST_NONE:
-        arParamObserv2Ideal_func = &Tracker::arParamObserv2Ideal_none;
+        arCameraObserv2Ideal_func = &Tracker::arCameraObserv2Ideal_none;
         break;
 
     case UNDIST_STD:
-        arParamObserv2Ideal_func = &Tracker::arParamObserv2Ideal_std;
+        arCameraObserv2Ideal_func = &Tracker::arCameraObserv2Ideal_std;
         break;
 
     case UNDIST_LUT:
-        arParamObserv2Ideal_func = &Tracker::arParamObserv2Ideal_LUT;
+        arCameraObserv2Ideal_func = &Tracker::arCameraObserv2Ideal_LUT;
         break;
     }
 }

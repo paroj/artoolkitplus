@@ -324,7 +324,7 @@ protected:
     void convertTransformationMatrixToOpenGLStyle(ARFloat para[3][4], ARFloat gl_para[16]);
 
     // converts an ARToolKit projection matrix for usage with OpenGL
-    static bool convertProjectionMatrixToOpenGLStyle(ARParam *param, ARFloat gnear, ARFloat gfar, ARFloat m[16]);
+    static bool convertProjectionMatrixToOpenGLStyle(Camera *param, ARFloat gnear, ARFloat gfar, ARFloat m[16]);
     static bool convertProjectionMatrixToOpenGLStyle2(ARFloat cparam[3][4], int width, int height, ARFloat gnear,
             ARFloat gfar, ARFloat m[16]);
 
@@ -420,16 +420,16 @@ protected:
 
     static int arMatrixPCA2(ARMat *input, ARMat *evec, ARVec *ev);
 
-    static int arParamDecomp(ARParam *source, ARParam *icpara, ARFloat trans[3][4]);
+    static int arCameraDecomp(Camera *source, Camera *icpara, ARFloat trans[3][4]);
 
-    static int arParamDecompMat(ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4]);
+    static int arCameraDecompMat(ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4]);
 
-    int arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
+    int arCameraObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
 
-    int arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
+    int arCameraObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
 
-    int arParamObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
-    int arParamIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
+    int arCameraObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
+    int arCameraIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
 
     typedef int (Tracker::* ARPARAM_UNDIST_FUNC)(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
 
@@ -450,8 +450,8 @@ protected:
     ARFloat arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][2], int num, ARFloat conv[3][4],
             Camera *pCam);
 
-    static int arParamObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
-    static int arParamIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
+    static int arCameraObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
+    static int arCameraIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
 
 protected:
     struct AutoThreshold {
@@ -585,7 +585,7 @@ protected:
 
     ARFloat relBorderWidth;
 
-    ARPARAM_UNDIST_FUNC arParamObserv2Ideal_func;
+    ARPARAM_UNDIST_FUNC arCameraObserv2Ideal_func;
 
     // RPP integration -- [t.pintaric]
     POSE_ESTIMATOR poseEstimator;
@@ -594,8 +594,6 @@ protected:
 
     static int screenWidth, screenHeight;
     int thresh;
-
-    ARParam cparam;
 
     ARFloat gl_para[16];
     ARFloat gl_cpara[16];

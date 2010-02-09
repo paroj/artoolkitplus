@@ -25,7 +25,7 @@
 
 #include <stdio.h>
 #include <ARToolKitPlus/config.h>
-#include <ARToolKitPlus/param.h>
+#include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/ar.h>
 
 

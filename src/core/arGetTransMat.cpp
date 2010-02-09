@@ -125,7 +125,7 @@ Tracker::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
 Tracker::arGetTransMat4(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4])
 {
     return arGetTransMat5( rot, ppos2d, ppos3d, num, conv, arCamera);
-//                           arParam.dist_factor, arParam.mat );
+//                           arCamera.dist_factor, arCamera.mat );
 }
 
 
@@ -189,7 +189,7 @@ Tracker::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2],
 
     if( arFittingMode == AR_FITTING_TO_INPUT ) {
         for( i = 0; i < num; i++ ) {
-            arParamIdeal2Observ_std(pCam, ppos2d[i][0], ppos2d[i][1], &pos2d[i][0], &pos2d[i][1]);
+            arCameraIdeal2Observ_std(pCam, ppos2d[i][0], ppos2d[i][1], &pos2d[i][0], &pos2d[i][1]);
         }
     }
     else {

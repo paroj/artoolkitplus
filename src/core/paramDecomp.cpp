@@ -34,7 +34,7 @@ static ARFloat dot( ARFloat a1, ARFloat a2, ARFloat a3,
                    ARFloat b1, ARFloat b2, ARFloat b3 );
 
  int
-Tracker::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans[3][4] )
+Tracker::arCameraDecomp( Camera *source, Camera *icpara, ARFloat trans[3][4] )
 {
     icpara->xsize          = source->xsize;
     icpara->ysize          = source->ysize;
@@ -43,12 +43,12 @@ Tracker::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans[3][4] )
     icpara->dist_factor[2] = source->dist_factor[2];
     icpara->dist_factor[3] = source->dist_factor[3];
 
-    return arParamDecompMat( source->mat, icpara->mat, trans );
+    return arCameraDecompMat( source->mat, icpara->mat, trans );
 }
 
 
  int
-Tracker::arParamDecompMat( ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4] )
+Tracker::arCameraDecompMat( ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4] )
 {
     int       r, c;
     ARFloat    Cpara[3][4];

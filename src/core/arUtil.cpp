@@ -34,14 +34,14 @@
 #endif
 
 #include <ARToolKitPlus/Tracker.h>
-#include <ARToolKitPlus/param.h>
+#include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/matrix.h>
 
 namespace ARToolKitPlus {
 
 int Tracker::arInitCparam(Camera *pCam) {
     // if the camera parameters change, the undistortion LUT has to be rebuilt.
-    // (this is done automatically in arParamObserv2Ideal_LUT or arParamIdeal2Observ_LUT)
+    // (this is done automatically in arCameraObserv2Ideal_LUT or arCameraIdeal2Observ_LUT)
     //
     if (undistO2ITable && (arImXsize != pCam->xsize || arImYsize != pCam->ysize)) {
         delete[] undistO2ITable;
@@ -72,7 +72,7 @@ int Tracker::arGetLine(int x_coord[], int y_coord[], int vertex[], ARFloat line[
         input = Matrix::alloc(n, 2);
         for (j = 0; j < n; j++) {
             ARFloat x, y;
-            (this->*arParamObserv2Ideal_func)(arCamera, (ARFloat) x_coord[st + j], (ARFloat) y_coord[st + j], &x, &y);
+            (this->*arCameraObserv2Ideal_func)(arCamera, (ARFloat) x_coord[st + j], (ARFloat) y_coord[st + j], &x, &y);
             input->m[j * 2 + 0] = x;
             input->m[j * 2 + 1] = y;
         }

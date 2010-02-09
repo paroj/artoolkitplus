@@ -23,7 +23,7 @@
 #define __ARTOOLKIT_CAMERAADVIMPL_HEADERFILE__
 
 #include <string>
-#include <ARToolKitPlus/param.h>
+#include <ARToolKitPlus/config.h>
 
 using std::string;
 
@@ -32,8 +32,16 @@ namespace ARToolKitPlus {
 #define CAMERA_ADV_HEADER "ARToolKitPlus_CamCal_Rev02"
 #define CAMERA_ADV_MAX_UNDIST_ITERATIONS 20
 
-class Camera: public ARParam {
+/**
+ * this class used to be called ARParam in the classical ARToolkit
+ * so do not wonder because of the method names
+ */
+class Camera {
 public:
+    int xsize, ysize;
+    ARFloat mat[3][4];
+    ARFloat dist_factor[4];
+
     void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
     void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
     bool loadFromFile(const char* filename);
@@ -41,7 +49,6 @@ public:
     bool changeFrameSize(const int frameWidth, const int frameHeight);
     void printSettings();
     string getFileName() const;
-
 protected:
     string fileName;
 
