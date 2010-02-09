@@ -20,7 +20,7 @@
 
 
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 
 namespace ARToolKitPlus {
@@ -30,7 +30,7 @@ static int get_vertex( int x_coord[], int y_coord[], int st,  int ed,
 
 
  ARMarkerInfo2*
-TrackerImpl::arDetectMarker2(int16_t *limage, int label_num, int *label_ref,
+Tracker::arDetectMarker2(int16_t *limage, int label_num, int *label_ref,
                     int *warea, ARFloat *wpos, int *wclip,
                     int area_max, int area_min, ARFloat factor, int *marker_num)
 {
@@ -118,7 +118,7 @@ TrackerImpl::arDetectMarker2(int16_t *limage, int label_num, int *label_ref,
 
 
  int
-TrackerImpl::arGetContour(int16_t *limage, int *label_ref, int label, int clip[4], ARMarkerInfo2 *marker_infoTWO)
+Tracker::arGetContour(int16_t *limage, int *label_ref, int label, int clip[4], ARMarkerInfo2 *marker_infoTWO)
 {
     static const int      xdir[8] = { 0, 1, 1, 1, 0,-1,-1,-1};
     static const int      ydir[8] = {-1,-1, 0, 1, 1, 1, 0,-1};
@@ -207,7 +207,7 @@ TrackerImpl::arGetContour(int16_t *limage, int *label_ref, int label, int clip[4
 
 
  int
-TrackerImpl::check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor)
+Tracker::check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor)
 {
     int             sx, sy;
     int             dmax, d, v1;

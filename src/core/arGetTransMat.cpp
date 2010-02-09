@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 
 
@@ -31,7 +31,7 @@ namespace ARToolKitPlus {
 
 
  ARFloat
-TrackerImpl::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+Tracker::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
     ARFloat  rot[3][3];
     ARFloat  ppos2d[4][2];
@@ -71,14 +71,14 @@ TrackerImpl::arGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat
 }
 
  ARFloat
-TrackerImpl::arGetTransMat2(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][2], int num, ARFloat conv[3][4])
+Tracker::arGetTransMat2(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][2], int num, ARFloat conv[3][4])
 {
 	return arGetTransMat3( rot, ppos2d, ppos3d, num, conv, arCamera);
 }
 
 
  ARFloat
-TrackerImpl::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
+Tracker::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
                    ARFloat ppos3d[][2], int num, ARFloat conv[3][4],
 				   Camera *pCam )
                    //ARFloat *dist_factor, ARFloat cpara[3][4] )
@@ -122,7 +122,7 @@ TrackerImpl::arGetTransMat3(ARFloat rot[3][3], ARFloat ppos2d[][2],
 }
 
  ARFloat
-TrackerImpl::arGetTransMat4(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4])
+Tracker::arGetTransMat4(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4])
 {
     return arGetTransMat5( rot, ppos2d, ppos3d, num, conv, arCamera);
 //                           arParam.dist_factor, arParam.mat );
@@ -130,7 +130,7 @@ TrackerImpl::arGetTransMat4(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos
 
 
  ARFloat
-TrackerImpl::arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2],
+Tracker::arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2],
 				   ARFloat ppos3d[][3], int num, ARFloat conv[3][4],
 				   Camera *pCam)
 				   //ARFloat *dist_factor, ARFloat cpara[3][4])
@@ -169,7 +169,7 @@ TrackerImpl::arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2],
 }
 
  ARFloat
-TrackerImpl::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2],
+Tracker::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2],
                      ARFloat pos3d[][3], int num, ARFloat conv[3][4],
 					 Camera *pCam )
                      //ARFloat *dist_factor, ARFloat cpara[3][4] )

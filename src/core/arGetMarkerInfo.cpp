@@ -20,14 +20,14 @@
 
 
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 
 namespace ARToolKitPlus {
 
 
  ARMarkerInfo*
-TrackerImpl::arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh)
+Tracker::arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh)
 {
     int            id, dir;
     ARFloat         cf;

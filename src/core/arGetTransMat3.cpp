@@ -19,7 +19,7 @@
       Pavel Rojtberg
  */
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 
 #define CHECK_CALC 0
@@ -35,7 +35,7 @@ static int  check_dir( ARFloat dir[3], ARFloat st[2], ARFloat ed[2],
                        ARFloat cpara[3][4] );
 
  int
-TrackerImpl::arGetAngle( ARFloat rot[3][3], ARFloat *wa, ARFloat *wb, ARFloat *wc )
+Tracker::arGetAngle( ARFloat rot[3][3], ARFloat *wa, ARFloat *wb, ARFloat *wc )
 {
 	ARFloat      a, b, c;
     ARFloat      sina, cosa, sinb, cosb, sinc, cosc;
@@ -156,7 +156,7 @@ for(i=0;i<3;i++) rot[i][2] = w[i];
 // Non-FixedPoint version of arGetRot
 //
  int
-TrackerImpl::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
+Tracker::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 {
     ARFloat   sina, sinb, sinc;
     ARFloat   cosa, cosb, cosc;
@@ -192,7 +192,7 @@ TrackerImpl::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 
 
  int
-TrackerImpl::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
+Tracker::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
 						ARFloat trans[3], ARFloat trans2[3][4],
 						ARFloat cpara[3][4], ARFloat ret[3][4])
 {
@@ -235,7 +235,7 @@ TrackerImpl::arGetNewMatrix(ARFloat a, ARFloat b, ARFloat c,
 }
 
  int
-TrackerImpl::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3] )
+Tracker::arGetInitRot( ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3] )
 {
     ARFloat  wdir[3][3];
     ARFloat  w, w1, w2, w3;
@@ -498,7 +498,7 @@ int arGetRot_28_old(I32 _a, I32 _b, I32 _c, FIXED_VEC3D _rot[3])
 // FixedPoint version of arGetRot with std interface
 //
  int
-TrackerImpl::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
+Tracker::arGetRot( ARFloat a, ARFloat b, ARFloat c, ARFloat rot[3][3] )
 {
 #if CHECK_CALC
     ARFloat   w[3];

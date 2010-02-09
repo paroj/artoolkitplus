@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/extra/rpp.h>
 
@@ -30,7 +30,7 @@
 namespace ARToolKitPlus {
 
  ARFloat
-TrackerImpl::rppGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+Tracker::rppGetTransMat(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
 	const bool initial_estimate_with_arGetInitRot = false; // only for testing
 	

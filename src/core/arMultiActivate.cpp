@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/arMulti.h>
 
@@ -32,7 +32,7 @@ namespace ARToolKitPlus {
 
 
  int
-TrackerImpl::arMultiActivate( ARMultiMarkerInfoT *config )
+Tracker::arMultiActivate( ARMultiMarkerInfoT *config )
 {
     int    i;
 
@@ -46,7 +46,7 @@ TrackerImpl::arMultiActivate( ARMultiMarkerInfoT *config )
 }
 
  int
-TrackerImpl::arMultiDeactivate( ARMultiMarkerInfoT *config )
+Tracker::arMultiDeactivate( ARMultiMarkerInfoT *config )
 {
     int    i;
 
@@ -60,7 +60,7 @@ TrackerImpl::arMultiDeactivate( ARMultiMarkerInfoT *config )
 }
 
  int
-TrackerImpl::arMultiFreeConfig( ARMultiMarkerInfoT *config )
+Tracker::arMultiFreeConfig( ARMultiMarkerInfoT *config )
 {
     int    i;
 

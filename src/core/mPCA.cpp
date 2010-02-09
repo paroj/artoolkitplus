@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <ARToolKitPlus/matrix.h>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 
 namespace ARToolKitPlus {
@@ -74,7 +74,7 @@ Mean:
 
 
  int
-TrackerImpl::arMatrixPCA(ARMat *input, ARMat *evec, ARVec *ev, ARVec *mean)
+Tracker::arMatrixPCA(ARMat *input, ARMat *evec, ARVec *ev, ARVec *mean)
 {
     ARMat     *work;
     ARFloat  srow, sum;
@@ -115,7 +115,7 @@ TrackerImpl::arMatrixPCA(ARMat *input, ARMat *evec, ARVec *ev, ARVec *mean)
 }
 
  int
-TrackerImpl::arMatrixPCA2( ARMat *input, ARMat *evec, ARVec *ev )
+Tracker::arMatrixPCA2( ARMat *input, ARMat *evec, ARVec *ev )
 {
     ARMat   *work;
     // ARFloat  srow; // unreferenced

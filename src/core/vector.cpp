@@ -29,7 +29,7 @@
 #endif
 #include <math.h>
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/vector.h>
 

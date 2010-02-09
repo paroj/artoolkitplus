@@ -20,7 +20,7 @@
 
 
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <cstdio>
 #include <cassert>
 
@@ -31,7 +31,7 @@ namespace ARToolKitPlus {
 // marker detection using tracking history
 //
  int
-TrackerImpl::arDetectMarker(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
+Tracker::arDetectMarker(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
 {
     int16_t                *limage=NULL;
     int                    label_num;
@@ -185,7 +185,7 @@ TrackerImpl::arDetectMarker(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker
 // marker detection without using tracking history
 //
  int
-TrackerImpl::arDetectMarkerLite(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
+Tracker::arDetectMarkerLite(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
 {
     int16_t                *limage = NULL;
     int                    label_num;

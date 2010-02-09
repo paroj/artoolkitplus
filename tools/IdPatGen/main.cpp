@@ -6,7 +6,7 @@
 #include <string>
 
 #include <ARToolKitPlus/arBitFieldPattern.h>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 #include "PN/ImageTool.h"
 

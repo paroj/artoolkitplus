@@ -26,7 +26,7 @@
 #include <cstring>
 #include <cmath>
 #include <clocale>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 
 
@@ -62,7 +62,7 @@ isNumber(const char* nString)
 
 
  ARMultiMarkerInfoT*
-TrackerImpl::arMultiReadConfigFile(const char *filename)
+Tracker::arMultiReadConfigFile(const char *filename)
 {
     FILE                   *fp;
     ARMultiEachMarkerInfoT *marker;

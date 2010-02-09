@@ -19,13 +19,13 @@
  *  Pavel Rojtberg
  */
 
-#include <ARToolKitPlus/TrackerMultiMarkerImpl.h>
+#include <ARToolKitPlus/TrackerMultiMarker.h>
 
 namespace ARToolKitPlus {
 
-TrackerMultiMarkerImpl::TrackerMultiMarkerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight,
+TrackerMultiMarker::TrackerMultiMarker(int imWidth, int imHeight, int pattWidth, int pattHeight,
         int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
-    TrackerImpl(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
+    Tracker(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
     useDetectLite = true;
     numDetected = 0;
 
@@ -36,7 +36,7 @@ TrackerMultiMarkerImpl::TrackerMultiMarkerImpl(int imWidth, int imHeight, int pa
     detectedMarkers = new ARMarkerInfo[MAX_IMAGE_PATTERNS];
 }
 
-TrackerMultiMarkerImpl::~TrackerMultiMarkerImpl() {
+TrackerMultiMarker::~TrackerMultiMarker() {
 	delete[] detectedMarkerIDs;
 	delete[] detectedMarkers;
 
@@ -44,7 +44,7 @@ TrackerMultiMarkerImpl::~TrackerMultiMarkerImpl() {
 		arMultiFreeConfig(config);
 }
 
-bool TrackerMultiMarkerImpl::init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip,
+bool TrackerMultiMarker::init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip,
 		ARFloat nFarClip) {
 	// init some "static" from TrackerMultiMarker
 	//
@@ -65,7 +65,7 @@ bool TrackerMultiMarkerImpl::init(const char* nCamParamFile, const char* nMultiF
 	return true;
 }
 
-int TrackerMultiMarkerImpl::calc(const unsigned char* nImage) {
+int TrackerMultiMarker::calc(const unsigned char* nImage) {
 	numDetected = 0;
 	int tmpNumDetected;
 	ARMarkerInfo *tmp_markers;
@@ -93,11 +93,11 @@ int TrackerMultiMarkerImpl::calc(const unsigned char* nImage) {
 	return numDetected;
 }
 
-void TrackerMultiMarkerImpl::getDetectedMarkers(int*& nMarkerIDs) {
+void TrackerMultiMarker::getDetectedMarkers(int*& nMarkerIDs) {
 	nMarkerIDs = detectedMarkerIDs;
 }
 
-void TrackerMultiMarkerImpl::getARMatrix(ARFloat nMatrix[3][4]) const {
+void TrackerMultiMarker::getARMatrix(ARFloat nMatrix[3][4]) const {
 	for (int i = 0; i < 3; i++)
 		for (int j = 0; j < 4; j++)
 			nMatrix[i][j] = config->trans[i][j];

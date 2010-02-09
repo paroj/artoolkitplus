@@ -23,7 +23,7 @@
 #include <cmath>
 #include <clocale>
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/ar.h>
 #include <ARToolKitPlus/matrix.h>
 
@@ -32,7 +32,7 @@ namespace ARToolKitPlus {
 static void get_cpara(ARFloat world[4][2], ARFloat vertex[4][2], ARFloat para[3][3]);
 void put_zero(uint8_t *p, int size);
 
-int TrackerImpl::arLoadPatt(char *filename) {
+int Tracker::arLoadPatt(char *filename) {
 	FILE *fp;
 	int patno;
 	int h, i, j, l, m;
@@ -114,7 +114,7 @@ int TrackerImpl::arLoadPatt(char *filename) {
 	return (patno);
 }
 
-int TrackerImpl::arFreePatt(int patno) {
+int Tracker::arFreePatt(int patno) {
 	if (patf[patno] == 0)
 		return -1;
 
@@ -126,7 +126,7 @@ int TrackerImpl::arFreePatt(int patno) {
 	return 1;
 }
 
-int TrackerImpl::arActivatePatt(int patno) {
+int Tracker::arActivatePatt(int patno) {
 	if (patf[patno] == 0)
 		return -1;
 
@@ -135,7 +135,7 @@ int TrackerImpl::arActivatePatt(int patno) {
 	return 1;
 }
 
-int TrackerImpl::arDeactivatePatt(int patno) {
+int Tracker::arDeactivatePatt(int patno) {
 	if (patf[patno] == 0)
 		return -1;
 
@@ -144,7 +144,7 @@ int TrackerImpl::arDeactivatePatt(int patno) {
 	return 1;
 }
 
-int TrackerImpl::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf,
+int Tracker::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf,
 		int thresh) {
 	uint8_t ext_pat[PATTERN_HEIGHT][PATTERN_WIDTH][3];
 
@@ -190,7 +190,7 @@ int TrackerImpl::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vert
 }
 
 //#if 1
-int TrackerImpl::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t **pext_pat[3]) {
+int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t **pext_pat[3]) {
 	uint8_t (*ext_pat)[PATTERN_WIDTH][3];
 	ext_pat = (uint8_t(*)[PATTERN_WIDTH][3]) pext_pat;
 
@@ -426,7 +426,7 @@ int TrackerImpl::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vert
 	return (0);
 }
 
-int TrackerImpl::pattern_match(uint8_t *data, int *code, int *dir, ARFloat *cf) {
+int Tracker::pattern_match(uint8_t *data, int *code, int *dir, ARFloat *cf) {
 	ARFloat invec[EVEC_MAX];
 	int input[PATTERN_HEIGHT * PATTERN_WIDTH * 3];
 	int i, j, l;
@@ -567,7 +567,7 @@ int TrackerImpl::pattern_match(uint8_t *data, int *code, int *dir, ARFloat *cf) 
 	return 0;
 }
 
-void TrackerImpl::gen_evec(void) {
+void Tracker::gen_evec(void) {
 	int i, j, k, ii, jj;
 	ARMat *input, *wevec;
 	ARVec *wev;

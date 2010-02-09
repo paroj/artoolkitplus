@@ -18,7 +18,7 @@
  Daniel Wagner
  */
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/arBitFieldPattern.h>
 
 #include <cassert>
@@ -149,7 +149,7 @@ static void checkPatternBCH(IDPATTERN nPattern, int& nID, float& nProp, BCH* nPr
 	}
 }
 
-int TrackerImpl::downsamplePattern(uint8_t* data, unsigned char* imgPtr) {
+int Tracker::downsamplePattern(uint8_t* data, unsigned char* imgPtr) {
 	int x, y;
 
 	if (PATTERN_WIDTH == 18 && PATTERN_HEIGHT == 18) {
@@ -262,7 +262,7 @@ int TrackerImpl::downsamplePattern(uint8_t* data, unsigned char* imgPtr) {
 	return 0;
 }
 
-int TrackerImpl::bitfield_check_simple(uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh) {
+int Tracker::bitfield_check_simple(uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh) {
 	assert(sizeof(IDPATTERN)>=8 && "IDPATTERN must be at least 64-bit integer");
 
 	unsigned char patimg[idPattWidth * idPattHeight], *imgPtr = patimg;
@@ -338,7 +338,7 @@ int TrackerImpl::bitfield_check_simple(uint8_t *data, int *code, int *dir, ARFlo
 	return 0;
 }
 
-int TrackerImpl::bitfield_check_BCH(uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh) {
+int Tracker::bitfield_check_BCH(uint8_t *data, int *code, int *dir, ARFloat *cf, int thresh) {
 	assert(sizeof(IDPATTERN)>=8 && "IDPATTERN must be at least 64-bit integer");
 
 	unsigned char patimg[idPattWidth * idPattHeight], *imgPtr = patimg;

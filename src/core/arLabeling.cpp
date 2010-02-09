@@ -20,7 +20,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 namespace ARToolKitPlus {
 
@@ -58,7 +58,7 @@ void put_zero(uint8_t *p, int size) {
 #undef _DEF_PIXEL_FORMAT_LUM
 
 int16_t*
-TrackerImpl::arLabeling(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+Tracker::arLabeling(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
         int **label_ref) {
     int16_t* ret = NULL;
 

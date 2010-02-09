@@ -22,23 +22,23 @@
 #include <cmath>
 #include <cassert>
 #include <cstring>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/param.h>
 
 namespace ARToolKitPlus {
 
-int TrackerImpl::arParamObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+int Tracker::arParamObserv2Ideal_std(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
     pCam->observ2Ideal(ox, oy, ix, iy);
     return (0);
 }
 
-int TrackerImpl::arParamIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) {
+int Tracker::arParamIdeal2Observ_std(Camera* pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) {
     pCam->ideal2Observ(ix, iy, ox, oy);
     return (0);
 }
 
-int TrackerImpl::arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+int Tracker::arParamObserv2Ideal_none(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
     *ix = ox;
     *iy = oy;
     return (0);
@@ -72,7 +72,7 @@ void fixedToFloat(unsigned int nFixed, ARFloat& nX, ARFloat& nY) {
     nY = (*sy) / 32.0f;
 }
 
-int TrackerImpl::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+int Tracker::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
     if (!undistO2ITable)
         buildUndistO2ITable(pCam);
 
@@ -82,7 +82,7 @@ int TrackerImpl::arParamObserv2Ideal_LUT(Camera* pCam, ARFloat ox, ARFloat oy, A
     return 0;
 }
 
-void TrackerImpl::buildUndistO2ITable(Camera* pCam) {
+void Tracker::buildUndistO2ITable(Camera* pCam) {
     int x, y;
     ARFloat cx, cy, ox, oy;
     unsigned int fixed;
@@ -134,12 +134,12 @@ void TrackerImpl::buildUndistO2ITable(Camera* pCam) {
     delete cachename;
 }
 
-int TrackerImpl::arParamObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
+int Tracker::arParamObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
     pCam->observ2Ideal(ox, oy, ix, iy);
     return (0);
 }
 
-int TrackerImpl::arParamIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) {
+int Tracker::arParamIdeal2Observ(Camera *pCam, ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy) {
     pCam->ideal2Observ(ix, iy, ox, oy);
     return (0);
 }

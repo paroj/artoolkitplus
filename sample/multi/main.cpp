@@ -23,10 +23,9 @@
 // This sample does not open any graphics window. It just
 // loads test images and shows use to use the ARToolKitPlus API.
 
-#include "ARToolKitPlus/TrackerMultiMarkerImpl.h"
+#include "ARToolKitPlus/TrackerMultiMarker.h"
 
 using ARToolKitPlus::TrackerMultiMarker;
-using ARToolKitPlus::TrackerMultiMarkerImpl;
 
 int main(int argc, char** argv) {
     const int width = 320, height = 240, bpp = 1;
@@ -58,7 +57,7 @@ int main(int argc, char** argv) {
     //  - works with luminance (gray) images
     //  - can load a maximum of 1 pattern
     //  - can detect a maximum of 8 patterns in one image
-    TrackerMultiMarker *tracker = new TrackerMultiMarkerImpl(width, height, 6, 6, 6, 1, 8);
+    TrackerMultiMarker *tracker = new TrackerMultiMarker(width, height, 6, 6, 6, 1, 8);
 
     tracker->setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
 

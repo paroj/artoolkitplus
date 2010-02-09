@@ -16,12 +16,13 @@
  *
  * Authors:
  *  Daniel Wagner
+ *  Pavel Rojtberg
  */
 
-#ifndef __TRACKERMULTIMARKER_HEADERFILE__
-#define __TRACKERMULTIMARKER_HEADERFILE__
+#ifndef __ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
+#define __ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 namespace ARToolKitPlus {
 
@@ -30,50 +31,83 @@ namespace ARToolKitPlus {
  *  ARToolKit::TrackerMultiMarker provides all methods to access ARToolKit for
  *  multi marker tracking without needing to mess around with it directly.
  */
-class TrackerMultiMarker: virtual public Tracker {
+class TrackerMultiMarker: public Tracker {
 public:
+    /**
+     * These parameters control the way the toolkit warps a found
+     * marker to a perfect square. The square has size
+     * pattWidth * pattHeight, the projected
+     * square in the image is subsampled at a min of
+     * pattWidth/pattHeight and a max of pattSamples
+     * steps in both x and y direction
+     *  @param imWidth width of the source image in px
+     *  @param imHeight height of the source image in px
+     *  @param pattWidth describes the pattern image width (6 by default).
+     *  @param pattHeight describes the pattern image height (6 by default).
+     *  @param pattSamples describes the maximum resolution at which a pattern is sampled from the camera image
+     *  (6 by default, must a a multiple of pattWidth and pattHeight).
+     *  @param maxLoadPatterns describes the maximum number of pattern files that can be loaded.
+     *  @param maxImagePatterns describes the maximum number of patterns that can be analyzed in a camera image.
+     *  Reduce maxLoadPatterns and maxImagePatterns to reduce memory footprint.
+     */
+    TrackerMultiMarker(int imWidth, int imHeight, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
+            int maxLoadPatterns = 0, int maxImagePatterns = 8);
+
+    virtual ~TrackerMultiMarker();
+
     /**
      * initializes ARToolKit
      *  nCamParamFile is the name of the camera parameter file
      *  nNearClip & nFarClip are near and far clipping values for the OpenGL projection matrix
      *  nLogger is an instance which implements the ARToolKit::Logger interface
      */
-    virtual bool init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip) = 0;
-
-    virtual ~TrackerMultiMarker(){}; // needed so the top-level destructor gets called
+    virtual bool init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip);
 
     /**
      * calculates the transformation matrix
      *	pass the image as RGBX (32-bits)
      */
-    virtual int calc(const uint8_t* nImage) = 0;
+    virtual int calc(const unsigned char* nImage);
 
-    /// Returns the number of detected markers used for multi-marker tracking
-    virtual int getNumDetectedMarkers() const = 0;
+    /*
+     * Returns the number of detected markers used for multi-marker tracking
+     */
+    virtual int getNumDetectedMarkers() const {
+        return numDetected;
+    }
 
+    /// Enables usage of arDetectMarkerLite. Otherwise arDetectMarker is used
     /**
      * Enables usage of arDetectMarkerLite. Otherwise arDetectMarker is used
      * In general arDetectMarker is more powerful since it keeps history about markers.
      * In some cases such as very low camera refresh rates it is advantegous to change this.
      * Using the non-lite version treats each image independent.
      */
-    virtual void setUseDetectLite(bool nEnable) = 0;
+    virtual void setUseDetectLite(bool nEnable) {
+        useDetectLite = nEnable;
+    }
 
     /**
      * Returns array of detected marker IDs
      * Only access the first getNumDetectedMarkers() markers
      */
-    virtual void getDetectedMarkers(int*& nMarkerIDs) = 0;
+    virtual void getDetectedMarkers(int*& nMarkerIDs);
 
-    /// Returns the ARMarkerInfo object for a found marker
-    virtual const ARMarkerInfo& getDetectedMarker(int nWhich) const = 0;
+    /*
+     * Returns the ARMarkerInfo object for a found marker
+     */
+    virtual const ARMarkerInfo& getDetectedMarker(int nWhich) const {
+        return detectedMarkers[nWhich];
+    }
 
     /**
      * Returns the loaded ARMultiMarkerInfoT object
      *  If loading the multi-marker config file failed then this method
      *  returns NULL.
      */
-    virtual const ARMultiMarkerInfoT* getMultiMarkerConfig() const = 0;
+    virtual const ARMultiMarkerInfoT* getMultiMarkerConfig() const {
+        return config;
+    }
 
     /**
      * Provides access to ARToolKit' internal version of the transformation matrix
@@ -82,11 +116,17 @@ public:
      *  matrix ARToolKit calculates rather than the OpenGL style version of this matrix
      *  that can be retrieved via getModelViewMatrix().
      */
-    virtual void getARMatrix(ARFloat nMatrix[3][4]) const = 0;
+    virtual void getARMatrix(ARFloat nMatrix[3][4]) const;
+protected:
+    int numDetected;
+    bool useDetectLite;
+
+    ARMultiMarkerInfoT *config;
+    int *detectedMarkerIDs;
+    ARMarkerInfo *detectedMarkers;
 };
 
 }
 ; // namespace ARToolKitPlus
 
-
-#endif //__TRACKERMULTIMARKER_HEADERFILE__
+#endif //__ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__

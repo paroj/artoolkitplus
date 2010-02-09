@@ -25,7 +25,7 @@
 #include <map>
 #include <deque>
 #include <cstring>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/extra/rpp.h>
 
@@ -33,7 +33,7 @@
 namespace ARToolKitPlus {
 
  ARFloat
-TrackerImpl::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+Tracker::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
 	rpp_float err = 1e+20;
 	rpp_mat R, R_init;

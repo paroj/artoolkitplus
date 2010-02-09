@@ -23,7 +23,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 
 
@@ -48,7 +48,7 @@ typedef struct {
 
 
  ARFloat
-TrackerImpl::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+Tracker::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
     ARFloat                *pos2d, *pos3d;
     ARFloat                rot[3][3], trans1[3][4], trans2[3][4];
@@ -196,7 +196,7 @@ TrackerImpl::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMul
 
 
  int
-TrackerImpl::verify_markers(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+Tracker::verify_markers(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
     arMultiEachMarkerInternalInfoT *winfo;
     ARFloat                         wtrans[3][4];

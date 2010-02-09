@@ -21,7 +21,7 @@
 
 #include <cassert>
 #include <ARToolKitPlus/extra/Hull.h>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/arGetInitRot2Sub.h>
 
 
@@ -29,7 +29,7 @@ namespace ARToolKitPlus {
 
 
  ARFloat
-TrackerImpl::arMultiGetTransMatHull(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
+Tracker::arMultiGetTransMatHull(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)
 {
 	//return arMultiGetTransMat(marker_info, marker_num, config);
 

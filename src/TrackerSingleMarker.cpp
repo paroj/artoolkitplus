@@ -20,23 +20,23 @@
  */
 
 #include <iostream>
-#include <ARToolKitPlus/TrackerSingleMarkerImpl.h>
+#include <ARToolKitPlus/TrackerSingleMarker.h>
 
 using std::cerr;
 using std::endl;
 
 namespace ARToolKitPlus {
 
-TrackerSingleMarkerImpl::TrackerSingleMarkerImpl(int imWidth, int imHeight, int pattWidth, int pattHeight,
+TrackerSingleMarker::TrackerSingleMarker(int imWidth, int imHeight, int pattWidth, int pattHeight,
         int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
-    TrackerImpl(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
+    Tracker(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
     thresh = 100;
 
     patt_width = 80;
     patt_center[0] = patt_center[1] = 0.0;
 }
 
-bool TrackerSingleMarkerImpl::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) {
+bool TrackerSingleMarker::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) {
 
     if (!this->checkPixelFormat()) {
         cerr << "ARToolKitPlus: Invalid Pixel Format!" << endl;
@@ -56,7 +56,7 @@ bool TrackerSingleMarkerImpl::init(const char* nCamParamFile, ARFloat nNearClip,
         return true;
 }
 
-vector<int> TrackerSingleMarkerImpl::calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info, int* nNumMarkers) {
+vector<int> TrackerSingleMarker::calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info, int* nNumMarkers) {
     vector<int> detected;
 
     if (nImage == NULL)
@@ -86,7 +86,7 @@ vector<int> TrackerSingleMarkerImpl::calc(const uint8_t* nImage, ARMarkerInfo** 
     return detected;
 }
 
-int TrackerSingleMarkerImpl::selectBestMarkerByCf() {
+int TrackerSingleMarker::selectBestMarkerByCf() {
     // find best visible marker
     int best = -1;
 
@@ -108,7 +108,7 @@ int TrackerSingleMarkerImpl::selectBestMarkerByCf() {
     return best;
 }
 
-void TrackerSingleMarkerImpl::selectDetectedMarker(const int id) {
+void TrackerSingleMarker::selectDetectedMarker(const int id) {
     for (int i = 0; i < marker_num; i++) {
         if (marker_info[i].id == id) {
             executeSingleMarkerPoseEstimator(&marker_info[i], patt_center, patt_width, patt_trans);
@@ -118,7 +118,7 @@ void TrackerSingleMarkerImpl::selectDetectedMarker(const int id) {
     }
 }
 
-int TrackerSingleMarkerImpl::addPattern(const char* nFileName) {
+int TrackerSingleMarker::addPattern(const char* nFileName) {
     int patt_id = arLoadPatt(const_cast<char*> (nFileName));
 
     if (patt_id < 0) {
@@ -128,7 +128,7 @@ int TrackerSingleMarkerImpl::addPattern(const char* nFileName) {
     return patt_id;
 }
 
-void TrackerSingleMarkerImpl::getARMatrix(ARFloat nMatrix[3][4]) const {
+void TrackerSingleMarker::getARMatrix(ARFloat nMatrix[3][4]) const {
     for (int i = 0; i < 3; i++)
         for (int j = 0; j < 4; j++)
             nMatrix[i][j] = patt_trans[i][j];

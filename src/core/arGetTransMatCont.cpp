@@ -19,20 +19,20 @@
       Pavel Rojtberg
  */
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 namespace ARToolKitPlus {
 
 
  ARFloat
-TrackerImpl::arGetTransMatCont2(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+Tracker::arGetTransMatCont2(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
 	return arGetTransMatCont(marker_info, conv, center, width, conv);
 }
 
 
  ARFloat
-TrackerImpl::arGetTransMatCont(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+Tracker::arGetTransMatCont(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
     ARFloat  err1, err2;
     ARFloat wtrans[3][4];
@@ -54,7 +54,7 @@ TrackerImpl::arGetTransMatCont(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4
 
 
  ARFloat
-TrackerImpl::arGetTransMatContSub(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width, ARFloat conv[3][4])
+Tracker::arGetTransMatContSub(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width, ARFloat conv[3][4])
 {
     ARFloat  rot[3][3];
     ARFloat  ppos2d[4][2];

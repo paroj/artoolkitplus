@@ -22,7 +22,7 @@
 
 #include <stdio.h>
 #include <math.h>
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 
 
@@ -34,7 +34,7 @@ static ARFloat dot( ARFloat a1, ARFloat a2, ARFloat a3,
                    ARFloat b1, ARFloat b2, ARFloat b3 );
 
  int
-TrackerImpl::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans[3][4] )
+Tracker::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans[3][4] )
 {
     icpara->xsize          = source->xsize;
     icpara->ysize          = source->ysize;
@@ -48,7 +48,7 @@ TrackerImpl::arParamDecomp( ARParam *source, ARParam *icpara, ARFloat trans[3][4
 
 
  int
-TrackerImpl::arParamDecompMat( ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4] )
+Tracker::arParamDecompMat( ARFloat source[3][4], ARFloat cpara[3][4], ARFloat trans[3][4] )
 {
     int       r, c;
     ARFloat    Cpara[3][4];

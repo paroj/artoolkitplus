@@ -19,11 +19,11 @@
       Pavel Rojtberg
  */
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <cassert>
 
  int16_t*
-TrackerImpl::LABEL_FUNC_NAME(uint8_t *image, int thresh, int *label_num, int **area,
+Tracker::LABEL_FUNC_NAME(uint8_t *image, int thresh, int *label_num, int **area,
 								  ARFloat **pos, int **clip, int **label_ref)
 {
     uint8_t   *pnt;                     /*  image pointer       */

@@ -33,13 +33,13 @@
 #include <sys/time.h>
 #endif
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/param.h>
 #include <ARToolKitPlus/matrix.h>
 
 namespace ARToolKitPlus {
 
-int TrackerImpl::arInitCparam(Camera *pCam) {
+int Tracker::arInitCparam(Camera *pCam) {
     // if the camera parameters change, the undistortion LUT has to be rebuilt.
     // (this is done automatically in arParamObserv2Ideal_LUT or arParamIdeal2Observ_LUT)
     //
@@ -54,7 +54,7 @@ int TrackerImpl::arInitCparam(Camera *pCam) {
     return (0);
 }
 
-int TrackerImpl::arGetLine(int x_coord[], int y_coord[], int vertex[], ARFloat line[4][3], ARFloat v[4][2]) {
+int Tracker::arGetLine(int x_coord[], int y_coord[], int vertex[], ARFloat line[4][3], ARFloat v[4][2]) {
     ARMat *input, *evec;
     ARVec *ev, *mean;
     ARFloat w1;
@@ -103,7 +103,7 @@ int TrackerImpl::arGetLine(int x_coord[], int y_coord[], int vertex[], ARFloat l
     return (0);
 }
 
-int TrackerImpl::arUtilMatMul(ARFloat s1[3][4], ARFloat s2[3][4], ARFloat d[3][4]) {
+int Tracker::arUtilMatMul(ARFloat s1[3][4], ARFloat s2[3][4], ARFloat d[3][4]) {
     int i, j;
 
     for (j = 0; j < 3; j++) {
@@ -116,7 +116,7 @@ int TrackerImpl::arUtilMatMul(ARFloat s1[3][4], ARFloat s2[3][4], ARFloat d[3][4
     return 0;
 }
 
-int TrackerImpl::arUtilMatInv(ARFloat s[3][4], ARFloat d[3][4]) {
+int Tracker::arUtilMatInv(ARFloat s[3][4], ARFloat d[3][4]) {
     ARMat *mat;
     int i, j;
 

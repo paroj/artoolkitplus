@@ -18,7 +18,7 @@
  *  Daniel Wagner
  */
 
-#include <ARToolKitPlus/TrackerImpl.h>
+#include <ARToolKitPlus/Tracker.h>
 
 namespace ARToolKitPlus {
 
@@ -26,7 +26,7 @@ namespace ARToolKitPlus {
 
 #ifndef _FIXEDPOINT_MATH_ACTIVATED_
 
-ARFloat TrackerImpl::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4], ARFloat vertex[][3],
+ARFloat Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4], ARFloat vertex[][3],
         ARFloat pos2d[][2], int num) {
     ARFloat factor;
     ARFloat a, b, c;
@@ -97,7 +97,7 @@ ARFloat TrackerImpl::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat
     return minerr / num;
 }
 
-ARFloat TrackerImpl::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4], ARFloat vertex[][3],
+ARFloat Tracker::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4], ARFloat vertex[][3],
         ARFloat pos2d[][2], int num) {
     ARFloat factor;
     ARFloat a, b, c;
@@ -204,7 +204,7 @@ int arGetNewMatrix12(I32 _a, I32 _b, I32 _c, FIXED_VEC3D _trans, ARFloat trans2[
         FIXED_VEC3D _cpara[3], I32 _cpara3[3], FIXED_VEC3D ret[3], I32 _ret3[3], Profiler& nProfiler);
 
 ARFloat
-TrackerImpl::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
+Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4],
         ARFloat vertex[][3], ARFloat pos2d[][2], int num)
 {
     ARFloat a, b, c;
