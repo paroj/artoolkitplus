@@ -105,7 +105,7 @@ int main(int argc, char** argv) {
     // here we go, just two calls to find the camera pose
     vector<int> markerId = tracker->calc(cameraBuffer);
     tracker->selectBestMarkerByCf();
-    float conf = (float) tracker->getConfidence();
+    float conf = tracker->getConfidence();
 
     // use the result of calc() to setup the OpenGL transformation
     //glMatrixMode(GL_MODELVIEW)

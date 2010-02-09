@@ -105,8 +105,8 @@ public:
     /**
      * Returns the confidence value of the currently best detected marker.
      */
-    virtual ARFloat getConfidence() const {
-        return confidence;
+    virtual float getConfidence() const {
+        return (float)confidence;
     }
 
 protected:

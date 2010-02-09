@@ -32,21 +32,6 @@ public:
     ARFloat dist_factor[4];
 };
 
-typedef struct {
-    int xsize, ysize;
-    double mat[3][4];
-    double dist_factor[4];
-} ARParamDouble;
-
-typedef struct {
-    int xsize, ysize;
-    ARFloat matL[3][4];
-    ARFloat matR[3][4];
-    ARFloat matL2R[3][4];
-    ARFloat dist_factorL[4];
-    ARFloat dist_factorR[4];
-} ARSParam;
-
 } // namespace ARToolKitPlus
 
 

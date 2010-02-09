@@ -34,12 +34,12 @@ namespace ARToolKitPlus {
 
 class Camera: public ARParam {
 public:
-    virtual void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
-    virtual void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
-    virtual bool loadFromFile(const char* filename);
-    virtual Camera* clone();
-    virtual bool changeFrameSize(const int frameWidth, const int frameHeight);
-    virtual void printSettings();
+    void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
+    void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
+    bool loadFromFile(const char* filename);
+    Camera* clone();
+    bool changeFrameSize(const int frameWidth, const int frameHeight);
+    void printSettings();
     string getFileName() const;
 
 protected:
