@@ -21,7 +21,6 @@
 #ifndef __ARTOOLKITVECTOR_HEADERFILE__
 #define __ARTOOLKITVECTOR_HEADERFILE__
 
-#include <cmath>
 #include <ARToolKitPlus/config.h>
 
 namespace ARToolKitPlus {

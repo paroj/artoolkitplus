@@ -23,7 +23,8 @@
 // This sample does not open any graphics window. It just
 // loads test images and shows use to use the ARToolKitPlus API.
 
-#include "ARToolKitPlus/TrackerMultiMarker.h"
+#include <cstdio>
+#include <ARToolKitPlus/TrackerMultiMarker.h>
 
 using ARToolKitPlus::TrackerMultiMarker;
 

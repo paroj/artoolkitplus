@@ -21,6 +21,7 @@
 
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
+#include <cmath>
 
 #define CHECK_CALC 0
 
