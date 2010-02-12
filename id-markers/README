@@ -25,8 +25,8 @@ number of pixels (as there is no point in saving them at a specific size).
 
 All one has to do, is to print them at the prefered size. It is important
 to turn off any kind of filtering (nearest neighbour filtering is ok of
-course...) as otherwise the marker image would become blurred. Under
-Windows IrfanView is a good and free tool to print images at any size.
+course...) as otherwise the marker image would become blurred. 
+Gimp(http://www.gimp.org/) is a good and free tool to print images at any size.
 
 In contrast to template based markers, it is not required or possible to
 train these markers to ARToolKitPlus. Just put a printed marker in front
