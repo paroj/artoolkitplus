@@ -44,8 +44,8 @@ Tracker::Tracker(int imWidth, int imHeight, int pattWidth, int pattHeight, int p
 		evec(EVEC_MAX, vector<ARFloat>(PATTERN_HEIGHT*PATTERN_WIDTH*3)),
 		evecBW(EVEC_MAX, vector<ARFloat>(PATTERN_HEIGHT*PATTERN_WIDTH*3))
  {
-    this->screenWidth = imWidth;
-    this->screenHeight = imHeight;
+    screenWidth = imWidth;
+    screenHeight = imHeight;
 
     int i;
 
