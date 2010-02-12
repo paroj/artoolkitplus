@@ -44,11 +44,11 @@ bool Camera::loadFromFile(const char* filename) {
     int n;
 
     char _s[32];
-    sprintf(_s, "%c%i%c%c%c", '%', (int) strlen(CAMERA_ADV_HEADER), 's', '\\', 'n');
-    char hdr[MAX_PATH];
+    sprintf(_s, "%%%is\n", (int)strlen(CAMERA_ADV_HEADER));
+    char hdr[strlen(CAMERA_ADV_HEADER)];
     n = fscanf(fp, _s, hdr);
-    if (strstr(hdr, CAMERA_ADV_HEADER) == NULL)
-        return (false);
+    if (strcmp(hdr, CAMERA_ADV_HEADER) != 0)
+        return false;
 
     n = fscanf(fp, "%d%d%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%d\n", &this->xsize, &this->ysize, &_cc[0], &_cc[1], &_fc[0],
             &_fc[1], &_kc[0], &_kc[1], &_kc[2], &_kc[3], &_kc[4], &_kc[5], &undist_iterations);

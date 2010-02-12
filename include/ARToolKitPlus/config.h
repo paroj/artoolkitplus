@@ -96,14 +96,5 @@
   #define getLUM8_from_RGB565(ptr)   RGB565_to_LUM8_LUT[ (*(unsigned short*)(ptr))    ]
 #endif //SMALL_LUM8_TABLE
 
-
-#if defined(_MSC_VER)
-#  include <windows.h>
-#else
-// for linux no MAX_PATH variable is set
-#  define MAX_PATH 512
-#endif
-
-
 #endif //  AR_CONFIG_H
 
