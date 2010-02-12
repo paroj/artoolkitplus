@@ -30,6 +30,11 @@ namespace ARToolKitPlus {
  * Defines a simple interface for multi-marker tracking with ARToolKitPlus
  *  ARToolKit::TrackerMultiMarker provides all methods to access ARToolKit for
  *  multi marker tracking without needing to mess around with it directly.
+ *
+ *  Per default the tracker searches for Id-based markers with normal border and uses
+ *  the RPP algorithm for pose estimation.
+ *  Furthermore it uses only 4 'good' points of the convex hull to do the pose estimation.
+ *  You can override this using the according methods.
  */
 class TrackerMultiMarker: public Tracker {
 public:

@@ -31,6 +31,9 @@ namespace ARToolKitPlus {
  *  ARToolKitPlus::TrackerSingleMarker provides all methods to access ARToolKit for
  *  single marker tracking without needing to mess around with it low level methods directly.
  *
+ *  Per default the tracker searches for Id-based markers with normal border and uses
+ *  the RPP algorithm for pose estimation. You can override this using the according methods.
+ *
  *  If you need multi-marker tracking use TrackerMultiMarker.
  */
 class TrackerSingleMarker: public Tracker {
@@ -87,7 +90,8 @@ public:
     virtual int selectBestMarkerByCf();
 
     /**
-     * Sets the width and height of the patterns.
+     * Sets the width and height of the patterns in OpenGL units
+     * defaults to 2.0, so the unity cube fits the marker surface
      */
     virtual void setPatternWidth(ARFloat nWidth) {
         patt_width = nWidth;

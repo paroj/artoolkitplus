@@ -115,17 +115,14 @@ Tracker::Tracker(int imWidth, int imHeight, int pattWidth, int pattHeight, int p
     arImageL = NULL;
     //arImageR                = NULL;
 
-    markerMode = MARKER_TEMPLATE;
+    markerMode = MARKER_ID_SIMPLE;
 
     RGB565_to_LUM8_LUT = NULL;
 
     relBorderWidth = 0.25f;
 
-    // undistortion addon by Daniel
-    //
     undistMode = UNDIST_STD;
     undistO2ITable = NULL;
-    //undistI2OTable = NULL;
     arCameraObserv2Ideal_func = &Tracker::arCameraObserv2Ideal_std;
 
     vignetting.enabled = false;
@@ -133,12 +130,8 @@ Tracker::Tracker(int imWidth, int imHeight, int pattWidth, int pattHeight, int p
 
     bchProcessor = NULL;
 
-    // RPP integration -- [t.pintaric]
-    poseEstimator = POSE_ESTIMATOR_ORIGINAL;
-
-    hullTrackingMode = HULL_OFF;
-
-    descriptionString = new char[512];
+    poseEstimator = POSE_ESTIMATOR_RPP;
+    hullTrackingMode = HULL_FOUR;
 }
 
 Tracker::~Tracker() {
@@ -189,10 +182,6 @@ Tracker::~Tracker() {
     if (undistO2ITable)
         delete[] undistO2ITable;
     undistO2ITable = NULL;
-
-    if (descriptionString)
-        delete[] descriptionString;
-    descriptionString = NULL;
 
     if (marker_infoTWO)
         delete[] marker_infoTWO;

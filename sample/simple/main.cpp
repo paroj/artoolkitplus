@@ -91,16 +91,13 @@ int main(int argc, char** argv) {
     // note: LUT only works with images up to 1024x1024
     tracker->setUndistortionMode(ARToolKitPlus::UNDIST_LUT);
 
-    // RPP is more robust than ARToolKit's standard pose estimator
-    tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_RPP);
-
     // switch to simple ID based markers
     // use the tool in tools/IdPatGen to generate markers
     tracker->setMarkerMode(useBCH ? ARToolKitPlus::MARKER_ID_BCH : ARToolKitPlus::MARKER_ID_SIMPLE);
 
     // do the OpenGL camera setup
-    //glMatrixMode(GL_PROJECTION)
-    //glLoadMatrixf(tracker->getProjectionMatrix());
+    // glMatrixMode(GL_PROJECTION)
+    // glLoadMatrixf(tracker->getProjectionMatrix());
 
     // here we go, just two calls to find the camera pose
     vector<int> markerId = tracker->calc(cameraBuffer);
@@ -108,8 +105,8 @@ int main(int argc, char** argv) {
     float conf = tracker->getConfidence();
 
     // use the result of calc() to setup the OpenGL transformation
-    //glMatrixMode(GL_MODELVIEW)
-    //glLoadMatrixf(tracker->getModelViewMatrix());
+    // glMatrixMode(GL_MODELVIEW)
+    // glLoadMatrixf(tracker->getModelViewMatrix());
 
     printf("\n\nFound marker %d  (confidence %d%%)\n\nPose-Matrix:\n  ", markerId[0], (int(conf * 100.0f)));
     for (int i = 0; i < 16; i++)

@@ -80,15 +80,9 @@ int main(int argc, char** argv) {
     // note: LUT only works with images up to 1024x1024
     tracker->setUndistortionMode(ARToolKitPlus::UNDIST_LUT);
 
-    // RPP is more robust than ARToolKit's standard pose estimator
-    //tracker->setPoseEstimator(ARToolKitPlus::POSE_ESTIMATOR_RPP);
-
     // switch to simple ID based markers
     // use the tool in tools/IdPatGen to generate markers
     tracker->setMarkerMode(ARToolKitPlus::MARKER_ID_SIMPLE);
-
-    // switch on the hull only tracking
-    tracker->setHullMode(ARToolKitPlus::HULL_FOUR);
 
     // do the OpenGL camera setup
     //glMatrixMode(GL_PROJECTION)

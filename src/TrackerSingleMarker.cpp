@@ -32,7 +32,7 @@ TrackerSingleMarker::TrackerSingleMarker(int imWidth, int imHeight, int pattWidt
     Tracker(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
     thresh = 100;
 
-    patt_width = 80;
+    patt_width = 2.0;
     patt_center[0] = patt_center[1] = 0.0;
 }
 
