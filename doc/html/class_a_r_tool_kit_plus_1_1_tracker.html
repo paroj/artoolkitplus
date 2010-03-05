@@ -12,6 +12,7 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
@@ -23,14 +24,11 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><b>ARToolKitPlus</b>::<a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html">Tracker</a>
+  <div class="navpath"><a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a>::<a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html">Tracker</a>
   </div>
 </div>
 <div class="contents">
 <h1>ARToolKitPlus::Tracker Class Reference</h1><!-- doxytag: class="ARToolKitPlus::Tracker" -->
-<p><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html" title="Tracker is the vision core of ARToolKit.">Tracker</a> is the vision core of ARToolKit.  
-<a href="#_details">More...</a></p>
-
 <p><code>#include &lt;Tracker.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ARToolKitPlus::Tracker:</div>
@@ -47,122 +45,95 @@ Inheritance diagram for ARToolKitPlus::Tracker:</div>
 <p><a href="class_a_r_tool_kit_plus_1_1_tracker-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab615b523987f9ebe381a5302af4efc0c"></a><!-- doxytag: member="ARToolKitPlus::Tracker::cleanup" ref="ab615b523987f9ebe381a5302af4efc0c" args="()=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ab615b523987f9ebe381a5302af4efc0c">cleanup</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">does final clean up (memory deallocation) <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aa4a3893a2506a40d38153aefcc53246f">setPixelFormat</a> (PIXEL_FORMAT nFormat)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the pixel format of the camera image.  <a href="#aa4a3893a2506a40d38153aefcc53246f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a03383687693fdd27f589715c518da369">loadCameraFile</a> (const char *nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loads a camera calibration file and stores data internally.  <a href="#a03383687693fdd27f589715c518da369"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a99f360a1848cf1bb7e063eba07e47611">setLoadUndistLUT</a> (bool nSet)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set to true to try loading camera undistortion table from a cache file.  <a href="#a99f360a1848cf1bb7e063eba07e47611"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac70b88a0e0b09474828a2ba7eb2cdf35"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arDetectMarker" ref="ac70b88a0e0b09474828a2ba7eb2cdf35" args="(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)=0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ac70b88a0e0b09474828a2ba7eb2cdf35">arDetectMarker</a> (uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a5564152e620e23033fab163516d89f32">setPixelFormat</a> (PIXEL_FORMAT nFormat)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aa96c7a3c1ddc41de8ce7f04ac28f94fd">loadCameraFile</a> (const char *nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aabcf61e32ec9e1efb7f54c35747d68de">setLoadUndistLUT</a> (bool nSet)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95d56032887370748b16973b7168119d"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arDetectMarker" ref="a95d56032887370748b16973b7168119d" args="(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)" -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a95d56032887370748b16973b7168119d">arDetectMarker</a> (uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">marker detection using tracking history <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a054efd96b83b939263f35eef3395b865"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arDetectMarkerLite" ref="a054efd96b83b939263f35eef3395b865" args="(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)=0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a054efd96b83b939263f35eef3395b865">arDetectMarkerLite</a> (uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f008b2fdcf7fbf71e82c73241417360"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arDetectMarkerLite" ref="a7f008b2fdcf7fbf71e82c73241417360" args="(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)" -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a7f008b2fdcf7fbf71e82c73241417360">arDetectMarkerLite</a> (uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">marker detection without using tracking history <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2e90b697c6e3eaa610ff4dee8ac1325"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arMultiGetTransMat" ref="ae2e90b697c6e3eaa610ff4dee8ac1325" args="(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)=0" -->
-virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ae2e90b697c6e3eaa610ff4dee8ac1325">arMultiGetTransMat</a> (ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af333c42c76e4c57459eedac011f8cae5"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arMultiGetTransMat" ref="af333c42c76e4c57459eedac011f8cae5" args="(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)" -->
+virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#af333c42c76e4c57459eedac011f8cae5">arMultiGetTransMat</a> (ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">calculates the transformation matrix between camera and the given multi-marker config <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1beee2676eea65457e5666ec5e4ee771"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arGetTransMat" ref="a1beee2676eea65457e5666ec5e4ee771" args="(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])=0" -->
-virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a1beee2676eea65457e5666ec5e4ee771">arGetTransMat</a> (ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa777dea7049c0f3691bd2bc1058b0916"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arGetTransMat" ref="aa777dea7049c0f3691bd2bc1058b0916" args="(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])" -->
+virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aa777dea7049c0f3691bd2bc1058b0916">arGetTransMat</a> (ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">calculates the transformation matrix between camera and the given marker <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a806ee35e25e510cc0f5536ceb842eafc"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arLoadPatt" ref="a806ee35e25e510cc0f5536ceb842eafc" args="(char *filename)=0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a806ee35e25e510cc0f5536ceb842eafc">arLoadPatt</a> (char *filename)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a574805fef3a7eb1dfb99c4c45e35b86b"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arLoadPatt" ref="a574805fef3a7eb1dfb99c4c45e35b86b" args="(char *filename)" -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a574805fef3a7eb1dfb99c4c45e35b86b">arLoadPatt</a> (char *filename)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">loads a pattern from a file <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a304839afe285c61abe88c4adc4568142"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arFreePatt" ref="a304839afe285c61abe88c4adc4568142" args="(int patno)=0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a304839afe285c61abe88c4adc4568142">arFreePatt</a> (int patno)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a778069fc2bad7f1a00364fece318990a"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arFreePatt" ref="a778069fc2bad7f1a00364fece318990a" args="(int patno)" -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a778069fc2bad7f1a00364fece318990a">arFreePatt</a> (int patno)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">frees a pattern from memory <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5db3bdd545d9da90282c62b5e0a2a79"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arMultiFreeConfig" ref="af5db3bdd545d9da90282c62b5e0a2a79" args="(ARMultiMarkerInfoT *config)=0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#af5db3bdd545d9da90282c62b5e0a2a79">arMultiFreeConfig</a> (ARMultiMarkerInfoT *config)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">frees a multimarker config from memory <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac52e101b54a7edc2741f600347eab9f6"></a><!-- doxytag: member="ARToolKitPlus::Tracker::arMultiReadConfigFile" ref="ac52e101b54a7edc2741f600347eab9f6" args="(const char *filename)=0" -->
-virtual ARMultiMarkerInfoT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ac52e101b54a7edc2741f600347eab9f6">arMultiReadConfigFile</a> (const char *filename)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">reads a standard artoolkit multimarker config file <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#af398f8cb2d871417cac5785780fbccf1">activateBinaryMarker</a> (int nThreshold)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">activates binary markers  <a href="#af398f8cb2d871417cac5785780fbccf1"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a8a57c893181cccafe57ab2b9c624a08a">setMarkerMode</a> (MARKER_MODE nMarkerMode)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">activate the usage of id-based markers rather than template based markers  <a href="#a8a57c893181cccafe57ab2b9c624a08a"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a7d10597d49cfe86c5f1c29f15fd0b863">activateVignettingCompensation</a> (bool nEnable, int nCorners=0, int nLeftRight=0, int nTopBottom=0)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">activates the complensation of brightness falloff in the corners of the camera image  <a href="#a7d10597d49cfe86c5f1c29f15fd0b863"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6170e586cdfb5ca92799977155f67de"></a><!-- doxytag: member="ARToolKitPlus::Tracker::changeCameraSize" ref="ac6170e586cdfb5ca92799977155f67de" args="(int nWidth, int nHeight)=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ac6170e586cdfb5ca92799977155f67de">changeCameraSize</a> (int nWidth, int nHeight)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">changes the resolution of the camera after the camerafile was already loaded <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#abef9bd566d6017b738ed9f44de4db37e">setUndistortionMode</a> (UNDIST_MODE nMode)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Changes the undistortion mode.  <a href="#abef9bd566d6017b738ed9f44de4db37e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a99c8f78ee7098108ce42b80de81c2ff0">setPoseEstimator</a> (POSE_ESTIMATOR nMethod)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Changes the Pose Estimation Algorithm.  <a href="#a99c8f78ee7098108ce42b80de81c2ff0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a5d6041e859bbbca6a1e9978548545479">setHullMode</a> (HULL_TRACKING_MODE nMode)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">If true the alternative hull-algorithm will be used for multi-marker tracking.  <a href="#a5d6041e859bbbca6a1e9978548545479"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a9ca3afe99722f6f8d5908eb8b02cfd07">setBorderWidth</a> (ARFloat nFraction)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets a new relative border width. ARToolKit's default value is 0.25.  <a href="#a9ca3afe99722f6f8d5908eb8b02cfd07"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac2634d89e49168b2e681c14499b4c4ad"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setThreshold" ref="ac2634d89e49168b2e681c14499b4c4ad" args="(int nValue)=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ac2634d89e49168b2e681c14499b4c4ad">setThreshold</a> (int nValue)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a07dfacfadfb9c5132adf93ef351078a2">activateBinaryMarker</a> (int nThreshold)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ae81e87d2ee6352fdd46870a3aec606d1">setMarkerMode</a> (MARKER_MODE nMarkerMode)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ab11e97172c6aa3ad36920b61b4af2cbb">activateVignettingCompensation</a> (bool nEnable, int nCorners=0, int nLeftRight=0, int nTopBottom=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4eed493b933d77e45aed91b3707f6bc"></a><!-- doxytag: member="ARToolKitPlus::Tracker::changeCameraSize" ref="aa4eed493b933d77e45aed91b3707f6bc" args="(int nWidth, int nHeight)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aa4eed493b933d77e45aed91b3707f6bc">changeCameraSize</a> (int nWidth, int nHeight)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Changes the resolution of the camera after the camerafile was already loaded. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a5c12cfc588915715eef85bd39040d046">setUndistortionMode</a> (UNDIST_MODE nMode)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aee1ce46890b77c471cb4852d434aec03">setPoseEstimator</a> (POSE_ESTIMATOR nMethod)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a76d769fd71667b60ce0473f43e58d683">setHullMode</a> (HULL_TRACKING_MODE nMode)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a514ceefcb9466af3774e10d6bf30e362">setBorderWidth</a> (ARFloat nFraction)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35179646e09a1b9e02bc34198248ca0c"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setThreshold" ref="a35179646e09a1b9e02bc34198248ca0c" args="(int nValue)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a35179646e09a1b9e02bc34198248ca0c">setThreshold</a> (int nValue)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the threshold value that is used for black/white conversion. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76e771e6d2367842840c0beebb732c34"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getThreshold" ref="a76e771e6d2367842840c0beebb732c34" args="() const =0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a76e771e6d2367842840c0beebb732c34">getThreshold</a> () const =0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d615f8ea075e23ea3b1688111135252"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getThreshold" ref="a4d615f8ea075e23ea3b1688111135252" args="() const " -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a4d615f8ea075e23ea3b1688111135252">getThreshold</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the current threshold value. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39513d5c06265d7280ab07c631686b1f"></a><!-- doxytag: member="ARToolKitPlus::Tracker::activateAutoThreshold" ref="a39513d5c06265d7280ab07c631686b1f" args="(bool nEnable)=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a39513d5c06265d7280ab07c631686b1f">activateAutoThreshold</a> (bool nEnable)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables or disables automatic threshold calculation. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecbb9b5273d637ddf07d06c45c94d2d4"></a><!-- doxytag: member="ARToolKitPlus::Tracker::isAutoThresholdActivated" ref="aecbb9b5273d637ddf07d06c45c94d2d4" args="() const =0" -->
-virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aecbb9b5273d637ddf07d06c45c94d2d4">isAutoThresholdActivated</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns true if automatic threshold calculation is activated. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a2ebcf473ee2d808a306f7dada1bfbb08">setNumAutoThresholdRetries</a> (int nNumRetries)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the number of times the threshold is randomized in case no marker was visible (Default: 2).  <a href="#a2ebcf473ee2d808a306f7dada1bfbb08"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ab126bbd9a2b0005c556da030e2fdee55">setImageProcessingMode</a> (IMAGE_PROC_MODE nMode)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets an image processing mode (half or full resolution).  <a href="#ab126bbd9a2b0005c556da030e2fdee55"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96a3ccd66be001d23c059928224f2cf6"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getModelViewMatrix" ref="a96a3ccd66be001d23c059928224f2cf6" args="() const =0" -->
-virtual const ARFloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a96a3ccd66be001d23c059928224f2cf6">getModelViewMatrix</a> () const =0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f093bc1677718c071ad545b86ef3730"></a><!-- doxytag: member="ARToolKitPlus::Tracker::activateAutoThreshold" ref="a6f093bc1677718c071ad545b86ef3730" args="(bool nEnable)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a6f093bc1677718c071ad545b86ef3730">activateAutoThreshold</a> (bool nEnable)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Turns automatic threshold calculation on/off. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a762014d9c3d97162d7d779d9a63d4c02"></a><!-- doxytag: member="ARToolKitPlus::Tracker::isAutoThresholdActivated" ref="a762014d9c3d97162d7d779d9a63d4c02" args="() const " -->
+virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a762014d9c3d97162d7d779d9a63d4c02">isAutoThresholdActivated</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns true if automatic threshold detection is enabled. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#afafc4a06d77adf04ef6e98c1a42d63c9">setNumAutoThresholdRetries</a> (int nNumRetries)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aa24710ff997526c03a4815c8957467b0">setImageProcessingMode</a> (IMAGE_PROC_MODE nMode)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a808fc7ff4fd600a3980b533372576b7e"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getModelViewMatrix" ref="a808fc7ff4fd600a3980b533372576b7e" args="() const " -->
+virtual const ARFloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a808fc7ff4fd600a3980b533372576b7e">getModelViewMatrix</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns an opengl-style modelview transformation matrix. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3e0bfc213cfc45439724628de62467cd"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getProjectionMatrix" ref="a3e0bfc213cfc45439724628de62467cd" args="() const =0" -->
-virtual const ARFloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a3e0bfc213cfc45439724628de62467cd">getProjectionMatrix</a> () const =0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6599e6221af76c87a189f12441fd3e65"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getProjectionMatrix" ref="a6599e6221af76c87a189f12441fd3e65" args="() const " -->
+virtual const ARFloat *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a6599e6221af76c87a189f12441fd3e65">getProjectionMatrix</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns an opengl-style projection transformation matrix. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2baea4a4f5d504b0812d337f69dc76c"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getDescription" ref="ab2baea4a4f5d504b0812d337f69dc76c" args="()=0" -->
-virtual const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ab2baea4a4f5d504b0812d337f69dc76c">getDescription</a> ()=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a short description with compiled-in settings. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab0f15b3740afee8003a640feac231961"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getPixelFormat" ref="ab0f15b3740afee8003a640feac231961" args="() const =0" -->
-virtual PIXEL_FORMAT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ab0f15b3740afee8003a640feac231961">getPixelFormat</a> () const =0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af22a17ae3370fa5e6b821d5ab23f3100"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getPixelFormat" ref="af22a17ae3370fa5e6b821d5ab23f3100" args="() const " -->
+virtual PIXEL_FORMAT&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#af22a17ae3370fa5e6b821d5ab23f3100">getPixelFormat</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the compiled-in pixel format. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8ab31d4b32abd0ad626e9423c4e500b"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getBitsPerPixel" ref="ad8ab31d4b32abd0ad626e9423c4e500b" args="() const =0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#ad8ab31d4b32abd0ad626e9423c4e500b">getBitsPerPixel</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of bits required to store a single pixel. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a81f3c2ae8bee9472283e5848bf4aa692">getNumLoadablePatterns</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the maximum number of patterns that can be loaded.  <a href="#a81f3c2ae8bee9472283e5848bf4aa692"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af42b70ca3dc4c79a80e904529d2cdf69"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getCamera" ref="af42b70ca3dc4c79a80e904529d2cdf69" args="()=0" -->
-virtual Camera *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#af42b70ca3dc4c79a80e904529d2cdf69">getCamera</a> ()=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2384eda0802fcce56042621b5a250d98"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getBitsPerPixel" ref="a2384eda0802fcce56042621b5a250d98" args="() const " -->
+virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a2384eda0802fcce56042621b5a250d98">getBitsPerPixel</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the numbber of bits per pixel for the compiled-in pixel format. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aec63d16284c3d1a2d9b870061501321c">getNumLoadablePatterns</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd39214e60441c594ffe36d46fd2ba52"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getCamera" ref="afd39214e60441c594ffe36d46fd2ba52" args="()" -->
+virtual <a class="el" href="class_a_r_tool_kit_plus_1_1_camera.html">Camera</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#afd39214e60441c594ffe36d46fd2ba52">getCamera</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the current camera. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afdad065570d240f17483c0422f4ddced"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setCamera" ref="afdad065570d240f17483c0422f4ddced" args="(Camera *nCamera)=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#afdad065570d240f17483c0422f4ddced">setCamera</a> (Camera *nCamera)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ddf07d3916f47a48b3fbf9e442f3451"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setCamera" ref="a9ddf07d3916f47a48b3fbf9e442f3451" args="(Camera *nCamera)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a9ddf07d3916f47a48b3fbf9e442f3451">setCamera</a> (<a class="el" href="class_a_r_tool_kit_plus_1_1_camera.html">Camera</a> *nCamera)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets a new camera without specifying new near and far clip values. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f96fbd438f7cedfff588080219f5100"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setCamera" ref="a8f96fbd438f7cedfff588080219f5100" args="(Camera *nCamera, ARFloat nNearClip, ARFloat nFarClip)=0" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a8f96fbd438f7cedfff588080219f5100">setCamera</a> (Camera *nCamera, ARFloat nNearClip, ARFloat nFarClip)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a078acdac97b73dd9e22656a7cd386af9"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setCamera" ref="a078acdac97b73dd9e22656a7cd386af9" args="(Camera *nCamera, ARFloat nNearClip, ARFloat nFarClip)" -->
+virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a078acdac97b73dd9e22656a7cd386af9">setCamera</a> (<a class="el" href="class_a_r_tool_kit_plus_1_1_camera.html">Camera</a> *nCamera, ARFloat nNearClip, ARFloat nFarClip)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets a new camera including specifying new near and far clip values. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a320f48dcbf3656036528c95185bc0937"></a><!-- doxytag: member="ARToolKitPlus::Tracker::calcOpenGLMatrixFromMarker" ref="a320f48dcbf3656036528c95185bc0937" args="(ARMarkerInfo *nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix)=0" -->
-virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a320f48dcbf3656036528c95185bc0937">calcOpenGLMatrixFromMarker</a> (ARMarkerInfo *nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix)=0</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b12fc85c629767cc7efeebedd44ee71"></a><!-- doxytag: member="ARToolKitPlus::Tracker::calcOpenGLMatrixFromMarker" ref="a0b12fc85c629767cc7efeebedd44ee71" args="(ARMarkerInfo *nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix)" -->
+virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a0b12fc85c629767cc7efeebedd44ee71">calcOpenGLMatrixFromMarker</a> (ARMarkerInfo *nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize, ARFloat *nOpenGLMatrix)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calculates the OpenGL transformation matrix for a specific marker info. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54073e1a810d2bdf3166308715b9ff59"></a><!-- doxytag: member="ARToolKitPlus::Tracker::executeSingleMarkerPoseEstimator" ref="a54073e1a810d2bdf3166308715b9ff59" args="(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])=0" -->
-virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a54073e1a810d2bdf3166308715b9ff59">executeSingleMarkerPoseEstimator</a> (ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calls the pose estimator set with <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a99c8f78ee7098108ce42b80de81c2ff0" title="Changes the Pose Estimation Algorithm.">setPoseEstimator()</a> for single marker tracking. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a776135078b31e95a73f59eb49dff306d"></a><!-- doxytag: member="ARToolKitPlus::Tracker::executeMultiMarkerPoseEstimator" ref="a776135078b31e95a73f59eb49dff306d" args="(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)=0" -->
-virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a776135078b31e95a73f59eb49dff306d">executeMultiMarkerPoseEstimator</a> (ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calls the pose estimator set with <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a99c8f78ee7098108ce42b80de81c2ff0" title="Changes the Pose Estimation Algorithm.">setPoseEstimator()</a> for multi marker tracking. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20e01dbaf48e824324292ac42c52ef60"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getTrackedCorners" ref="a20e01dbaf48e824324292ac42c52ef60" args="() const =0" -->
-virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a20e01dbaf48e824324292ac42c52ef60">getTrackedCorners</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a vector with screen coordinates of all corners that were used for marker tracking for the last image. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a203864d9607cd58a6d2a9a60e0cf7eec"></a><!-- doxytag: member="ARToolKitPlus::Tracker::executeSingleMarkerPoseEstimator" ref="a203864d9607cd58a6d2a9a60e0cf7eec" args="(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])" -->
+virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a203864d9607cd58a6d2a9a60e0cf7eec">executeSingleMarkerPoseEstimator</a> (ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4])</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calls the pose estimator set with <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aee1ce46890b77c471cb4852d434aec03">setPoseEstimator()</a> for single marker tracking. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a886216069042e030d3b0066fc73a85c8"></a><!-- doxytag: member="ARToolKitPlus::Tracker::executeMultiMarkerPoseEstimator" ref="a886216069042e030d3b0066fc73a85c8" args="(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)" -->
+virtual ARFloat&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a886216069042e030d3b0066fc73a85c8">executeMultiMarkerPoseEstimator</a> (ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Calls the pose estimator set with <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aee1ce46890b77c471cb4852d434aec03">setPoseEstimator()</a> for multi marker tracking. <br/></td></tr>
+<tr><td colspan="2"><h2>Static Public Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#afa3b170fe9ab9cdc0dd958fee4d2ae37">calcCameraMatrix</a> (const char *nCamParamFile, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html" title="Tracker is the vision core of ARToolKit.">Tracker</a> is the vision core of ARToolKit. </p>
-<p>Almost all original ARToolKit methods are included here. Exceptions: matrix &amp; vector.</p>
-<p><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html" title="Tracker is the vision core of ARToolKit.">Tracker</a> includes all methods that are needed to create a basic ARToolKit application (e.g. the simple example from the original ARToolKit package)</p>
+<p><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html">Tracker</a> is the vision core of ARToolKit. Almost all original ARToolKit methods are included here. Exceptions: matrix &amp; vector.</p>
+<p><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html">Tracker</a> includes all methods that are needed to create a basic ARToolKit application (e.g. the simple example from the original ARToolKit package)</p>
 <p>Application developers should usually prefer using the more high level classes:</p>
 <ul>
-<li><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_single_marker.html" title="Defines a simple interface for single-marker tracking with ARToolKitPlus.">TrackerSingleMarker</a></li>
-<li><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html" title="Defines a simple interface for multi-marker tracking with ARToolKitPlus.">TrackerMultiMarker</a> </li>
+<li><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_single_marker.html">TrackerSingleMarker</a></li>
+<li><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html">TrackerMultiMarker</a> </li>
 </ul>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af398f8cb2d871417cac5785780fbccf1"></a><!-- doxytag: member="ARToolKitPlus::Tracker::activateBinaryMarker" ref="af398f8cb2d871417cac5785780fbccf1" args="(int nThreshold)=0" -->
+<a class="anchor" id="a07dfacfadfb9c5132adf93ef351078a2"></a><!-- doxytag: member="ARToolKitPlus::Tracker::activateBinaryMarker" ref="a07dfacfadfb9c5132adf93ef351078a2" args="(int nThreshold)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -172,18 +143,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>nThreshold</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>activates binary markers </p>
-<p>markers are converted to pure black/white during loading </p>
+<p>activates binary markers markers are converted to pure black/white during loading </p>
 
 </div>
 </div>
-<a class="anchor" id="a7d10597d49cfe86c5f1c29f15fd0b863"></a><!-- doxytag: member="ARToolKitPlus::Tracker::activateVignettingCompensation" ref="a7d10597d49cfe86c5f1c29f15fd0b863" args="(bool nEnable, int nCorners=0, int nLeftRight=0, int nTopBottom=0)=0" -->
+<a class="anchor" id="ab11e97172c6aa3ad36920b61b4af2cbb"></a><!-- doxytag: member="ARToolKitPlus::Tracker::activateVignettingCompensation" ref="ab11e97172c6aa3ad36920b61b4af2cbb" args="(bool nEnable, int nCorners=0, int nLeftRight=0, int nTopBottom=0)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -214,18 +183,56 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [pure virtual]</code></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>activates the complensation of brightness falloff in the corners of the camera image </p>
-<p>some cameras have a falloff in brightness at the border of the image, which creates problems with thresholding the image. use this function to set a (linear) adapted threshold value. the threshold value will stay exactly the same at the center but will deviate near to the border. all values specify a difference, not absolute values! nCorners define the falloff a all four corners. nLeftRight defines the falloff at the half y-position at the left and right side of the image. nTopBottom defines the falloff at the half x-position at the top and bottom side of the image. all values between these 9 points (center, 4 corners, left, right, top, bottom) will be interpolated. </p>
+<p>activates the complensation of brightness falloff in the corners of the camera image some cameras have a falloff in brightness at the border of the image, which creates problems with thresholding the image. use this function to set a (linear) adapted threshold value. the threshold value will stay exactly the same at the center but will deviate near to the border. all values specify a difference, not absolute values! nCorners define the falloff a all four corners. nLeftRight defines the falloff at the half y-position at the left and right side of the image. nTopBottom defines the falloff at the half x-position at the top and bottom side of the image. all values between these 9 points (center, 4 corners, left, right, top, bottom) will be interpolated. </p>
 
 </div>
 </div>
-<a class="anchor" id="a81f3c2ae8bee9472283e5848bf4aa692"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getNumLoadablePatterns" ref="a81f3c2ae8bee9472283e5848bf4aa692" args="() const =0" -->
+<a class="anchor" id="afa3b170fe9ab9cdc0dd958fee4d2ae37"></a><!-- doxytag: member="ARToolKitPlus::Tracker::calcCameraMatrix" ref="afa3b170fe9ab9cdc0dd958fee4d2ae37" args="(const char *nCamParamFile, ARFloat nNear, ARFloat nFar, ARFloat *nMatrix)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool ARToolKitPlus::Tracker::calcCameraMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>nCamParamFile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ARFloat&nbsp;</td>
+          <td class="paramname"> <em>nNear</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ARFloat&nbsp;</td>
+          <td class="paramname"> <em>nFar</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ARFloat *&nbsp;</td>
+          <td class="paramname"> <em>nMatrix</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [static]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Calculates the camera matrix from an ARToolKit camera file. This method retrieves the OpenGL projection matrix that is stored in an ARToolKit camera calibration file. Returns true if loading of the camera file succeeded. </p>
+
+</div>
+</div>
+<a class="anchor" id="aec63d16284c3d1a2d9b870061501321c"></a><!-- doxytag: member="ARToolKitPlus::Tracker::getNumLoadablePatterns" ref="aec63d16284c3d1a2d9b870061501321c" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -234,18 +241,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td> const<code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Returns the maximum number of patterns that can be loaded. </p>
-<p>This maximum number of loadable patterns can be set via the __MAX_LOAD_PATTERNS template parameter </p>
+<p>Returns the maximum number of patterns that can be loaded This maximum number of loadable patterns can be set via the maxLoadPatterns parameter </p>
 
 </div>
 </div>
-<a class="anchor" id="a03383687693fdd27f589715c518da369"></a><!-- doxytag: member="ARToolKitPlus::Tracker::loadCameraFile" ref="a03383687693fdd27f589715c518da369" args="(const char *nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)=0" -->
+<a class="anchor" id="aa96c7a3c1ddc41de8ce7f04ac28f94fd"></a><!-- doxytag: member="ARToolKitPlus::Tracker::loadCameraFile" ref="aa96c7a3c1ddc41de8ce7f04ac28f94fd" args="(const char *nCamParamFile, ARFloat nNearClip, ARFloat nFarClip)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -270,18 +275,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [pure virtual]</code></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Loads a camera calibration file and stores data internally. </p>
-<p>To prevent memory leaks, this method internally deletes an existing camera. If you want to use more than one camera, retrieve the existing camera using <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#af42b70ca3dc4c79a80e904529d2cdf69" title="Returns the current camera.">getCamera()</a> and call setCamera(NULL); before loading another camera file. On destruction, ARToolKitPlus will only destroy the currently set camera. All other cameras have to be destroyed manually. </p>
+<p>Loads a camera calibration file and stores data internally To prevent memory leaks, this method internally deletes an existing camera. If you want to use more than one camera, retrieve the existing camera using <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#afd39214e60441c594ffe36d46fd2ba52" title="Returns the current camera.">getCamera()</a> and call setCamera(NULL); before loading another camera file. On destruction, <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a> will only destroy the currently set camera. All other cameras have to be destroyed manually. </p>
 
 </div>
 </div>
-<a class="anchor" id="a9ca3afe99722f6f8d5908eb8b02cfd07"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setBorderWidth" ref="a9ca3afe99722f6f8d5908eb8b02cfd07" args="(ARFloat nFraction)=0" -->
+<a class="anchor" id="a514ceefcb9466af3774e10d6bf30e362"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setBorderWidth" ref="a514ceefcb9466af3774e10d6bf30e362" args="(ARFloat nFraction)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -291,18 +294,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">ARFloat&nbsp;</td>
           <td class="paramname"> <em>nFraction</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Sets a new relative border width. ARToolKit's default value is 0.25. </p>
-<p>Take caution that the markers need of course really have thiner borders. Values other than 0.25 have not been tested for regular pattern-based matching, but only for id-encoded markers. It might be that the pattern creation process needs to be updated too. </p>
+<p>Sets a new relative border width. ARToolKit's default value is 0.25 Take caution that the markers need of course really have thiner borders. Values other than 0.25 have not been tested for regular pattern-based matching, but only for id-encoded markers. It might be that the pattern creation process needs to be updated too. </p>
 
 </div>
 </div>
-<a class="anchor" id="a5d6041e859bbbca6a1e9978548545479"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setHullMode" ref="a5d6041e859bbbca6a1e9978548545479" args="(HULL_TRACKING_MODE nMode)=0" -->
+<a class="anchor" id="a76d769fd71667b60ce0473f43e58d683"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setHullMode" ref="a76d769fd71667b60ce0473f43e58d683" args="(HULL_TRACKING_MODE nMode)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -312,18 +313,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">HULL_TRACKING_MODE&nbsp;</td>
           <td class="paramname"> <em>nMode</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>If true the alternative hull-algorithm will be used for multi-marker tracking. </p>
-<p>Starting with version 2.2 ARToolKitPlus has a new mode for tracking multi-markers: Instead of using all points (as done by RPP multi-marker tracking) or tracking all markers independently and combine lateron (as done in ARToolKit's standard multi-marker pose estimator), ARToolKitPlus can now use only 4 'good' points of the convex hull to do the pose estimation. If the pose estimator is set to RPP then RPP will be used to track those 4 points. Otherwise, ARToolKit's standard single-marker pose estimator will be used to track the pose of these 4 points. </p>
+<p>If true the alternative hull-algorithm will be used for multi-marker tracking Starting with version 2.2 <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a> has a new mode for tracking multi-markers: Instead of using all points (as done by RPP multi-marker tracking) or tracking all markers independently and combine lateron (as done in ARToolKit's standard multi-marker pose estimator), <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a> can now use only 4 'good' points of the convex hull to do the pose estimation. If the pose estimator is set to RPP then RPP will be used to track those 4 points. Otherwise, ARToolKit's standard single-marker pose estimator will be used to track the pose of these 4 points. </p>
 
 </div>
 </div>
-<a class="anchor" id="ab126bbd9a2b0005c556da030e2fdee55"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setImageProcessingMode" ref="ab126bbd9a2b0005c556da030e2fdee55" args="(IMAGE_PROC_MODE nMode)=0" -->
+<a class="anchor" id="aa24710ff997526c03a4815c8957467b0"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setImageProcessingMode" ref="aa24710ff997526c03a4815c8957467b0" args="(IMAGE_PROC_MODE nMode)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -333,18 +332,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">IMAGE_PROC_MODE&nbsp;</td>
           <td class="paramname"> <em>nMode</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Sets an image processing mode (half or full resolution). </p>
-<p>Half resolution is faster but less accurate. When using full resolution smaller markers will be detected at a higher accuracy (or even detected at all). </p>
+<p>Sets an image processing mode (half or full resolution) Half resolution is faster but less accurate. When using full resolution smaller markers will be detected at a higher accuracy (or even detected at all). </p>
 
 </div>
 </div>
-<a class="anchor" id="a99f360a1848cf1bb7e063eba07e47611"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setLoadUndistLUT" ref="a99f360a1848cf1bb7e063eba07e47611" args="(bool nSet)=0" -->
+<a class="anchor" id="aabcf61e32ec9e1efb7f54c35747d68de"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setLoadUndistLUT" ref="aabcf61e32ec9e1efb7f54c35747d68de" args="(bool nSet)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -354,18 +351,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">bool&nbsp;</td>
           <td class="paramname"> <em>nSet</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Set to true to try loading camera undistortion table from a cache file. </p>
-<p>On slow platforms (e.g. Smartphone) creation of the undistortion lookup-table can take quite a while. Consequently caching will speedup the start phase. If set to true and no cache file could be found a new one will be created. The cache file will get the same name as the camera file with the added extension '.LUT' </p>
+<p>Set to true to try loading camera undistortion table from a cache file On slow platforms (e.g. Smartphone) creation of the undistortion lookup-table can take quite a while. Consequently caching will speedup the start phase. If set to true and no cache file could be found a new one will be created. The cache file will get the same name as the camera file with the added extension '.LUT' </p>
 
 </div>
 </div>
-<a class="anchor" id="a8a57c893181cccafe57ab2b9c624a08a"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setMarkerMode" ref="a8a57c893181cccafe57ab2b9c624a08a" args="(MARKER_MODE nMarkerMode)=0" -->
+<a class="anchor" id="ae81e87d2ee6352fdd46870a3aec606d1"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setMarkerMode" ref="ae81e87d2ee6352fdd46870a3aec606d1" args="(MARKER_MODE nMarkerMode)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -375,18 +370,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">MARKER_MODE&nbsp;</td>
           <td class="paramname"> <em>nMarkerMode</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>activate the usage of id-based markers rather than template based markers </p>
-<p>Template markers are the classic marker type used in ARToolKit. Id-based markers directly encode the marker id in the image. Simple markers use 3-times redundancy to increase robustness, while BCH markers use an advanced CRC algorithm to detect and repair marker damages. See arBitFieldPattern.h for more information. In order to use id-based markers, the marker size has to be 6x6, 12x12 or 18x18. </p>
+<p>activate the usage of id-based markers rather than template based markers Template markers are the classic marker type used in ARToolKit. Id-based markers directly encode the marker id in the image. Simple markers use 3-times redundancy to increase robustness, while BCH markers use an advanced CRC algorithm to detect and repair marker damages. See arBitFieldPattern.h for more information. In order to use id-based markers, the marker size has to be 6x6, 12x12 or 18x18. </p>
 
 </div>
 </div>
-<a class="anchor" id="a2ebcf473ee2d808a306f7dada1bfbb08"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setNumAutoThresholdRetries" ref="a2ebcf473ee2d808a306f7dada1bfbb08" args="(int nNumRetries)=0" -->
+<a class="anchor" id="afafc4a06d77adf04ef6e98c1a42d63c9"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setNumAutoThresholdRetries" ref="afafc4a06d77adf04ef6e98c1a42d63c9" args="(int nNumRetries)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -396,18 +389,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">int&nbsp;</td>
           <td class="paramname"> <em>nNumRetries</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Sets the number of times the threshold is randomized in case no marker was visible (Default: 2). </p>
-<p>Autothreshold requires a visible marker to estime the optimal thresholding value. If no marker is visible ARToolKitPlus randomizes the thresholding value until a marker is found. This function sets the number of times ARToolKitPlus will randomize the threshold value and research for a marker per calc() invokation until it gives up. A value of 2 means that ARToolKitPlus will analyze the image a second time with an other treshold value if it does not find a marker the first time. Each unsuccessful try uses less processing power than a single full successful position estimation. </p>
+<p>Sets the number of times the threshold is randomized in case no marker was visible (Minimum: 1, Default: 2) Autothreshold requires a visible marker to estime the optimal thresholding value. If no marker is visible <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a> randomizes the thresholding value until a marker is found. This function sets the number of times <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a> will randomize the threshold value and research for a marker per calc() invokation until it gives up. A value of 2 means that <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a> will analyze the image a second time with an other treshold value if it does not find a marker the first time. Each unsuccessful try uses less processing power than a single full successful position estimation. </p>
 
 </div>
 </div>
-<a class="anchor" id="aa4a3893a2506a40d38153aefcc53246f"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setPixelFormat" ref="aa4a3893a2506a40d38153aefcc53246f" args="(PIXEL_FORMAT nFormat)=0" -->
+<a class="anchor" id="a5564152e620e23033fab163516d89f32"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setPixelFormat" ref="a5564152e620e23033fab163516d89f32" args="(PIXEL_FORMAT nFormat)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -417,18 +408,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">PIXEL_FORMAT&nbsp;</td>
           <td class="paramname"> <em>nFormat</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Sets the pixel format of the camera image. </p>
-<p>Default format is RGB888 (PIXEL_FORMAT_RGB) </p>
+<p>Sets the pixel format of the camera image Default format is RGB888 (PIXEL_FORMAT_RGB) </p>
 
 </div>
 </div>
-<a class="anchor" id="a99c8f78ee7098108ce42b80de81c2ff0"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setPoseEstimator" ref="a99c8f78ee7098108ce42b80de81c2ff0" args="(POSE_ESTIMATOR nMethod)=0" -->
+<a class="anchor" id="aee1ce46890b77c471cb4852d434aec03"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setPoseEstimator" ref="aee1ce46890b77c471cb4852d434aec03" args="(POSE_ESTIMATOR nMethod)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -438,18 +427,16 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">POSE_ESTIMATOR&nbsp;</td>
           <td class="paramname"> <em>nMethod</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Changes the Pose Estimation Algorithm. </p>
-<p>POSE_ESTIMATOR_ORIGINAL (default): <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a1beee2676eea65457e5666ec5e4ee771" title="calculates the transformation matrix between camera and the given marker">arGetTransMat()</a> POSE_ESTIMATOR_CONT: original pose estimator with "Cont" POSE_ESTIMATOR_RPP: "Robust Pose Estimation from a Planar Target" </p>
+<p>Changes the Pose Estimation Algorithm POSE_ESTIMATOR_ORIGINAL (default): <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#aa777dea7049c0f3691bd2bc1058b0916" title="calculates the transformation matrix between camera and the given marker">arGetTransMat()</a> POSE_ESTIMATOR_CONT: original pose estimator with "Cont" POSE_ESTIMATOR_RPP: "Robust Pose Estimation from a Planar Target" </p>
 
 </div>
 </div>
-<a class="anchor" id="abef9bd566d6017b738ed9f44de4db37e"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setUndistortionMode" ref="abef9bd566d6017b738ed9f44de4db37e" args="(UNDIST_MODE nMode)=0" -->
+<a class="anchor" id="a5c12cfc588915715eef85bd39040d046"></a><!-- doxytag: member="ARToolKitPlus::Tracker::setUndistortionMode" ref="a5c12cfc588915715eef85bd39040d046" args="(UNDIST_MODE nMode)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -459,14 +446,12 @@ virtual const CornerPoints &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">UNDIST_MODE&nbsp;</td>
           <td class="paramname"> <em>nMode</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Changes the undistortion mode. </p>
-<p>Default value is UNDIST_STD which means that artoolkit's standard undistortion method is used. </p>
+<p>Changes the undistortion mode Default value is UNDIST_STD which means that artoolkit's standard undistortion method is used. </p>
 
 </div>
 </div>

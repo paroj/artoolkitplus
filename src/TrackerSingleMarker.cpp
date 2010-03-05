@@ -27,9 +27,9 @@ using std::endl;
 
 namespace ARToolKitPlus {
 
-TrackerSingleMarker::TrackerSingleMarker(int imWidth, int imHeight, int pattWidth, int pattHeight,
-        int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
-    Tracker(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
+TrackerSingleMarker::TrackerSingleMarker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth, int pattHeight,
+        int pattSamples, int maxLoadPatterns) :
+    Tracker(imWidth, imHeight, maxImagePatterns, pattWidth, pattHeight, pattSamples, maxLoadPatterns) {
     thresh = 100;
 
     patt_width = 2.0;

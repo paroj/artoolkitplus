@@ -47,16 +47,16 @@ public:
      * steps in both x and y direction
      *  @param imWidth width of the source image in px
      *  @param imHeight height of the source image in px
-     *  @param pattWidth describes the pattern image width (6 by default).
-     *  @param pattHeight describes the pattern image height (6 by default).
+     *  @param maxImagePatterns describes the maximum number of patterns that can be analyzed in a camera image.
+     *  @param pattWidth describes the pattern image width (must be 6 for binary markers)
+     *  @param pattHeight describes the pattern image height (must be 6 for binary markers)
      *  @param pattSamples describes the maximum resolution at which a pattern is sampled from the camera image
      *  (6 by default, must a a multiple of pattWidth and pattHeight).
      *  @param maxLoadPatterns describes the maximum number of pattern files that can be loaded.
-     *  @param maxImagePatterns describes the maximum number of patterns that can be analyzed in a camera image.
      *  Reduce maxLoadPatterns and maxImagePatterns to reduce memory footprint.
      */
-    TrackerMultiMarker(int imWidth, int imHeight, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
-            int maxLoadPatterns = 0, int maxImagePatterns = 8);
+    TrackerMultiMarker(int imWidth, int imHeight, int maxImagePatterns = 8, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
+            int maxLoadPatterns = 0);
 
     virtual ~TrackerMultiMarker();
 

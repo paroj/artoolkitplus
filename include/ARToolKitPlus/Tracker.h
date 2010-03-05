@@ -52,8 +52,8 @@ namespace ARToolKitPlus {
  */
 class Tracker {
 public:
-    Tracker(int imWidth, int imHeight, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
-            int maxLoadPatterns = 0, int maxImagePatterns = 8);
+    Tracker(int imWidth, int imHeight, int maxImagePatterns = 8, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
+            int maxLoadPatterns = 0);
     virtual ~Tracker();
 
     /**

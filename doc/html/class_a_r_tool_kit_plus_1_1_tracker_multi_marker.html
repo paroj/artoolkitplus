@@ -12,6 +12,7 @@
   <div class="tabs">
     <ul>
       <li><a href="index.html"><span>Main&nbsp;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="dirs.html"><span>Directories</span></a></li>
     </ul>
@@ -23,14 +24,11 @@
       <li><a href="functions.html"><span>Class&nbsp;Members</span></a></li>
     </ul>
   </div>
-  <div class="navpath"><b>ARToolKitPlus</b>::<a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html">TrackerMultiMarker</a>
+  <div class="navpath"><a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a>::<a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html">TrackerMultiMarker</a>
   </div>
 </div>
 <div class="contents">
 <h1>ARToolKitPlus::TrackerMultiMarker Class Reference</h1><!-- doxytag: class="ARToolKitPlus::TrackerMultiMarker" --><!-- doxytag: inherits="ARToolKitPlus::Tracker" -->
-<p>Defines a simple interface for multi-marker tracking with ARToolKitPlus.  
-<a href="#_details">More...</a></p>
-
 <p><code>#include &lt;TrackerMultiMarker.h&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ARToolKitPlus::TrackerMultiMarker:</div>
@@ -46,29 +44,91 @@ Inheritance diagram for ARToolKitPlus::TrackerMultiMarker:</div>
 <p><a href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker-members.html">List of all members.</a></p>
 <table border="0" cellpadding="0" cellspacing="0">
 <tr><td colspan="2"><h2>Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#acccc8c54ad88deea251cf3fe2b9de422">init</a> (const char *nCamParamFile, const char *nMultiFile, ARFloat nNearClip, ARFloat nFarClip)=0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#af12a4099462e1865c767ae7231f637e3">calc</a> (const unsigned char *nImage)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">calculates the transformation matrix  <a href="#af12a4099462e1865c767ae7231f637e3"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0a815fc65c8247c764034d5fcb4795d"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getNumDetectedMarkers" ref="af0a815fc65c8247c764034d5fcb4795d" args="() const =0" -->
-virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#af0a815fc65c8247c764034d5fcb4795d">getNumDetectedMarkers</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the number of detected markers used for multi-marker tracking. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a7a92ef77303f1a3fd8d5acb076584295">setUseDetectLite</a> (bool nEnable)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables usage of arDetectMarkerLite. Otherwise arDetectMarker is used.  <a href="#a7a92ef77303f1a3fd8d5acb076584295"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#aed3aec64f500ff548c1e2756c05cac98">getDetectedMarkers</a> (int *&amp;nMarkerIDs)=0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns array of detected marker IDs.  <a href="#aed3aec64f500ff548c1e2756c05cac98"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2c42f01e70b990d6a697c6095d73f94"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getDetectedMarker" ref="aa2c42f01e70b990d6a697c6095d73f94" args="(int nWhich) const =0" -->
-virtual const ARMarkerInfo &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#aa2c42f01e70b990d6a697c6095d73f94">getDetectedMarker</a> (int nWhich) const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the ARMarkerInfo object for a found marker. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual const ARMultiMarkerInfoT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a9ee0b73293545ee3cf76bcff8602aa4b">getMultiMarkerConfig</a> () const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the loaded ARMultiMarkerInfoT object.  <a href="#a9ee0b73293545ee3cf76bcff8602aa4b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a30f7328484f19edf15a66536c5415402">getARMatrix</a> (ARFloat nMatrix[3][4]) const =0</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Provides access to ARToolKit' internal version of the transformation matrix.  <a href="#a30f7328484f19edf15a66536c5415402"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a356f733a372dc51254216f7df7abf558">TrackerMultiMarker</a> (int imWidth, int imHeight, int maxImagePatterns=8, int pattWidth=6, int pattHeight=6, int pattSamples=6, int maxLoadPatterns=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a3bf6bf45a9d3b48a970a728e0dcae00a">init</a> (const char *nCamParamFile, const char *nMultiFile, ARFloat nNearClip, ARFloat nFarClip)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#aa9f259eb8c9f5b4718479b58dc2e3695">calc</a> (const unsigned char *nImage)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a03b2fc94825e63c9ffc4638f0c2f9184">setUseDetectLite</a> (bool nEnable)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables usage of arDetectMarkerLite. Otherwise arDetectMarker is used.  <a href="#a03b2fc94825e63c9ffc4638f0c2f9184"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#aeddbc99c375f6f0a3dfc1b540de10c47">getDetectedMarkers</a> (int *&amp;nMarkerIDs)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual const ARMultiMarkerInfoT *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a0550227ca64e3a45533f88b241c1d3e6">getMultiMarkerConfig</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#a8a7f53ecc256c38fd9c28ff7b5510a40">getARMatrix</a> (ARFloat nMatrix[3][4]) const </td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<p>Defines a simple interface for multi-marker tracking with ARToolKitPlus. </p>
-<p>ARToolKit::TrackerMultiMarker provides all methods to access ARToolKit for multi marker tracking without needing to mess around with it directly. </p>
+<p>Defines a simple interface for multi-marker tracking with <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a> ARToolKit::TrackerMultiMarker provides all methods to access ARToolKit for multi marker tracking without needing to mess around with it directly.</p>
+<p>Per default the tracker searches for Id-based markers with normal border and uses the RPP algorithm for pose estimation. Furthermore it uses only 4 'good' points of the convex hull to do the pose estimation. You can override this using the according methods. </p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a356f733a372dc51254216f7df7abf558"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::TrackerMultiMarker" ref="a356f733a372dc51254216f7df7abf558" args="(int imWidth, int imHeight, int maxImagePatterns=8, int pattWidth=6, int pattHeight=6, int pattSamples=6, int maxLoadPatterns=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ARToolKitPlus::TrackerMultiMarker::TrackerMultiMarker </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>imWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>imHeight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>maxImagePatterns</em> = <code>8</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>pattWidth</em> = <code>6</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>pattHeight</em> = <code>6</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>pattSamples</em> = <code>6</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>maxLoadPatterns</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>These parameters control the way the toolkit warps a found marker to a perfect square. The square has size pattWidth * pattHeight, the projected square in the image is subsampled at a min of pattWidth/pattHeight and a max of pattSamples steps in both x and y direction </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>imWidth</em>&nbsp;</td><td>width of the source image in px </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>imHeight</em>&nbsp;</td><td>height of the source image in px </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>maxImagePatterns</em>&nbsp;</td><td>describes the maximum number of patterns that can be analyzed in a camera image. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>pattWidth</em>&nbsp;</td><td>describes the pattern image width (must be 6 for binary markers) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>pattHeight</em>&nbsp;</td><td>describes the pattern image height (must be 6 for binary markers) </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>pattSamples</em>&nbsp;</td><td>describes the maximum resolution at which a pattern is sampled from the camera image (6 by default, must a a multiple of pattWidth and pattHeight). </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>maxLoadPatterns</em>&nbsp;</td><td>describes the maximum number of pattern files that can be loaded. Reduce maxLoadPatterns and maxImagePatterns to reduce memory footprint. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="af12a4099462e1865c767ae7231f637e3"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::calc" ref="af12a4099462e1865c767ae7231f637e3" args="(const unsigned char *nImage)=0" -->
+<a class="anchor" id="aa9f259eb8c9f5b4718479b58dc2e3695"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::calc" ref="aa9f259eb8c9f5b4718479b58dc2e3695" args="(const unsigned char *nImage)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -78,18 +138,16 @@ virtual const ARMarkerInfo &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">const unsigned char *&nbsp;</td>
           <td class="paramname"> <em>nImage</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>calculates the transformation matrix </p>
-<p>pass the image as RGBX (32-bits) in 320x240 pixels. </p>
+<p>calculates the transformation matrix pass the image as RGBX (32-bits) </p>
 
 </div>
 </div>
-<a class="anchor" id="a30f7328484f19edf15a66536c5415402"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getARMatrix" ref="a30f7328484f19edf15a66536c5415402" args="(ARFloat nMatrix[3][4]) const =0" -->
+<a class="anchor" id="a8a7f53ecc256c38fd9c28ff7b5510a40"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getARMatrix" ref="a8a7f53ecc256c38fd9c28ff7b5510a40" args="(ARFloat nMatrix[3][4]) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -99,18 +157,16 @@ virtual const ARMarkerInfo &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">ARFloat&nbsp;</td>
           <td class="paramname"> <em>nMatrix</em>[3][4]</td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td> const<code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Provides access to ARToolKit' internal version of the transformation matrix. </p>
-<p>This method is primarily for compatibility issues with code previously using ARToolKit rather than ARToolKitPlus. This is the original transformation matrix ARToolKit calculates rather than the OpenGL style version of this matrix that can be retrieved via <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a96a3ccd66be001d23c059928224f2cf6" title="Returns an opengl-style modelview transformation matrix.">getModelViewMatrix()</a>. </p>
+<p>Provides access to ARToolKit' internal version of the transformation matrix This method is primarily for compatibility issues with code previously using ARToolKit rather than <a class="el" href="namespace_a_r_tool_kit_plus.html">ARToolKitPlus</a>. This is the original transformation matrix ARToolKit calculates rather than the OpenGL style version of this matrix that can be retrieved via <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker.html#a808fc7ff4fd600a3980b533372576b7e" title="Returns an opengl-style modelview transformation matrix.">getModelViewMatrix()</a>. </p>
 
 </div>
 </div>
-<a class="anchor" id="aed3aec64f500ff548c1e2756c05cac98"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getDetectedMarkers" ref="aed3aec64f500ff548c1e2756c05cac98" args="(int *&amp;nMarkerIDs)=0" -->
+<a class="anchor" id="aeddbc99c375f6f0a3dfc1b540de10c47"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getDetectedMarkers" ref="aeddbc99c375f6f0a3dfc1b540de10c47" args="(int *&amp;nMarkerIDs)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -120,18 +176,16 @@ virtual const ARMarkerInfo &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">int *&amp;&nbsp;</td>
           <td class="paramname"> <em>nMarkerIDs</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Returns array of detected marker IDs. </p>
-<p>Only access the first <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_multi_marker.html#af0a815fc65c8247c764034d5fcb4795d" title="Returns the number of detected markers used for multi-marker tracking.">getNumDetectedMarkers()</a> markers </p>
+<p>Returns array of detected marker IDs Only access the first getNumDetectedMarkers() markers </p>
 
 </div>
 </div>
-<a class="anchor" id="a9ee0b73293545ee3cf76bcff8602aa4b"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getMultiMarkerConfig" ref="a9ee0b73293545ee3cf76bcff8602aa4b" args="() const =0" -->
+<a class="anchor" id="a0550227ca64e3a45533f88b241c1d3e6"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::getMultiMarkerConfig" ref="a0550227ca64e3a45533f88b241c1d3e6" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -140,18 +194,16 @@ virtual const ARMarkerInfo &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td> const<code> [pure virtual]</code></td>
+          <td> const<code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-
-<p>Returns the loaded ARMultiMarkerInfoT object. </p>
-<p>If loading the multi-marker config file failed then this method returns NULL. </p>
+<p>Returns the loaded ARMultiMarkerInfoT object If loading the multi-marker config file failed then this method returns NULL. </p>
 
 </div>
 </div>
-<a class="anchor" id="acccc8c54ad88deea251cf3fe2b9de422"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::init" ref="acccc8c54ad88deea251cf3fe2b9de422" args="(const char *nCamParamFile, const char *nMultiFile, ARFloat nNearClip, ARFloat nFarClip)=0" -->
+<a class="anchor" id="a3bf6bf45a9d3b48a970a728e0dcae00a"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::init" ref="a3bf6bf45a9d3b48a970a728e0dcae00a" args="(const char *nCamParamFile, const char *nMultiFile, ARFloat nNearClip, ARFloat nFarClip)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -182,16 +234,16 @@ virtual const ARMarkerInfo &amp;&nbsp;</td><td class="memItemRight" valign="bott
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td><code> [pure virtual]</code></td>
+          <td></td><td></td><td><code> [virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>initializes ARToolKit initializes <a class="el" href="class_a_r_tool_kit_plus_1_1_tracker_single_marker.html" title="Defines a simple interface for single-marker tracking with ARToolKitPlus.">TrackerSingleMarker</a> nCamParamFile is the name of the camera parameter file nNearClip &amp; nFarClip are near and far clipping values for the OpenGL projection matrix nLogger is an instance which implements the ARToolKit::Logger interface </p>
+<p>initializes ARToolKit nCamParamFile is the name of the camera parameter file nNearClip &amp; nFarClip are near and far clipping values for the OpenGL projection matrix nLogger is an instance which implements the ARToolKit::Logger interface </p>
 
 </div>
 </div>
-<a class="anchor" id="a7a92ef77303f1a3fd8d5acb076584295"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::setUseDetectLite" ref="a7a92ef77303f1a3fd8d5acb076584295" args="(bool nEnable)=0" -->
+<a class="anchor" id="a03b2fc94825e63c9ffc4638f0c2f9184"></a><!-- doxytag: member="ARToolKitPlus::TrackerMultiMarker::setUseDetectLite" ref="a03b2fc94825e63c9ffc4638f0c2f9184" args="(bool nEnable)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -201,14 +253,14 @@ virtual const ARMarkerInfo &amp;&nbsp;</td><td class="memItemRight" valign="bott
           <td class="paramtype">bool&nbsp;</td>
           <td class="paramname"> <em>nEnable</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td><code> [pure virtual]</code></td>
+          <td><code> [inline, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Enables usage of arDetectMarkerLite. Otherwise arDetectMarker is used. </p>
-<p>In general arDetectMarker is more powerful since it keeps history about markers. In some cases such as very low camera refresh rates it is advantegous to change this. Using the non-lite version treats each image independent. </p>
+<p>Enables usage of arDetectMarkerLite. Otherwise arDetectMarker is used In general arDetectMarker is more powerful since it keeps history about markers. In some cases such as very low camera refresh rates it is advantegous to change this. Using the non-lite version treats each image independent. </p>
 
 </div>
 </div>

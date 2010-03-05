@@ -27,7 +27,6 @@
 
 namespace ARToolKitPlus {
 
-
 typedef struct {
     int     patt_id;
     ARFloat  width;

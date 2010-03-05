@@ -1,3 +1,12 @@
+artoolkitplus (2.2.0~pre0-1) lucid; urgency=low
+
+  * major library refactoring
+  * no templated code any more
+  * support for tracking multiple individual markers
+  * many bugfixes
+
+ -- Pavel Rojtberg <pavel@rojtberg.net>  Thu, 18 Feb 2010 20:41:18 +0100
+
 artoolkitplus (2.1.4-1ppa2) lucid; urgency=low
 
   * merge Hull based tracking from the S60 version

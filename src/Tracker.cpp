@@ -31,7 +31,7 @@ namespace ARToolKitPlus {
 int Tracker::screenWidth;
 int Tracker::screenHeight;
 
-Tracker::Tracker(int imWidth, int imHeight, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
+Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns) :
 		PATTERN_WIDTH(pattWidth),
 		PATTERN_HEIGHT(pattHeight),
 		PATTERN_SAMPLE_NUM(pattSamples),

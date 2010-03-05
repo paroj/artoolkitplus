@@ -59,12 +59,12 @@ int main(int argc, char** argv) {
     }
 
     // create a tracker that does:
-    //  - 6x6 sized marker images
+    //  - 6x6 sized marker images (required for binary markers)
     //  - samples at a maximum of 6x6
     //  - works with luminance (gray) images
-    //  - can load a maximum of 1 template pattern
-    //  - can detect a maximum of 8 patterns in one image
-    TrackerSingleMarker tracker(width, height, 6, 6, 6, 1, 8);
+    //  - can load a maximum of 0 non-binary pattern
+    //  - can detect a maximum of 8 patterns in one imagege
+    TrackerSingleMarker tracker(width, height, 8, 6, 6, 6, 0);
 
     tracker.setPixelFormat(ARToolKitPlus::PIXEL_FORMAT_LUM);
     //tracker.setLoadUndistLUT(true);

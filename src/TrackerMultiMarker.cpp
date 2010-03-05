@@ -23,9 +23,9 @@
 
 namespace ARToolKitPlus {
 
-TrackerMultiMarker::TrackerMultiMarker(int imWidth, int imHeight, int pattWidth, int pattHeight,
-        int pattSamples, int maxLoadPatterns, int maxImagePatterns) :
-    Tracker(imWidth, imHeight, pattWidth, pattHeight, pattSamples, maxLoadPatterns, maxImagePatterns) {
+TrackerMultiMarker::TrackerMultiMarker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth, int pattHeight,
+        int pattSamples, int maxLoadPatterns) :
+    Tracker(imWidth, imHeight, maxImagePatterns, pattWidth, pattHeight, pattSamples, maxLoadPatterns) {
     useDetectLite = true;
     numDetected = 0;
 
