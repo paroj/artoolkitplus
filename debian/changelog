@@ -1,3 +1,10 @@
+artoolkitplus (2.2.0-1~ppa1) lucid; urgency=low
+
+  * new stable release
+  * change order of tracker arguments
+
+ -- Pavel Rojtberg <pavel@rojtberg.net>  Fri, 05 Mar 2010 15:33:07 +0100
+
 artoolkitplus (2.2.0~pre0-1) lucid; urgency=low
 
   * major library refactoring
