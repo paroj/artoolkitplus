@@ -70,10 +70,9 @@ void flipImageY(unsigned char* nDstBuffer, unsigned const char* nSrcBuffer, int 
 		memcpy(nDstBuffer+i*span, nSrcBuffer+(nHeight-1-i)*span, span);
 }
 
-
+#pragma pack(push, 1)
 struct TGA_HEADER
 {
-#pragma pack( push, 1 )
 	unsigned char  identsize;       // size of ID field that follows 18 unsigned char header (0 usually)
 	unsigned char  colourmaptype;	// type of colour map 0=none, 1=has palette
 	unsigned char  imagetype;       // type of image 0=none,1=indexed,2=rgb,3=grey,+8=rle packed
@@ -88,8 +87,8 @@ struct TGA_HEADER
 	short height;					// image height in pixels
 	unsigned char  bits;			// image bits per pixel 8,16,24,32
 	unsigned char  descriptor;		// image descriptor bits (vh flip bits)
-#pragma pack( pop )
 };
+#pragma pack(pop)
 
 
 bool
