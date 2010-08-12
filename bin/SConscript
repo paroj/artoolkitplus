@@ -1,7 +1,7 @@
 env = Environment()
 env["CPPPATH"] = "../include/"
 env["LIBPATH"] = "../"
-env["LIBS"] = ["ARToolkitPlus"]
+env["LIBS"] = ["ARToolKitPlus"]
 env["CPPFLAGS"] = "-Wall -g"
 
 # examples
