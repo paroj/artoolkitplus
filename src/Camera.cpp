@@ -20,54 +20,50 @@
  */
 
 #include <cstdlib>
-#include <clocale>
-#include <cstdio>
-#include <cmath>
 #include <cstring>
+#include <fstream>
+#include <iostream>
+#include <string>
 
 #include <ARToolKitPlus/Camera.h>
+
+using namespace std;
 
 namespace ARToolKitPlus {
 
 bool Camera::loadFromFile(const char* filename) {
-    setlocale(LC_NUMERIC, "C");
-    FILE *fp = fopen(filename, "r");
+    string hdr;
 
-    if (fp == NULL)
-        return (false);
+    ifstream camf(filename);
+    camf.exceptions(ifstream::eofbit | ifstream::failbit | ifstream::badbit);
 
-    fileName = filename;
+    getline(camf, hdr);
+    hdr = hdr.substr(0, strlen(CAMERA_ADV_HEADER));
 
-    double _cc[2];
-    double _fc[2];
-    double _kc[6];
-    int n;
-
-    char _s[32];
-    sprintf(_s, "%%%is\n", (int)strlen(CAMERA_ADV_HEADER));
-    char hdr[strlen(CAMERA_ADV_HEADER)];
-    n = fscanf(fp, _s, hdr);
-    if (strcmp(hdr, CAMERA_ADV_HEADER) != 0)
+    if (hdr != CAMERA_ADV_HEADER) {
+        camf.close();
         return false;
-
-    n = fscanf(fp, "%d%d%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%d\n", &this->xsize, &this->ysize, &_cc[0], &_cc[1], &_fc[0],
-            &_fc[1], &_kc[0], &_kc[1], &_kc[2], &_kc[3], &_kc[4], &_kc[5], &undist_iterations);
-
-    if ((n != 13) || ferror(fp)) {
-        return (false);
     }
 
-    unsigned int i, j;
-    this->cc[0] = (ARFloat) _cc[0];
-    this->cc[1] = (ARFloat) _cc[1];
-    this->fc[0] = (ARFloat) _fc[0];
-    this->fc[1] = (ARFloat) _fc[1];
-    for (i = 0; i < 6; i++)
-        this->kc[i] = (ARFloat) _kc[i];
+    try {
+        camf >> xsize >> ysize;
+        camf >> cc[0] >> cc[1];
+        camf >> fc[0] >> fc[1];
+        camf >> kc[0] >> kc[1] >> kc[2] >> kc[3] >> kc[4] >> kc[5];
+        camf >> undist_iterations;
+    } catch (ifstream::failure e) {
+        cerr << "Could not read Camera calibration file" << endl;
+        camf.close();
+        return false;
+    }
 
-    for (i = 0; i < 3; i++)
-        for (j = 0; j < 4; j++)
-            this->mat[i][j] = 0.;
+    camf.close();
+
+    undist_iterations = min(undist_iterations, CAMERA_ADV_MAX_UNDIST_ITERATIONS);
+
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 4; j++)
+            mat[i][j] = 0.;
 
     mat[0][0] = fc[0]; // fc_x
     mat[1][1] = fc[1]; // fc_y
@@ -75,12 +71,7 @@ bool Camera::loadFromFile(const char* filename) {
     mat[1][2] = cc[1]; // cc_y
     mat[2][2] = 1.0;
 
-    if (undist_iterations > CAMERA_ADV_MAX_UNDIST_ITERATIONS)
-        undist_iterations = CAMERA_ADV_MAX_UNDIST_ITERATIONS;
-
-    fclose(fp);
-    setlocale(LC_NUMERIC, ""); // valgrind does not like this one..
-    return (true);
+    return true;
 }
 
 void Camera::observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
