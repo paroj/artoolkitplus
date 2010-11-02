@@ -25,7 +25,7 @@
 
 namespace rpp {
 
-void arGetInitRot2_sub(rpp_float &err, rpp_mat &R, rpp_vec &t, const rpp_float cc[2], const rpp_float fc[2],
+void AR_EXPORT arGetInitRot2_sub(rpp_float &err, rpp_mat &R, rpp_vec &t, const rpp_float cc[2], const rpp_float fc[2],
         const rpp_vec *model, const rpp_vec *iprts, const unsigned int model_iprts_size, const rpp_mat R_init,
         const bool estimate_R_init, const rpp_float epsilon, const rpp_float tolerance,
         const unsigned int max_iterations);

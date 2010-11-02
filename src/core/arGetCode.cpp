@@ -146,17 +146,23 @@ int Tracker::arDeactivatePatt(int patno) {
 
 int Tracker::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf,
 		int thresh) {
-	uint8_t ext_pat[PATTERN_HEIGHT][PATTERN_WIDTH][3];
+	#define _M(VAR, h,w,c) VAR[(h)*(PATTERN_WIDTH*3) + (w)*3 + (c)]
+	uint8_t *ext_pat = new uint8_t[PATTERN_HEIGHT*PATTERN_WIDTH*3];
 
-	arGetPatt(image, x_coord, y_coord, vertex, (uint8_t***) ext_pat);
+	arGetPatt(image, x_coord, y_coord, vertex, ext_pat);
 
 	if (autoThreshold.enable) {
 		int x, y;
 
 		for (y = 0; y < PATTERN_HEIGHT; y++)
 			for (x = 0; x < PATTERN_WIDTH; x++)
-				autoThreshold.addValue(ext_pat[y][x][0], ext_pat[y][x][1], ext_pat[y][x][2], pixelFormat);
+				autoThreshold.addValue(
+					_M(ext_pat,y,x,0),
+					_M(ext_pat,y,x,1),
+					_M(ext_pat,y,x,2),
+					pixelFormat);
 	}
+	#undef _M
 
 	//	FILE* fp = fopen("dump.raw", "wb");
 	//	fwrite(ext_pat, PATTERN_HEIGHT*PATTERN_WIDTH*3, 1, fp);
@@ -186,15 +192,15 @@ int Tracker::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 	 else
 	 pattern_match((uint8_t *)ext_pat, code, dir, cf);*/
 
+	delete[] ext_pat;
 	return (0);
 }
 
 //#if 1
-int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t **pext_pat[3]) {
-	uint8_t (*ext_pat)[PATTERN_WIDTH][3];
-	ext_pat = (uint8_t(*)[PATTERN_WIDTH][3]) pext_pat;
+int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t *ext_pat) {
+	#define _M(VAR, h,w,c) VAR[(h)*(PATTERN_WIDTH*3) + (w)*3 + (c)]
 
-	uint32_t ext_pat2[PATTERN_HEIGHT][PATTERN_WIDTH][3];
+	uint32_t *ext_pat2 = new uint32_t[PATTERN_HEIGHT*PATTERN_WIDTH*3];
 	ARFloat world[4][2];
 	ARFloat local[4][2];
 	ARFloat para[3][3];
@@ -264,7 +270,7 @@ int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 	if (xdiv == 1 && ydiv == 1) {
 		ARFloat border = relBorderWidth * 10.0f;
 		ARFloat xyFrom = 100.0f + border, xyTo = 110.0f - border, xyStep = xyTo - xyFrom;
-		ARFloat steps[PATTERN_WIDTH];
+		ARFloat *steps = new ARFloat[PATTERN_WIDTH];
 
 		for (i = 0; i < xdiv2; i++)
 			steps[i] = xyFrom + xyStep * (ARFloat) (i + 0.5f) / (ARFloat) xdiv2;
@@ -288,51 +294,54 @@ int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 				if (xc >= 0 && xc < arImXsize && yc >= 0 && yc < arImYsize) {
 					switch (pixelFormat) {
 					case PIXEL_FORMAT_ABGR:
-						ext_pat[j][i][0] = image[(yc * arImXsize + xc) * 4 + 1];
-						ext_pat[j][i][1] = image[(yc * arImXsize + xc) * 4 + 2];
-						ext_pat[j][i][2] = image[(yc * arImXsize + xc) * 4 + 3];
+						_M(ext_pat,j,i,0) = image[(yc * arImXsize + xc) * 4 + 1];
+						_M(ext_pat,j,i,1) = image[(yc * arImXsize + xc) * 4 + 2];
+						_M(ext_pat,j,i,2) = image[(yc * arImXsize + xc) * 4 + 3];
 						break;
 
 					case PIXEL_FORMAT_BGRA:
-						ext_pat[j][i][0] = image[(yc * arImXsize + xc) * 4 + 0];
-						ext_pat[j][i][1] = image[(yc * arImXsize + xc) * 4 + 1];
-						ext_pat[j][i][2] = image[(yc * arImXsize + xc) * 4 + 2];
+						_M(ext_pat,j,i,0) = image[(yc * arImXsize + xc) * 4 + 0];
+						_M(ext_pat,j,i,1) = image[(yc * arImXsize + xc) * 4 + 1];
+						_M(ext_pat,j,i,2) = image[(yc * arImXsize + xc) * 4 + 2];
 						break;
 
 					case PIXEL_FORMAT_BGR:
-						ext_pat[j][i][0] = image[(yc * arImXsize + xc) * 3 + 0];
-						ext_pat[j][i][1] = image[(yc * arImXsize + xc) * 3 + 1];
-						ext_pat[j][i][2] = image[(yc * arImXsize + xc) * 3 + 2];
+						_M(ext_pat,j,i,0) = image[(yc * arImXsize + xc) * 3 + 0];
+						_M(ext_pat,j,i,1) = image[(yc * arImXsize + xc) * 3 + 1];
+						_M(ext_pat,j,i,2) = image[(yc * arImXsize + xc) * 3 + 2];
 						break;
 
 					case PIXEL_FORMAT_RGBA:
-						ext_pat[j][i][0] = image[(yc * arImXsize + xc) * 4 + 2];
-						ext_pat[j][i][1] = image[(yc * arImXsize + xc) * 4 + 1];
-						ext_pat[j][i][2] = image[(yc * arImXsize + xc) * 4 + 0];
+						_M(ext_pat,j,i,0) = image[(yc * arImXsize + xc) * 4 + 2];
+						_M(ext_pat,j,i,1) = image[(yc * arImXsize + xc) * 4 + 1];
+						_M(ext_pat,j,i,2) = image[(yc * arImXsize + xc) * 4 + 0];
 
 					case PIXEL_FORMAT_RGB:
-						ext_pat[j][i][0] = image[(yc * arImXsize + xc) * 3 + 2];
-						ext_pat[j][i][1] = image[(yc * arImXsize + xc) * 3 + 1];
-						ext_pat[j][i][2] = image[(yc * arImXsize + xc) * 3 + 0];
+						_M(ext_pat,j,i,0) = image[(yc * arImXsize + xc) * 3 + 2];
+						_M(ext_pat,j,i,1) = image[(yc * arImXsize + xc) * 3 + 1];
+						_M(ext_pat,j,i,2) = image[(yc * arImXsize + xc) * 3 + 0];
 						break;
 
 					case PIXEL_FORMAT_RGB565:
 						col8 = getLUM8_from_RGB565(image16+yc*arImXsize+xc);
-						ext_pat[j][i][0] = col8;
-						ext_pat[j][i][1] = col8;
-						ext_pat[j][i][2] = col8;
+						_M(ext_pat,j,i,0) = col8;
+						_M(ext_pat,j,i,1) = col8;
+						_M(ext_pat,j,i,2) = col8;
 						break;
 
 					case PIXEL_FORMAT_LUM:
 						col8 = image[(yc * arImXsize + xc)];
-						ext_pat[j][i][0] = col8;
-						ext_pat[j][i][1] = col8;
-						ext_pat[j][i][2] = col8;
+						_M(ext_pat,j,i,0) = col8;
+						_M(ext_pat,j,i,1) = col8;
+						_M(ext_pat,j,i,2) = col8;
 						break;
 					}
 				}
 			}
 		}
+		
+		// free memory
+		delete[] steps;
 	} else
 	// general case: xdiv!=1 or ydiv!=1
 	//
@@ -363,51 +372,51 @@ int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 				if (xc >= 0 && xc < arImXsize && yc >= 0 && yc < arImYsize) {
 					switch (pixelFormat) {
 					case PIXEL_FORMAT_ABGR:
-						ext_pat2[j / ydiv][i / xdiv][0] += image[(yc * arImXsize + xc) * 4 + 1];
-						ext_pat2[j / ydiv][i / xdiv][1] += image[(yc * arImXsize + xc) * 4 + 2];
-						ext_pat2[j / ydiv][i / xdiv][2] += image[(yc * arImXsize + xc) * 4 + 3];
+						_M(ext_pat2,j / ydiv,i / xdiv,0) += image[(yc * arImXsize + xc) * 4 + 1];
+						_M(ext_pat2,j / ydiv,i / xdiv,1) += image[(yc * arImXsize + xc) * 4 + 2];
+						_M(ext_pat2,j / ydiv,i / xdiv,2) += image[(yc * arImXsize + xc) * 4 + 3];
 						break;
 
 					case PIXEL_FORMAT_BGRA:
-						ext_pat2[j / ydiv][i / xdiv][0] += image[(yc * arImXsize + xc) * 4 + 0];
-						ext_pat2[j / ydiv][i / xdiv][1] += image[(yc * arImXsize + xc) * 4 + 1];
-						ext_pat2[j / ydiv][i / xdiv][2] += image[(yc * arImXsize + xc) * 4 + 2];
+						_M(ext_pat2,j / ydiv,i / xdiv,0) += image[(yc * arImXsize + xc) * 4 + 0];
+						_M(ext_pat2,j / ydiv,i / xdiv,1) += image[(yc * arImXsize + xc) * 4 + 1];
+						_M(ext_pat2,j / ydiv,i / xdiv,2) += image[(yc * arImXsize + xc) * 4 + 2];
 						break;
 
 					case PIXEL_FORMAT_BGR:
-						ext_pat2[j / ydiv][i / xdiv][0] += image[(yc * arImXsize + xc) * 3 + 0];
-						ext_pat2[j / ydiv][i / xdiv][1] += image[(yc * arImXsize + xc) * 3 + 1];
-						ext_pat2[j / ydiv][i / xdiv][2] += image[(yc * arImXsize + xc) * 3 + 2];
+						_M(ext_pat2,j / ydiv,i / xdiv,0) += image[(yc * arImXsize + xc) * 3 + 0];
+						_M(ext_pat2,j / ydiv,i / xdiv,1) += image[(yc * arImXsize + xc) * 3 + 1];
+						_M(ext_pat2,j / ydiv,i / xdiv,2) += image[(yc * arImXsize + xc) * 3 + 2];
 						break;
 
 					case PIXEL_FORMAT_RGBA:
-						ext_pat2[j / ydiv][i / xdiv][0] += image[(yc * arImXsize + xc) * 4 + 2];
-						ext_pat2[j / ydiv][i / xdiv][1] += image[(yc * arImXsize + xc) * 4 + 1];
-						ext_pat2[j / ydiv][i / xdiv][2] += image[(yc * arImXsize + xc) * 4 + 0];
+						_M(ext_pat2,j / ydiv,i / xdiv,0) += image[(yc * arImXsize + xc) * 4 + 2];
+						_M(ext_pat2,j / ydiv,i / xdiv,1) += image[(yc * arImXsize + xc) * 4 + 1];
+						_M(ext_pat2,j / ydiv,i / xdiv,2) += image[(yc * arImXsize + xc) * 4 + 0];
 						break;
 
 					case PIXEL_FORMAT_RGB:
-						ext_pat2[j / ydiv][i / xdiv][0] += image[(yc * arImXsize + xc) * 3 + 2];
-						ext_pat2[j / ydiv][i / xdiv][1] += image[(yc * arImXsize + xc) * 3 + 1];
-						ext_pat2[j / ydiv][i / xdiv][2] += image[(yc * arImXsize + xc) * 3 + 0];
+						_M(ext_pat2,j / ydiv,i / xdiv,0) += image[(yc * arImXsize + xc) * 3 + 2];
+						_M(ext_pat2,j / ydiv,i / xdiv,1) += image[(yc * arImXsize + xc) * 3 + 1];
+						_M(ext_pat2,j / ydiv,i / xdiv,2) += image[(yc * arImXsize + xc) * 3 + 0];
 						break;
 
 					case PIXEL_FORMAT_RGB565:
 						jy = j / ydiv;
 						ix = i / xdiv;
 						col8 = getLUM8_from_RGB565(image16+yc*arImXsize+xc);
-						ext_pat2[jy][ix][0] += col8;
-						ext_pat2[jy][ix][1] += col8;
-						ext_pat2[jy][ix][2] += col8;
+						_M(ext_pat2,jy,ix,0) += col8;
+						_M(ext_pat2,jy,ix,1) += col8;
+						_M(ext_pat2,jy,ix,2) += col8;
 						break;
 
 					case PIXEL_FORMAT_LUM:
 						jy = j / ydiv;
 						ix = i / xdiv;
 						col8 = image[yc * arImXsize + xc];
-						ext_pat2[jy][ix][0] += col8;
-						ext_pat2[jy][ix][1] += col8;
-						ext_pat2[jy][ix][2] += col8;
+						_M(ext_pat2,jy,ix,0) += col8;
+						_M(ext_pat2,jy,ix,1) += col8;
+						_M(ext_pat2,jy,ix,2) += col8;
 						break;
 					}
 				}
@@ -416,19 +425,21 @@ int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 
 		for (j = 0; j < PATTERN_HEIGHT; j++) {
 			for (i = 0; i < PATTERN_HEIGHT; i++) {
-				ext_pat[j][i][0] = ext_pat2[j][i][0] / (xdiv * ydiv);
-				ext_pat[j][i][1] = ext_pat2[j][i][1] / (xdiv * ydiv);
-				ext_pat[j][i][2] = ext_pat2[j][i][2] / (xdiv * ydiv);
+				_M(ext_pat,j,i,0) = _M(ext_pat2,j,i,0) / (xdiv * ydiv);
+				_M(ext_pat,j,i,1) = _M(ext_pat2,j,i,1) / (xdiv * ydiv);
+				_M(ext_pat,j,i,2) = _M(ext_pat2,j,i,2) / (xdiv * ydiv);
 			}
 		}
 	}
 
+	#undef _M
+	delete[] ext_pat2;
 	return (0);
 }
 
 int Tracker::pattern_match(uint8_t *data, int *code, int *dir, ARFloat *cf) {
 	ARFloat invec[EVEC_MAX];
-	int input[PATTERN_HEIGHT * PATTERN_WIDTH * 3];
+	int *input = new int[PATTERN_HEIGHT * PATTERN_WIDTH * 3];
 	int i, j, l;
 	int k = 0; // fix VC7 compiler warning: uninitialized variable
 	int ave, sum, res, res2;
@@ -563,7 +574,8 @@ int Tracker::pattern_match(uint8_t *data, int *code, int *dir, ARFloat *cf) {
 #ifdef ARTK_DEBUG
 	printf("%d %d %f\n", res2, res, max);
 #endif
-
+	
+	delete[] input;
 	return 0;
 }
 

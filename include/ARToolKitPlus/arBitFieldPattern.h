@@ -21,6 +21,8 @@
 #ifndef __ARBITFIELDPATTERN_HEADERFILE__
 #define __ARBITFIELDPATTERN_HEADERFILE__
 
+#include <ARToolKitPlus/config.h>
+
 namespace ARToolKitPlus {
 
 enum {
@@ -76,13 +78,13 @@ const int rotate90[] = {
 
 // some internal methods. primarily needed for
 // marker printing, etc.
-void generatePatternSimple(int nID, IDPATTERN& nPattern);
+void AR_EXPORT generatePatternSimple(int nID, IDPATTERN& nPattern);
 
-void generatePatternBCH(int nID, IDPATTERN& nPattern);
+void AR_EXPORT generatePatternBCH(int nID, IDPATTERN& nPattern);
 
 // static void setBit(IDPATTERN& pat, int which);
 
-bool isBitSet(IDPATTERN pat, int which);
+bool AR_EXPORT isBitSet(IDPATTERN pat, int which);
 
 } // namespace ARToolKitPlus
 

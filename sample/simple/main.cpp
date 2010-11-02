@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
     // glLoadMatrixf(tracker.getProjectionMatrix());
 
     // here we go, just two calls to find the camera pose
-    vector<int> markerId = tracker.calc(cameraBuffer);
+    std::vector<int> markerId = tracker.calc(cameraBuffer);
     tracker.selectBestMarkerByCf();
     float conf = tracker.getConfidence();
 

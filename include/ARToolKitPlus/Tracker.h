@@ -32,7 +32,6 @@
 
 #include <vector>
 
-using std::vector;
 
 namespace ARToolKitPlus {
 
@@ -50,7 +49,7 @@ namespace ARToolKitPlus {
  *  - TrackerSingleMarker
  *  - TrackerMultiMarker
  */
-class Tracker {
+class AR_EXPORT Tracker {
 public:
     Tracker(int imWidth, int imHeight, int maxImagePatterns = 8, int pattWidth = 6, int pattHeight = 6, int pattSamples = 6,
             int maxLoadPatterns = 0);
@@ -338,7 +337,7 @@ protected:
     int
     arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf, int thresh);
 
-    int arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t **ext_pat[3]);
+    int arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t *ext_pat);
 
     int pattern_match(uint8_t *data, int *code, int *dir, ARFloat *cf);
 
@@ -495,7 +494,7 @@ protected:
     arPrevInfo *prev_info;
     int prev_num;
 
-    vector<vector<arPrevInfo> > sprev_info;
+    std::vector<std::vector<arPrevInfo> > sprev_info;
     int sprev_num[2];
 
     // arDetectMarker2.cpp
@@ -508,16 +507,16 @@ protected:
     // arGetCode.cpp
     int pattern_num;
     int *patf;
-    vector<vector<vector<int> > > pat;
+    std::vector<std::vector<std::vector<int> > > pat;
     ARFloat (*patpow)[4];
-    vector<vector<vector<int> > > patBW;
+    std::vector<std::vector<std::vector<int> > > patBW;
     ARFloat (*patpowBW)[4];
 
-    vector<vector<ARFloat> > evec;
+    std::vector<std::vector<ARFloat> > evec;
     ARFloat (*epat)[4][EVEC_MAX];
     int evec_dim;
     int evecf;
-    vector<vector<ARFloat> > evecBW;
+    std::vector<std::vector<ARFloat> > evecBW;
     ARFloat (*epatBW)[4][EVEC_MAX];
     int evec_dimBW;
     int evecBWf;
@@ -586,7 +585,8 @@ protected:
 
     HULL_TRACKING_MODE hullTrackingMode;
 
-    static int screenWidth, screenHeight;
+    static int screenWidth;
+	static int screenHeight;
     int thresh;
 
     ARFloat gl_para[16];

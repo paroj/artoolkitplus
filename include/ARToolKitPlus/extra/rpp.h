@@ -21,11 +21,13 @@
 #ifndef __LINK_WITH_RPP__
 #define __LINK_WITH_RPP__
 
+#include <ARToolKitPlus/config.h>
+
 typedef double rpp_float;
 typedef double rpp_vec[3];
 typedef double rpp_mat[3][3];
 
-void robustPlanarPose(rpp_float &err, rpp_mat &R, rpp_vec &t, const rpp_float cc[2], const rpp_float fc[2],
+AR_EXPORT void robustPlanarPose(rpp_float &err, rpp_mat &R, rpp_vec &t, const rpp_float cc[2], const rpp_float fc[2],
         const rpp_vec *model, const rpp_vec *iprts, const unsigned int model_iprts_size, const rpp_mat R_init,
         const bool estimate_R_init, const rpp_float epsilon, const rpp_float tolerance,
         const unsigned int max_iterations);

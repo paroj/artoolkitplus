@@ -36,7 +36,7 @@ namespace ARToolKitPlus {
  *  Furthermore it uses only 4 'good' points of the convex hull to do the pose estimation.
  *  You can override this using the according methods.
  */
-class TrackerMultiMarker: public Tracker {
+class AR_EXPORT TrackerMultiMarker: public Tracker {
 public:
     /**
      * These parameters control the way the toolkit warps a found

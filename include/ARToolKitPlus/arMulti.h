@@ -37,7 +37,7 @@ typedef struct {
     int     visible;
 /*---*/
     int     visibleR;
-} ARMultiEachMarkerInfoT;
+} AR_EXPORT ARMultiEachMarkerInfoT;
 
 typedef struct {
     ARMultiEachMarkerInfoT  *marker;
@@ -46,7 +46,7 @@ typedef struct {
     int                     prevF;
 /*---*/
     ARFloat                  transR[3][4];
-} ARMultiMarkerInfoT;
+} AR_EXPORT ARMultiMarkerInfoT;
 
 
 } // namespace ARToolKitPlus

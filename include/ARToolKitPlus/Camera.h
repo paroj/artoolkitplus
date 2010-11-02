@@ -25,7 +25,6 @@
 #include <string>
 #include <ARToolKitPlus/config.h>
 
-using std::string;
 
 namespace ARToolKitPlus {
 
@@ -36,7 +35,7 @@ namespace ARToolKitPlus {
  * this class used to be called ARParam in the classical ARToolkit
  * so do not wonder because of the method names
  */
-class Camera {
+class AR_EXPORT Camera {
 public:
     int xsize, ysize;
     ARFloat mat[3][4];
@@ -48,9 +47,9 @@ public:
     Camera* clone();
     bool changeFrameSize(const int frameWidth, const int frameHeight);
     void printSettings();
-    string getFileName() const;
+    std::string getFileName() const;
 protected:
-    string fileName;
+    std::string fileName;
 
     // http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
     ARFloat cc[2];

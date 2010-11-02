@@ -56,8 +56,8 @@ bool TrackerSingleMarker::init(const char* nCamParamFile, ARFloat nNearClip, ARF
         return true;
 }
 
-vector<int> TrackerSingleMarker::calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info, int* nNumMarkers) {
-    vector<int> detected;
+std::vector<int> TrackerSingleMarker::calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info, int* nNumMarkers) {
+    std::vector<int> detected;
 
     if (nImage == NULL)
         return detected;

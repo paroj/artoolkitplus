@@ -96,5 +96,37 @@
   #define getLUM8_from_RGB565(ptr)   RGB565_to_LUM8_LUT[ (*(unsigned short*)(ptr))    ]
 #endif //SMALL_LUM8_TABLE
 
+// disable VisualStudio warnings 
+#if defined(_MSC_VER) && !defined(AR_ENABLE_MSVC_WARNINGS)
+    #pragma warning( disable : 4244 )
+    #pragma warning( disable : 4251 )
+    #pragma warning( disable : 4275 )
+    #pragma warning( disable : 4512 )
+    #pragma warning( disable : 4267 )
+    #pragma warning( disable : 4702 )
+    #pragma warning( disable : 4511 )
+#endif
+
+// Support for Visual Studio compilation
+#if defined(AR_STATIC)
+	#define AR_EXPORT 
+#else
+	#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__) || defined( __BCPLUSPLUS__)  || defined( __MWERKS__)
+		#  if defined( AR_LIBRARY )
+		#    define AR_EXPORT   __declspec(dllexport)
+		#  else
+		#    define AR_EXPORT   __declspec(dllimport)
+		#  endif
+	#else
+		#  define AR_EXPORT
+	#endif
+#endif
+
+#ifdef _MSC_VER
+# if (_MSC_VER >= 1300)
+#  define __STL_MEMBER_TEMPLATES
+# endif
+#endif
+
 #endif //  AR_CONFIG_H
 
