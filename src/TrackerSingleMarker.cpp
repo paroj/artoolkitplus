@@ -122,7 +122,7 @@ int TrackerSingleMarker::addPattern(const char* nFileName) {
     int patt_id = arLoadPatt(const_cast<char*> (nFileName));
 
     if (patt_id < 0) {
-        cerr << "ARToolKitPlus: error loading pattern" << nFileName << endl;
+        cerr << "ARToolKitPlus: error loading pattern " << nFileName << endl;
     }
 
     return patt_id;

@@ -19,10 +19,9 @@
  */
 
 #include <ARToolKitPlus/Tracker.h>
+#include <cmath>
 
 namespace ARToolKitPlus {
-
-#define MD_PI         3.14159265358979323846
 
 #ifndef _FIXEDPOINT_MATH_ACTIVATED_
 
@@ -45,7 +44,7 @@ ARFloat Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpa
     a2 = a;
     b2 = b;
     c2 = c;
-    factor = (ARFloat) (10.0 * MD_PI / 180.0);
+    factor = (ARFloat) (10.0 * M_PI / 180.0);
     for (j = 0; j < 15; j++) {
         minerr = 1000000000.0;
         for (t1 = -1; t1 <= 1; t1++) {
@@ -118,7 +117,7 @@ ARFloat Tracker::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
     a2 = a;
     b2 = b;
     c2 = c;
-    factor = (ARFloat) (40.0 * MD_PI / 180.0);
+    factor = (ARFloat) (40.0 * M_PI / 180.0);
     for (j = 0; j < 15; j++) {
         minerr = 1000000000.0;
         for (t1 = -1; t1 <= 1; t1++) {
@@ -191,7 +190,6 @@ ARFloat Tracker::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
 }
 
 #else //_FIXEDPOINT_MATH_ACTIVATED_
-
 //////////////////////////////////////////////////////////////
 //
 //             FIXEDPOINT specific code starts here
@@ -273,10 +271,10 @@ Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4]
     a2 = a;
     b2 = b;
     c2 = c;
-    //factor = (ARFloat)(10.0*MD_PI/180.0);
+    //factor = (ARFloat)(10.0*M_PI/180.0);
 
     //I32 fix_a2, fix_b2, fix_c2;
-    I32 fix_factor = FIXED_Float_To_Fixed_n((10.0*MD_PI/180.0), 12);
+    I32 fix_factor = FIXED_Float_To_Fixed_n((10.0*M_PI/180.0), 12);
     I32 fix_a[3], fix_b[3], fix_c[3];
 
     _a2 = FIXED_Float_To_Fixed_n(a2, 12);
@@ -367,7 +365,6 @@ Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4]
                             _vec1.y = (I32)((_hy*_rev)>>32);
                         }
 #endif //_USE_DIV_TABLE_
-
 #ifdef DEBUG_DIV_RANGE
                         if(_h<dbgInfo.hMin) dbgInfo.hMin = _h;
                         if(_h>dbgInfo.hMax) dbgInfo.hMax = _h;
@@ -480,7 +477,7 @@ Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4]
  a2 = a;
  b2 = b;
  c2 = c;
- factor = (ARFloat)(10.0*MD_PI/180.0);
+ factor = (ARFloat)(10.0*M_PI/180.0);
  for( j = 0; j < 10; j++ ) {
  _minerr = 0x40000000;		// value
 
@@ -565,5 +562,4 @@ Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4]
 #endif
 
 #endif //_FIXEDPOINT_MATH_ACTIVATED_
-
 } // namespace ARToolKitPlus

@@ -22,6 +22,7 @@
 #include "rpp.h"
 #include <cstring>
 #include "rpp_vecmat.h"
+#include "rpp_const.h"
 
 namespace rpp {
 

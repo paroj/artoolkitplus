@@ -146,9 +146,9 @@ Tracker::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMa
             }
         }
         for( i = 0; i < AR_MULTI_GET_TRANS_MAT_MAX_LOOP_COUNT; i++ ) {
-            err = arGetTransMat4( rot, (ARFloat (*)[2])pos2d,
+            err = arGetTransMat5( rot, (ARFloat (*)[2])pos2d,
                                        (ARFloat (*)[3])pos3d,
-                                        vnum*4, config->trans );
+                                        vnum*4, config->trans, arCamera);
             if( err < AR_MULTI_GET_TRANS_MAT_MAX_FIT_ERROR ) break;
         }
 
@@ -168,8 +168,8 @@ Tracker::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMa
     }
 
     for( i = 0; i < AR_MULTI_GET_TRANS_MAT_MAX_LOOP_COUNT; i++ ) {
-        err2 = arGetTransMat4( rot, (ARFloat (*)[2])pos2d, (ARFloat (*)[3])pos3d,
-                              vnum*4, trans2 );
+        err2 = arGetTransMat5( rot, (ARFloat (*)[2])pos2d, (ARFloat (*)[3])pos3d,
+                              vnum*4, trans2, arCamera);
         if( err2 < AR_MULTI_GET_TRANS_MAT_MAX_FIT_ERROR ) break;
     }
 

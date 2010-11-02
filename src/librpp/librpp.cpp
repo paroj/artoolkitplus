@@ -21,6 +21,7 @@
 #include "librpp.h"
 #include "rpp.h"
 #include "rpp_vecmat.h"
+#include "rpp_const.h"
 
 using namespace rpp;
 

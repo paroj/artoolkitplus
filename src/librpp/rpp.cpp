@@ -1,33 +1,32 @@
-/*
-    Copyright (C) 2010  ARToolkitPlus Authors
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    Authors:
-      Thomas Pintaric
+/**
+ * Copyright (C) 2010  ARToolkitPlus Authors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authors:
+ *  Thomas Pintaric
  */
 
 
 #ifndef _NO_LIBRPP_
 
-#include <vector>
 #include <cstring>
-#include <cassert>
+#include <cmath>
 
 #include "rpp.h"
-#include "rpp_const.h"
 #include "rpp_vecmat.h"
+#include "rpp_const.h"
 
 namespace rpp {
 
@@ -125,7 +124,7 @@ void rpyAng(vec3_t &angs, const mat33_t &R)
 	{
 		const real_t sinC = (R.m[0][1] - R.m[1][2]) / 2.0f;
 		const real_t cosC = (R.m[1][1] - R.m[0][2]) / 2.0f;
-		vec3_assign(angs,_atan2(sinC,cosC),CONST_PI_OVER_2, 0.0f);
+		vec3_assign(angs,_atan2(sinC,cosC),M_PI_2, 0.0f);
 	}
 }
 
@@ -135,22 +134,22 @@ void rpyAng_X(vec3_t &ang_zyx, const mat33_t &R)
 {
 	rpyAng(ang_zyx,R);
 
-	if(_abs(ang_zyx.v[0]) > CONST_PI_OVER_2)
+	if(_abs(ang_zyx.v[0]) > M_PI_2)
 	{
-		while(_abs(ang_zyx.v[0]) > CONST_PI_OVER_2)
+		while(_abs(ang_zyx.v[0]) > M_PI_2)
 		{
 			if(ang_zyx.v[0] > 0)
 			{
-				vec3_assign(ang_zyx, ang_zyx.v[0]+CONST_PI,
-					                 3*CONST_PI-ang_zyx.v[1],
-									 ang_zyx.v[2]+CONST_PI);
-				vec3_sub(ang_zyx,CONST_2_PI);
+				vec3_assign(ang_zyx, ang_zyx.v[0]+M_PI,
+					                 3*M_PI-ang_zyx.v[1],
+									 ang_zyx.v[2]+M_PI);
+				vec3_sub(ang_zyx, M_PI*2);
 			}
 			else
 			{
-				vec3_assign(ang_zyx, ang_zyx.v[0]+CONST_PI,
-									 3*CONST_PI-ang_zyx.v[1],
-									 ang_zyx.v[2]+CONST_PI);
+				vec3_assign(ang_zyx, ang_zyx.v[0]+M_PI,
+									 3*M_PI-ang_zyx.v[1],
+									 ang_zyx.v[2]+M_PI);
 			}
 		}
 	}
@@ -551,7 +550,7 @@ void getRotationY_wrtT(scalar_array &al_ret, vec3_array &tnew, const vec3_array 
 	scalar_array_div(sa,_ca1);
 	scalar_array al;
 	scalar_array_atan2(al,sa,ca);
-	scalar_array_mult(al,real_t(180./CONST_PI));
+	scalar_array_mult(al,real_t(180./M_PI));
 	scalar_array _c_tMaxMin;
 	_c_tMaxMin.resize(at.size());
 	scalar_array_clear(_c_tMaxMin);
@@ -585,7 +584,7 @@ void getRotationY_wrtT(scalar_array &al_ret, vec3_array &tnew, const vec3_array 
 	for(unsigned int a=0; a<al_.size(); a++)
 	{
 		vec3_t rpy;
-		vec3_assign(rpy,real_t(0),real_t(al_[a] * CONST_PI / real_t(180)), real_t(0));
+		vec3_assign(rpy,real_t(0),real_t(al_[a] * M_PI / real_t(180)), real_t(0));
 		mat33_t R,Ry_;
 		rpyMat(Ry_,rpy);
 		mat33_mult(R,Rz,Ry_);
@@ -636,7 +635,7 @@ void getRfor2ndPose_V_Exact(pose_vec &sol, const vec3_array &v, const vec3_array
 	scalar_array bl;
 	vec3_array Tnew;
 	getRotationY_wrtT(bl,Tnew, v ,P_, t, DB, Rz);
-	scalar_array_div(bl,180.0f/CONST_PI);
+	scalar_array_div(bl,180.0f/M_PI);
 	const unsigned int n = (unsigned int) v.size();
 	mat33_array V;
 	V.resize(n);

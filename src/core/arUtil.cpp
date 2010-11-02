@@ -19,20 +19,6 @@
  *  Pavel Rojtberg
  */
 
-#include <stdio.h>
-#include <math.h>
-
-#ifdef _WIN32
-
-#ifndef _WIN32_WCE
-#include <sys/timeb.h>
-#endif
-
-#include <windows.h>
-#else
-#include <sys/time.h>
-#endif
-
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/Camera.h>
 #include <ARToolKitPlus/matrix.h>

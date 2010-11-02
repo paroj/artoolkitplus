@@ -352,10 +352,6 @@ protected:
 
     ARMarkerInfo* arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh);
 
-    ARFloat arGetTransMat2(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][2], int num, ARFloat conv[3][4]);
-
-    ARFloat arGetTransMat4(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4]);
-
     ARFloat arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4],
             Camera *pCam);
 
@@ -378,8 +374,6 @@ protected:
     int arGetInitRot(ARMarkerInfo *marker_info, ARFloat cpara[3][4], ARFloat rot[3][3]);
 
     int arGetInitRot2(ARMarkerInfo *marker_info, ARFloat rot[3][3], ARFloat center[2], ARFloat width);
-
-    ARFloat arGetTransMatCont2(ARMarkerInfo *marker_info, ARFloat center[2], ARFloat width, ARFloat conv[3][4]);
 
     ARFloat arGetTransMatContSub(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width,
             ARFloat conv[3][4]);

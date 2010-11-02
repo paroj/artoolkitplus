@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     Authors:
-      Thomas Pintaric
+      Thomas M_PIntaric
  */
 
 
 #ifndef _NO_LIBRPP_
 
 
-#include "math.h"
+#include <cmath>
 #include "stdio.h"
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
@@ -247,7 +247,6 @@ int quintic(double dd[6], double sol[5], double soli[5], int *Nsol, double xstar
 
 int cubic(double A[4], double X[3], int* L)
 {
-	const double PI = 3.1415926535897932;
 	const double THIRD = 1./3.;
 	double U[3],W, P, Q, DIS, PHI;
 	int i;
@@ -270,7 +269,7 @@ int cubic(double A[4], double X[3], int* L)
 			//Confine the argument of ACOS to the interval [-1;1]!
 			PHI = acos(min(1.0,max(-1.0,Q/sqrt(-P))));
 			P=2.0*pow((-P),(5.e-1*THIRD));
-			for (i=0;i<3;i++)	U[i] = P*cos((PHI+2*((double)i)*PI)*THIRD)-W;
+			for (i=0;i<3;i++)	U[i] = P*cos((PHI+2*((double)i)*M_PI)*THIRD)-W;
 			X[0] = min(U[0], min(U[1], U[2]));
 			X[1] = max(min(U[0], U[1]),max( min(U[0], U[2]), min(U[1], U[2])));
 			X[2] = max(U[0], max(U[1], U[2]));

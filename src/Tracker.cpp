@@ -438,7 +438,7 @@ ARFloat Tracker::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARF
         return arGetTransMat(marker_info, center, width, conv);
 
     case POSE_ESTIMATOR_ORIGINAL_CONT:
-        return arGetTransMatCont2(marker_info, center, width, conv);
+        return arGetTransMatCont(marker_info, conv, center, width, conv);
 
     case POSE_ESTIMATOR_RPP:
         return rppGetTransMat(marker_info, center, width, conv);

@@ -28,9 +28,6 @@
 
 namespace ARToolKitPlus {
 
-
-#define MD_PI         3.14159265358979323846
-
 static int  check_rotation( ARFloat rot[2][3] );
 static int  check_dir( ARFloat dir[3], ARFloat st[2], ARFloat ed[2],
                        ARFloat cpara[3][4] );

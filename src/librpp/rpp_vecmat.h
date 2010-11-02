@@ -1,39 +1,37 @@
-/*
-    Copyright (C) 2010  ARToolkitPlus Authors
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    Authors:
-      Thomas Pintaric
+/**
+ * Copyright (C) 2010  ARToolkitPlus Authors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Authors:
+ *  Thomas Pintaric
  */
-
 
 #ifndef __RPP_VECMAT_H__
 #define __RPP_VECMAT_H__
 
-#include "rpp_const.h"
 #include "rpp_types.h"
+#include <cmath>
 
 namespace rpp {
 
-real_t _sin(real_t a);
-real_t _cos(real_t a);
-real_t _atan2(real_t a, real_t b);
-real_t _abs(real_t a);
-real_t _acos(real_t a);
-real_t _sqrt(real_t a);
-real_t _pow(real_t a);
+inline real_t _sin(real_t a) {return ::sin(a);}
+inline real_t _cos(real_t a) {return ::cos(a);}
+inline real_t _atan2(real_t a, real_t b) {return ::atan2(a, b);}
+inline real_t _abs(real_t a) {return a < 0 ? -a : a;}
+inline real_t _acos(real_t a) {return ::acos(a);}
+inline real_t _sqrt(real_t a) {return ::sqrt(a);}
 
 void mat33_from_double_pptr(mat33_t &mat, double** m_ptr);
 double ** mat33_to_double_pptr(const mat33_t &mat);
@@ -41,10 +39,8 @@ void free_double_pptr(double*** m_ptr);
 void vec3_from_double_ptr(vec3_t &vec, double* v_ptr);
 double* vec3_to_double_ptr(const vec3_t &vec);
 void free_double_ptr(double** v_ptr);
-void mat33_assign(mat33_t &m,
-				  const real_t m00, const real_t m01, const real_t m02,
-				  const real_t m10, const real_t m11, const real_t m12,
-				  const real_t m20, const real_t m21, const real_t m22);
+void mat33_assign(mat33_t &m, const real_t m00, const real_t m01, const real_t m02, const real_t m10, const real_t m11,
+        const real_t m12, const real_t m20, const real_t m21, const real_t m22);
 void _dbg_quat_print(const quat_t &q, char* name);
 void _dbg_mat33_print(const mat33_t &m, char* name);
 void _dbg_mat33_array_print(const mat33_array &m, char* name);
@@ -108,14 +104,10 @@ void normRv(vec3_array &normR_v, const vec3_array &v);
 int solve_polynomial(scalar_array &sol, const scalar_array &coefficients);
 void scalar_array_pow(scalar_array &sa, const real_t f);
 void scalar_array_negate(scalar_array &sa);
-void scalar_array_assign(scalar_array &sa,
-						 const	real_t f,
-						 const unsigned int sz);
+void scalar_array_assign(scalar_array &sa, const real_t f, const unsigned int sz);
 void scalar_array_add(scalar_array &sa, const scalar_array &sb);
 void scalar_array_clear(scalar_array &sa);
-void scalar_array_atan2(scalar_array &sa, 
-						const scalar_array &sb,
-						const scalar_array &sc);
+void scalar_array_atan2(scalar_array &sa, const scalar_array &sb, const scalar_array &sc);
 
 void _dbg_scalar_array_print(const scalar_array &sa, char* name);
 void scalar_array_div(scalar_array &sa, real_t f);
