@@ -22,6 +22,8 @@
 #ifndef __BCH_CODE__H__
 #define __BCH_CODE__H__
 
+#include <ARToolKitPlus/config.h>
+
 #include <vector>
 
 namespace ARToolKitPlus {
@@ -62,7 +64,7 @@ typedef unsigned long long _64bits;
 // static void printBitPattern(_64bits n, int n_bits);
 
 
-class BCH
+class AR_EXPORT BCH
 // this class implements a (36, 12, 9) binary BCH encoder/decoder
 {
 public:

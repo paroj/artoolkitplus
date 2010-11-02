@@ -36,7 +36,7 @@
 
 namespace ARToolKitPlus {
 
-struct ARMat {
+struct AR_EXPORT ARMat {
     ARFloat *m;
     int row;
     int clm;
@@ -49,14 +49,14 @@ namespace Matrix {
 /* 1 origin */
 #define ARELEM1(mat,row,clm) ARELEM0(mat,row-1,clm-1)
 
-ARMat *alloc(int row, int clm);
-int free(ARMat *m);
+AR_EXPORT ARMat *alloc(int row, int clm);
+AR_EXPORT int free(ARMat *m);
 
-int dup(ARMat *dest, ARMat *source);
-ARMat *allocDup(ARMat *source);
+AR_EXPORT int dup(ARMat *dest, ARMat *source);
+AR_EXPORT ARMat *allocDup(ARMat *source);
 
-int mul(ARMat *dest, ARMat *a, ARMat *b);
-int selfInv(ARMat *m);
+AR_EXPORT int mul(ARMat *dest, ARMat *a, ARMat *b);
+AR_EXPORT int selfInv(ARMat *m);
 
 } // namespace Matrix
 

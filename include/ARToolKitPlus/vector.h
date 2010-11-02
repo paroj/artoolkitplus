@@ -27,17 +27,17 @@ namespace ARToolKitPlus {
 
 struct ARMat;
 
-struct ARVec {
+struct AR_EXPORT ARVec {
 	ARFloat *v;
 	int clm;
 };
 
 namespace Vector {
-ARVec *alloc(int clm);
-int free(ARVec *v);
-ARFloat household(ARVec *x);
-ARFloat innerproduct(ARVec *x, ARVec *y);
-int tridiagonalize(ARMat *a, ARVec *d, ARVec *e);
+AR_EXPORT ARVec * alloc(int clm);
+AR_EXPORT int free(ARVec *v);
+AR_EXPORT ARFloat household(ARVec *x);
+AR_EXPORT ARFloat innerproduct(ARVec *x, ARVec *y);
+AR_EXPORT int tridiagonalize(ARMat *a, ARVec *d, ARVec *e);
 }
 
 } // namespace ARToolKitPlus

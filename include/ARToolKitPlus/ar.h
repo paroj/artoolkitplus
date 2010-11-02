@@ -40,7 +40,7 @@ typedef struct {
     ARFloat pos[2];
     ARFloat line[4][3];
     ARFloat vertex[4][2];
-} ARMarkerInfo;
+} AR_EXPORT ARMarkerInfo;
 
 typedef struct {
     int area;
@@ -49,12 +49,12 @@ typedef struct {
     int x_coord[AR_CHAIN_MAX];
     int y_coord[AR_CHAIN_MAX];
     int vertex[5];
-} ARMarkerInfo2;
+} AR_EXPORT ARMarkerInfo2;
 
 typedef struct {
     ARMarkerInfo marker;
     int count;
-} arPrevInfo;
+} AR_EXPORT arPrevInfo;
 
 } // namespace ARToolKitPlus
 

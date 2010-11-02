@@ -22,12 +22,14 @@
 #ifndef __ARTOOLKITPLUS_HULL_HEADERFILE__
 #define __ARTOOLKITPLUS_HULL_HEADERFILE__
 
+#include <ARToolKitPlus/config.h>
+
 namespace ARToolKitPlus {
 
 const int MAX_HULL_POINTS = 64; // support up to 16 visible markers
 
 
-struct MarkerPoint {
+struct AR_EXPORT MarkerPoint {
     typedef int coord_type;
 
     coord_type x, y;
@@ -38,17 +40,17 @@ inline int iabs(int nValue) {
     return nValue >= 0 ? nValue : -nValue;
 }
 
-int nearHull_2D(const MarkerPoint* P, int n, int k, MarkerPoint* H);
+AR_EXPORT int nearHull_2D(const MarkerPoint* P, int n, int k, MarkerPoint* H);
 
-void findLongestDiameter(const MarkerPoint* nPoints, int nNumPoints, int &nIdx0, int &nIdx1);
+AR_EXPORT void findLongestDiameter(const MarkerPoint* nPoints, int nNumPoints, int &nIdx0, int &nIdx1);
 
-void findFurthestAway(const MarkerPoint* nPoints, int nNumPoints, int nIdx0, int nIdx1, int& nIdxFarthest);
+AR_EXPORT void findFurthestAway(const MarkerPoint* nPoints, int nNumPoints, int nIdx0, int nIdx1, int& nIdxFarthest);
 
-void maximizeArea(const MarkerPoint* nPoints, int nNumPoints, int nIdx0, int nIdx1, int nIdx2, int& nIdxMax);
+AR_EXPORT void maximizeArea(const MarkerPoint* nPoints, int nNumPoints, int nIdx0, int nIdx1, int nIdx2, int& nIdxMax);
 
-void sortIntegers(int& nIdx0, int& nIdx1, int& nIdx2);
+AR_EXPORT void sortIntegers(int& nIdx0, int& nIdx1, int& nIdx2);
 
-void sortInLastInteger(int& nIdx0, int& nIdx1, int& nIdx2, int &nIdx3);
+AR_EXPORT void sortInLastInteger(int& nIdx0, int& nIdx1, int& nIdx2, int &nIdx3);
 
 } // namespace ARToolKitPlus
 

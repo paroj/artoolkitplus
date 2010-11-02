@@ -36,7 +36,7 @@ namespace ARToolKitPlus {
  *
  *  If you need multi-marker tracking use TrackerMultiMarker.
  */
-class TrackerSingleMarker: public Tracker {
+class AR_EXPORT TrackerSingleMarker: public Tracker {
 public:
     /**
      * These parameters control the way the toolkit warps a found
@@ -76,7 +76,7 @@ public:
      * pass the image as RGBX (32-bits)
      * @return detected markers in image
      */
-    virtual vector<int> calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info = NULL, int* nNumMarkers = NULL);
+    virtual std::vector<int> calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info = NULL, int* nNumMarkers = NULL);
 
     /**
      * manually select one of the detected markers
