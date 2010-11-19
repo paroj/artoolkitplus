@@ -17,5 +17,5 @@ env.Install(env.get("prefix")+"/include", Glob("include/*"))
 
 env.Alias("install", env.get("prefix"))
 
-# uncomment to enable building of tools/ and examples
-SConscript("bin/SConscript")
+# uncomment to enable building of tools and examples
+# SConscript("bin/SConscript")
