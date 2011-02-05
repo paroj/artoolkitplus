@@ -11,9 +11,8 @@ else(WIN32)
     add_definitions(-Wall -g -O3)
 endif(WIN32)
 
-message(STATUS ${PROJECT_SOURCE_DIR})
-set(AR_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 
+set(AR_SOURCE_DIR ${PROJECT_SOURCE_DIR})
 include_directories(${AR_SOURCE_DIR}/include)
 
 # ARToolkitPlus core files (headers and sources)
@@ -27,10 +26,12 @@ file(GLOB SOURCES_AR
 
 add_library(ARToolKitPlus SHARED ${HEADERS_AR} ${SOURCES_AR})
 
+if(BUILD_EXAMPLES)
+    add_subdirectory(bin/)
+endif(BUILD_EXAMPLES)
+
+# make install
 set(CMAKE_INSTALL_PREFIX /usr)
 install(TARGETS ARToolKitPlus LIBRARY DESTINATION lib)
 install(DIRECTORY include/ DESTINATION include)
 
-if(BUILD_EXAMPLES)
-    add_subdirectory(bin/)
-endif(BUILD_EXAMPLES)
