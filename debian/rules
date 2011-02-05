@@ -1,13 +1,4 @@
 #!/usr/bin/make -f
 
-override_dh_auto_build:
-	scons
-
-override_dh_auto_clean:
-	scons -c
-
-override_dh_auto_install:
-	scons install prefix=debian/tmp/usr
-
 %:
 	dh $@

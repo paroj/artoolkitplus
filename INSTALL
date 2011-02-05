@@ -4,16 +4,14 @@ Install instructions for Linux:
 Remarks:
 --------
 
-The make environment for Linux is based on the scons system.
+The make environment for Linux is based on the cmake system.
 Please install scons before compiling ARToolKitPlus!
 
 Compile Steps:
 --------------
 
-- Modify ./SConstruct to your needs
-
 - Start compilation with
-  scons
+  make
 
 - You should end up with
 

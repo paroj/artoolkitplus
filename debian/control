@@ -1,7 +1,7 @@
 Source: artoolkitplus
 Priority: optional
 Maintainer: Pavel Rojtberg <pavel@rojtberg.net>
-Build-Depends: debhelper (>= 7), scons
+Build-Depends: debhelper (>= 7), cmake
 Standards-Version: 3.8.1
 Section: libs
 Homepage: http://launchpad.net/artoolkitplus
