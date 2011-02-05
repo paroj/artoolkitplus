@@ -22,3 +22,6 @@ Compile Steps:
 	    idpatgen ... For generating ID markers
 
 - For executing, do not forget to update your LD_LIBRARY_PATH
+
+- You can install the library system-wide using
+  make install DESTDIR=/
