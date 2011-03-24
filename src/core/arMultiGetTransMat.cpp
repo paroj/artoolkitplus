@@ -53,7 +53,7 @@ Tracker::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMa
     ARFloat                *pos2d, *pos3d;
     ARFloat                rot[3][3], trans1[3][4], trans2[3][4];
     ARFloat                err = 0, err2;
-    int                   max, max_area = 0, max_marker, vnum;
+    int                   max, max_area = 0, vnum;
     int                   dir;
     int                   i, j, k;
 
@@ -94,7 +94,6 @@ Tracker::arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMa
         if( max == -1 
          || marker_info[k].area > max_area ) {
             max = i;
-            max_marker = k;
             max_area   = marker_info[k].area;
             for( j = 0; j < 3; j++ ) {
                 for( k = 0; k < 4; k++ ) {

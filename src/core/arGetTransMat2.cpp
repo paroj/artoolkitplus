@@ -109,7 +109,7 @@ ARFloat Tracker::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
     int t1, t2, t3, tt1, tt2, tt3;
     ARFloat tfact[5] = { 0.96f, 0.98f, 1.0f, 1.02f, 1.04f };
     ARFloat modtrans[3], mmodtrans[3];
-    int s1, s2, s3, ss1, ss2, ss3;
+    int s1, s2, s3;
     int i, j;
 
     arGetAngle(rot, &a, &b, &c);
@@ -163,9 +163,6 @@ ARFloat Tracker::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
                                     s1 = t1;
                                     s2 = t2;
                                     s3 = t3;
-                                    ss1 = tt1;
-                                    ss2 = tt2;
-                                    ss3 = tt3;
                                 }
                             }
                         }

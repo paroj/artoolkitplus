@@ -122,7 +122,7 @@ BCH::BCH(int _m, int _length, int _t)
 
 void BCH::initialize(int _m, int _length, int _t)
 {
-	int i, ninf;
+	int i;
 
 	m = _m;
 	length = _length;
@@ -173,7 +173,6 @@ void BCH::initialize(int _m, int _length, int _t)
         n *= 2;
     }
 	n = n / 2 - 1;
-	ninf = (n + 1) / 2 - 1;
 
 	generate_gf();          /* Construct the Galois Field GF(2**m) */
 	gen_poly(t);            /* Compute the generator polynomial of BCH code */

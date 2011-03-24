@@ -126,18 +126,16 @@ Tracker::arGetContour(int16_t *limage, int *label_ref, int label, int clip[4], A
     //static int      wx[AR_CHAIN_MAX];
     //static int      wy[AR_CHAIN_MAX];
     int16_t         *p1;
-    int             xsize, ysize;
+    int             xsize;
     int             sx, sy, dir;
     int             dmax, d, v1 = 0;
     int             i, j;
 
     if( arImageProcMode == AR_IMAGE_PROC_IN_HALF ) {
         xsize = arImXsize / 2;
-        ysize = arImYsize / 2;
     }
     else {
         xsize = arImXsize;
-        ysize = arImYsize;
     }
     j = clip[2];
     p1 = &(limage[j*xsize+clip[0]]);
@@ -212,7 +210,7 @@ Tracker::check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor)
 {
     int             sx, sy;
     int             dmax, d, v1;
-    int             vertex[10], vnum;
+    int             vertex[10];
     int             wv1[10], wvnum1, wv2[10], wvnum2, v2;
     ARFloat          thresh;
     int             i;
@@ -232,7 +230,6 @@ Tracker::check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor)
     }
 
     thresh = (ARFloat)(area/0.75) * (ARFloat)0.01 * factor;
-    vnum = 1;
     vertex[0] = 0;
     wvnum1 = 0;
     wvnum2 = 0;
