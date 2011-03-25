@@ -131,7 +131,7 @@ void Tracker::buildUndistO2ITable(Camera* pCam) {
             }
     }
 
-    delete cachename;
+    delete[] cachename;
 }
 
 int Tracker::arCameraObserv2Ideal(Camera *pCam, ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {

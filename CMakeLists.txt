@@ -8,7 +8,8 @@ if(WIN32)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS -DAR_LIBRARY)
 else(WIN32)
     add_definitions(-Wall -g -O3)
-    add_definitions(-fuse-linker-plugin) # use gold instead of ld
+    set(CMAKE_CXX_COMPILER g++-4.5)      # force g++-4.5 on maverick
+    add_definitions(-fuse-linker-plugin) # use gold instead of ld (depends on g++ > 4.5)
 endif(WIN32)
 
 

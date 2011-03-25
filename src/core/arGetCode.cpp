@@ -65,6 +65,7 @@ int Tracker::arLoadPatt(char *filename) {
 				for (i1 = 0; i1 < PATTERN_WIDTH; i1++) {
 					if (fscanf(fp, "%d", &j) != 1) {
 						printf("Pattern Data read error!!\n");
+						fclose(fp);
 						return -1;
 					}
 					if (binaryMarkerThreshold != -1)
@@ -280,8 +281,13 @@ int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 			for (i = 0; i < xdiv2; i++) {
 				xw = steps[i];
 				d = para[2][0] * xw + para[2][1] * yw + para[2][2];
-				if (d == 0)
-					return (-1);
+
+				if (d == 0) {
+				    delete[] steps;
+				    delete[] ext_pat2;
+					return -1;
+				}
+
 				xc = (int) ((para[0][0] * xw + para[0][1] * yw + para[0][2]) / d);
 				yc = (int) ((para[1][0] * xw + para[1][1] * yw + para[1][2]) / d);
 				//das hier sollte noch getestet werden...
