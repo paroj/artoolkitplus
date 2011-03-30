@@ -104,7 +104,7 @@ ARFloat Tracker::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
     ARFloat combo[3][4];
     ARFloat hx, hy, h, x, y;
     ARFloat err;
-    ARFloat minerr = 1000000000.0;
+    ARFloat minerr;
     int t1, t2, t3, tt1, tt2, tt3;
     ARFloat tfact[5] = { 0.96f, 0.98f, 1.0f, 1.02f, 1.04f };
     ARFloat modtrans[3], mmodtrans[3];
@@ -116,6 +116,18 @@ ARFloat Tracker::arModifyMatrix2(ARFloat rot[3][3], ARFloat trans[3], ARFloat cp
     a2 = a;
     b2 = b;
     c2 = c;
+
+    // initialise to some value
+    ma = a;
+    mb = b;
+    mc = c;
+    mmodtrans[0] = trans[0];
+    mmodtrans[1] = trans[1];
+    mmodtrans[2] = trans[2];
+    minerr = 1000000000.0;
+    s1 = -2; s2 = -2; s3 = -2;
+
+
     factor = (ARFloat) (40.0 * M_PI / 180.0);
     for (j = 0; j < 15; j++) {
         minerr = 1000000000.0;
