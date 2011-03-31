@@ -24,6 +24,7 @@
 #include <map>
 #include <deque>
 #include <cstring>
+#include <utility>
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
 #include <ARToolKitPlus/extra/rpp.h>
@@ -42,11 +43,7 @@ ARFloat Tracker::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, 
             std::map<int, int>::iterator iter = marker_id_freq.find(m_patt_id);
 
             if (iter == marker_id_freq.end()) {
-                marker_id_freq.insert(std::make_pair<int, int>(
-#ifdef __GXX_EXPERIMENTAL_CXX0X__
-                        (int&&)
-#endif
-                        m_patt_id, 1));
+                marker_id_freq.insert(std::make_pair<int, int>(int(m_patt_id), 1));
             } else {
                 ((*iter).second)++;
             }
@@ -55,7 +52,7 @@ ARFloat Tracker::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, 
 
     std::deque<std::pair<int, int> > config_patt_id;
     for (int j = 0; j < config->marker_num; j++)
-        config_patt_id.push_back(std::make_pair<int, int>(j, config->marker[j].patt_id));
+        config_patt_id.push_back(std::make_pair<int, int>(int(j), int(config->marker[j].patt_id)));
 
     std::map<int, int> m2c_idx;
     for (int m = 0; m < marker_num; m++) {
@@ -70,7 +67,7 @@ ARFloat Tracker::rppMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, 
                 do {
                     const int patt_id = (*c_iter).second;
                     if (marker_info[m].id == patt_id) {
-                        m2c_idx.insert(std::make_pair<int, int>(m, (*c_iter).first));
+                        m2c_idx.insert(std::make_pair<int, int>(int(m), int((*c_iter).first)));
                         config_patt_id.erase(c_iter);
                         c_iter = config_patt_id.end();
                         continue;
