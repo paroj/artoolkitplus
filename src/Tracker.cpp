@@ -32,19 +32,15 @@ namespace ARToolKitPlus {
 int Tracker::screenWidth;
 int Tracker::screenHeight;
 
-Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth, int pattHeight, int pattSamples, int maxLoadPatterns) :
-		PATTERN_WIDTH(pattWidth),
-		PATTERN_HEIGHT(pattHeight),
-		PATTERN_SAMPLE_NUM(pattSamples),
-		MAX_LOAD_PATTERNS(maxLoadPatterns),
-		MAX_IMAGE_PATTERNS(maxImagePatterns),
-		WORK_SIZE(1024*MAX_IMAGE_PATTERNS),
-		sprev_info(2, vector<arPrevInfo>(MAX_IMAGE_PATTERNS)),
-		pat(MAX_LOAD_PATTERNS, vector<vector<int> >(4, vector<int>(PATTERN_HEIGHT*PATTERN_WIDTH*3))),
-		patBW(MAX_LOAD_PATTERNS, vector<vector<int> >(4, vector<int>(PATTERN_HEIGHT*PATTERN_WIDTH*3))),
-		evec(EVEC_MAX, vector<ARFloat>(PATTERN_HEIGHT*PATTERN_WIDTH*3)),
-		evecBW(EVEC_MAX, vector<ARFloat>(PATTERN_HEIGHT*PATTERN_WIDTH*3))
- {
+Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth, int pattHeight, int pattSamples,
+        int maxLoadPatterns) :
+    PATTERN_WIDTH(pattWidth), PATTERN_HEIGHT(pattHeight), PATTERN_SAMPLE_NUM(pattSamples),
+            MAX_LOAD_PATTERNS(maxLoadPatterns), MAX_IMAGE_PATTERNS(maxImagePatterns),
+            WORK_SIZE(1024 * MAX_IMAGE_PATTERNS), sprev_info(2, vector<arPrevInfo> (MAX_IMAGE_PATTERNS)),
+            pat(MAX_LOAD_PATTERNS, vector<vector<int> > (4, vector<int> (PATTERN_HEIGHT * PATTERN_WIDTH * 3))),
+            patBW(MAX_LOAD_PATTERNS, vector<vector<int> > (4, vector<int> (PATTERN_HEIGHT * PATTERN_WIDTH * 3))),
+            evec(EVEC_MAX, vector<ARFloat> (PATTERN_HEIGHT * PATTERN_WIDTH * 3)),
+            evecBW(EVEC_MAX, vector<ARFloat> (PATTERN_HEIGHT * PATTERN_WIDTH * 3)) {
     screenWidth = imWidth;
     screenHeight = imHeight;
 
@@ -143,51 +139,17 @@ Tracker::~Tracker() {
     delete[] epatBW;
     delete[] prev_info;
     delete[] marker_infoL;
-
-    if (arCamera)
-        delete arCamera;
-    arCamera = NULL;
-
-    if (bchProcessor)
-        delete bchProcessor;
-    bchProcessor = NULL;
-
-    if (l_imageL)
-        delete[] l_imageL;
-    l_imageL = NULL;
-
-    if (workL)
-        delete[] workL;
-    workL = NULL;
-
-    if (work2L)
-        delete[] work2L;
-    work2L = NULL;
-
-    if (wareaL)
-        delete[] wareaL;
-    wareaL = NULL;
-
-    if (wclipL)
-        delete[] wclipL;
-    wclipL = NULL;
-
-    if (wposL)
-        delete[] wposL;
-    wposL = NULL;
-
-    if (RGB565_to_LUM8_LUT)
-        delete RGB565_to_LUM8_LUT;
-    RGB565_to_LUM8_LUT = NULL;
-
-    if (undistO2ITable)
-        delete[] undistO2ITable;
-    undistO2ITable = NULL;
-
-    if (marker_infoTWO)
-        delete[] marker_infoTWO;
-
-    marker_infoTWO = NULL;
+    delete arCamera;
+    delete bchProcessor;
+    delete[] l_imageL;
+    delete[] workL;
+    delete[] work2L;
+    delete[] wareaL;
+    delete[] wclipL;
+    delete[] wposL;
+    delete RGB565_to_LUM8_LUT;
+    delete[] undistO2ITable;
+    delete[] marker_infoTWO;
 }
 
 bool Tracker::setPixelFormat(PIXEL_FORMAT nFormat) {
@@ -302,8 +264,8 @@ void Tracker::setCamera(Camera* nCamera, ARFloat nNearClip, ARFloat nFarClip) {
     convertProjectionMatrixToOpenGLStyle(&gCparam, nNearClip, nFarClip, gl_cpara);
 }
 
-ARFloat Tracker::calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2],
-        ARFloat nPatternSize, ARFloat *nOpenGLMatrix) {
+ARFloat Tracker::calcOpenGLMatrixFromMarker(ARMarkerInfo* nMarkerInfo, ARFloat nPatternCenter[2], ARFloat nPatternSize,
+        ARFloat *nOpenGLMatrix) {
     ARFloat tmpTrans[3][4];
 
     ARFloat err = executeSingleMarkerPoseEstimator(nMarkerInfo, nPatternCenter, nPatternSize, tmpTrans);
@@ -448,8 +410,7 @@ ARFloat Tracker::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARF
     return -1.0f;
 }
 
-ARFloat Tracker::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num,
-        ARMultiMarkerInfoT *config) {
+ARFloat Tracker::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
     if (hullTrackingMode != HULL_OFF)
         return arMultiGetTransMatHull(marker_info, marker_num, config);
 
