@@ -321,6 +321,7 @@ int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 						_M(ext_pat,j,i,0) = image[(yc * arImXsize + xc) * 4 + 2];
 						_M(ext_pat,j,i,1) = image[(yc * arImXsize + xc) * 4 + 1];
 						_M(ext_pat,j,i,2) = image[(yc * arImXsize + xc) * 4 + 0];
+						break;
 
 					case PIXEL_FORMAT_RGB:
 						_M(ext_pat,j,i,0) = image[(yc * arImXsize + xc) * 3 + 2];

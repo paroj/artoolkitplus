@@ -216,7 +216,6 @@ ARFloat Tracker::arGetTransMatSub(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloa
         ret = arModifyMatrix(rot, trans, pCam->mat, pos3d, pos2d, num);
 
         arGetAngle(rot, &a, &b, &c);
-        a = a;
     }
 
     // double begin

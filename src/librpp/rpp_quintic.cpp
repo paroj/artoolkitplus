@@ -31,7 +31,6 @@
 namespace rpp {
 
 
-int quintic(double [], double [], double [], int*, double);
 int quartic(double[], double[], double[], int* );
 int cubic(double[], double[], int*);
 int signR(double);

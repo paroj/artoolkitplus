@@ -29,9 +29,7 @@
 namespace rpp {
 
 int svdcmp(double **a, int m, int n, double *w, double **v);
-int quintic(double[], double[], double[], int*, double);
 int quartic(double[], double[], double[], int*);
-int cubic(double[], double[], int*);
 
 // ---------------------------------------------------------------------------
 
