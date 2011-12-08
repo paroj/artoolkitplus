@@ -21,6 +21,10 @@
 #include <ARToolKitPlus/Tracker.h>
 #include <cmath>
 
+#ifndef M_PI
+# define M_PI       3.14159265358979323846  /* pi */
+#endif
+
 namespace ARToolKitPlus {
 
 ARFloat Tracker::arModifyMatrix(ARFloat rot[3][3], ARFloat trans[3], ARFloat cpara[3][4], ARFloat vertex[][3],

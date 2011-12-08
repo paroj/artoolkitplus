@@ -24,6 +24,10 @@
 #include <cstring>
 #include <cmath>
 
+#ifndef M_PI
+# define M_PI       3.14159265358979323846  /* pi */
+#endif
+
 #include "rpp.h"
 #include "rpp_vecmat.h"
 #include "rpp_const.h"

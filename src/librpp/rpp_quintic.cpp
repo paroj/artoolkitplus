@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     Authors:
-      Thomas M_PIntaric
+      Thomas Pintaric
  */
 
 
@@ -23,6 +23,11 @@
 
 
 #include <cmath>
+
+#ifndef M_PI
+# define M_PI       3.14159265358979323846  /* pi */
+#endif
+
 #include "stdio.h"
 #define max(a,b) (a>b?a:b)
 #define min(a,b) (a<b?a:b)
