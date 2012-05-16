@@ -33,6 +33,11 @@ endif(BUILD_EXAMPLES)
 
 # make install
 set(CMAKE_INSTALL_PREFIX /usr)
-install(TARGETS ARToolKitPlus LIBRARY DESTINATION lib)
+
+install(TARGETS ARToolKitPlus 
+LIBRARY DESTINATION lib  
+ARCHIVE DESTINATION lib
+RUNTIME DESTINATION bin)
+
 install(DIRECTORY include/ DESTINATION include)
 
