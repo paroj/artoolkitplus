@@ -411,8 +411,14 @@ ARFloat Tracker::executeSingleMarkerPoseEstimator(ARMarkerInfo *marker_info, ARF
 }
 
 ARFloat Tracker::executeMultiMarkerPoseEstimator(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config) {
-    if (hullTrackingMode != HULL_OFF)
+    if(marker_num == 0) {
+        // dont try anything if we have no markers
+        return -1;
+    }
+
+    if (hullTrackingMode != HULL_OFF) {
         return arMultiGetTransMatHull(marker_info, marker_num, config);
+    }
 
     switch (poseEstimator) {
     case POSE_ESTIMATOR_ORIGINAL:
