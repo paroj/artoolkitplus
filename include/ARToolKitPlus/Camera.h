@@ -41,6 +41,11 @@ public:
     ARFloat mat[3][4];
     ARFloat dist_factor[4];
 
+    // http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
+    ARFloat cc[2];
+    ARFloat fc[2];
+    ARFloat kc[6];
+
     void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
     void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
     bool loadFromFile(const char* filename);
@@ -50,11 +55,6 @@ public:
     std::string getFileName() const;
 protected:
     std::string fileName;
-
-    // http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
-    ARFloat cc[2];
-    ARFloat fc[2];
-    ARFloat kc[6];
     int undist_iterations;
 };
 
