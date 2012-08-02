@@ -37,7 +37,6 @@ TrackerSingleMarker::TrackerSingleMarker(int imWidth, int imHeight, int maxImage
 }
 
 bool TrackerSingleMarker::init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip) {
-
     if (!this->checkPixelFormat()) {
         cerr << "ARToolKitPlus: Invalid Pixel Format!" << endl;
         return false;
@@ -46,14 +45,16 @@ bool TrackerSingleMarker::init(const char* nCamParamFile, ARFloat nNearClip, ARF
     // init some "static" members from artoolkit
     // (some systems don't like such large global members
     // so we allocate this manually)
-    if (this->marker_infoTWO == NULL)
+    if (this->marker_infoTWO == NULL) {
         this->marker_infoTWO = new ARMarkerInfo2[MAX_IMAGE_PATTERNS];
+    }
 
-    //initialize applications
-    if (nCamParamFile)
+    // initialize applications
+    if (nCamParamFile) {
         return loadCameraFile(nCamParamFile, nNearClip, nFarClip);
-    else
-        return true;
+    }
+
+    return true;
 }
 
 std::vector<int> TrackerSingleMarker::calc(const uint8_t* nImage, ARMarkerInfo** nMarker_info, int* nNumMarkers) {

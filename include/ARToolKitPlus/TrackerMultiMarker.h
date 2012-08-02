@@ -19,8 +19,7 @@
  *  Pavel Rojtberg
  */
 
-#ifndef __ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
-#define __ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
+#pragma once
 
 #include <ARToolKitPlus/Tracker.h>
 
@@ -66,13 +65,13 @@ public:
      *  nNearClip & nFarClip are near and far clipping values for the OpenGL projection matrix
      *  nLogger is an instance which implements the ARToolKit::Logger interface
      */
-    virtual bool init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip, ARFloat nFarClip);
+    virtual bool init(const char* const nCamParamFile, const char* const nMultiFile, ARFloat nNearClip, ARFloat nFarClip);
 
     /**
      * calculates the transformation matrix
      *	pass the image as RGBX (32-bits)
      */
-    virtual int calc(const unsigned char* nImage);
+    virtual int calc(const uint8_t* nImage);
 
     /*
      * Returns the number of detected markers used for multi-marker tracking
@@ -131,7 +130,4 @@ protected:
     ARMarkerInfo *detectedMarkers;
 };
 
-}
-; // namespace ARToolKitPlus
-
-#endif //__ARTOOLKITPLUS_TRACKERMULTIMARKERIMPL_HEADERFILE__
+} // namespace ARToolKitPlus

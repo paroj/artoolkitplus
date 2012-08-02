@@ -229,7 +229,7 @@ public:
      *  than a single full successful position estimation.
      */
     virtual void setNumAutoThresholdRetries(int nNumRetries) {
-        autoThreshold.numRandomRetries = nNumRetries >= 1 ? nNumRetries : 1;
+        autoThreshold.numRandomRetries = std::min(nNumRetries, 1);
     }
 
     /**

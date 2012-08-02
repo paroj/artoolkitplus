@@ -44,25 +44,29 @@ TrackerMultiMarker::~TrackerMultiMarker() {
 		arMultiFreeConfig(config);
 }
 
-bool TrackerMultiMarker::init(const char* nCamParamFile, const char* nMultiFile, ARFloat nNearClip,
+bool TrackerMultiMarker::init(const char* const nCamParamFile, const char* const nMultiFile, ARFloat nNearClip,
 		ARFloat nFarClip) {
-	// init some "static" from TrackerMultiMarker
-	//
-	if (this->marker_infoTWO == NULL)
+    // init some "static" members from artoolkit
+    // (some systems don't like such large global members
+    // so we allocate this manually)
+	if (this->marker_infoTWO == NULL) {
 		this->marker_infoTWO = new ARMarkerInfo2[MAX_IMAGE_PATTERNS];
+	}
 
-	if (!loadCameraFile(nCamParamFile, nNearClip, nFarClip))
-		return false;
-
-	if (config)
+	if (config) {
 		arMultiFreeConfig(config);
+	}
 
-	if ((config = arMultiReadConfigFile(nMultiFile)) == NULL)
+	if ((config = arMultiReadConfigFile(nMultiFile)) == NULL) {
 		return false;
+	}
 
-	//printf("INFO: %d markers loaded from config file\n", config->marker_num);
+    // initialize applications
+    if (nCamParamFile) {
+        return loadCameraFile(nCamParamFile, nNearClip, nFarClip);
+    }
 
-	return true;
+    return true;
 }
 
 int TrackerMultiMarker::calc(const unsigned char* nImage) {

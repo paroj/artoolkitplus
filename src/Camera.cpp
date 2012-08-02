@@ -29,7 +29,14 @@
 
 using namespace std;
 
+#define CAMERA_ADV_HEADER "ARToolKitPlus_CamCal_Rev02"
+#define CAMERA_ADV_MAX_UNDIST_ITERATIONS 20
+
 namespace ARToolKitPlus {
+
+Camera::Camera() : xsize(-1), ysize(-1), undist_iterations(0) {
+    std::fill(&mat[0][0], &mat[0][0]+3*4, 0);
+}
 
 bool Camera::loadFromFile(const char* filename) {
     string hdr;
@@ -60,10 +67,6 @@ bool Camera::loadFromFile(const char* filename) {
     camf.close();
 
     undist_iterations = min(undist_iterations, CAMERA_ADV_MAX_UNDIST_ITERATIONS);
-
-    for (int i = 0; i < 3; i++)
-        for (int j = 0; j < 4; j++)
-            mat[i][j] = 0.;
 
     mat[0][0] = fc[0]; // fc_x
     mat[1][1] = fc[1]; // fc_y
@@ -131,8 +134,8 @@ Camera* Camera::clone() {
     for (i = 0; i < 3; i++)
         for (j = 0; j < 4; j++)
             pCam->mat[i][j] = mat[i][j];
-    for (i = 0; i < 4; i++)
-        pCam->dist_factor[i] = dist_factor[i];
+    //for (i = 0; i < 4; i++)
+    //    pCam->dist_factor[i] = dist_factor[i];
     pCam->cc[0] = cc[0];
     pCam->cc[1] = cc[1];
     pCam->fc[0] = fc[0];
@@ -165,7 +168,7 @@ bool Camera::changeFrameSize(const int frameWidth, const int frameHeight) {
 
 void Camera::printSettings() {
     printf("ARToolKitPlus: CamSize %d , %d\n", xsize, ysize);
-    printf("ARToolKitPlus: cc = [%.2f  %.2f]  fc = [%.2f  %.2f]\n", cc[0], cc[1], fc[0], fc[1]);
+    printf("ARToolKitPlus: cc = [%.2f  %.2f]  fc = [%.2f  %.2f]\n", mat[0][2], mat[1][2], mat[0][0], mat[1][1]);
     printf("ARToolKitPlus: kc = [%.4f %.4f %.4f %.4f %.4f %.4f]\n", kc[0], kc[1], kc[2], kc[3], kc[4], kc[5]);
     printf("ARToolKitPlus: undist_iterations = %i\n", undist_iterations);
 }

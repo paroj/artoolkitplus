@@ -36,7 +36,7 @@ Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth,
         int maxLoadPatterns) :
     PATTERN_WIDTH(pattWidth), PATTERN_HEIGHT(pattHeight), PATTERN_SAMPLE_NUM(pattSamples),
             MAX_LOAD_PATTERNS(maxLoadPatterns), MAX_IMAGE_PATTERNS(maxImagePatterns),
-            WORK_SIZE(1024 * MAX_IMAGE_PATTERNS), sprev_info(2, vector<arPrevInfo> (MAX_IMAGE_PATTERNS)),
+            WORK_SIZE(1024 * MAX_IMAGE_PATTERNS), sprev_info(2, vector<arPrevInfo> (MAX_IMAGE_PATTERNS)), patf(0),
             pat(MAX_LOAD_PATTERNS, vector<vector<int> > (4, vector<int> (PATTERN_HEIGHT * PATTERN_WIDTH * 3))),
             patBW(MAX_LOAD_PATTERNS, vector<vector<int> > (4, vector<int> (PATTERN_HEIGHT * PATTERN_WIDTH * 3))),
             evec(EVEC_MAX, vector<ARFloat> (PATTERN_HEIGHT * PATTERN_WIDTH * 3)),
@@ -44,10 +44,11 @@ Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth,
     screenWidth = imWidth;
     screenHeight = imHeight;
 
-    int i;
-
     // dynamically allocate template arguments
-    patf = new int[MAX_LOAD_PATTERNS];
+    if(MAX_LOAD_PATTERNS > 0) {
+        patf = new int[MAX_LOAD_PATTERNS];
+        std::fill(patf, patf+MAX_LOAD_PATTERNS, 0);
+    }
 
     patpow = new ARFloat[MAX_LOAD_PATTERNS][4];
     patpowBW = new ARFloat[MAX_LOAD_PATTERNS][4];
@@ -72,9 +73,6 @@ Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth,
     marker_infoTWO = NULL;
 
     pattern_num = -1;
-
-    for (i = 0; i < MAX_LOAD_PATTERNS; i++)
-        patf[i] = 0;
 
     evecf = 0;
     evecBWf = 0;

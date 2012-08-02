@@ -116,7 +116,7 @@ int Tracker::arLoadPatt(char *filename) {
 }
 
 int Tracker::arFreePatt(int patno) {
-	if (patf[patno] == 0)
+	if (patf == 0 || patf[patno] == 0)
 		return -1;
 
 	patf[patno] = 0;

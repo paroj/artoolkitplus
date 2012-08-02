@@ -19,8 +19,7 @@
  *  Pavel Rojtberg
  */
 
-#ifndef __ARTOOLKIT_CAMERAADVIMPL_HEADERFILE__
-#define __ARTOOLKIT_CAMERAADVIMPL_HEADERFILE__
+#pragma once
 
 #include <string>
 #include <ARToolKitPlus/config.h>
@@ -28,22 +27,17 @@
 
 namespace ARToolKitPlus {
 
-#define CAMERA_ADV_HEADER "ARToolKitPlus_CamCal_Rev02"
-#define CAMERA_ADV_MAX_UNDIST_ITERATIONS 20
-
 /**
  * this class used to be called ARParam in the classical ARToolkit
  * so do not wonder because of the method names
  */
 class AR_EXPORT Camera {
 public:
-    int xsize, ysize;
-    ARFloat mat[3][4];
-    ARFloat dist_factor[4];
+    Camera();
 
+    int xsize, ysize;
     // http://www.vision.caltech.edu/bouguetj/calib_doc/htmls/parameters.html
-    ARFloat cc[2];
-    ARFloat fc[2];
+    ARFloat mat[3][4];
     ARFloat kc[6];
 
     void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
@@ -53,11 +47,14 @@ public:
     bool changeFrameSize(const int frameWidth, const int frameHeight);
     void printSettings();
     std::string getFileName() const;
+
 protected:
     std::string fileName;
     int undist_iterations;
+
+    //ARFloat dist_factor[4];
+    ARFloat cc[2];
+    ARFloat fc[2];
 };
 
 } // namespace ARToolKitPlus
-
-#endif // __ARTOOLKIT_CAMERAADVIMPL_HEADERFILE__

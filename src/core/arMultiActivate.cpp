@@ -52,11 +52,10 @@ int Tracker::arMultiDeactivate(ARMultiMarkerInfoT *config) {
 }
 
 int Tracker::arMultiFreeConfig(ARMultiMarkerInfoT *config) {
-    int i;
-
-    for (i = 0; i < config->marker_num; i++) {
+    for (int i = 0; i < config->marker_num; i++) {
         arFreePatt(config->marker[i].patt_id);
     }
+
     free(config->marker);
     free(config);
     config = NULL;

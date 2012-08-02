@@ -90,7 +90,7 @@ Tracker::arMultiGetTransMatHull(ARMarkerInfo *marker_info, int marker_num, ARMul
 	int idx0,idx1,idx2,idx3;
 
 
-	if(hullTrackingMode==HULL_FOUR)
+	if(hullTrackingMode==HULL_FOUR && numHullPoints != 0)
 	{
 		// find those points with furthest distance and that lie on
 		// opposite parts of the hull. this fixes the first two points of our quad.
@@ -202,11 +202,15 @@ Tracker::arMultiGetTransMatHull(ARMarkerInfo *marker_info, int marker_num, ARMul
 			}
 		}
 
-		assert(minIdx>=0);
+
 		//trackedCorners.push_back(CornerPoint((int)marker_info[minIdx].pos[0],(int)marker_info[minIdx].pos[1]));
 
+        if(minIdx >= 0) {
+            return  -1;
+        }
+
 		if(arGetInitRot(marker_info+minIdx, arCamera->mat, rot )<0)
-			return 99.0f;
+			return -1;
 
 
 		// finally use the normal pose estimator to get the pose

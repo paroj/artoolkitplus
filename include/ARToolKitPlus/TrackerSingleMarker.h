@@ -19,8 +19,7 @@
  *  Pavel Rojtberg
  */
 
-#ifndef __ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__
-#define __ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__
+#pragma once
 
 #include <ARToolKitPlus/Tracker.h>
 
@@ -125,5 +124,3 @@ protected:
 };
 
 } // namespace ARToolKitPlus
-
-#endif //__ARTOOLKITPLUS_TRACKERSINGLEMARKERIMPL_HEADERFILE__

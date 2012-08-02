@@ -31,10 +31,6 @@ static ARFloat dot(ARFloat a1, ARFloat a2, ARFloat a3, ARFloat b1, ARFloat b2, A
 int Tracker::arCameraDecomp(Camera *source, Camera *icpara, ARFloat trans[3][4]) {
     icpara->xsize = source->xsize;
     icpara->ysize = source->ysize;
-    icpara->dist_factor[0] = source->dist_factor[0];
-    icpara->dist_factor[1] = source->dist_factor[1];
-    icpara->dist_factor[2] = source->dist_factor[2];
-    icpara->dist_factor[3] = source->dist_factor[3];
 
     return arCameraDecompMat(source->mat, icpara->mat, trans);
 }

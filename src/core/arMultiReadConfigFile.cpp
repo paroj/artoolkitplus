@@ -62,102 +62,114 @@ isNumber(const char* nString)
 
 
  ARMultiMarkerInfoT*
-Tracker::arMultiReadConfigFile(const char *filename)
-{
-    FILE                   *fp;
+Tracker::arMultiReadConfigFile(const char *filename) {
+    FILE *fp;
     ARMultiEachMarkerInfoT *marker;
-    ARMultiMarkerInfoT     *marker_info;
-    ARFloat                 wpos3d[4][2];
-    char                   buf[256], buf1[256];
-    int                    num;
-    int                    i, j;
+    ARMultiMarkerInfoT *marker_info;
+    ARFloat wpos3d[4][2];
+    char buf[256], buf1[256];
+    int num;
+    int i, j;
 
     setlocale(LC_NUMERIC, "C");
 
-    if( (fp=fopen(filename,"r")) == NULL ) return NULL;
+    if ((fp = fopen(filename, "r")) == NULL)
+        return NULL;
 
     get_buff(buf, 256, fp);
-    if( sscanf(buf, "%d", &num) != 1 ) {fclose(fp); return NULL;}
+    if (sscanf(buf, "%d", &num) != 1) {
+        fclose(fp);
+        return NULL;
+    }
 
-    arMalloc(marker,ARMultiEachMarkerInfoT,num);
+    arMalloc(marker, ARMultiEachMarkerInfoT, num);
 
-    for( i = 0; i < num; i++ ) {
+    for (i = 0; i < num; i++) {
         get_buff(buf, 256, fp);
-        if( sscanf(buf, "%s", buf1) != 1 ) {
-            fclose(fp); free(marker); return NULL;
+        if (sscanf(buf, "%s", buf1) != 1) {
+            fclose(fp);
+            free(marker);
+            return NULL;
         }
-		// Added by Daniel: if the markername is an integer number
-		// we directly interprete this as the marker id (used for
-		// id-based markers)
-		if(isNumber(buf1))
-			marker[i].patt_id = atoi(buf1);
-		else
-        if( (marker[i].patt_id = arLoadPatt(buf1)) < 0 ) {
-            fclose(fp); free(marker); return NULL;
+        // Added by Daniel: if the markername is an integer number
+        // we directly interprete this as the marker id (used for
+        // id-based markers)
+        if (isNumber(buf1))
+            marker[i].patt_id = atoi(buf1);
+        else if ((marker[i].patt_id = arLoadPatt(buf1)) < 0) {
+            fclose(fp);
+            free(marker);
+            return NULL;
         }
 
         get_buff(buf, 256, fp);
 #ifdef _USE_DOUBLE_
         if( sscanf(buf, "%lf", &marker[i].width) != 1 ) {
 #else
-        if( sscanf(buf, "%f", &marker[i].width) != 1 ) {
+        if (sscanf(buf, "%f", &marker[i].width) != 1) {
 #endif
-            fclose(fp); free(marker); return NULL;
+            fclose(fp);
+            free(marker);
+            return NULL;
         }
 
         get_buff(buf, 256, fp);
 #ifdef _USE_DOUBLE_
-		if( sscanf(buf, "%lf %lf", &marker[i].center[0], &marker[i].center[1]) != 2 ) {
+        if( sscanf(buf, "%lf %lf", &marker[i].center[0], &marker[i].center[1]) != 2 ) {
 #else
-		if( sscanf(buf, "%f %f", &marker[i].center[0], &marker[i].center[1]) != 2 ) {
+        if (sscanf(buf, "%f %f", &marker[i].center[0], &marker[i].center[1]) != 2) {
 #endif
-            fclose(fp); free(marker); return NULL;
+            fclose(fp);
+            free(marker);
+            return NULL;
         }
 
-        for( j = 0; j < 3; j++ ) {
+        for (j = 0; j < 3; j++) {
             get_buff(buf, 256, fp);
-            if( sscanf(buf,
+            if (sscanf(buf,
 #ifdef _USE_DOUBLE_
-                       "%lf %lf %lf %lf",
+                    "%lf %lf %lf %lf",
 #else
-                       "%f %f %f %f",
+                    "%f %f %f %f",
 #endif
-                       &marker[i].trans[j][0], &marker[i].trans[j][1], &marker[i].trans[j][2], &marker[i].trans[j][3]) != 4 )
-			{
-                fclose(fp); free(marker); return NULL;
+                    &marker[i].trans[j][0], &marker[i].trans[j][1], &marker[i].trans[j][2], &marker[i].trans[j][3])
+                    != 4) {
+                fclose(fp);
+                free(marker);
+                return NULL;
             }
         }
-        arUtilMatInv( marker[i].trans, marker[i].itrans );
+        arUtilMatInv(marker[i].trans, marker[i].itrans);
 
-        wpos3d[0][0] = marker[i].center[0] - marker[i].width*0.5f;
-        wpos3d[0][1] = marker[i].center[1] + marker[i].width*0.5f;
-        wpos3d[1][0] = marker[i].center[0] + marker[i].width*0.5f;
-        wpos3d[1][1] = marker[i].center[1] + marker[i].width*0.5f;
-        wpos3d[2][0] = marker[i].center[0] + marker[i].width*0.5f;
-        wpos3d[2][1] = marker[i].center[1] - marker[i].width*0.5f;
-        wpos3d[3][0] = marker[i].center[0] - marker[i].width*0.5f;
-        wpos3d[3][1] = marker[i].center[1] - marker[i].width*0.5f;
-        for( j = 0; j < 4; j++ ) {
-            marker[i].pos3d[j][0] = marker[i].trans[0][0] * wpos3d[j][0]
-                                  + marker[i].trans[0][1] * wpos3d[j][1]
-                                  + marker[i].trans[0][3];
-            marker[i].pos3d[j][1] = marker[i].trans[1][0] * wpos3d[j][0]
-                                  + marker[i].trans[1][1] * wpos3d[j][1]
-                                  + marker[i].trans[1][3];
-            marker[i].pos3d[j][2] = marker[i].trans[2][0] * wpos3d[j][0]
-                                  + marker[i].trans[2][1] * wpos3d[j][1]
-                                  + marker[i].trans[2][3];
+        wpos3d[0][0] = marker[i].center[0] - marker[i].width * 0.5f;
+        wpos3d[0][1] = marker[i].center[1] + marker[i].width * 0.5f;
+        wpos3d[1][0] = marker[i].center[0] + marker[i].width * 0.5f;
+        wpos3d[1][1] = marker[i].center[1] + marker[i].width * 0.5f;
+        wpos3d[2][0] = marker[i].center[0] + marker[i].width * 0.5f;
+        wpos3d[2][1] = marker[i].center[1] - marker[i].width * 0.5f;
+        wpos3d[3][0] = marker[i].center[0] - marker[i].width * 0.5f;
+        wpos3d[3][1] = marker[i].center[1] - marker[i].width * 0.5f;
+        for (j = 0; j < 4; j++) {
+            marker[i].pos3d[j][0] = marker[i].trans[0][0] * wpos3d[j][0] + marker[i].trans[0][1] * wpos3d[j][1]
+                    + marker[i].trans[0][3];
+            marker[i].pos3d[j][1] = marker[i].trans[1][0] * wpos3d[j][0] + marker[i].trans[1][1] * wpos3d[j][1]
+                    + marker[i].trans[1][3];
+            marker[i].pos3d[j][2] = marker[i].trans[2][0] * wpos3d[j][0] + marker[i].trans[2][1] * wpos3d[j][1]
+                    + marker[i].trans[2][3];
         }
     }
 
     fclose(fp);
     setlocale(LC_NUMERIC, "C");
 
-    marker_info = (ARMultiMarkerInfoT *)malloc( sizeof(ARMultiMarkerInfoT) );
-    if( marker_info == NULL ) {free(marker); return NULL;}
-    marker_info->marker     = marker;
+    marker_info = (ARMultiMarkerInfoT *) malloc(sizeof(ARMultiMarkerInfoT));
+    if (marker_info == NULL) {
+        free(marker);
+        return NULL;
+    }
+    marker_info->marker = marker;
     marker_info->marker_num = num;
-    marker_info->prevF      = 0;
+    marker_info->prevF = 0;
 
     return marker_info;
 }
