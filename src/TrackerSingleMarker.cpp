@@ -67,7 +67,7 @@ std::vector<int> TrackerSingleMarker::calc(const uint8_t* nImage, ARMarkerInfo**
 
     // detect the markers in the video frame
     //
-    if (arDetectMarker(const_cast<unsigned char*> (nImage), this->thresh, &marker_info, &marker_num) < 0) {
+    if (arDetectMarker(nImage, this->thresh, &marker_info, &marker_num) < 0) {
         return detected;
     }
 

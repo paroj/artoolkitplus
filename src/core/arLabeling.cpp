@@ -58,7 +58,7 @@ void put_zero(uint8_t *p, int size) {
 #undef _DEF_PIXEL_FORMAT_LUM
 
 int16_t*
-Tracker::arLabeling(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+Tracker::arLabeling(const uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
         int **label_ref) {
     int16_t* ret = NULL;
 

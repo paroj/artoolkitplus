@@ -31,7 +31,7 @@ namespace ARToolKitPlus {
 // marker detection using tracking history
 //
  int
-Tracker::arDetectMarker(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
+Tracker::arDetectMarker(const uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
 {
     int16_t                *limage=NULL;
     int                    label_num;
@@ -185,7 +185,7 @@ Tracker::arDetectMarker(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_inf
 // marker detection without using tracking history
 //
  int
-Tracker::arDetectMarkerLite(uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
+Tracker::arDetectMarkerLite(const uint8_t *dataPtr, int _thresh, ARMarkerInfo **marker_info, int *marker_num)
 {
     int16_t                *limage = NULL;
     int                    label_num;

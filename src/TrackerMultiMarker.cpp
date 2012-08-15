@@ -69,16 +69,16 @@ bool TrackerMultiMarker::init(const char* const nCamParamFile, const char* const
     return true;
 }
 
-int TrackerMultiMarker::calc(const unsigned char* nImage) {
+int TrackerMultiMarker::calc(const uint8_t* nImage) {
 	numDetected = 0;
 	int tmpNumDetected;
 	ARMarkerInfo *tmp_markers;
 
 	if (useDetectLite) {
-		if (arDetectMarkerLite(const_cast<unsigned char*> (nImage), this->thresh, &tmp_markers, &tmpNumDetected) < 0)
+		if (arDetectMarkerLite(nImage, this->thresh, &tmp_markers, &tmpNumDetected) < 0)
 			return 0;
 	} else {
-		if (arDetectMarker(const_cast<unsigned char*> (nImage), this->thresh, &tmp_markers, &tmpNumDetected) < 0)
+		if (arDetectMarker(nImage, this->thresh, &tmp_markers, &tmpNumDetected) < 0)
 			return 0;
 	}
 

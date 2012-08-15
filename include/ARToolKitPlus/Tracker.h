@@ -83,10 +83,10 @@ public:
     }
 
     /// marker detection using tracking history
-    virtual int arDetectMarker(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
+    virtual int arDetectMarker(const uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
 
     /// marker detection without using tracking history
-    virtual int arDetectMarkerLite(uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
+    virtual int arDetectMarkerLite(const uint8_t *dataPtr, int thresh, ARMarkerInfo **marker_info, int *marker_num);
 
     /// calculates the transformation matrix between camera and the given multi-marker config
     virtual ARFloat arMultiGetTransMat(ARMarkerInfo *marker_info, int marker_num, ARMultiMarkerInfoT *config);
@@ -335,9 +335,9 @@ protected:
     int check_square(int area, ARMarkerInfo2 *marker_infoTWO, ARFloat factor);
 
     int
-    arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf, int thresh);
+    arGetCode(const uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf, int thresh);
 
-    int arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t *ext_pat);
+    int arGetPatt(const uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t *ext_pat);
 
     int pattern_match(uint8_t *data, int *code, int *dir, ARFloat *cf);
 
@@ -349,7 +349,7 @@ protected:
 
     void gen_evec(void);
 
-    ARMarkerInfo* arGetMarkerInfo(uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh);
+    ARMarkerInfo* arGetMarkerInfo(const uint8_t *image, ARMarkerInfo2 *marker_info2, int *marker_num, int thresh);
 
     ARFloat arGetTransMat5(ARFloat rot[3][3], ARFloat ppos2d[][2], ARFloat ppos3d[][3], int num, ARFloat conv[3][4],
             Camera *pCam);
@@ -377,18 +377,18 @@ protected:
     ARFloat arGetTransMatContSub(ARMarkerInfo *marker_info, ARFloat prev_conv[3][4], ARFloat center[2], ARFloat width,
             ARFloat conv[3][4]);
 
-    int16_t* arLabeling(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+    int16_t* arLabeling(const uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
             int **label_ref);
 
-    int16_t* arLabeling_ABGR(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+    int16_t* arLabeling_ABGR(const uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
             int **label_ref);
-    int16_t* arLabeling_BGR(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+    int16_t* arLabeling_BGR(const uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
             int **label_ref);
-    int16_t* arLabeling_RGB(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+    int16_t* arLabeling_RGB(const uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
             int **label_ref);
-    int16_t* arLabeling_RGB565(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+    int16_t* arLabeling_RGB565(const uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
             int **label_ref);
-    int16_t* arLabeling_LUM(uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
+    int16_t* arLabeling_LUM(const uint8_t *image, int thresh, int *label_num, int **area, ARFloat **pos, int **clip,
             int **label_ref);
 
     int arActivatePatt(int patno);

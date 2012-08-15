@@ -145,7 +145,7 @@ int Tracker::arDeactivatePatt(int patno) {
 	return 1;
 }
 
-int Tracker::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf,
+int Tracker::arGetCode(const uint8_t *image, int *x_coord, int *y_coord, int *vertex, int *code, int *dir, ARFloat *cf,
 		int thresh) {
 	#define _M(VAR, h,w,c) VAR[(h)*(PATTERN_WIDTH*3) + (w)*3 + (c)]
 	uint8_t *ext_pat = new uint8_t[PATTERN_HEIGHT*PATTERN_WIDTH*3];
@@ -198,7 +198,7 @@ int Tracker::arGetCode(uint8_t *image, int *x_coord, int *y_coord, int *vertex, 
 }
 
 //#if 1
-int Tracker::arGetPatt(uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t *ext_pat) {
+int Tracker::arGetPatt(const uint8_t *image, int *x_coord, int *y_coord, int *vertex, uint8_t *ext_pat) {
 	#define _M(VAR, h,w,c) VAR[(h)*(PATTERN_WIDTH*3) + (w)*3 + (c)]
 
 	uint32_t *ext_pat2 = new uint32_t[PATTERN_HEIGHT*PATTERN_WIDTH*3];

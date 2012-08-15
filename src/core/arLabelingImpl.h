@@ -23,10 +23,10 @@
 #include <cassert>
 
  int16_t*
-Tracker::LABEL_FUNC_NAME(uint8_t *image, int thresh, int *label_num, int **area,
+Tracker::LABEL_FUNC_NAME(const uint8_t *image, int thresh, int *label_num, int **area,
 								  ARFloat **pos, int **clip, int **label_ref)
 {
-    uint8_t   *pnt;                     /*  image pointer       */
+    const uint8_t   *pnt;                     /*  image pointer       */
     int16_t   *pnt1, *pnt2;             /*  image pointer       */
     int       *wk;                      /*  pointer for work    */
     int       wk_max;                   /*  work                */
