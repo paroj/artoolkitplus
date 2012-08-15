@@ -126,7 +126,7 @@ Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth,
     bchProcessor = NULL;
 
     poseEstimator = POSE_ESTIMATOR_RPP;
-    hullTrackingMode = HULL_FOUR;
+    hullTrackingMode = HULL_OFF;
 }
 
 Tracker::~Tracker() {
