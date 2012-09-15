@@ -59,8 +59,7 @@ public:
 
     /**
      * initializes TrackerSingleMarker
-     *  nCamParamFile is the name of the camera parameter file
-     *  nLogger is an instance which implements the ARToolKit::Logger interface
+     * @param nCamParamFile is the name of the camera parameter file
      */
     virtual bool init(const char* nCamParamFile, ARFloat nNearClip, ARFloat nFarClip);
 

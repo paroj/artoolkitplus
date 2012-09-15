@@ -4,7 +4,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
-OPTION(BUILD_EXAMPLES "Build sample programs and utilies" FALSE)
+option(ARTK_BUILD_EXAMPLES "Build sample programs and utilies" FALSE)
+option(ARTK_USE_BOOST "Compile with boost (OpenCV calibration file support)" FALSE)
 
 if(WIN32)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS -DAR_LIBRARY)
@@ -12,6 +13,9 @@ else(WIN32)
     add_definitions(-Wall -O3)
 endif(WIN32)
 
+if(ARTK_USE_BOOST)
+    add_definitions(-DAR_WITH_BOOST)
+endif(ARTK_USE_BOOST)
 
 set(AR_SOURCE_DIR ${PROJECT_SOURCE_DIR})
 include_directories(${AR_SOURCE_DIR}/include)
@@ -27,9 +31,9 @@ file(GLOB SOURCES_AR
 
 add_library(ARToolKitPlus SHARED ${HEADERS_AR} ${SOURCES_AR})
 
-if(BUILD_EXAMPLES)
+if(ARTK_BUILD_EXAMPLES)
     add_subdirectory(bin/)
-endif(BUILD_EXAMPLES)
+endif(ARTK_BUILD_EXAMPLES)
 
 # make install
 set(CMAKE_INSTALL_PREFIX /usr)

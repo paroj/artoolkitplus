@@ -27,6 +27,12 @@
 
 #include <ARToolKitPlus/Camera.h>
 
+#ifdef AR_WITH_BOOST
+#include <sstream>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#endif
+
 using namespace std;
 
 #define CAMERA_ADV_HEADER "ARToolKitPlus_CamCal_Rev02"
@@ -38,7 +44,7 @@ Camera::Camera() : xsize(-1), ysize(-1), undist_iterations(0) {
     std::fill(&mat[0][0], &mat[0][0]+3*4, 0);
 }
 
-bool Camera::loadFromFile(const char* filename) {
+bool Camera::loadARTKCalib(const char* filename) {
     string hdr;
 
     ifstream camf(filename);
@@ -56,7 +62,11 @@ bool Camera::loadFromFile(const char* filename) {
         camf >> xsize >> ysize;
         camf >> cc[0] >> cc[1];
         camf >> fc[0] >> fc[1];
-        camf >> kc[0] >> kc[1] >> kc[2] >> kc[3] >> kc[4] >> kc[5];
+
+        for(int i = 0; i < 6; i++) {
+            camf >> kc[i];
+        }
+
         camf >> undist_iterations;
     } catch (ifstream::failure& e) {
         cerr << "Could not read Camera calibration file" << endl;
@@ -76,6 +86,55 @@ bool Camera::loadFromFile(const char* filename) {
 
     return true;
 }
+
+bool Camera::loadFromFile(const string& filename) {
+    if(filename.substr(filename.length() - 3, 3) == "xml") {
+        return loadOpenCVCalib(filename.c_str());
+    } else {
+        return loadARTKCalib(filename.c_str());
+    }
+}
+
+bool Camera::loadOpenCVCalib(const char* filename) {
+#ifdef AR_WITH_BOOST
+    using namespace boost::property_tree;
+
+    stringstream ss;
+    ptree xmlfile;
+
+    try {
+        read_xml(filename, xmlfile);
+
+        xsize = xmlfile.get<int>("opencv_storage.image_width");
+        ysize = xmlfile.get<int>("opencv_storage.image_height");
+
+        ss.str(xmlfile.get<string>("opencv_storage.distortion_coefficients.data"));
+
+        for (int i = 0; i < 4; i++) {
+            ss >> kc[i];
+        }
+        kc[4] = 0;
+        kc[5] = 10;
+
+        ss.str(xmlfile.get<string>("opencv_storage.camera_matrix.data"));
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                ss >> mat[i][j];
+            }
+        }
+    } catch (ptree_error& err) {
+        cerr << "Could not read Camera calibration file: " << err.what() << endl;
+        return false;
+    }
+
+    return true;
+#else
+    cerr << "ARToolKitPlus compiled without OpenCV Camera calibration support!" << endl;
+    return false;
+#endif
+}
+
 
 void Camera::observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy) {
     if (undist_iterations <= 0) {

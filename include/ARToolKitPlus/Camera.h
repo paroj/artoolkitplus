@@ -42,7 +42,7 @@ public:
 
     void observ2Ideal(ARFloat ox, ARFloat oy, ARFloat *ix, ARFloat *iy);
     void ideal2Observ(ARFloat ix, ARFloat iy, ARFloat *ox, ARFloat *oy);
-    bool loadFromFile(const char* filename);
+    bool loadFromFile(const std::string& filename);
     Camera* clone();
     bool changeFrameSize(const int frameWidth, const int frameHeight);
     void printSettings();
@@ -55,6 +55,10 @@ protected:
     //ARFloat dist_factor[4];
     ARFloat cc[2];
     ARFloat fc[2];
+
+    bool loadARTKCalib(const char* filename);
+
+    bool loadOpenCVCalib(const char* filename);
 };
 
 } // namespace ARToolKitPlus
