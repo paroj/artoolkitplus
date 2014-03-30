@@ -20,6 +20,8 @@
 
 #include <cmath>
 #include <cstdlib>
+#include <cassert>
+
 #include <ARToolKitPlus/matrix.h>
 
 namespace ARToolKitPlus {
@@ -82,9 +84,8 @@ allocDup(ARMat *source) {
 int dup(ARMat *dest, ARMat *source) {
 	int r, c;
 
-	if (dest->row != source->row || dest->clm != source->clm) {
-		return -1;
-	}
+	assert(dest->row == source->row && dest->clm == source->clm);
+
 	for (r = 0; r < source->row; r++) {
 		for (c = 0; c < source->clm; c++) {
 			ARELEM0(dest, r, c) = ARELEM0(source, r, c);
@@ -97,8 +98,7 @@ int dup(ARMat *dest, ARMat *source) {
 int mul(ARMat *dest, ARMat *a, ARMat *b) {
 	int r, c, i;
 
-	if (a->clm != b->row || dest->row != a->row || dest->clm != b->clm)
-		return -1;
+	assert(a->clm == b->row && dest->row == a->row && dest->clm == b->clm);
 
 	for (r = 0; r < dest->row; r++) {
 		for (c = 0; c < dest->clm; c++) {

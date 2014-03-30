@@ -19,6 +19,7 @@
  */
 
 #include <cmath>
+#include <cassert>
 
 #include <ARToolKitPlus/Tracker.h>
 #include <ARToolKitPlus/matrix.h>
@@ -81,8 +82,7 @@ ARFloat innerproduct(ARVec *x, ARVec *y) {
     ARFloat result = 0.0;
     int i;
 
-    if (x->clm != y->clm)
-        exit(0);
+    assert(x->clm == y->clm);
 
     for (i = 0; i < x->clm; i++) {
         result += x->v[i] * y->v[i];
