@@ -55,7 +55,7 @@ int svdcmp( double **a, int m,int n, double *w,double **v)
 	assert(n==3);
 	SVD_FLOAT rv1[3];		// was: rv1=G_alloc_vector(n);
 
-    n--;
+    n = 2; // was: n--; but together with assert it must be 2
     m--;
 
     for (i=0;i<=n;i++) {
