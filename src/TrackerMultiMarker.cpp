@@ -46,13 +46,6 @@ TrackerMultiMarker::~TrackerMultiMarker() {
 
 bool TrackerMultiMarker::init(const char* const nCamParamFile, const char* const nMultiFile, ARFloat nNearClip,
 		ARFloat nFarClip) {
-    // init some "static" members from artoolkit
-    // (some systems don't like such large global members
-    // so we allocate this manually)
-	if (this->marker_infoTWO == NULL) {
-		this->marker_infoTWO = new ARMarkerInfo2[MAX_IMAGE_PATTERNS];
-	}
-
 	if (config) {
 		arMultiFreeConfig(config);
 	}

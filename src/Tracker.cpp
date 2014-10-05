@@ -50,12 +50,16 @@ Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth,
         std::fill(patf, patf+MAX_LOAD_PATTERNS, 0);
     }
 
+    // init some "static" members from artoolkit
+    // (some systems don't like such large global members
+    // so we allocate this manually)
     patpow = new ARFloat[MAX_LOAD_PATTERNS][4];
     patpowBW = new ARFloat[MAX_LOAD_PATTERNS][4];
     epat = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
     epatBW = new ARFloat[MAX_LOAD_PATTERNS][4][EVEC_MAX];
     prev_info = new arPrevInfo[MAX_IMAGE_PATTERNS];
     marker_infoL = new ARMarkerInfo[MAX_IMAGE_PATTERNS];
+    marker_infoTWO = new ARMarkerInfo2[MAX_IMAGE_PATTERNS];
 
     // set default value to RGB888
     pixelFormat = PIXEL_FORMAT_RGB;
@@ -69,8 +73,6 @@ Tracker::Tracker(int imWidth, int imHeight, int maxImagePatterns, int pattWidth,
     wmarker_num = 0;
     prev_num = 0;
     sprev_num[0] = sprev_num[1] = 0;
-
-    marker_infoTWO = NULL;
 
     pattern_num = -1;
 

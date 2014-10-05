@@ -42,13 +42,6 @@ bool TrackerSingleMarker::init(const char* nCamParamFile, ARFloat nNearClip, ARF
         return false;
     }
 
-    // init some "static" members from artoolkit
-    // (some systems don't like such large global members
-    // so we allocate this manually)
-    if (this->marker_infoTWO == NULL) {
-        this->marker_infoTWO = new ARMarkerInfo2[MAX_IMAGE_PATTERNS];
-    }
-
     // initialize applications
     if (nCamParamFile) {
         return loadCameraFile(nCamParamFile, nNearClip, nFarClip);
