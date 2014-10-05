@@ -1,4 +1,7 @@
 #!/usr/bin/make -f
 
+override_dh_auto_configure:
+	cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=release .
+
 %:
 	dh $@

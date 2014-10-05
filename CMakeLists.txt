@@ -9,9 +9,11 @@ option(ARTK_USE_BOOST "Compile with boost (OpenCV calibration file support)" FAL
 
 if(WIN32)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS -DAR_LIBRARY)
-else(WIN32)
-    add_definitions(-Wall -O3)
-endif(WIN32)
+endif()
+
+if (CMAKE_BUILD_TYPE STREQUAL "")
+  set(CMAKE_BUILD_TYPE "release" CACHE STRING "" FORCE)
+endif ()
 
 if(ARTK_USE_BOOST)
     add_definitions(-DAR_WITH_BOOST)
@@ -36,8 +38,6 @@ if(ARTK_BUILD_EXAMPLES)
 endif(ARTK_BUILD_EXAMPLES)
 
 # make install
-set(CMAKE_INSTALL_PREFIX /usr)
-
 install(TARGETS ARToolKitPlus 
 LIBRARY DESTINATION lib  
 ARCHIVE DESTINATION lib
